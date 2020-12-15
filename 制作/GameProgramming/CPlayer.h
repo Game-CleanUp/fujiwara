@@ -5,7 +5,6 @@
 #include"CCollider.h"
 #include"CInput.h"
 #include"CPower.h"
-#include"CSpeed.h"
 #include"CHome.h"
 #include"CPlayerHP.h"
 #include"CGaugeBack.h"
@@ -32,7 +31,7 @@ public:
 	static int clear;
 	static int Dash;
 	static int Jump;
-
+	static int Esc;
 	int frame;
 	int level;
 

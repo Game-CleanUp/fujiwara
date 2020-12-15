@@ -90,6 +90,7 @@
     <ClCompile Include="CCollisionManager.cpp" />
     <ClCompile Include="CEffect.cpp" />
     <ClCompile Include="CEnemy.cpp" />
+    <ClCompile Include="CEnemy2.cpp" />
     <ClCompile Include="CGaugeBack.cpp" />
     <ClCompile Include="CHome.cpp" />
     <ClCompile Include="CImage.cpp" />
@@ -111,7 +112,6 @@
     <ClCompile Include="CSceneGame.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="CSceneTitle.cpp" />
-    <ClCompile Include="CSpeed.cpp" />
     <ClCompile Include="CTaskManager.cpp" />
     <ClCompile Include="CText.cpp" />
     <ClCompile Include="CTexture.cpp" />
@@ -128,6 +128,7 @@
     <ClInclude Include="CCollisionManager.h" />
     <ClInclude Include="CEffect.h" />
     <ClInclude Include="CEnemy.h" />
+    <ClInclude Include="CEnemy2.h" />
     <ClInclude Include="CGaugeBack.h" />
     <ClInclude Include="CHome.h" />
     <ClInclude Include="CImage.h" />
@@ -150,7 +151,6 @@
     <ClInclude Include="CSceneManager.h" />
     <ClInclude Include="CSceneTitle.h" />
     <ClInclude Include="CSound.h" />
-    <ClInclude Include="CSpeed.h" />
     <ClInclude Include="CTask.h" />
     <ClInclude Include="CTaskManager.h" />
     <ClInclude Include="CText.h" />

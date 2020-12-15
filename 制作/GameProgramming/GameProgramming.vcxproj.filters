@@ -105,9 +105,6 @@
     <ClCompile Include="CPower.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CSpeed.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CHome.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -124,6 +121,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CMoney.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemy2.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -221,9 +221,6 @@
     <ClInclude Include="CPower.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CSpeed.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CHome.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -240,6 +237,9 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CMoney.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemy2.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>

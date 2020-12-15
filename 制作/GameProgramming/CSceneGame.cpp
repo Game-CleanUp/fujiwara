@@ -112,28 +112,30 @@ void CSceneGame::Init() {
 
 
 	//経験値
-	new CMoney(&mSphere, CVector(10.0f, 1.0f, 0.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
+	//new CMoney(&mSphere, CVector(10.0f, 1.0f, 0.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
 
+
+	//敵(動く)
+	/*new CEnemy(&mRover, CVector(RAND, 1.0f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	new CEnemy(&mRover, CVector(RAND, 1.0f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	new CEnemy(&mRover, CVector(RAND, 1.0f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	new CEnemy(&mRover, CVector(RAND, 1.0f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));*/
 
 	//敵
-	new CEnemy(&mRover, CVector(rand() % 300 - 150, 1.0f, rand() % 300 - 150), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	new CEnemy(&mRover, CVector(rand() % 300 - 150, 1.0f, rand() % 300 - 150), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	new CEnemy(&mRover, CVector(rand() % 300 - 150, 1.0f, rand() % 300 - 150), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	new CEnemy(&mRover, CVector(rand() % 300 - 150, 1.0f, rand() % 300 - 150), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	new CEnemy(&mRover, CVector(rand() % 300 - 150, 1.0f, rand() % 300 - 150), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	new CEnemy2(&mSphere, CVector(10.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
+	new CEnemy2(&mSphere, CVector(20.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 
 	//ゴミ
-	new CGomi(&mRock, CVector(-80.0f, 1.0f, 20.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CGomi(&mRock, CVector(-120.0f, 1.0f, -20.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CGomi(&mRock, CVector(10.0f, 0.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CGomi(&mRock, CVector(20.0f, 0.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+
+
 	new CGomi(&mRock, CVector(-80.0f, 1.0f, -50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	new CGomi(&mRock, CVector(-30.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CGomi(&mRock, CVector(-20.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	//new CGomi(&mRock, CVector(-20.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//パワー
 	new CPower(&mCube, CVector(80.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-
-	//スピード
-	new CSpeed(&mSphere, CVector(80.0f, 0.0f, 20.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//ホーム
 	new CHome(&mCube, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
@@ -155,27 +157,27 @@ void CSceneGame::Init() {
 
 
 void CSceneGame::Update() {
-	
-	if (mTimeNow >= 0 && CHome::home == 0){
-		mTimeNow--;
-	}
-	//最大値を超えない
-	else if (mTimeMax >= mTimeNow){
-		mTimeNow += 15;
-	}
-	
-	//0以下にならない
-	if (mTimeNow < 0){
-		mTimeNow = 0;
-	}
-	//ダッシュ時
-	if (CPlayer::Dash == 1){
-		mTimeNow -= 6;
-	}
-	//ジャンプ時
-	if (CPlayer::Jump > 1){
-		mTimeMax -= 10 * 60;
-	}
+	//
+	//if (mTimeNow >= 0 && CHome::home == 0){
+	//	mTimeNow--;
+	//}
+	////最大値を超えない
+	//else if (mTimeMax >= mTimeNow){
+	//	mTimeNow += 15;
+	//}
+	//
+	////0以下にならない
+	//if (mTimeNow < 0){
+	//	mTimeNow = 0;
+	//}
+	////ダッシュ時
+	//if (CPlayer::Dash == 1){
+	//	mTimeNow -= 6;
+	//}
+	////ジャンプ時
+	//if (CPlayer::Jump > 1){
+	//	mTimeMax -= 10 * 60;
+	//}
 
 	CTaskManager::Get()->Update();
 	//カメラのパラメータを作成する
@@ -212,12 +214,6 @@ void CSceneGame::Update() {
 
 		//ゴミの生成
 		//new CGomi(&mRock, CVector(RAND, 1.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
-		////障害物の生成
-		//new CFall(&mSphere, CVector(rand() % 200 - 100, 150.0f, rand() % 100 - 50), CVector(), CVector(5.0f, 5.0f, 5.0f));
-
-		////足場
-		//new CObj(&mCube, CVector(rand() % 100 - 50, -65.0f, rand() % 500), CVector(), CVector(8.0f, 30.0f, 8.0f));
-
 	}
 
 	//コリジョンマネージャーの衝突処理
@@ -235,10 +231,16 @@ void CSceneGame::Update() {
 
 	//CText::DrawString("3D PROGRAMMING", 20, 20, 10, 12);
 
-	//ゲームオーバー条件
+	//ゲームオーバー条件(バッテリー切れ）
 	if (mTimeNow == 0){
 		CText::DrawString("GAME OVER", 200, 330, 25, 25);
 	}
+
+	//ゲームオーバー条件(ライフゼロ)
+	if (CPlayer::Life <= 0){
+		CText::DrawString("GAME OVER", 200, 330, 25, 25);
+	}
+
 	//クリア条件
 	if (CPlayer::clear >= 2 && CHome::home == 1){
 		CText::DrawString("STAGE CLEAR", 155, 330, 25, 25);
@@ -259,6 +261,10 @@ void CSceneGame::Update() {
 	//ゴミ回収数
 	sprintf(buf, "%d", CGomi::GomiCount);
 	CText::DrawString(buf, 750, 20, 20, 20);
+
+	//プレイヤーライフ
+	sprintf(buf, "%d", CPlayer::Life);
+	CText::DrawString(buf, 20, 50, 15, 15);
 
 	//2D描画終了
 	End2D();

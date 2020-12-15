@@ -56,55 +56,57 @@ void CEnemy::Collision(CCollider*m, CCollider*y){
 
 void CEnemy::Update(){
 
-	if (CSceneGame::mTimeNow > 0){
-		switch (state){
-		case 0:
-			frame += 1;
-			if (frame > 30){
-				state = rand() % 4;
-				frame = 0;
-			}
-			break;
+	if (CPlayer::clear > 2){
+		if (CSceneGame::mTimeNow > 0){
+			switch (state){
+			case 0:
+				frame += 1;
+				if (frame > 30){
+					state = rand() % 4;
+					frame = 0;
+				}
+				break;
 
-		case 1:
-			frame += 1;
-			if (frame < 20){
-				//左回転
-				mRotation.mY += rand() % 13;
-			}
-			if (frame > 30){
-				//前進
-				mPosition = CVector(0.0f, 0.0f, 2.0f)*mMatrix;
-			}
-			if (frame > 90){
-				state = rand() % 4;
-				frame = 0;
-			}
-			break;
+			case 1:
+				frame += 1;
+				if (frame < 20){
+					//左回転
+					mRotation.mY += rand() % 13;
+				}
+				if (frame > 30){
+					//前進
+					mPosition = CVector(0.0f, 0.0f, 2.0f)*mMatrix;
+				}
+				if (frame > 90){
+					state = rand() % 4;
+					frame = 0;
+				}
+				break;
 
-		case 2:
-			frame += 1;
-			if (frame < 20){
-				//右回転
-				mRotation.mY -= rand() % 13;
-			}
-			if (frame > 30){
-				//前進
-				mPosition = CVector(0.0f, 0.0f, 2.0f)*mMatrix;
-			}
-			if (frame > 90){
-				state = rand() % 4;
-				frame = 0;
-			}
-			break;
+			case 2:
+				frame += 1;
+				if (frame < 20){
+					//右回転
+					mRotation.mY -= rand() % 13;
+				}
+				if (frame > 30){
+					//前進
+					mPosition = CVector(0.0f, 0.0f, 2.0f)*mMatrix;
+				}
+				if (frame > 90){
+					state = rand() % 4;
+					frame = 0;
+				}
+				break;
 
-		case 3:
-			frame += 1;
-			if (frame > 60){
-				state = rand() % 4;
-				frame = 0;
+			case 3:
+				frame += 1;
+				if (frame > 60){
+					state = rand() % 4;
+					frame = 0;
+				}
+				break;
 			}
-			break;
 		}
 	}
 }

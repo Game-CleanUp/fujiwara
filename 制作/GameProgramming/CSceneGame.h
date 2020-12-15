@@ -14,10 +14,10 @@
 #include<time.h>
 #include"CKey.h"
 #include"CEnemy.h"
+#include"CEnemy2.h"
 #include"CImage.h"
 #include"CGomi.h"
 #include"CPower.h"
-#include"CSpeed.h"
 #include"CHome.h"
 #include"CMoney.h"
 
