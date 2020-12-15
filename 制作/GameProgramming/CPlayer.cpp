@@ -5,16 +5,15 @@ int CPlayer::Life = 100;
 int CPlayer::clear = 0;
 int CPlayer::Dash = 0;
 int CPlayer::Jump = 0;
-int CPlayer::Esc = 0;
 CPlayer *CPlayer::mpPlayer = 0;
 
 
 CPlayer::CPlayer()
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 1.5f)
 //サーチ
-, mSearch(this, CVector(0.0f, 0.0f, -1.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
+, mSearch(this, CVector(0.0f, 0.0f, 5.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
 , mVelocityJump(0.0f)
-, frame(0), level(100)
+, frame(0),level(100)
 {
 
 	mColBody.mTag = CCollider::EBODY;
@@ -56,28 +55,27 @@ void CPlayer::Update(){
 				mPosition = CVector(0.0f, 0.0f, -0.5f)*mMatrix;
 			}
 
-			if (CKey::Once('J') /*&& mVelocityJump == 0*/){
+			if (CKey::Once('J')){
 				mVelocityJump = JUMPV0;
 				Jump = TRUE;
 			}
-			else{
-				Jump = FALSE;
-			}
 
+			//回避
 			if (CKey::Once('H')){
-				Esc = TRUE;
+				mSearch.mRadius = R - 7.0f;
 			}
 
 			//アイテム使用(パワー)
 			frame += 1;
 			if (CPower::power >= 1){
 				if (CKey::Once('Q')){
-					mSearch.mRadius = R + 4.0f;
+					mSearch.mRadius = R + 3.0f;
 					CPower::power -= 1;
 				}
 			}
-			//5秒で効果切れ
-			if (frame > 300){
+
+			//4秒で効果切れ
+			if (frame > 240){
 				mSearch.mRadius = R;
 				frame = 0;
 			}
@@ -94,7 +92,6 @@ void CPlayer::Update(){
 		mVelocityJump -= G;
 		//移動
 		mPosition.mY = mPosition.mY + mVelocityJump;
-
 
 		CCharacter::Update();
 	}
@@ -123,6 +120,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 			if (CCollider::CollisionTriangleSphere(y, m, &adjust)){
 				//着地
 				mVelocityJump = 0;
+				Jump = FALSE;
 			}
 
 			//位置の更新
@@ -134,7 +132,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 
 		break;
 	}
-
+	//アイテム回収
 	if (y->mTag == CCollider::EPOWER){
 		if (CCollider::Collision(m, y)){
 			CPower::power += 1;

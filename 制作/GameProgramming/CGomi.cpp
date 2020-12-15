@@ -33,7 +33,7 @@ void CGomi::Collision(CCollider*m, CCollider*y){
 				//プレイヤーの方向
 				CVector dir = y->mpParent->mPosition - mPosition;
 				//正規化（長さを1にする）Normalize()
-				mPosition = mPosition + dir.Normalize()*1.5;
+				mPosition = mPosition + dir.Normalize()*1.0;
 			}
 		}
 	}

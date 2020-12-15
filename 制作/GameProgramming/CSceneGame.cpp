@@ -175,8 +175,8 @@ void CSceneGame::Update() {
 	//	mTimeNow -= 6;
 	//}
 	////ƒWƒƒƒ“ƒvŽž
-	//if (CPlayer::Jump > 1){
-	//	mTimeMax -= 10 * 60;
+	//if (CPlayer::Jump > 0){
+	//	mTimeNow -= 10;
 	//}
 
 	CTaskManager::Get()->Update();
