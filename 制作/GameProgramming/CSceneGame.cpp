@@ -16,7 +16,8 @@ CSceneGame::~CSceneGame() {
 
 	//mEabled‚ð‚·‚×‚Äfalse‚É‚·‚é
 	CTaskManager::Get()->AllDelete();
-	
+	//CTaskManager::Get()->Delete();
+
 }
 
 

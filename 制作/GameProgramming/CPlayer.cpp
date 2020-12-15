@@ -67,7 +67,8 @@ void CPlayer::Update(){
 
 			//アイテム使用(パワー)
 			frame += 1;
-			if (CPower::power >= 1){
+			if (CPower::power >= 1)
+			if (mSearch.mRadius < 10){
 				if (CKey::Once('Q')){
 					mSearch.mRadius = R + 3.0f;
 					CPower::power -= 1;
