@@ -111,16 +111,11 @@ void CSceneGame::Init() {
 	new CObj(&mCube, CVector(-200.0f, 0.0f, 160.0f), CVector(), CVector(45.0f, H, W));
 
 
-
-	//経験値
-	//new CMoney(&mSphere, CVector(10.0f, 1.0f, 0.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
-
-
 	//敵(動く)
-	/*new CEnemy(&mRover, CVector(RAND, 1.0f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	new CEnemy(&mRover, CVector(RAND, 1.0f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	new CEnemy(&mRover, CVector(RAND, 1.0f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	new CEnemy(&mRover, CVector(RAND, 1.0f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));*/
+	//new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	//new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	//new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	//new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
 
 	//敵
 	new CEnemy2(&mSphere, CVector(10.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
@@ -135,11 +130,16 @@ void CSceneGame::Init() {
 	new CGomi(&mRock, CVector(-30.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	//new CGomi(&mRock, CVector(-20.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
+
+	//敵(追尾)
+	new CBoss(&mCube, CVector(80.0f, 0.5f, 0.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
+
+
 	//パワー
-	new CPower(&mCube, CVector(80.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	//new CPower(&mCube, CVector(80.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//ホーム
-	new CHome(&mCube, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
+	//new CHome(&mCube, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
 
 	//地面
 	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(300.0f, 1.0f, 200.0f));

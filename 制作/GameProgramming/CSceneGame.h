@@ -20,6 +20,7 @@
 #include"CPower.h"
 #include"CHome.h"
 #include"CMoney.h"
+#include"CBoss.h"
 
 #define RAND (rand() % 300-150)	//ƒ‰ƒ“ƒ_ƒ€”z’u(-150~149)
 #define W	(5.0f)	//•

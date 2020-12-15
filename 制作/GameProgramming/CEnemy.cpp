@@ -3,7 +3,7 @@
 
 //‰Û‘è7
 CEnemy::CEnemy(CModel*model, CVector position, CVector rotation, CVector scale)
-:mColBody(this, CVector(0.0f, 5.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f),
+:mColBody(this, CVector(0.0f, 2.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f),
 CVector(1.0f, 1.0f, 1.0f), 2.0f)
 , state(0), frame(0)
 {
@@ -56,7 +56,7 @@ void CEnemy::Collision(CCollider*m, CCollider*y){
 
 void CEnemy::Update(){
 
-	if (CPlayer::clear > 2){
+	if (CPlayer::clear < 2){
 		if (CSceneGame::mTimeNow > 0){
 			switch (state){
 			case 0:
