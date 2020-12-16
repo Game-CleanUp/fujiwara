@@ -111,21 +111,13 @@ void CSceneGame::Init() {
 	new CObj(&mCube, CVector(-200.0f, 0.0f, 160.0f), CVector(), CVector(45.0f, H, W));
 
 
-	//敵(動く)
-	/*new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));*/
-
-	//敵
-	new CEnemy2(&mSphere, CVector(10.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
+	//敵(ダメージが入る)
 	new CEnemy2(&mSphere, CVector(20.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
+	new CEnemy2(&mSphere, CVector(30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 
 	//ゴミ
 	new CGomi(&mRock, CVector(10.0f, 0.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	new CGomi(&mRock, CVector(20.0f, 0.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-
-
 	new CGomi(&mRock, CVector(-80.0f, 1.0f, -50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	new CGomi(&mRock, CVector(-30.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
@@ -156,7 +148,7 @@ void CSceneGame::Init() {
 
 
 void CSceneGame::Update() {
-	//
+	
 	//if (mTimeNow >= 0 && CHome::home == 0){
 	//	mTimeNow--;
 	//}
@@ -171,7 +163,7 @@ void CSceneGame::Update() {
 	//}
 	////ダッシュ時
 	//if (CPlayer::Dash == 1){
-	//	mTimeNow -= 6;
+	//	mTimeNow -= 3;
 	//}
 	////ジャンプ時
 	//if (CPlayer::Jump > 0){
@@ -191,6 +183,11 @@ void CSceneGame::Update() {
 	//見下ろし視点
 	if (CKey::Push('I')){
 		e = CVector(0.0f, 100.0f, 0.0f)*mPlayer.mMatrix;
+	}
+
+	//確認
+	if (CKey::Push('P')){
+		e = CVector(0.0f, 300.0f, 0.0f);
 	}
 
 	//一人称視点
@@ -260,7 +257,7 @@ void CSceneGame::Update() {
 
 	//ゴミ回収数
 	sprintf(buf, "%d", CGomi::GomiCount);
-	CText::DrawString(buf, 100, 50, 15, 15);
+	CText::DrawString(buf, 140, 50, 15, 15);
 
 	//プレイヤーライフ
 	sprintf(buf, "%d", CPlayer::Life);

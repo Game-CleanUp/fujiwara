@@ -5,7 +5,7 @@ int CBoss::tracking = 0;
 
 CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 4.0f)
-, mSearch(this, CVector(0.0f, -5.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 45.0f)
+, mSearch(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 35.0f)
 , frame(0), state(0), mVelocityJump(0.0f)
 {
 	//モデル、位置、回転、拡縮を設定する
@@ -28,7 +28,7 @@ void CBoss::Update(){
 				case 0:
 					frame += 1;
 					if (frame > 30){
-						state = rand() % 4;
+						state = rand() % 5;
 						frame = 0;
 					}
 					break;
@@ -43,8 +43,8 @@ void CBoss::Update(){
 						//前進
 						mPosition = CVector(0.0f, 0.0f, 0.5f)*mMatrix;
 					}
-					if (frame > 60){
-						state = rand() % 4;
+					if (frame > 90){
+						state = rand() % 5;
 						frame = 0;
 					}
 					break;
@@ -59,8 +59,8 @@ void CBoss::Update(){
 						//前進
 						mPosition = CVector(0.0f, 0.0f, 0.5f)*mMatrix;
 					}
-					if (frame > 60){
-						state = rand() % 4;
+					if (frame > 90){
+						state = rand() % 5;
 						frame = 0;
 					}
 					break;
@@ -68,7 +68,15 @@ void CBoss::Update(){
 				case 3:
 					frame += 1;
 					if (frame > 60){
-						state = rand() % 4;
+						state = rand() % 5;
+						frame = 0;
+					}
+					break;
+
+				case 4:
+					frame += 1;
+					if (frame > 30){
+						state = rand() % 5;
 						frame = 0;
 					}
 					break;
@@ -77,7 +85,6 @@ void CBoss::Update(){
 		}
 	}
 }
-
 
 void CBoss::Collision(CCollider*m, CCollider*y){
 
@@ -88,7 +95,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 				//プレイヤーの方向
 				CVector dir = y->mpParent->mPosition - mPosition;
 				//正規化（長さを1にする）Normalize()
-				mPosition = mPosition + dir.Normalize() * 0.7;
+				mPosition = mPosition + dir.Normalize() * 0.5;
 				tracking = TRUE;
 			}
 		}

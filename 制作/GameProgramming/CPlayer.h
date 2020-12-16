@@ -13,8 +13,6 @@
 #define G       (9.8f/60.0f)//重力加速度
 #define JUMPV0  (1.5f)   //ジャンプ初速
 #define R		(7.0f)		//半径
-#define TRUE	(1)			//有効
-#define FALSE	(0)			//無効
 
 class CPlayer : public CCharacter{
 public:
@@ -31,6 +29,7 @@ public:
 	static int clear;
 	static int Dash;
 	static int Jump;
+
 	int frame;
 	int level;
 
