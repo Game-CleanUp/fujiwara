@@ -27,7 +27,7 @@ void CGomi::Collision(CCollider*m, CCollider*y){
 				GomiCount += 1;
 			}
 		}
-		//引き寄せ
+		//引き寄せ(プレイヤーのサーチに当たった時)
 		if (y->mTag == CCollider::ESEARCH){
 			if (CCollider::Collision(m, y)){
 				//プレイヤーの方向

@@ -75,7 +75,7 @@ void CEnemy::Update(){
 				}
 				if (frame > 30){
 					//前進
-					mPosition = CVector(0.0f, 0.0f, 2.0f)*mMatrix;
+					mPosition = CVector(0.0f, 0.0f, 3.0f)*mMatrix;
 				}
 				if (frame > 90){
 					state = rand() % 4;
@@ -91,7 +91,7 @@ void CEnemy::Update(){
 				}
 				if (frame > 30){
 					//前進
-					mPosition = CVector(0.0f, 0.0f, 2.0f)*mMatrix;
+					mPosition = CVector(0.0f, 0.0f, 3.0f)*mMatrix;
 				}
 				if (frame > 90){
 					state = rand() % 4;

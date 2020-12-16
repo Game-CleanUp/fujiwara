@@ -14,7 +14,9 @@ public:
 	enum ETag {
 		ENONE,
 		EBODY,//機体
-		ESEARCH,//サーチ
+		EBODY2,//敵機体
+		ESEARCH,//プレイヤーサーチ
+		ESEARCH2,//敵サーチ
 		EPOWER,//パワーアップ
 		ESPEED,//スピードアップ
 		EMONEY,//10円

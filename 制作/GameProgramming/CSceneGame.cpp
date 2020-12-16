@@ -112,10 +112,10 @@ void CSceneGame::Init() {
 
 
 	//敵(動く)
-	//new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	//new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	//new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	//new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	/*new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	new CEnemy(&mRover, CVector(RAND, 0.5f, RAND), CVector(), CVector(0.5f, 0.5f, 0.5f));*/
 
 	//敵
 	new CEnemy2(&mSphere, CVector(10.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
@@ -128,18 +128,16 @@ void CSceneGame::Init() {
 
 	new CGomi(&mRock, CVector(-80.0f, 1.0f, -50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	new CGomi(&mRock, CVector(-30.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	//new CGomi(&mRock, CVector(-20.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-
 
 	//敵(追尾)
-	new CBoss(&mCube, CVector(80.0f, 0.5f, 0.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
+	//new CBoss(&mCube, CVector(RAND, 0.0f, RAND), CVector(), CVector(3.0f, 3.0f, 3.0f));
 
 
 	//パワー
 	//new CPower(&mCube, CVector(80.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//ホーム
-	//new CHome(&mCube, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
+	//new CHome(&mCube, CVector(50.0f, -0.7f, 0.0f), CVector(), CVector(0.05f, 0.05f, 0.05f));
 
 	//地面
 	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(300.0f, 1.0f, 200.0f));
@@ -248,20 +246,21 @@ void CSceneGame::Update() {
 	}
 
 	char buf[10];
+
 	sprintf(buf, "%d", mTimeNow / 60);
-	CText::DrawString(buf, 385, 560, 20, 20);
+	CText::DrawString(buf, 30, 550, 20, 20);
 
 	//アイテム数(パワー）
 	sprintf(buf, "%d", CPower::power);
-	CText::DrawString(buf, 550, 20, 25, 25);
+	CText::DrawString(buf, 750, 30, 15, 15);
 
-	//クリア
+	//目標数
 	sprintf(buf, "%d", CPlayer::clear);
-	CText::DrawString(buf, 650, 20, 20, 20);
+	CText::DrawString(buf, 650, 30, 15, 15);
 
 	//ゴミ回収数
 	sprintf(buf, "%d", CGomi::GomiCount);
-	CText::DrawString(buf, 750, 20, 20, 20);
+	CText::DrawString(buf, 100, 50, 15, 15);
 
 	//プレイヤーライフ
 	sprintf(buf, "%d", CPlayer::Life);
