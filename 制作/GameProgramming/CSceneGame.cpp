@@ -130,7 +130,7 @@ void CSceneGame::Init() {
 	new CGomi(&mRock, CVector(-30.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//ìG(í«îˆ)
-	//new CBoss(&mCube, CVector(RAND, 0.0f, RAND), CVector(), CVector(3.0f, 3.0f, 3.0f));
+	new CBoss(&mCube, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
 
 
 	//ÉpÉèÅ[

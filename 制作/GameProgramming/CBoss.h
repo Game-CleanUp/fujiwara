@@ -17,6 +17,7 @@ public:
 
 	int state;
 	int frame;
+	static int tracking;
 
 	float mVelocityJump;
 

@@ -43,7 +43,7 @@ void CPlayer::Update(){
 				mPosition = CVector(0.0f, 0.0f, 0.5f)*mMatrix;
 				//ƒ_ƒbƒVƒ…
 				if (CKey::Push(VK_SHIFT)){
-					mPosition = CVector(0.0f, 0.0f, 1.0f)*mMatrix;
+					mPosition = CVector(0.0f, 0.0f, 1.3f)*mMatrix;
 					Dash = TRUE;
 				}
 				else{
