@@ -17,24 +17,21 @@ CVector(1.0f, 1.0f, 1.0f), 1.0f)
 //課題8
 void CGomi::Collision(CCollider*m, CCollider*y){
 
+	//ゴミ保有数上限で無効
 	if (GomiCount < 5){
 		//相手がプレイヤー
 		if (y->mTag == CCollider::EBODY){
-			//衝突
-			if (CCollider::Collision(m, y)){
-				//衝突しているときは無効にする
-				mEnabled = false;
-				GomiCount += 1;
-			}
+			//衝突しているときは無効にする
+			mEnabled = false;
+			GomiCount += 1;
 		}
+
 		//引き寄せ(プレイヤーのサーチに当たった時)
 		if (y->mTag == CCollider::ESEARCH){
-			if (CCollider::Collision(m, y)){
-				//プレイヤーの方向
-				CVector dir = y->mpParent->mPosition - mPosition;
-				//正規化（長さを1にする）Normalize()
-				mPosition = mPosition + dir.Normalize()*1.0;
-			}
+			//プレイヤーの方向
+			CVector dir = y->mpParent->mPosition - mPosition;
+			//正規化（長さを1にする）Normalize()
+			mPosition = mPosition + dir.Normalize()*1.0;
 		}
 	}
 }

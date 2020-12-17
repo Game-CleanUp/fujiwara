@@ -22,9 +22,9 @@
 #include"CMoney.h"
 #include"CBoss.h"
 
-#define RAND (rand() % 300-150)	//ランダム配置(-150~149)
-#define W	(5.0f)	//幅
-#define H	(10.0f) //高さ
+#define RAND rand() % 300-150	//ランダム配置(-150~149)
+#define W	5.0f	//幅
+#define H	10.0f //高さ
 
 /*
 ゲームのシーン

@@ -18,10 +18,8 @@ public:
 		ESEARCH,//プレイヤーサーチ
 		ESEARCH2,//敵サーチ
 		EPOWER,//パワーアップ
-		ESPEED,//スピードアップ
-		EMONEY,//10円
-		EMONEY2,//100円
-		EMONEY3,//500円
+		EHOME,//充電エリア
+	
 	};
 	ETag mTag;
 	//コライダタイプ

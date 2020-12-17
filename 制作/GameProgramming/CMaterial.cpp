@@ -24,6 +24,7 @@ void CMaterial::Enabled() {
 	if (mpTexture == 0)
 		return;
 	//テクスチャ有り
+
 	if (mpTexture->mId) {
 		//テクスチャを使用可能にする
 		glEnable(GL_TEXTURE_2D);

@@ -3,8 +3,7 @@
 #include"CCharacter.h"
 #include"CCollider.h"
 #include "CVector.h"
-
-#define G       (9.8f/60.0f)//d—Í‰Á‘¬“x
+#include"CPlayer.h"
 
 class CFall : public CCharacter{
 public:

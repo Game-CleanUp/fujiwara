@@ -5,6 +5,8 @@
 #include"CCharacter.h"
 #include"CCollider.h"
 
+#define TURN 13 //向き
+
 class CBoss : public CCharacter{
 public:
 	//デフォルトコンストラクタ(引数のないコンストラクタ）

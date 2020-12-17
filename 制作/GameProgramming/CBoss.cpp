@@ -37,11 +37,11 @@ void CBoss::Update(){
 					frame += 1;
 					if (frame < 20){
 						//左回転
-						mRotation.mY += rand() % 13;
+						mRotation.mY += rand() % TURN;
 					}
 					if (frame > 30){
 						//前進
-						mPosition = CVector(0.0f, 0.0f, 0.5f)*mMatrix;
+						mPosition = CVector(0.0f, 0.0f, 1.0f)*mMatrix;
 					}
 					if (frame > 90){
 						state = rand() % 5;
@@ -53,11 +53,11 @@ void CBoss::Update(){
 					frame += 1;
 					if (frame < 20){
 						//右回転
-						mRotation.mY -= rand() % 13;
+						mRotation.mY -= rand() % TURN;
 					}
 					if (frame > 30){
 						//前進
-						mPosition = CVector(0.0f, 0.0f, 0.5f)*mMatrix;
+						mPosition = CVector(0.0f, 0.0f, 1.0f)*mMatrix;
 					}
 					if (frame > 90){
 						state = rand() % 5;
@@ -90,8 +90,8 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 
 	//追尾(プレイヤーがサーチに入ると)
 	if (m->mTag == CCollider::ESEARCH2){
-		if (CCollider::Collision(m, y)){
-			if (y->mTag == CCollider::ESEARCH){
+		if (y->mTag == CCollider::EBODY){
+			if (CCollider::Collision(m, y)){
 				//プレイヤーの方向
 				CVector dir = y->mpParent->mPosition - mPosition;
 				//正規化（長さを1にする）Normalize()
@@ -123,9 +123,4 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 		}
 		break;
 	}
-
-	/*if (y->mTag == CCollider::EBODY){
-		CVector dir = y->mpParent->mPosition - mPosition;
-		mPosition = mPosition - dir.Normalize()*1.0;
-	}*/
 }

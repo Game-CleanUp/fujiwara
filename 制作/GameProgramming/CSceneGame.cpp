@@ -122,21 +122,21 @@ void CSceneGame::Init() {
 	new CGomi(&mRock, CVector(-30.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//敵(追尾)
-	new CBoss(&mCube, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
+	new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 
 	//パワー
 	//new CPower(&mCube, CVector(80.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//ホーム
-	//new CHome(&mCube, CVector(50.0f, -0.7f, 0.0f), CVector(), CVector(0.05f, 0.05f, 0.05f));
+	new CHome(&mCube, CVector(-50.0f, -0.7f, 0.0f), CVector(), CVector(0.05f, 0.05f, 0.05f));
 
 	//地面
 	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(300.0f, 1.0f, 200.0f));
 	//天井
 	//new CObj(&mPlane, CVector(0.0f, 100.0f, 0.0f), CVector(), CVector(150.0f, 1.0f, 200.0f));
 
-	//mPlayer.mPosition = CVector(-180.0f, 0.0f, 0.0f);
+	mPlayer.mPosition = CVector(-50.0f, 5.0f, 0.0f);
 	mPlayer.mRotation = CVector(0.0f, 90.0f, 0.0f);
 	
 
@@ -149,26 +149,26 @@ void CSceneGame::Init() {
 
 void CSceneGame::Update() {
 	
-	//if (mTimeNow >= 0 && CHome::home == 0){
-	//	mTimeNow--;
-	//}
-	////最大値を超えない
-	//else if (mTimeMax >= mTimeNow){
-	//	mTimeNow += 15;
-	//}
-	//
-	////0以下にならない
-	//if (mTimeNow < 0){
-	//	mTimeNow = 0;
-	//}
-	////ダッシュ時
-	//if (CPlayer::Dash == 1){
-	//	mTimeNow -= 3;
-	//}
-	////ジャンプ時
-	//if (CPlayer::Jump > 0){
-	//	mTimeNow -= 10;
-	//}
+	if (mTimeNow >= 0 && CHome::home == 0){
+		mTimeNow--;
+	}
+	//最大値を超えない
+	else if (mTimeMax >= mTimeNow){
+		mTimeNow += 15;
+	}
+	
+	//0以下にならない
+	if (mTimeNow < 0){
+		mTimeNow = 0;
+	}
+	//ダッシュ時
+	if (CPlayer::Dash == 1){
+		mTimeNow -= 3;
+	}
+	//ジャンプ時
+	if (CPlayer::Jump > 0){
+		mTimeNow -= 10;
+	}
 
 	CTaskManager::Get()->Update();
 	//カメラのパラメータを作成する

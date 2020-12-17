@@ -13,7 +13,7 @@ CPlayer::CPlayer()
 //サーチ
 , mSearch(this, CVector(0.0f, 0.0f, 5.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
 , mVelocityJump(0.0f)
-, frame(0),level(100)
+, frame(0), level(100), frameMax(300), frame2(0)
 {
 
 	mColBody.mTag = CCollider::EBODY;
@@ -74,15 +74,19 @@ void CPlayer::Update(){
 			}
 
 			//アイテム使用(パワー)
-			frame += 1;
-			if (CPower::power >= 1)
-			if (mSearch.mRadius < 10){
-				if (CKey::Once('Q')){
-					mSearch.mRadius = R + 3.0f;
-					CPower::power -= 1;
+			if (frameMax > frame){
+				frame += 1;
+			}
+			//アイテムを持っているとき
+			if (CPower::power >= 1){
+				if (mSearch.mRadius < 10){
+					if (CKey::Once('Q')){
+						mSearch.mRadius = R + 3.0f;
+						CPower::power -= 1;
+
+					}
 				}
 			}
-
 			//4秒で効果切れ
 			if (frame > 240){
 				mSearch.mRadius = R;
@@ -91,12 +95,13 @@ void CPlayer::Update(){
 
 			//ゴミ回収
 			if (CHome::home == TRUE){
-				if (CKey::Push(VK_SPACE)){
+				if (CKey::Push('E')){
 					clear = clear + CGomi::GomiCount;
 					CGomi::GomiCount = 0;
 				}
 			}
 		}
+
 		//重力加速度
 		mVelocityJump -= G;
 		//移動
@@ -141,10 +146,23 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 
 		break;
 	}
+
 	//アイテム回収
 	if (y->mTag == CCollider::EPOWER){
-		if (CCollider::Collision(m, y)){
-			CPower::power += 1;
+		CPower::power += 1;
+	}
+
+	//ボスとの衝突
+	if (m->mTag == CCollider::EBODY){
+		if (y->mTag == CCollider::EBODY2){
+			if (CCollider::Collision(m, y)){
+				frame2++;
+				if (frame > RETRY){
+					//ホームに戻る
+					mPosition = CVector(-50.0f, 5.0f, 0.0f);
+					frame2 = 0;
+				}
+			}
 		}
 	}
 }
