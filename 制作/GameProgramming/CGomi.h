@@ -4,7 +4,6 @@
 #include"CCollider.h"
 #include"CPlayer.h"
 
-
 class CGomi : public CCharacter{
 public:
 	//デフォルトコンストラクタ(引数のないコンストラクタ）

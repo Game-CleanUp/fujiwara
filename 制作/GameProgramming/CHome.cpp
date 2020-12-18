@@ -12,7 +12,7 @@ CVector(1.0f, 1.0f, 1.0f), 10.0f)
 	mRotation = rotation; //‰ñ“]‚Ìİ’è
 	mScale = scale; //Šgk‚Ìİ’è
 
-	mColBody.mTag == CCollider::EHOME;
+	mColBody.mTag = CCollider::EHOME;
 }
 //‰Û‘è8
 void CHome::Collision(CCollider*m, CCollider*y){

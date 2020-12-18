@@ -1,6 +1,8 @@
 #include"CGomi.h"
 
+
 int CGomi::GomiCount = 0;
+
 
 //課題7
 CGomi::CGomi(CModel*model, CVector position, CVector rotation, CVector scale)
@@ -16,13 +18,12 @@ CVector(1.0f, 1.0f, 1.0f), 1.0f)
 	//モデルが無いときは読み込む
 	if (mModel.mTriangles.size() == 0)
 	{
-		mModel.Load(OBJ, MTL);
+		mModel.Load("Rock1.obj", "Rock1.mtl");
 	}
 	//モデルのポインタ設定
 	mpModel = &mModel;
 }
 
-//課題8
 void CGomi::Collision(CCollider*m, CCollider*y){
 
 	//ゴミ保有数上限で無効
