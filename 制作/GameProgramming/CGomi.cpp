@@ -2,7 +2,7 @@
 
 
 int CGomi::GomiCount = 0;
-
+CModel CGomi::mModel;
 
 //‰Û‘è7
 CGomi::CGomi(CModel*model, CVector position, CVector rotation, CVector scale)

@@ -112,14 +112,13 @@ void CSceneGame::Init() {
 
 
 	//ìG(É_ÉÅÅ[ÉWÇ™ì¸ÇÈ)
-	new CEnemy2(&mSphere, CVector(20.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
-	new CEnemy2(&mSphere, CVector(30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
+	/*new CEnemy2(&mSphere, CVector(20.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
+	new CEnemy2(&mSphere, CVector(30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));*/
 
 	//ÉSÉ~
-	/*new CGomi(&mRock, CVector(10.0f, 0.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	new CGomi(&mRock, CVector(20.0f, 0.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CGomi(&mRock, CVector(-80.0f, 1.0f, -50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CGomi(&mRock, CVector(-30.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));*/
+	new CGomi(&mRock, CVector(80.0f, 35.0f, -50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CGomi(&mRock, CVector(30.0f, 35.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//ìG(í«îˆ)
 	new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
@@ -136,7 +135,7 @@ void CSceneGame::Init() {
 	//ìVà‰
 	//new CObj(&mPlane, CVector(0.0f, 100.0f, 0.0f), CVector(), CVector(150.0f, 1.0f, 200.0f));
 
-	mPlayer.mPosition = CVector(-50.0f, 5.0f, 0.0f);
+	mPlayer.mPosition = CVector(-50.0f, 10.0f, 0.0f);
 	mPlayer.mRotation = CVector(0.0f, 90.0f, 0.0f);
 	
 
