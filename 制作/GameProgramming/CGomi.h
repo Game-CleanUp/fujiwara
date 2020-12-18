@@ -13,6 +13,8 @@ public:
 	//Õ“Ë”»’è
 	void Collision(CCollider*m, CCollider*y);
 	static int GomiCount;
+	static CModel mModel;
+
 };
 
 

@@ -12,6 +12,14 @@ CVector(1.0f, 1.0f, 1.0f), 1.0f)
 	mPosition = position; //位置の設定
 	mRotation = rotation; //回転の設定
 	mScale = scale; //拡縮の設定
+
+	//モデルが無いときは読み込む
+	if (mModel.mTriangles.size() == 0)
+	{
+		mModel.Load(OBJ, MTL);
+	}
+	//モデルのポインタ設定
+	mpModel = &mModel;
 }
 
 //課題8

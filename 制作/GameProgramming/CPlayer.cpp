@@ -7,13 +7,16 @@ int CPlayer::Dash = 0;
 int CPlayer::Jump = 0;
 CPlayer *CPlayer::mpPlayer = 0;
 
+//void CPlayer::Init(){
+//	mRock.Load("Rock1.obj", "Rock1.mtl");
+//}
 
 CPlayer::CPlayer()
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 1.5f)
 //サーチ
 , mSearch(this, CVector(0.0f, 0.0f, 5.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
 , mVelocityJump(0.0f)
-, frame(0), level(100), frameMax(300), frame2(0)
+, frame(0), level(100), frameMax(300)
 {
 
 	mColBody.mTag = CCollider::EBODY;
@@ -28,6 +31,7 @@ CPlayer::CPlayer()
 
 
 void CPlayer::Update(){
+
 
 	if (clear < 2){
 		if (CSceneGame::mTimeNow > 0){
@@ -63,53 +67,51 @@ void CPlayer::Update(){
 				}
 			}
 
-			if (CKey::Once('J')){
+			if (CKey::Once('J') && mVelocityJump == 0){
 				mVelocityJump = JUMPV0;
 				Jump = TRUE;
 			}
+		}
+		//回避
+		if (CKey::Once('H')){
+			mSearch.mRadius = R - 7.0f;
+		}
 
-			//回避
-			if (CKey::Once('H')){
-				mSearch.mRadius = R - 7.0f;
-			}
+		//アイテム使用(パワー)
+		if (frameMax > frame){
+			frame += 1;
+		}
+		//アイテムを持っているとき
+		if (CPower::power >= 1){
+			if (mSearch.mRadius < 10){
+				if (CKey::Once('Q')){
+					mSearch.mRadius = R + 3.0f;
+					CPower::power -= 1;
 
-			//アイテム使用(パワー)
-			if (frameMax > frame){
-				frame += 1;
-			}
-			//アイテムを持っているとき
-			if (CPower::power >= 1){
-				if (mSearch.mRadius < 10){
-					if (CKey::Once('Q')){
-						mSearch.mRadius = R + 3.0f;
-						CPower::power -= 1;
-
-					}
-				}
-			}
-			//4秒で効果切れ
-			if (frame > 240){
-				mSearch.mRadius = R;
-				frame = 0;
-			}
-
-			//ゴミ回収
-			if (CHome::home == TRUE){
-				if (CKey::Push('E')){
-					clear = clear + CGomi::GomiCount;
-					CGomi::GomiCount = 0;
 				}
 			}
 		}
+		//4秒で効果切れ
+		if (frame > 240){
+			mSearch.mRadius = R;
+			frame = 0;
+		}
 
-		//重力加速度
-		mVelocityJump -= G;
-		//移動
-		mPosition.mY = mPosition.mY + mVelocityJump;
+		//ゴミ回収
+		if (CHome::home == TRUE){
+			if (CKey::Push('E')){
+				clear = clear + CGomi::GomiCount;
+				CGomi::GomiCount = 0;
+			}
+		}
+			//重力加速度
+			mVelocityJump -= G;
+			//移動
+			mPosition.mY = mPosition.mY + mVelocityJump;
 
-		CCharacter::Update();
+			CCharacter::Update();
+		}
 	}
-}
 
 void CPlayer::Render(){
 	CCharacter::Render();
@@ -156,11 +158,10 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::EBODY){
 		if (y->mTag == CCollider::EBODY2){
 			if (CCollider::Collision(m, y)){
-				frame2++;
-				if (frame > RETRY){
-					//ホームに戻る
-					mPosition = CVector(-50.0f, 5.0f, 0.0f);
-					frame2 = 0;
+				//new CGomi(&mRock, CVector(-80.0f, 0.0f, 10.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+					//ホームに戻る(リトライ)
+				if (CKey::Once('U')){
+					mPosition = CVector(-50.0f, 10.0f, 0.0f);
 				}
 			}
 		}

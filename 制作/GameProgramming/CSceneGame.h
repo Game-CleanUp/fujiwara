@@ -37,6 +37,8 @@ public:
 	void Init();
 	//更新処理のオーバーライド
 	void Update();
+	//ミニマップの表示
+	void RenderMiniMap();
 	CModel mSky;
 	CModel mRock;
 	CModel mRover;

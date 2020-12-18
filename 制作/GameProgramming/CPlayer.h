@@ -20,6 +20,7 @@ public:
 	
 	void Update();
 	void Render();
+	void Init();
 	void Collision(CCollider*m, CCollider*y);
 	//デフォルトコンストラクタ
 	CPlayer();
@@ -31,11 +32,10 @@ public:
 	static int Dash;
 	static int Jump;
 
+
 	int frame;
-	int frame2;
 	int frameMax;
 	int level;
-
 	float mVelocityJump;
 
 	CPlayerHP HP;

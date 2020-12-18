@@ -116,10 +116,10 @@ void CSceneGame::Init() {
 	new CEnemy2(&mSphere, CVector(30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 
 	//ゴミ
-	new CGomi(&mRock, CVector(10.0f, 0.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	/*new CGomi(&mRock, CVector(10.0f, 0.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	new CGomi(&mRock, CVector(20.0f, 0.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	new CGomi(&mRock, CVector(-80.0f, 1.0f, -50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CGomi(&mRock, CVector(-30.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CGomi(&mRock, CVector(-30.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));*/
 
 	//敵(追尾)
 	new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
@@ -144,6 +144,21 @@ void CSceneGame::Init() {
 	//std::shared_ptr<CTexture>grass(new CTexture("grass.tga"));
 	//new CImage(grass, CVector(0.0f, 28.0f, 9.0f),
 	//	CVector(180.0f, 0.0f, 0.0f), CVector(69.0f, 13.0f, 1.0f));
+}
+
+
+void CSceneGame::RenderMiniMap(){
+	glPushMatrix();
+	glViewport(600, 450, 200, 150); //画面の描画エリアの指定
+	glLoadIdentity();
+	//視点調整必要
+	gluLookAt(0, 150, 0, 0, 0, 0, 0, 0, 1);
+	glDisable(GL_DEPTH_TEST);
+	//描画
+	CTaskManager::Get()->Render();
+	glPopMatrix();
+	glViewport(0, 0, 800, 600); //画面の描画エリアの指定
+	glEnable(GL_DEPTH_TEST);
 }
 
 
@@ -217,6 +232,9 @@ void CSceneGame::Update() {
 
 	//コリジョンリストから削除
 	CTaskManager::Get()->Delete();
+
+	//ミニマップ表示
+	RenderMiniMap();
 
 	//2D描画開始
 	Start2D(0, 800, 0, 600);
