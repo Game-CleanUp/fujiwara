@@ -20,7 +20,7 @@ CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 
 void CBoss::Update(){
 
-	if (CPlayer::clear < 2){
+	if (CPlayer::clear < GAMECLEAR){
 		if (CSceneGame::mTimeNow > 0){
 			//’Ç”ö‚µ‚Ä‚È‚¢‚Æ‚«
 			if (tracking == FALSE){

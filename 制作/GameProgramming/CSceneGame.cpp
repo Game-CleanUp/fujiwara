@@ -254,8 +254,8 @@ void CSceneGame::Update() {
 		CText::DrawString("GAME OVER", 200, 330, 25, 25);
 	}
 
-	//クリア条件
-	if (CPlayer::clear >= 2 && CHome::home == 1){
+	//クリア条件(ゴミ全回収)
+	if (CPlayer::clear >= GAMECLEAR && CHome::home == 1){
 		CText::DrawString("STAGE CLEAR", 155, 330, 25, 25);
 	}
 

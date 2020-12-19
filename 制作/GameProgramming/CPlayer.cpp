@@ -33,7 +33,7 @@ CPlayer::CPlayer()
 void CPlayer::Update(){
 
 
-	if (clear < 2){
+	if (clear < GAMECLEAR){
 		if (CSceneGame::mTimeNow > 0){
 			if (CKey::Push('A')){
 				mRotation.mY += 2.0f;
@@ -158,11 +158,15 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::EBODY){
 		if (y->mTag == CCollider::EBODY2){
 			if (CCollider::Collision(m, y)){
+				CVector dir = mPosition - mPosition;
 				//éùÇ¡ÇƒÇ¢ÇÈÉSÉ~Çé¸ÇËÇ…èoåªÇ≥ÇπÇÈ
 				switch (CGomi::GomiCount){
 
 				case 1:
-					new CGomi(NULL, CVector(20.0f, 0.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+				
+					//new CGomi(NULL, CVector(20.0f, 0.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, CVector(0.0f,0.0f,1.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+
 					CGomi::GomiCount = 0;
 					break;
 
