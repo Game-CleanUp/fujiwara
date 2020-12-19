@@ -163,7 +163,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 
 				case 1:
 					//matrix.RotateY(45);
-					
+					//mpPlayer = mpPlayer+ matrix.RotateY(45);
 					new CGomi(NULL, CVector(0.0f, 0.0f, 1.0f)*matrix.RotateY(45), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 					CGomi::GomiCount = 0;
