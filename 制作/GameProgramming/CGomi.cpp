@@ -27,7 +27,7 @@ CVector(1.0f, 1.0f, 1.0f), 1.0f)
 void CGomi::Collision(CCollider*m, CCollider*y){
 
 	//ゴミ保有数上限で無効
-	if (GomiCount < 5){
+	//if (GomiCount < 5){
 		//相手がプレイヤー
 		if (y->mTag == CCollider::EBODY){
 			if (CCollider::Collision(m, y)){
@@ -44,6 +44,6 @@ void CGomi::Collision(CCollider*m, CCollider*y){
 				//正規化（長さを1にする）Normalize()
 				mPosition = mPosition + dir.Normalize()*1.0;
 			}
-		}
+	//	}
 	}
 }
