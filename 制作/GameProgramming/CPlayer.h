@@ -40,7 +40,7 @@ public:
 
 	CPlayerHP HP;
 	CGaugeBack Back;
-	
+	CMatrix matrix;
 };
 
 

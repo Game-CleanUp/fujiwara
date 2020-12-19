@@ -109,8 +109,8 @@ void CSceneGame::Init() {
 	new CObj(&mCube, CVector(-250.0f, 0.0f, 105.0f), CVector(), CVector(W, H, 60.0f));
 
 	new CObj(&mCube, CVector(-200.0f, 0.0f, 160.0f), CVector(), CVector(45.0f, H, W));
-
-
+	
+	
 	//ìG(É_ÉÅÅ[ÉWÇ™ì¸ÇÈ)
 	/*new CEnemy2(&mSphere, CVector(20.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 	new CEnemy2(&mSphere, CVector(30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));*/
