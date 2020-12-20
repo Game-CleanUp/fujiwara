@@ -106,6 +106,8 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 		return;
 	}
 	
+	
+
 	//自身のコライダタイプの判定
 	switch (m->mType){
 	case CCollider::ESPHERE://球コライダ

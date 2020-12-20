@@ -158,50 +158,55 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::EBODY){
 		if (y->mTag == CCollider::EBODY2){
 			if (CCollider::Collision(m, y)){
+				CSceneGame::mTimeNow++;
 				//持っているゴミを周りに出現させる
 				switch (CGomi::GomiCount){
 
 				case 1:
 					//プレイヤーの周りに出現
-					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 20.0f)*matrix.RotateY(45), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 15.0f)*matrix.RotateY(0), CVector(), CVector(1.0f, 1.0f, 1.0f));
 					CGomi::GomiCount = 0;
 					break;
 
 				case 2:
-					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 20.0f)*matrix.RotateY(45), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 20.0f)*matrix.RotateY(-45), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 15.0f)*matrix.RotateY(0), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 15.0f)*matrix.RotateY(180), CVector(), CVector(1.0f, 1.0f, 1.0f));
 					CGomi::GomiCount = 0;
 					break;
 
 				case 3:
-					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 20.0f)*matrix.RotateY(45), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 20.0f)*matrix.RotateY(45), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 20.0f)*matrix.RotateY(45), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 15.0f)*matrix.RotateY(0), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 15.0f)*matrix.RotateY(120), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 15.0f)*matrix.RotateY(240), CVector(), CVector(1.0f, 1.0f, 1.0f));
 					CGomi::GomiCount = 0;
 					break;
 
 				case 4:
-					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 20.0f)*matrix.RotateY(45), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 20.0f)*matrix.RotateY(45), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 20.0f)*matrix.RotateY(45), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 20.0f)*matrix.RotateY(45), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 15.0f)*matrix.RotateY(0), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 15.0f)*matrix.RotateY(90), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 15.0f)*matrix.RotateY(180), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 15.0f)*matrix.RotateY(270), CVector(), CVector(1.0f, 1.0f, 1.0f));
 					CGomi::GomiCount = 0;
 					break;
 
 				case 5:
-					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 20.0f)*matrix.RotateY(45), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 20.0f)*matrix.RotateY(45), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 20.0f)*matrix.RotateY(45), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 20.0f)*matrix.RotateY(45), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 20.0f)*matrix.RotateY(45), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 15.0f)*matrix.RotateY(0), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 15.0f)*matrix.RotateY(72), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 15.0f)*matrix.RotateY(144), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 15.0f)*matrix.RotateY(216), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					new CGomi(NULL, mPosition + CVector(0.0f, 0.0f, 15.0f)*matrix.RotateY(288), CVector(), CVector(1.0f, 1.0f, 1.0f));
 					CGomi::GomiCount = 0;
 					break;
 				}
 				
 					//ホームに戻る(リトライ)
-				//if (CKey::Once('U')){
+				if (CKey::Once('U')){
+					//初期位置
 					mPosition = CVector(-50.0f, 10.0f, 0.0f);
-				//}
+					mRotation = CVector(0.0f, 90.0f, 0.0f);
+					CSceneGame::mTimeNow = CSceneGame::mTimeMax;
+					
+				}
 			}
 		}
 	}

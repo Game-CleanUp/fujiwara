@@ -119,10 +119,11 @@ void CSceneGame::Init() {
 	new CGomi(NULL, CVector(20.0f, 0.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	new CGomi(NULL, CVector(80.0f, 0.0f, -50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	new CGomi(NULL, CVector(30.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CGomi(NULL, CVector(20.0f, 0.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CGomi(NULL, CVector(30.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//ìG(í«îˆ)
 	new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-
 
 	//ÉpÉèÅ[
 	//new CEnemy(&mSofa, CVector(-50.0f, 0.0f, 80.0f), CVector(), CVector(55.0f, 55.0f, 55.0f));
