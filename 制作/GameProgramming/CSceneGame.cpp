@@ -116,11 +116,11 @@ void CSceneGame::Init() {
 	new CEnemy2(&mSphere, CVector(30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));*/
 
 	//ƒSƒ~
-	new CGomi(NULL, CVector(20.0f, 0.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CGomi(NULL, CVector(80.0f, 0.0f, -50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CGomi(NULL, CVector(30.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CGomi(NULL, CVector(20.0f, 0.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CGomi(NULL, CVector(30.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CGomi(NULL, CVector(20.0f, 1.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CGomi(NULL, CVector(80.0f, 1.0f, -50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CGomi(NULL, CVector(30.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CGomi(NULL, CVector(20.0f, 1.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CGomi(NULL, CVector(30.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//“G(’Ç”ö)
 	new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));

@@ -7,7 +7,7 @@ CModel CGomi::mModel;
 //課題7
 CGomi::CGomi(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f),
-CVector(1.0f, 1.0f, 1.0f), 1.0f)
+CVector(1.0f, 1.0f, 1.0f), 5.0f)
 {
 	//モデル、位置、回転、拡縮を設定する
 	mpModel = model; //モデルの設定
@@ -24,7 +24,33 @@ CVector(1.0f, 1.0f, 1.0f), 1.0f)
 	mpModel = &mModel;
 }
 
+
+
 void CGomi::Collision(CCollider*m, CCollider*y){
+
+
+	//自身のコライダタイプの判定
+	switch (m->mType){
+	case CCollider::ESPHERE://球コライダ
+		//相手のコライダが三角コライダの時
+		if (y->mType == CCollider::ETRIANGLE){
+			CVector adjust;//調整値ベクトル
+			//三角形と球の衝突判定
+			if (CCollider::CollisionTriangleSphere(y, m, &adjust)){
+				//着地
+				mVelocityJump = 0;
+				
+			}
+
+			//位置の更新
+			mPosition = mPosition - adjust*-1;
+
+			//行列の更新
+			CCharacter::Update();
+		}
+
+		break;
+	}
 
 	//ゴミ保有数上限で無効
 	if (GomiCount < 5){
@@ -46,4 +72,10 @@ void CGomi::Collision(CCollider*m, CCollider*y){
 			}
 		}
 	}
+}
+
+void CGomi::Update(){
+	//落下速度
+	mForward.mY -= G;
+	mPosition = mPosition + mForward;
 }
