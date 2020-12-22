@@ -164,37 +164,37 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 
 				case 1:
 					//プレイヤーの周りに出現
-					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, 15.0f)*matrix.RotateY(0), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					for (int i = 0; i < 1; i++){
+						new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					}
 					CGomi::GomiCount = 0;
 					break;
 
 				case 2:
-					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, 15.0f)*matrix.RotateY(0), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, 15.0f)*matrix.RotateY(180), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					for (int i = 0; i < 2; i++){
+						new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					}
 					CGomi::GomiCount = 0;
 					break;
 
 				case 3:
-					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, 15.0f)*matrix.RotateY(0), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, 15.0f)*matrix.RotateY(120), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, 15.0f)*matrix.RotateY(240), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					for (int i = 0; i < 3; i++){
+						new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					}
 					CGomi::GomiCount = 0;
 					break;
 
 				case 4:
-					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, 15.0f)*matrix.RotateY(0), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, 15.0f)*matrix.RotateY(90), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, 15.0f)*matrix.RotateY(180), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, 15.0f)*matrix.RotateY(270), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					for (int i = 0; i < 4; i++){
+						new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					}
 					CGomi::GomiCount = 0;
 					break;
 
 				case 5:
-					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, 15.0f)*matrix.RotateY(0), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, 15.0f)*matrix.RotateY(72), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, 15.0f)*matrix.RotateY(144), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, 15.0f)*matrix.RotateY(216), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, 15.0f)*matrix.RotateY(288), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					for (int i = 0; i < 5; i++){
+						new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					}
 					CGomi::GomiCount = 0;
 					break;
 				}

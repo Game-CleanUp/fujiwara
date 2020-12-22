@@ -14,6 +14,8 @@
 #define JUMPV0  1.5f	//ジャンプ初速
 #define R		7.0f	//半径
 #define RETRY	180		//復帰時間
+#define DROP	15.0f	//ゴミのドロップ位置
+#define DROP_RAND	rand() % 360	//ゴミのドロップ方向
 
 class CPlayer : public CCharacter{
 public:

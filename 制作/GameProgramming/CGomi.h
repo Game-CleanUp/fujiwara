@@ -16,7 +16,9 @@ public:
 	static CModel mModel;
 	float mVelocityJump;
 
-	CVector mForward;
+	int move;
+
+
 };
 
 

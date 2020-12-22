@@ -7,7 +7,8 @@ CModel CGomi::mModel;
 //課題7
 CGomi::CGomi(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f),
-CVector(1.0f, 1.0f, 1.0f), 5.0f)
+CVector(1.0f, 1.0f, 1.0f), 3.0f)
+, move(0)
 {
 	//モデル、位置、回転、拡縮を設定する
 	mpModel = model; //モデルの設定
@@ -24,7 +25,16 @@ CVector(1.0f, 1.0f, 1.0f), 5.0f)
 	mpModel = &mModel;
 }
 
+void CGomi::Update(){
 
+	mVelocityJump = JUMPV0;
+	//重力加速度
+	mVelocityJump -= G;
+	//移動
+	mPosition.mY = mPosition.mY - mVelocityJump;
+
+
+}
 
 void CGomi::Collision(CCollider*m, CCollider*y){
 
@@ -39,7 +49,7 @@ void CGomi::Collision(CCollider*m, CCollider*y){
 			if (CCollider::CollisionTriangleSphere(y, m, &adjust)){
 				//着地
 				mVelocityJump = 0;
-				
+
 			}
 
 			//位置の更新
@@ -72,10 +82,4 @@ void CGomi::Collision(CCollider*m, CCollider*y){
 			}
 		}
 	}
-}
-
-void CGomi::Update(){
-	//落下速度
-	mForward.mY -= G;
-	mPosition = mPosition + mForward;
 }
