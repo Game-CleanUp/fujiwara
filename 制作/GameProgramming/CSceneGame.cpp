@@ -255,6 +255,11 @@ void CSceneGame::Update() {
 		CText::DrawString("GAME OVER", 200, 330, 25, 25);
 	}
 
+	//ボスとの衝突
+	if (CPlayer::Down == TRUE){
+		CText::DrawString("OUT!", 330, 450, 25, 25);
+	}
+
 	//クリア条件(ゴミ全回収)
 	if (CPlayer::clear >= GAMECLEAR && CHome::home == 1){
 		CText::DrawString("STAGE CLEAR", 155, 330, 25, 25);

@@ -5,6 +5,7 @@ int CPlayer::Life = 100;
 int CPlayer::clear = 0;
 int CPlayer::Dash = 0;
 int CPlayer::Jump = 0;
+int CPlayer::Down = 0;
 CPlayer *CPlayer::mpPlayer = 0;
 
 //void CPlayer::Init(){
@@ -16,7 +17,7 @@ CPlayer::CPlayer()
 //サーチ
 , mSearch(this, CVector(0.0f, 0.0f, 5.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
 , mVelocityJump(0.0f)
-, frame(0), level(100), frameMax(300)
+, frame(0), level(100), frameMax(300), frame2(0)
 {
 
 	mColBody.mTag = CCollider::EBODY;
@@ -32,86 +33,90 @@ CPlayer::CPlayer()
 
 void CPlayer::Update(){
 
-
-	if (clear < GAMECLEAR){
-		if (CSceneGame::mTimeNow > 0){
-			if (CKey::Push('A')){
-				mRotation.mY += 2.0f;
-			}
-
-			if (CKey::Push('D')){
-				mRotation.mY -= 2.0f;
-			}
-
-			if (CKey::Push('W')){
-				mPosition = CVector(0.0f, 0.0f, 0.5f)*mMatrix;
-				//ダッシュ
-				if (CKey::Push(VK_SHIFT)){
-					mPosition = CVector(0.0f, 0.0f, 1.3f)*mMatrix;
-					Dash = TRUE;
+	if (Down == FALSE){
+		if (clear < GAMECLEAR){
+			if (CSceneGame::mTimeNow > 0){
+				if (CKey::Push('A')){
+					mRotation.mY += 2.0f;
 				}
-				else{
-					Dash = FALSE;
+
+				if (CKey::Push('D')){
+					mRotation.mY -= 2.0f;
+				}
+
+				if (CKey::Push('W')){
+					mPosition = CVector(0.0f, 0.0f, 0.5f)*mMatrix;
+					//ダッシュ
+					if (CKey::Push(VK_SHIFT)){
+						mPosition = CVector(0.0f, 0.0f, 1.3f)*mMatrix;
+						Dash = TRUE;
+					}
+					else{
+						Dash = FALSE;
+					}
+				}
+
+				if (CKey::Push('S')){
+					mPosition = CVector(0.0f, 0.0f, -0.5f)*mMatrix;
+					//ダッシュ
+					if (CKey::Push(VK_SHIFT)){
+						mPosition = CVector(0.0f, 0.0f, -1.3f)*mMatrix;
+						Dash = TRUE;
+					}
+					else{
+						Dash = FALSE;
+					}
+				}
+
+				if (CKey::Once('J') && mVelocityJump == 0){
+					mVelocityJump = JUMPV0;
+					Jump = TRUE;
+				}
+
+				//回避
+				if (CKey::Once('H')){
+					mSearch.mRadius = R - 7.0f;
+				}
+
+				//アイテム使用(パワー)
+				if (frameMax > frame){
+					frame += 1;
+				}
+				//アイテムを持っているとき
+				if (CPower::power >= 1){
+					//効果が消えたら使える
+					if (mSearch.mRadius < 10){
+						if (CKey::Once('Q')){
+							mSearch.mRadius = R + 3.0f;
+							CPower::power -= 1;
+
+						}
+					}
+				}
+				//4秒で効果切れ
+				if (frame > 240){
+					mSearch.mRadius = R;
+					frame = 0;
+				}
+
+				//ゴミ回収
+				if (CHome::home == TRUE){
+					if (CKey::Push('E')){
+						clear = clear + CGomi::GomiCount;
+						CGomi::GomiCount = 0;
+					}
 				}
 			}
-
-			if (CKey::Push('S')){
-				mPosition = CVector(0.0f, 0.0f, -0.5f)*mMatrix;
-				//ダッシュ
-				if (CKey::Push(VK_SHIFT)){
-					mPosition = CVector(0.0f, 0.0f, -1.3f)*mMatrix;
-					Dash = TRUE;
-				}
-				else{
-					Dash = FALSE;
-				}
-			}
-
-			if (CKey::Once('J') && mVelocityJump == 0){
-				mVelocityJump = JUMPV0;
-				Jump = TRUE;
-			}
-		}
-		//回避
-		if (CKey::Once('H')){
-			mSearch.mRadius = R - 7.0f;
-		}
-
-		//アイテム使用(パワー)
-		if (frameMax > frame){
-			frame += 1;
-		}
-		//アイテムを持っているとき
-		if (CPower::power >= 1){
-			if (mSearch.mRadius < 10){
-				if (CKey::Once('Q')){
-					mSearch.mRadius = R + 3.0f;
-					CPower::power -= 1;
-
-				}
-			}
-		}
-		//4秒で効果切れ
-		if (frame > 240){
-			mSearch.mRadius = R;
-			frame = 0;
-		}
-
-		//ゴミ回収
-		if (CHome::home == TRUE){
-			if (CKey::Push('E')){
-				clear = clear + CGomi::GomiCount;
-				CGomi::GomiCount = 0;
-			}
-		}
-			//重力加速度
-			mVelocityJump -= G;
-			//移動
-			mPosition.mY = mPosition.mY + mVelocityJump;
-
-			CCharacter::Update();
 		}
 	}
+	//重力加速度
+	mVelocityJump -= G;
+	//移動
+	mPosition.mY = mPosition.mY + mVelocityJump;
+
+	CCharacter::Update();
+}
+	
 
 void CPlayer::Render(){
 	CCharacter::Render();
@@ -159,6 +164,8 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 		if (y->mTag == CCollider::EBODY2){
 			if (CCollider::Collision(m, y)){
 				CSceneGame::mTimeNow++;
+				frame2++;
+				Down = TRUE;
 				//持っているゴミを周りに出現させる
 				switch (CGomi::GomiCount){
 
@@ -198,14 +205,15 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 					CGomi::GomiCount = 0;
 					break;
 				}
-				
-					//ホームに戻る(リトライ)
-				if (CKey::Once('U')){
+
+				//ホームに戻る(リトライ)
+				if (frame2 > RETRY){
 					//初期位置
 					mPosition = CVector(-50.0f, 10.0f, 0.0f);
 					mRotation = CVector(0.0f, 90.0f, 0.0f);
 					CSceneGame::mTimeNow = CSceneGame::mTimeMax;
-					
+					Down = FALSE;
+					frame2 = 0;
 				}
 			}
 		}

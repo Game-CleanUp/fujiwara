@@ -13,7 +13,7 @@
 #define G       9.8f/60.0f//重力加速度
 #define JUMPV0  1.5f	//ジャンプ初速
 #define R		7.0f	//半径
-#define RETRY	180		//復帰時間
+#define RETRY	60		//復帰時間
 #define DROP	15.0f	//ゴミのドロップ位置
 #define DROP_RAND	rand() % 360	//ゴミのドロップ方向
 
@@ -33,9 +33,10 @@ public:
 	static int clear;
 	static int Dash;
 	static int Jump;
-
+	static int Down;
 
 	int frame;
+	int frame2;	//復帰時間
 	int frameMax;
 	int level;
 	float mVelocityJump;
