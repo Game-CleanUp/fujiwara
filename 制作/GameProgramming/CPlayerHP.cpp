@@ -1,10 +1,6 @@
 #include"CPlayerHP.h"
 #include"CSceneGame.h"
 
-void CPlayerHP::Update(){
-	
-	//w = CSceneGame::mTimeNow / CSceneGame::mTimeMax * 100;
-}
 
 void CPlayerHP::Render(){
 
@@ -28,9 +24,9 @@ void CPlayerHP::Render(){
 	//—Î
 	glColor3f(0.0f, 1.0f, 0.0f);
 
-	x = -240;
+	x = CSceneGame::mTimeMax - CSceneGame::mTimeNow;
 	y = -280;
-	w = 150;
+	w = 100 * CSceneGame::mTimeNow / CSceneGame::mTimeMax;
 	h = 10;
 	//mEnabled = true;
 	CRectangle::Render();

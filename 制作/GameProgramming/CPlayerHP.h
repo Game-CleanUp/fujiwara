@@ -5,9 +5,8 @@
 
 class CPlayerHP : public CRectangle{
 public:
-	void Update();
+
 	void Render();
-	//int x, y, w, h;
 
 };
 

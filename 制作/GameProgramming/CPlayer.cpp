@@ -23,11 +23,6 @@ CPlayer::CPlayer()
 	mColBody.mTag = CCollider::EBODY;
 	mSearch.mTag = CCollider::ESEARCH;
 
-	HP.x = -240;
-	HP.y = -280;
-	HP.w = 150;
-	HP.h = 10;
-
 }
 
 
@@ -206,7 +201,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 					break;
 				}
 
-				//ホームに戻る(リトライ)
+				//リトライ(ホームに戻る)
 				if (frame2 > RETRY){
 					//初期位置
 					mPosition = CVector(-50.0f, 10.0f, 0.0f);
