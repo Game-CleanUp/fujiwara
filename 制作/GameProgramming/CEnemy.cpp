@@ -39,7 +39,7 @@ void CEnemy::Collision(CCollider*m, CCollider*y){
 	if (y->mTag == CCollider::EBODY){
 		if (CCollider::Collision(m, y)){
 			mEnabled = false;
-			CSceneGame::mTimeNow -= 5;
+			CSceneGame::mBatteryNow -= 5;
 		}
 	}
 		
@@ -57,7 +57,7 @@ void CEnemy::Collision(CCollider*m, CCollider*y){
 void CEnemy::Update(){
 
 	if (CPlayer::clear < 2){
-		if (CSceneGame::mTimeNow > 0){
+		if (CSceneGame::mBatteryNow > 0){
 			switch (state){
 			case 0:
 				frame += 1;

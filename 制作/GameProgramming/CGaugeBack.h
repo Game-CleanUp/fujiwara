@@ -5,6 +5,7 @@
 
 class CGaugeBack : public CRectangle{
 public:
+
 	void Render();
 
 };

@@ -24,10 +24,10 @@ void CPlayerHP::Render(){
 	//—Î
 	glColor3f(0.0f, 1.0f, 0.0f);
 
-	x = CSceneGame::mTimeMax - CSceneGame::mTimeNow;
+	x = -390 + 150 * CSceneGame::mBatteryNow / CSceneGame::mBatteryMax;
 	y = -280;
-	w = 100 * CSceneGame::mTimeNow / CSceneGame::mTimeMax;
-	h = 10;
+	w = 150 * CSceneGame::mBatteryNow / CSceneGame::mBatteryMax;
+	h = 5;
 	//mEnabled = true;
 	CRectangle::Render();
 

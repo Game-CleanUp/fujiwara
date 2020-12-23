@@ -23,6 +23,11 @@ CPlayer::CPlayer()
 	mColBody.mTag = CCollider::EBODY;
 	mSearch.mTag = CCollider::ESEARCH;
 
+	HP.x = -240;
+	HP.y = -280;
+	HP.w = 150;
+	HP.h = 10;
+
 }
 
 
@@ -30,7 +35,7 @@ void CPlayer::Update(){
 
 	if (Down == FALSE){
 		if (clear < GAMECLEAR){
-			if (CSceneGame::mTimeNow > 0){
+			if (CSceneGame::mBatteryNow > 0){
 				if (CKey::Push('A')){
 					mRotation.mY += 2.0f;
 				}
@@ -158,7 +163,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::EBODY){
 		if (y->mTag == CCollider::EBODY2){
 			if (CCollider::Collision(m, y)){
-				CSceneGame::mTimeNow++;
+				CSceneGame::mBatteryNow++;
 				frame2++;
 				Down = TRUE;
 				//éùÇ¡ÇƒÇ¢ÇÈÉSÉ~Çé¸ÇËÇ…èoåªÇ≥ÇπÇÈ
@@ -206,7 +211,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 					//èâä˙à íu
 					mPosition = CVector(-50.0f, 10.0f, 0.0f);
 					mRotation = CVector(0.0f, 90.0f, 0.0f);
-					CSceneGame::mTimeNow = CSceneGame::mTimeMax;
+					CSceneGame::mBatteryNow = CSceneGame::mBatteryMax;
 					Down = FALSE;
 					frame2 = 0;
 				}

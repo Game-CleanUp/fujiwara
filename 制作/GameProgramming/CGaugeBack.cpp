@@ -27,7 +27,7 @@ void CGaugeBack::Render(){
 	x = -240;
 	y = -280;
 	w = 152;
-	h = 12;
+	h = 7;
 	//mEnabled = true;
 	CRectangle::Render();
 

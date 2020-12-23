@@ -5,8 +5,8 @@
 #include "CText.h"
 
 int CSceneGame::StageCount = 0;
-int CSceneGame::mTimeMax = 30 * 60;
-int CSceneGame::mTimeNow = mTimeNow + mTimeMax;
+int CSceneGame::mBatteryMax = 60 * 60;
+int CSceneGame::mBatteryNow = mBatteryNow + mBatteryMax;
 int CSceneGame::frame = 0;
 
 CSceneGame::~CSceneGame() {
@@ -164,25 +164,25 @@ void CSceneGame::RenderMiniMap(){
 
 void CSceneGame::Update() {
 	
-	if (mTimeNow >= 0 && CHome::home == 0){
-		mTimeNow--;
+	if (mBatteryNow >= 0 && CHome::home == 0){
+		mBatteryNow--;
 	}
 	//最大値を超えない
-	else if (mTimeMax >= mTimeNow){
-		mTimeNow += 15;
+	else if (mBatteryMax >= mBatteryNow){
+		mBatteryNow += 15;
 	}
 	
 	//0以下にならない
-	if (mTimeNow < 0){
-		mTimeNow = 0;
+	if (mBatteryNow < 0){
+		mBatteryNow = 0;
 	}
 	//ダッシュ時
 	if (CPlayer::Dash == 1){
-		mTimeNow -= 3;
+		mBatteryNow -= 3;
 	}
 	//ジャンプ時
 	if (CPlayer::Jump > 0){
-		mTimeNow -= 10;
+		mBatteryNow -= 10;
 	}
 
 	CTaskManager::Get()->Update();
@@ -246,7 +246,7 @@ void CSceneGame::Update() {
 	//CText::DrawString("3D PROGRAMMING", 20, 20, 10, 12);
 
 	//ゲームオーバー条件(バッテリー切れ）
-	if (mTimeNow == 0){
+	if (mBatteryNow == 0){
 		CText::DrawString("GAME OVER", 200, 330, 25, 25);
 	}
 
@@ -267,8 +267,8 @@ void CSceneGame::Update() {
 
 	char buf[10];
 
-	sprintf(buf, "%d", mTimeNow / 60);
-	CText::DrawString(buf, 30, 550, 20, 20);
+	/*sprintf(buf, "%d", mBatteryNow / 60);
+	CText::DrawString(buf, 30, 550, 20, 20);*/
 
 	//アイテム数(パワー）
 	sprintf(buf, "%d", CPower::power);

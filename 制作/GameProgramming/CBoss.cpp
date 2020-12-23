@@ -21,7 +21,7 @@ CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 void CBoss::Update(){
 
 	if (CPlayer::clear < GAMECLEAR){
-		if (CSceneGame::mTimeNow > 0){
+		if (CSceneGame::mBatteryNow > 0){
 			//’Ç”ö‚µ‚Ä‚È‚¢‚Æ‚«
 			if (tracking == FALSE){
 				switch (state){

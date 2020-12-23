@@ -53,8 +53,8 @@ public:
 	EScene GetNextScene();
 	//ステージ数
 	static int StageCount;
-	static int mTimeMax;
-	static int mTimeNow;
+	static int mBatteryMax;
+	static int mBatteryNow;
 	static int frame;
 	
 };
