@@ -7,6 +7,8 @@
 int CSceneGame::StageCount = 0;
 int CSceneGame::mBatteryMax = 60 * 60;
 int CSceneGame::mBatteryNow = mBatteryNow + mBatteryMax;
+int CSceneGame::mTimeMax = 60 * 60;
+int CSceneGame::mTimeNow = mTimeNow + mTimeMax;
 int CSceneGame::frame = 0;
 
 CSceneGame::~CSceneGame() {
@@ -112,8 +114,8 @@ void CSceneGame::Init() {
 	
 	
 	//敵(ダメージが入る)
-	/*new CEnemy2(&mSphere, CVector(20.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
-	new CEnemy2(&mSphere, CVector(30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));*/
+	new CEnemy2(&mSphere, CVector(-20.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
+	new CEnemy2(&mSphere, CVector(-30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 
 	//ゴミ
 	new CGomi(NULL, CVector(20.0f, 1.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
@@ -185,6 +187,16 @@ void CSceneGame::Update() {
 		mBatteryNow -= 10;
 	}
 
+	//制限時間
+	if (mTimeNow >= 0){
+		mTimeNow--;
+	}
+
+	//0以下にならない
+	if (mTimeNow < 0){
+		mTimeNow = 0;
+	}
+
 	CTaskManager::Get()->Update();
 	//カメラのパラメータを作成する
 	CVector e, c, u;//視点、注視点、上方向
@@ -251,7 +263,7 @@ void CSceneGame::Update() {
 	}
 
 	//ゲームオーバー条件(ライフゼロ)
-	if (CPlayer::Life <= 0){
+	if (CPlayer::mHPNow <= 0){
 		CText::DrawString("GAME OVER", 200, 330, 25, 25);
 	}
 
@@ -278,13 +290,13 @@ void CSceneGame::Update() {
 	sprintf(buf, "%d", CPlayer::clear);
 	CText::DrawString(buf, 650, 30, 15, 15);
 
-	//ゴミ回収数
-	sprintf(buf, "%d", CGomi::GomiCount);
-	CText::DrawString(buf, 140, 50, 15, 15);
+	////ゴミ回収数
+	//sprintf(buf, "%d", CGomi::GomiCount);
+	//CText::DrawString(buf, 140, 50, 15, 15);
 
-	//プレイヤーライフ
-	sprintf(buf, "%d", CPlayer::Life);
-	CText::DrawString(buf, 20, 50, 15, 15);
+	////プレイヤーライフ
+	//sprintf(buf, "%d", CPlayer::Life);
+	//CText::DrawString(buf, 20, 50, 15, 15);
 
 	//2D描画終了
 	End2D();

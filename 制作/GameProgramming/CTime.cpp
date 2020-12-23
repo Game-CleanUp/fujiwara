@@ -1,8 +1,8 @@
-#include"CPlayerHP.h"
-#include"CPlayer.h"
+#include"CTime.h"
+#include"CSceneGame.h"
 
 
-void CPlayerHP::Render(){
+void CTime::Render(){
 
 	//モデルビュー行列の退避
 	glPushMatrix();
@@ -17,16 +17,16 @@ void CPlayerHP::Render(){
 	//プロジェクション行列の初期化
 	glLoadIdentity();
 	//2D描画の設定
-	gluOrtho2D(-400,400,-300,300);
+	gluOrtho2D(-400, 400, -300, 300);
 	//Depthテストオフ
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_LIGHTING);
 	//緑
-	glColor3f(0.0f, 1.0f, 0.0f);
+	glColor3f(0.0f, 0.0f, 1.0f);
 
-	x = -390 + 150 * CPlayer::mHPNow / CPlayer::mHPMax;
-	y = -260;
-	w = 150 * CPlayer::mHPNow / CPlayer::mHPMax;
+	x = -390 + 150 * CSceneGame::mTimeNow / CSceneGame::mTimeMax;
+	y = 290;
+	w = 150 * CSceneGame::mTimeNow / CSceneGame::mTimeMax;
 	h = 5;
 	//mEnabled = true;
 	CRectangle::Render();

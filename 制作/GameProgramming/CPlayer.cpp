@@ -1,16 +1,14 @@
 #include"CPlayer.h"
 #include"CSceneGame.h"
 
-int CPlayer::Life = 100;
+int CPlayer::mHPMax = 100;
+int CPlayer::mHPNow = mHPNow + mHPMax;
 int CPlayer::clear = 0;
 int CPlayer::Dash = 0;
 int CPlayer::Jump = 0;
 int CPlayer::Down = 0;
 CPlayer *CPlayer::mpPlayer = 0;
 
-//void CPlayer::Init(){
-//	mRock.Load("Rock1.obj", "Rock1.mtl");
-//}
 
 CPlayer::CPlayer()
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 1.5f)
@@ -22,12 +20,6 @@ CPlayer::CPlayer()
 
 	mColBody.mTag = CCollider::EBODY;
 	mSearch.mTag = CCollider::ESEARCH;
-
-	HP.x = -240;
-	HP.y = -280;
-	HP.w = 150;
-	HP.h = 10;
-
 }
 
 
@@ -122,6 +114,8 @@ void CPlayer::Render(){
 	CCharacter::Render();
 	Back.Render();
 	HP.Render();
+	Battery.Render();
+	Time.Render();
 
 }
 

@@ -55,6 +55,8 @@ public:
 	static int StageCount;
 	static int mBatteryMax;
 	static int mBatteryNow;
+	static int mTimeMax;
+	static int mTimeNow;
 	static int frame;
 	
 };

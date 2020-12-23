@@ -7,6 +7,8 @@
 #include"CPower.h"
 #include"CHome.h"
 #include"CPlayerHP.h"
+#include"CBattery.h"
+#include"CTime.h"
 #include"CGaugeBack.h"
 #include"CMoney.h"
 
@@ -29,7 +31,8 @@ public:
 	CCollider mColBody;
 	CCollider mSearch;
 	static CPlayer *mpPlayer;
-	static int Life;
+	static int mHPNow;
+	static int mHPMax;
 	static int clear;
 	static int Dash;
 	static int Jump;
@@ -42,6 +45,8 @@ public:
 	float mVelocityJump;
 
 	CPlayerHP HP;
+	CBattery Battery;
+	CTime Time;
 	CGaugeBack Back;
 	CMatrix matrix;
 

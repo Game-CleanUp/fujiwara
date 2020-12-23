@@ -22,7 +22,7 @@ void CBattery::Render(){
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_LIGHTING);
 	//—Î
-	glColor3f(0.0f, 1.0f, 0.0f);
+	glColor3f(1.0f, 1.0f, 0.0f);
 
 	x = -390 + 150 * CSceneGame::mBatteryNow / CSceneGame::mBatteryMax;
 	y = -280;

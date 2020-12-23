@@ -22,7 +22,7 @@ void CEnemy2::Collision(CCollider*m, CCollider*y){
 		if (CCollider::Collision(m, y)){
 			//Õ“Ë‚µ‚Ä‚¢‚é‚Æ‚«‚Í–³Œø‚É‚·‚é
 			mEnabled = false;
-			CPlayer::Life -= 25;
+			CPlayer::mHPNow -= 25;
 		}
 	}
 	//ˆø‚«Šñ‚¹
