@@ -255,15 +255,8 @@ void CSceneGame::Update() {
 		mScene = ETITLE;
 	}
 
-	//CText::DrawString("3D PROGRAMMING", 20, 20, 10, 12);
-
 	//ゲームオーバー条件(バッテリー切れ）
-	if (mBatteryNow == 0){
-		CText::DrawString("GAME OVER", 200, 330, 25, 25);
-	}
-
-	//ゲームオーバー条件(ライフゼロ)
-	if (CPlayer::mHPNow <= 0){
+	if (mBatteryNow == 0 || CPlayer::mHPNow <= 0 || mTimeNow <= 0){
 		CText::DrawString("GAME OVER", 200, 330, 25, 25);
 	}
 
@@ -279,9 +272,6 @@ void CSceneGame::Update() {
 
 	char buf[10];
 
-	/*sprintf(buf, "%d", mBatteryNow / 60);
-	CText::DrawString(buf, 30, 550, 20, 20);*/
-
 	//アイテム数(パワー）
 	sprintf(buf, "%d", CPower::power);
 	CText::DrawString(buf, 750, 30, 15, 15);
@@ -293,10 +283,6 @@ void CSceneGame::Update() {
 	////ゴミ回収数
 	//sprintf(buf, "%d", CGomi::GomiCount);
 	//CText::DrawString(buf, 140, 50, 15, 15);
-
-	////プレイヤーライフ
-	//sprintf(buf, "%d", CPlayer::Life);
-	//CText::DrawString(buf, 20, 50, 15, 15);
 
 	//2D描画終了
 	End2D();

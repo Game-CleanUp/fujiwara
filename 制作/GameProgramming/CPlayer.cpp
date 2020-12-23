@@ -28,74 +28,76 @@ void CPlayer::Update(){
 	if (Down == FALSE){
 		if (clear < GAMECLEAR){
 			if (CSceneGame::mBatteryNow > 0){
-				if (CKey::Push('A')){
-					mRotation.mY += 2.0f;
-				}
-
-				if (CKey::Push('D')){
-					mRotation.mY -= 2.0f;
-				}
-
-				if (CKey::Push('W')){
-					mPosition = CVector(0.0f, 0.0f, 0.5f)*mMatrix;
-					//ダッシュ
-					if (CKey::Push(VK_SHIFT)){
-						mPosition = CVector(0.0f, 0.0f, 1.3f)*mMatrix;
-						Dash = TRUE;
+				if (CSceneGame::mTimeNow > 0){
+					if (CKey::Push('A')){
+						mRotation.mY += 2.0f;
 					}
-					else{
-						Dash = FALSE;
+
+					if (CKey::Push('D')){
+						mRotation.mY -= 2.0f;
 					}
-				}
 
-				if (CKey::Push('S')){
-					mPosition = CVector(0.0f, 0.0f, -0.5f)*mMatrix;
-					//ダッシュ
-					if (CKey::Push(VK_SHIFT)){
-						mPosition = CVector(0.0f, 0.0f, -1.3f)*mMatrix;
-						Dash = TRUE;
-					}
-					else{
-						Dash = FALSE;
-					}
-				}
-
-				if (CKey::Once('J') && mVelocityJump == 0){
-					mVelocityJump = JUMPV0;
-					Jump = TRUE;
-				}
-
-				//回避
-				if (CKey::Once('H')){
-					mSearch.mRadius = R - 7.0f;
-				}
-
-				//アイテム使用(パワー)
-				if (frameMax > frame){
-					frame += 1;
-				}
-				//アイテムを持っているとき
-				if (CPower::power >= 1){
-					//効果が消えたら使える
-					if (mSearch.mRadius < 10){
-						if (CKey::Once('Q')){
-							mSearch.mRadius = R + 3.0f;
-							CPower::power -= 1;
-
+					if (CKey::Push('W')){
+						mPosition = CVector(0.0f, 0.0f, 0.5f)*mMatrix;
+						//ダッシュ
+						if (CKey::Push(VK_SHIFT)){
+							mPosition = CVector(0.0f, 0.0f, 1.3f)*mMatrix;
+							Dash = TRUE;
+						}
+						else{
+							Dash = FALSE;
 						}
 					}
-				}
-				//4秒で効果切れ
-				if (frame > 240){
-					mSearch.mRadius = R;
-					frame = 0;
-				}
 
-				//ゴミ回収
-				if (CHome::home == TRUE){
-					if (CKey::Push('E')){
-						clear = clear + CGomi::GomiCount;
-						CGomi::GomiCount = 0;
+					if (CKey::Push('S')){
+						mPosition = CVector(0.0f, 0.0f, -0.5f)*mMatrix;
+						//ダッシュ
+						if (CKey::Push(VK_SHIFT)){
+							mPosition = CVector(0.0f, 0.0f, -1.3f)*mMatrix;
+							Dash = TRUE;
+						}
+						else{
+							Dash = FALSE;
+						}
+					}
+
+					if (CKey::Once('J') && mVelocityJump == 0){
+						mVelocityJump = JUMPV0;
+						Jump = TRUE;
+					}
+
+					//回避
+					if (CKey::Once('H')){
+						mSearch.mRadius = R - 7.0f;
+					}
+
+					//アイテム使用(パワー)
+					if (frameMax > frame){
+						frame += 1;
+					}
+					//アイテムを持っているとき
+					if (CPower::power >= 1){
+						//効果が消えたら使える
+						if (mSearch.mRadius < 10){
+							if (CKey::Once('Q')){
+								mSearch.mRadius = R + 3.0f;
+								CPower::power -= 1;
+
+							}
+						}
+					}
+					//4秒で効果切れ
+					if (frame > 240){
+						mSearch.mRadius = R;
+						frame = 0;
+					}
+
+					//ゴミ回収
+					if (CHome::home == TRUE){
+						if (CKey::Push('E')){
+							clear = clear + CGomi::GomiCount;
+							CGomi::GomiCount = 0;
+						}
 					}
 				}
 			}
@@ -116,7 +118,6 @@ void CPlayer::Render(){
 	HP.Render();
 	Battery.Render();
 	Time.Render();
-
 }
 
 

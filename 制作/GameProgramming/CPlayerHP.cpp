@@ -1,7 +1,6 @@
 #include"CPlayerHP.h"
 #include"CPlayer.h"
 
-
 void CPlayerHP::Render(){
 
 	//モデルビュー行列の退避

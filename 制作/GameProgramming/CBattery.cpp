@@ -1,7 +1,6 @@
 #include"CBattery.h"
 #include"CSceneGame.h"
 
-
 void CBattery::Render(){
 
 	//モデルビュー行列の退避

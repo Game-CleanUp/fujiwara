@@ -1,7 +1,6 @@
 #include"CTime.h"
 #include"CSceneGame.h"
 
-
 void CTime::Render(){
 
 	//モデルビュー行列の退避
