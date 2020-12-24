@@ -59,6 +59,9 @@ void CSceneGame::Init() {
 	%100は100で割った余りを求める。0~99までになる。
 	-50引くことで、-50~49までのランダム値になる。
 	*/
+	//テクスチャ(壁紙)
+	std::shared_ptr<CTexture>kabe(new CTexture("kabe.tga"));
+	
 
 	//上
 	new CObj(&mCube, CVector(150.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 180.0f));
@@ -68,16 +71,26 @@ void CSceneGame::Init() {
 
 	//右
 	new CObj(&mCube, CVector(0.0f, 0.0f, 180.0f), CVector(), CVector(150.0f, H, W));
+
+
 	//左
 	new CObj(&mCube, CVector(75.0f, 0.0f, -180.0f), CVector(), CVector(75.0f, H, W));
+	//右向き
+	new CImage(kabe, CVector(75.0f, 0.0f, -174.9f), CVector(-180.0f, -180.0f, 0.0f), CVector(75.0f, 50.0f, 1.0f));
+
+
 	//左2
 	new CObj(&mCube, CVector(-120.0f, 0.0f, -100.0f), CVector(), CVector(30.0f, H, 10.0f));
+
 
 	//廊下前
 	new CObj(&mCube, CVector(-80.0f, 0.0f, -110.0f), CVector(), CVector(75.0f, H, W));
 
+
 	//左横向き
 	new CObj(&mCube, CVector(0.0f, 0.0f, -100.0f), CVector(), CVector(W, H, 80.0f));
+
+
 	//右横向き
 	new CObj(&mCube, CVector(60.0f, 0.0f, 100.0f), CVector(), CVector(W, H, 75.0f));
 	new CObj(&mCube, CVector(55.0f, 0.0f, 100.0f), CVector(), CVector(W, H, 75.0f));
@@ -135,22 +148,17 @@ void CSceneGame::Init() {
 	//ホーム
 	new CHome(&mCube, CVector(-50.0f, -0.7f, 0.0f), CVector(), CVector(0.05f, 0.05f, 0.05f));
 
-	//地面
-	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(150.0f, 1.0f, 200.0f));
+
 	//天井
 	//new CObj(&mPlane, CVector(0.0f, 100.0f, 0.0f), CVector(), CVector(150.0f, 1.0f, 200.0f));
 
 	mPlayer.mPosition = CVector(-50.0f, 10.0f, 0.0f);
 	mPlayer.mRotation = CVector(0.0f, 90.0f, 0.0f);
-	
-	//テクスチャ(壁紙)
-	//std::shared_ptr<CTexture>kabe(new CTexture("kabe.tga"));
-
-
 
 	//テクスチャ(床）
 	std::shared_ptr<CTexture>yuka(new CTexture("yuka.tga"));
-
+	//地面
+	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(150.0f, 1.0f, 200.0f));
 	new CImage(yuka, CVector(0.0f, -1.4f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(150.0f, 180.0f, 1.0f));
 }
 
@@ -207,7 +215,7 @@ void CSceneGame::Update() {
 	//カメラのパラメータを作成する
 	CVector e, c, u;//視点、注視点、上方向
 	//視点を求める
-	e = CVector(0.0f, 25.0f, -25.0f)*mPlayer.mMatrix;
+	e = CVector(0.0f, 20.0f, -20.0f)*mPlayer.mMatrix;
 	//注視点を求める
 	c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 	//上方向を求める
@@ -239,10 +247,10 @@ void CSceneGame::Update() {
 
 	
 	frame++;
-	if (frame < 1000 && frame % 100 == 0){
+	if (frame < 500 && frame % 20 == 0){
 
 		//ゴミの生成
-		//new CGomi(&mRock, CVector(RAND, 1.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+		new CGomi(&mRock, CVector(RAND, 1.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	}
 
 	//コリジョンマネージャーの衝突処理
