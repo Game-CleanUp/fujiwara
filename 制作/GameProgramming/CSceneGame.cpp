@@ -47,7 +47,7 @@ void CSceneGame::Init() {
 	mRover.Load("Rover1.obj", "Rover1.mtl");
 	mCube.Load("cube.obj", "cube.mtl");
 	mPlane.Load("plane.obj", "plane.mtl");
-//	mSofa.Load("Sofa.obj", "cube.mtl");
+	//mTana.Load("tana.obj", "cube.mtl");
 	mSphere.Load("sphere.obj", "sphere.mtl");
 	mPlayer.mpModel = &mCube;
 
@@ -88,31 +88,31 @@ void CSceneGame::Init() {
 	new CObj(&mCube, CVector(15.0f, 0.0f, 25.0f), CVector(), CVector(50.0f, H, W));
 
 
-	//枠
-	new CObj(&mCube, CVector(-95.0f, 0.0f, -150.0f), CVector(), CVector(90.0f, H, W));
+	////枠
+	//new CObj(&mCube, CVector(-95.0f, 0.0f, -150.0f), CVector(), CVector(90.0f, H, W));
 
-	new CObj(&mCube, CVector(-190.0f, 0.0f, -115.0f), CVector(), CVector(W, H, 40.0f));
+	//new CObj(&mCube, CVector(-190.0f, 0.0f, -115.0f), CVector(), CVector(W, H, 40.0f));
 
-	//左
-	new CObj(&mCube, CVector(-235.0f, 0.0f, -70.0f), CVector(), CVector(50.0f, H, W));
+	////左
+	//new CObj(&mCube, CVector(-235.0f, 0.0f, -70.0f), CVector(), CVector(50.0f, H, W));
 
-	//下
-	new CObj(&mCube, CVector(-290.0f, 0.0f, -15.0f), CVector(), CVector(W, H, 60.0f));
+	////下
+	//new CObj(&mCube, CVector(-290.0f, 0.0f, -15.0f), CVector(), CVector(W, H, 60.0f));
 
-	//右
-	new CObj(&mCube, CVector(-235.0f, 0.0f, 40.0f), CVector(), CVector(50.0f, H, W));
+	////右
+	//new CObj(&mCube, CVector(-235.0f, 0.0f, 40.0f), CVector(), CVector(50.0f, H, W));
 
-	//入口左
-	new CObj(&mCube, CVector(-190.0f, 0.0f, -45.0f), CVector(), CVector(W, H, 20.0f));
+	////入口左
+	//new CObj(&mCube, CVector(-190.0f, 0.0f, -45.0f), CVector(), CVector(W, H, 20.0f));
 
-	//入口右
-	new CObj(&mCube, CVector(-190.0f, 0.0f, 20.0f), CVector(), CVector(W, H, 20.0f));
+	////入口右
+	//new CObj(&mCube, CVector(-190.0f, 0.0f, 20.0f), CVector(), CVector(W, H, 20.0f));
 
-	new CObj(&mCube, CVector(-250.0f, 0.0f, 105.0f), CVector(), CVector(W, H, 60.0f));
+	//new CObj(&mCube, CVector(-250.0f, 0.0f, 105.0f), CVector(), CVector(W, H, 60.0f));
 
-	new CObj(&mCube, CVector(-200.0f, 0.0f, 160.0f), CVector(), CVector(45.0f, H, W));
+	//new CObj(&mCube, CVector(-200.0f, 0.0f, 160.0f), CVector(), CVector(45.0f, H, W));
 	
-	
+
 	//敵(ダメージが入る)
 	new CEnemy2(&mSphere, CVector(-20.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 	new CEnemy2(&mSphere, CVector(-30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
@@ -125,27 +125,33 @@ void CSceneGame::Init() {
 	new CGomi(NULL, CVector(30.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//敵(追尾)
-	new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	//new CBoss(&mRover, CVector(-100.0f, 0.0f, -50.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	//new CBoss(&mRover, CVector(-100.0f, 0.0f, 50.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
 
 	//パワー
-	//new CHome(&mSofa, CVector(-50.0f, 0.0f, 80.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
+	//new CHome(&mTana, CVector(-30.0f, 0.0f, 100.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 
 	//ホーム
 	new CHome(&mCube, CVector(-50.0f, -0.7f, 0.0f), CVector(), CVector(0.05f, 0.05f, 0.05f));
 
 	//地面
-	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(300.0f, 1.0f, 200.0f));
+	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(150.0f, 1.0f, 200.0f));
 	//天井
 	//new CObj(&mPlane, CVector(0.0f, 100.0f, 0.0f), CVector(), CVector(150.0f, 1.0f, 200.0f));
 
 	mPlayer.mPosition = CVector(-50.0f, 10.0f, 0.0f);
 	mPlayer.mRotation = CVector(0.0f, 90.0f, 0.0f);
 	
+	//テクスチャ(壁紙)
+	//std::shared_ptr<CTexture>kabe(new CTexture("kabe.tga"));
 
-	////障害物テクスチャ(しゃがみ）
-	//std::shared_ptr<CTexture>grass(new CTexture("grass.tga"));
-	//new CImage(grass, CVector(0.0f, 28.0f, 9.0f),
-	//	CVector(180.0f, 0.0f, 0.0f), CVector(69.0f, 13.0f, 1.0f));
+
+
+	//テクスチャ(床）
+	std::shared_ptr<CTexture>yuka(new CTexture("yuka.tga"));
+
+	new CImage(yuka, CVector(0.0f, -1.4f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(150.0f, 180.0f, 1.0f));
 }
 
 
@@ -201,7 +207,7 @@ void CSceneGame::Update() {
 	//カメラのパラメータを作成する
 	CVector e, c, u;//視点、注視点、上方向
 	//視点を求める
-	e = CVector(0.0f, 30.0f, -30.0f)*mPlayer.mMatrix;
+	e = CVector(0.0f, 25.0f, -25.0f)*mPlayer.mMatrix;
 	//注視点を求める
 	c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 	//上方向を求める

@@ -48,7 +48,7 @@ public:
 	CModel mPlane;
 	CModel ModelEnemy;	//エネミーモデル
 	CModel mSphere;
-	//CModel mSofa;
+//	CModel mTana;
 	//次のシーンの取得
 	EScene GetNextScene();
 	//ステージ数

@@ -4,7 +4,7 @@
 int CBoss::tracking = 0;
 
 CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
-:mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 4.0f)
+:mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 2.0f)
 , mSearch(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 30.0f)
 , frame(0), state(0), mVelocityJump(0.0f)
 {
@@ -95,7 +95,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 				//プレイヤーの方向
 				CVector dir = y->mpParent->mPosition - mPosition;
 				//正規化（長さを1にする）Normalize()
-				mPosition = mPosition + dir.Normalize() * 0.8;
+				mPosition = mPosition + dir.Normalize() * 0.7;
 				tracking = TRUE;
 			}
 		}
