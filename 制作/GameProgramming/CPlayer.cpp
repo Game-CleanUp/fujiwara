@@ -38,7 +38,7 @@ void CPlayer::Update(){
 					}
 
 					if (CKey::Push('W')){
-						mPosition = CVector(0.0f, 0.0f, 0.3f)*mMatrix;
+						mPosition = CVector(0.0f, 0.0f, 0.5f)*mMatrix;
 						//ダッシュ
 						if (CKey::Push(VK_SHIFT)){
 							mPosition = CVector(0.0f, 0.0f, 1.2f)*mMatrix;
@@ -50,7 +50,7 @@ void CPlayer::Update(){
 					}
 
 					if (CKey::Push('S')){
-						mPosition = CVector(0.0f, 0.0f, -0.3f)*mMatrix;
+						mPosition = CVector(0.0f, 0.0f, -0.5f)*mMatrix;
 						//ダッシュ
 						if (CKey::Push(VK_SHIFT)){
 							mPosition = CVector(0.0f, 0.0f, -1.2f)*mMatrix;
