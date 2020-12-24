@@ -47,7 +47,7 @@ void CSceneGame::Init() {
 	mRover.Load("Rover1.obj", "Rover1.mtl");
 	mCube.Load("cube.obj", "cube.mtl");
 	mPlane.Load("plane.obj", "plane.mtl");
-	//mSofa.Load("Sofa.obj", "Sofa.mtl");
+//	mSofa.Load("Sofa.obj", "cube.mtl");
 	mSphere.Load("sphere.obj", "sphere.mtl");
 	mPlayer.mpModel = &mCube;
 
@@ -128,7 +128,7 @@ void CSceneGame::Init() {
 	new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//パワー
-	//new CEnemy(&mSofa, CVector(-50.0f, 0.0f, 80.0f), CVector(), CVector(55.0f, 55.0f, 55.0f));
+	//new CHome(&mSofa, CVector(-50.0f, 0.0f, 80.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
 
 	//ホーム
 	new CHome(&mCube, CVector(-50.0f, -0.7f, 0.0f), CVector(), CVector(0.05f, 0.05f, 0.05f));
