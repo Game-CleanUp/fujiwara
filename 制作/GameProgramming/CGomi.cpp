@@ -6,8 +6,7 @@ CModel CGomi::mModel;
 
 //課題7
 CGomi::CGomi(CModel*model, CVector position, CVector rotation, CVector scale)
-:mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f),
-CVector(1.0f, 1.0f, 1.0f), 3.0f)
+:mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 2.0f)
 , move(0)
 {
 	//モデル、位置、回転、拡縮を設定する

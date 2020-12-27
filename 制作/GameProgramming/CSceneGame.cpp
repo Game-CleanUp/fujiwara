@@ -65,24 +65,53 @@ void CSceneGame::Init() {
 
 	//上
 	new CObj(&mCube, CVector(140.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 200.0f));
+	new CImage(kabe, CVector(134.9f, 0.0f, -150.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(134.9f, 0.0f, -50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(134.9f, 0.0f, 50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(134.9f, 0.0f, 150.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+
+
 	//下
 	new CObj(&mCube, CVector(-140.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 200.0f));
+	new CImage(kabe, CVector(-134.9f, 0.0f, -150.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(-134.9f, 0.0f, -50.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(-134.9f, 0.0f, 50.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(-134.9f, 0.0f, 150.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+
 	//右
 	new CObj(&mCube, CVector(0.0f, 0.0f, 200.0f), CVector(), CVector(140.0f, H, W));
+	new CImage(kabe, CVector(70.0f, 0.0f, 194.9f), CVector(-180.0f, 0.0f, 0.0f), CVector(70.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(-70.0f, 0.0f, 194.9f), CVector(180.0f, 0.0f, 0.0f), CVector(70.0f, 50.0f, 0.0f));
+
 	//左
 	new CObj(&mCube, CVector(0.0f, 0.0f, -200.0f), CVector(), CVector(140.0f, H, W));
-
+	new CImage(kabe, CVector(70.0f, 0.0f, -194.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 70.0f, 0.0f));
+	new CImage(kabe, CVector(-70.0f, 0.0f, -194.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 70.0f, 0.0f));
 
 	//①
 	new CObj(&mCube, CVector(-20.0f, 0.0f, -120.0f), CVector(), CVector(W, H, 75.0f));
+	new CImage(kabe, CVector(-25.1f, 0.0f, -120.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 75.0f, 0.0f));
+	new CImage(kabe, CVector(-14.9f, 0.0f, -115.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 80.0f, 0.0f));
+
+
 	//②
 	new CObj(&mCube, CVector(-60.0f, 0.0f, -40.0f), CVector(), CVector(45.0f, H, W));
+	new CImage(kabe, CVector(-60.0f, 0.0f, -45.1f), CVector(180.0f, 0.0f, 0.0f), CVector(45.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(-60.0f, 0.0f, -34.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 45.0f, 0.0f));
+
 
 	//③
 	new CObj(&mCube, CVector(-75.0f, 0.0f, 80.0f), CVector(), CVector(60.0f, H, W));
+	new CImage(kabe, CVector(-75.0f, 0.0f, 74.9f), CVector(180.0f, 0.0f, 0.0f), CVector(60.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(-75.0f, 0.0f, 85.1f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 60.0f, 0.0f));
+
 
 	//④
 	new CObj(&mCube, CVector(40.0f, 0.0f, -120.0f), CVector(), CVector(W, H, 75.0f));
+	new CImage(kabe, CVector(34.9f, 0.0f, -115.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 80.0f, 0.0f));
+	new CImage(kabe, CVector(45.1f, 0.0f, -115.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 80.0f, 0.0f));
+
+
 
 	//⑤
 	new CObj(&mCube, CVector(65.0f, 0.0f, -40.0f), CVector(), CVector(30.0f, H, W));
@@ -128,13 +157,6 @@ void CSceneGame::Init() {
 	//敵(ダメージが入る)
 	new CEnemy2(&mSphere, CVector(-20.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 	new CEnemy2(&mSphere, CVector(-30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
-
-	//ゴミ
-	new CGomi(NULL, CVector(20.0f, 1.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CGomi(NULL, CVector(80.0f, 1.0f, -50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CGomi(NULL, CVector(30.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CGomi(NULL, CVector(20.0f, 1.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CGomi(NULL, CVector(30.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//敵(追尾)
 	new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
@@ -250,7 +272,7 @@ void CSceneGame::Update() {
 	if (frame < 1000 && frame % 100 == 0){
 
 		//ゴミの生成
-		new CGomi(&mRock, CVector(RAND, 1.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+		new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	}
 
 	//コリジョンマネージャーの衝突処理
@@ -285,6 +307,10 @@ void CSceneGame::Update() {
 	}
 
 	char buf[10];
+
+	//制限時間
+	sprintf(buf, "%d", mTimeNow / 60);
+	CText::DrawString(buf, 15, 550, 15, 15);
 
 	//アイテム数(パワー）
 	sprintf(buf, "%d", CPower::power);
