@@ -115,15 +115,24 @@ void CSceneGame::Init() {
 
 	//⑤
 	new CObj(&mCube, CVector(65.0f, 0.0f, -40.0f), CVector(), CVector(30.0f, H, W));
+	new CImage(kabe, CVector(65.0f, 0.0f, -45.1f), CVector(180.0f, 0.0f, 0.0f), CVector(30.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(65.0f, 0.0f, -34.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 30.0f, 0.0f));
+
 
 	//⑥
 	new CObj(&mCube, CVector(35.0f, 0.0f, 80.0f), CVector(), CVector(25.0f, H, W));
+	new CImage(kabe, CVector(35.0f, 0.0f, 74.9f), CVector(180.0f, 0.0f, 0.0f), CVector(25.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(35.0f, 0.0f, 85.1f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 25.0f, 0.0f));
 
 	//⑦
 	new CObj(&mCube, CVector(110.0f, 0.0f, 80.0f), CVector(), CVector(25.0f, H, W));
+	new CImage(kabe, CVector(110.0f, 0.0f, 74.9f), CVector(180.0f, 0.0f, 0.0f), CVector(25.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(110.0f, 0.0f, 85.1f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 25.0f, 0.0f));
 
 	//⑧
 	new CObj(&mCube, CVector(25.0f, 0.0f, 120.0f), CVector(), CVector(W, H, 45.0f));
+	new CImage(kabe, CVector(19.9f, 0.0f, 120.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 45.0f, 0.0f));
+	new CImage(kabe, CVector(30.1f, 0.0f, 120.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 45.0f, 0.0f));
 
 	//キッチン
 	new CObj(&mCube, CVector(30.0f, 0.0f, 45.0f), CVector(), CVector(10.0f, 5.0f, 30.0f));
@@ -236,12 +245,24 @@ void CSceneGame::Update() {
 	CTaskManager::Get()->Update();
 	//カメラのパラメータを作成する
 	CVector e, c, u;//視点、注視点、上方向
-	//視点を求める
-	e = CVector(0.0f, 10.0f, -20.0f)*mPlayer.mMatrix;
-	//注視点を求める
-	c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
-	//上方向を求める
-	u = CVector(0.0f, 1.0f, 0.0f)*mPlayer.mMatrixRotate;
+	if (CPlayer::Down == FALSE){
+		//視点を求める
+		e = CVector(0.0f, 10.0f, -20.0f)*mPlayer.mMatrix;
+		//注視点を求める
+		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
+		//上方向を求める
+		u = CVector(0.0f, 1.0f, 0.0f)*mPlayer.mMatrixRotate;
+	}
+	//ダメージリアクション
+	else{
+		//視点を求める
+		e = CVector(0.0f, 10.0f, -15.0f)*mPlayer.mMatrix;
+		//注視点を求める
+		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
+		//上方向を求める
+		u = CVector(0.0f, 1.0f, 0.0f)*mPlayer.mMatrixRotate;
+	}
+
 
 	//見下ろし視点
 	if (CKey::Push('I')){
