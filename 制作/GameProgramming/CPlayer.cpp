@@ -9,6 +9,7 @@ int CPlayer::Jump = 0;
 int CPlayer::Down = 0;
 CPlayer *CPlayer::mpPlayer = 0;
 
+extern CSound Sound;
 
 CPlayer::CPlayer()
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 1.5f)
@@ -20,6 +21,7 @@ CPlayer::CPlayer()
 
 	mColBody.mTag = CCollider::EBODY;
 	mSearch.mTag = CCollider::ESEARCH;
+	Sound.Load("jump.wav");
 }
 
 
@@ -64,6 +66,7 @@ void CPlayer::Update(){
 					if (CKey::Once('J') && mVelocityJump == 0){
 						mVelocityJump = JUMPV0;
 						Jump = TRUE;
+						Sound.Play();
 					}
 
 					//‰ñ”ð

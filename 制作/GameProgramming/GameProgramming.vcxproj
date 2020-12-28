@@ -114,6 +114,7 @@
     <ClCompile Include="CSceneGame.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="CSceneTitle.cpp" />
+    <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CTaskManager.cpp" />
     <ClCompile Include="CText.cpp" />
     <ClCompile Include="CTexture.cpp" />

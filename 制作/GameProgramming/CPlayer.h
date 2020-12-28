@@ -11,6 +11,7 @@
 #include"CTime.h"
 #include"CGaugeBack.h"
 #include"CMoney.h"
+#include"CSound.h"
 
 #define G       9.8f/60.0f//重力加速度
 #define JUMPV0  1.5f	//ジャンプ初速
@@ -49,6 +50,7 @@ public:
 	CTime Time;
 	CGaugeBack Back;
 	CMatrix matrix;
+	CSound Sound;
 
 };
 

@@ -18,7 +18,6 @@ CSceneGame::~CSceneGame() {
 
 	//mEabledÇÇ∑Ç◊ÇƒfalseÇ…Ç∑ÇÈ
 	CTaskManager::Get()->AllDelete();
-	//CTaskManager::Get()->Delete();
 
 }
 
@@ -169,9 +168,7 @@ void CSceneGame::Init() {
 
 	//ìG(í«îˆ)
 	new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	//new CBoss(&mRover, CVector(-100.0f, 0.0f, -50.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	//new CBoss(&mRover, CVector(-100.0f, 0.0f, 50.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
-
+	
 	//ÉpÉèÅ[
 	//new CHome(&mTana, CVector(-30.0f, 0.0f, 100.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 
