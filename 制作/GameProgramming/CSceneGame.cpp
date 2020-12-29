@@ -5,7 +5,7 @@
 #include "CText.h"
 
 int CSceneGame::StageCount = 0;
-int CSceneGame::mBatteryMax = 60 * 60;
+int CSceneGame::mBatteryMax = 50 * 60;
 int CSceneGame::mBatteryNow = mBatteryNow + mBatteryMax;
 int CSceneGame::mTimeMax = 60 * 60;
 int CSceneGame::mTimeNow = mTimeNow + mTimeMax;
@@ -33,7 +33,7 @@ void CSceneGame::Init() {
 
 	Sound.Load("bgm.wav");
 	//BGM再生
-	//Sound.Repeat();
+//	Sound.Repeat();
 
 	glMatrixMode(GL_PROJECTION);	//行列をプロジェクションモードへ変更
 	glLoadIdentity();				//行列を初期化
@@ -71,29 +71,29 @@ void CSceneGame::Init() {
 	
 
 	//上
-	new CObj(&mCube, CVector(140.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 200.0f));
-	new CImage(kabe, CVector(134.9f, 0.0f, -150.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(134.9f, 0.0f, -50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(134.9f, 0.0f, 50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(134.9f, 0.0f, 150.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CObj(&mCube, CVector(120.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 200.0f));
+	new CImage(kabe, CVector(114.9f, 0.0f, -150.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(114.9f, 0.0f, -50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(114.9f, 0.0f, 50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(114.9f, 0.0f, 150.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
 
 
 	//下
-	new CObj(&mCube, CVector(-140.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 200.0f));
-	new CImage(kabe, CVector(-134.9f, 0.0f, -150.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(-134.9f, 0.0f, -50.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(-134.9f, 0.0f, 50.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(-134.9f, 0.0f, 150.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CObj(&mCube, CVector(-130.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 200.0f));
+	new CImage(kabe, CVector(-124.9f, 0.0f, -150.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(-124.9f, 0.0f, -50.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(-124.9f, 0.0f, 50.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(-124.9f, 0.0f, 150.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
 
 	//右
-	new CObj(&mCube, CVector(0.0f, 0.0f, 200.0f), CVector(), CVector(140.0f, H, W));
-	new CImage(kabe, CVector(70.0f, 0.0f, 194.9f), CVector(-180.0f, 0.0f, 0.0f), CVector(70.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(-70.0f, 0.0f, 194.9f), CVector(180.0f, 0.0f, 0.0f), CVector(70.0f, 50.0f, 0.0f));
+	new CObj(&mCube, CVector(0.0f, 0.0f, 190.0f), CVector(), CVector(140.0f, H, W));
+	new CImage(kabe, CVector(70.0f, 0.0f, 184.9f), CVector(-180.0f, 0.0f, 0.0f), CVector(70.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(-70.0f, 0.0f, 184.9f), CVector(180.0f, 0.0f, 0.0f), CVector(70.0f, 50.0f, 0.0f));
 
 	//左
-	new CObj(&mCube, CVector(0.0f, 0.0f, -200.0f), CVector(), CVector(140.0f, H, W));
-	new CImage(kabe, CVector(70.0f, 0.0f, -194.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 70.0f, 0.0f));
-	new CImage(kabe, CVector(-70.0f, 0.0f, -194.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 70.0f, 0.0f));
+	new CObj(&mCube, CVector(0.0f, 0.0f, -180.0f), CVector(), CVector(140.0f, H, W));
+	new CImage(kabe, CVector(70.0f, 0.0f, -174.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 70.0f, 0.0f));
+	new CImage(kabe, CVector(-70.0f, 0.0f, -174.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 70.0f, 0.0f));
 
 	//①
 	new CObj(&mCube, CVector(-20.0f, 0.0f, -120.0f), CVector(), CVector(W, H, 75.0f));
@@ -171,14 +171,11 @@ void CSceneGame::Init() {
 	*/
 
 	//敵(ダメージが入る)
-	new CEnemy2(&mSphere, CVector(-20.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
+	/*new CEnemy2(&mSphere, CVector(-20.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 	new CEnemy2(&mSphere, CVector(-30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
-
+*/
 	//敵(追尾)
 	new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	
-	//パワー
-	//new CHome(&mTana, CVector(-30.0f, 0.0f, 100.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 
 	//ホーム
 	new CHome(&mCube, CVector(-50.0f, -0.7f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
@@ -188,7 +185,7 @@ void CSceneGame::Init() {
 	//new CObj(&mPlane, CVector(0.0f, 90.0f, 0.0f), CVector(-180.0f, 0.0f, 0.0f), CVector(150.0f, 1.0f, 200.0f));
 
 	//プレイヤー初期位置
-	//mPlayer.mPosition = CVector(-50.0f, 10.0f, 0.0f);
+	mPlayer.mPosition = CVector(-50.0f, 10.0f, 0.0f);
 	mPlayer.mRotation = CVector(0.0f, 90.0f, 0.0f);
 
 	//テクスチャ(床）
@@ -250,6 +247,13 @@ void CSceneGame::Update() {
 		mTimeNow = 0;
 	}
 
+	frame++;
+	if (frame < 1000 && frame % 100 == 0){
+
+		//ゴミの生成
+		new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	}
+
 	CTaskManager::Get()->Update();
 	//カメラのパラメータを作成する
 	CVector e, c, u;//視点、注視点、上方向
@@ -296,14 +300,6 @@ void CSceneGame::Update() {
 	CTaskManager::Get()->Render();
 	CollisionManager.Render();
 
-	
-	frame++;
-	if (frame < 1000 && frame % 100 == 0){
-
-		//ゴミの生成
-		new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	}
-
 	//コリジョンマネージャーの衝突処理
 	CollisionManager.Collision();
 
@@ -321,7 +317,7 @@ void CSceneGame::Update() {
 	}
 
 	//ゲームオーバー条件(バッテリー切れ）
-	if (mBatteryNow == 0 || CPlayer::mHPNow <= 0 || mTimeNow <= 0){
+	if (mBatteryNow == 0 || mTimeNow <= 0){
 		CText::DrawString("GAME OVER", 200, 330, 25, 25);
 	}
 
@@ -330,18 +326,34 @@ void CSceneGame::Update() {
 		CText::DrawString("OUT!", 330, 450, 25, 25);
 	}
 
-	//クリア条件(ゴミ全回収)
-	if (CPlayer::clear >= GAMECLEAR && CHome::home == 1){
-		CText::DrawString("STAGE CLEAR", 155, 330, 25, 25);
-	}
+	////クリア条件(ゴミ全回収)
+	//if (CPlayer::clear >= GAMECLEAR && CHome::home == 1){
+	//	CText::DrawString("STAGE CLEAR", 155, 330, 25, 25);
+	//}
 
+	
 	if (frame < 120){
 		CText::DrawString("WAVE1", 325, 400, 15, 15);
 	}
 
-	if (frame > 3600){
-		CText::DrawString("WAVE1", 325, 400, 15, 15);
+	if (CPlayer::clear >= 10){
+		CText::DrawString("WAVE2", 325, 400, 15, 15);
+		
 	}
+	//if (CPlayer::clear >= 10){
+	//	CText::DrawString("WAVE3", 325, 400, 15, 15);
+
+	//}
+	//if (CPlayer::clear >= 10){
+	//	CText::DrawString("WAVE4", 325, 400, 15, 15);
+
+	//}
+	//if (CPlayer::clear >= 10){
+	//	CText::DrawString("WAVE5", 325, 400, 15, 15);
+
+	//}
+	CText::DrawString("BATTERY", 17, 40, 13, 13);
+
 	char buf[10];
 
 	//制限時間

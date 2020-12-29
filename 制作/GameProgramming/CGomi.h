@@ -3,6 +3,7 @@
 #include"CCharacter.h"
 #include"CCollider.h"
 #include"CPlayer.h"
+#include"CSound.h"
 
 class CGomi : public CCharacter{
 public:
@@ -16,8 +17,7 @@ public:
 	static CModel mModel;
 	float mVelocityJump;
 
-	int move;
-
+	CSound Sound;
 
 };
 

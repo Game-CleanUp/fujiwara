@@ -1,8 +1,6 @@
 #include"CPlayer.h"
 #include"CSceneGame.h"
 
-int CPlayer::mHPMax = 100;
-int CPlayer::mHPNow = mHPNow + mHPMax;
 int CPlayer::clear = 0;
 int CPlayer::Dash = 0;
 int CPlayer::Jump = 0;
@@ -22,6 +20,7 @@ CPlayer::CPlayer()
 	mColBody.mTag = CCollider::EBODY;
 	mSearch.mTag = CCollider::ESEARCH;
 	Sound.Load("jump.wav");
+	Sound2.Load("act.wav");
 }
 
 
@@ -43,7 +42,7 @@ void CPlayer::Update(){
 						mPosition = CVector(0.0f, 0.0f, 0.5f)*mMatrix;
 						//ダッシュ
 						if (CKey::Push(VK_SHIFT)){
-							mPosition = CVector(0.0f, 0.0f, 1.2f)*mMatrix;
+							mPosition = CVector(0.0f, 0.0f, 0.8f)*mMatrix;
 							Dash = TRUE;
 						}
 						else{
@@ -55,7 +54,7 @@ void CPlayer::Update(){
 						mPosition = CVector(0.0f, 0.0f, -0.5f)*mMatrix;
 						//ダッシュ
 						if (CKey::Push(VK_SHIFT)){
-							mPosition = CVector(0.0f, 0.0f, -1.2f)*mMatrix;
+							mPosition = CVector(0.0f, 0.0f, -0.8f)*mMatrix;
 							Dash = TRUE;
 						}
 						else{
@@ -97,9 +96,10 @@ void CPlayer::Update(){
 
 					//ゴミ回収
 					if (CHome::home == TRUE){
-						if (CKey::Push('E')){
+						if (CKey::Once('E')){
 							clear = clear + CGomi::GomiCount;
 							CGomi::GomiCount = 0;
+							CSceneGame::mTimeNow += 5 * 60;
 						}
 					}
 				}
@@ -118,7 +118,6 @@ void CPlayer::Update(){
 void CPlayer::Render(){
 	CCharacter::Render();
 	Back.Render();
-	HP.Render();
 	Battery.Render();
 	Time.Render();
 }
@@ -210,7 +209,6 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 					mPosition = CVector(-50.0f, 10.0f, 0.0f);
 					mRotation = CVector(0.0f, 90.0f, 0.0f);
 					CSceneGame::mBatteryNow = CSceneGame::mBatteryMax;
-					mHPNow -= 25;
 					Down = FALSE;
 					frame2 = 0;
 				}

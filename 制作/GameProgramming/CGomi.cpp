@@ -4,6 +4,8 @@
 int CGomi::GomiCount = 0;
 CModel CGomi::mModel;
 
+extern CSound Sound;
+
 //課題7
 CGomi::CGomi(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 2.0f)
@@ -22,6 +24,8 @@ CGomi::CGomi(CModel*model, CVector position, CVector rotation, CVector scale)
 	}
 	//モデルのポインタ設定
 	mpModel = &mModel;
+
+	Sound.Load("gomi.wav");
 }
 
 void CGomi::Update(){
@@ -78,6 +82,7 @@ void CGomi::Collision(CCollider*m, CCollider*y){
 				CVector dir = y->mpParent->mPosition - mPosition;
 				//正規化（長さを1にする）Normalize()
 				mPosition = mPosition + dir.Normalize()*1.0;
+				Sound.Play();
 			}
 		}
 	}

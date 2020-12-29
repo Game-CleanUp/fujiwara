@@ -6,7 +6,6 @@
 #include"CInput.h"
 #include"CPower.h"
 #include"CHome.h"
-#include"CPlayerHP.h"
 #include"CBattery.h"
 #include"CTime.h"
 #include"CGaugeBack.h"
@@ -32,8 +31,6 @@ public:
 	CCollider mColBody;
 	CCollider mSearch;
 	static CPlayer *mpPlayer;
-	static int mHPNow;
-	static int mHPMax;
 	static int clear;
 	static int Dash;
 	static int Jump;
@@ -45,12 +42,14 @@ public:
 	int level;
 	float mVelocityJump;
 
-	CPlayerHP HP;
 	CBattery Battery;
 	CTime Time;
 	CGaugeBack Back;
 	CMatrix matrix;
+
 	CSound Sound;
+
+	CSound Sound2;
 
 };
 

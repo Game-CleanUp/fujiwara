@@ -111,9 +111,6 @@
     <ClCompile Include="CRectangle.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CPlayerHP.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CImage.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -237,9 +234,6 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CRectangle.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlayerHP.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CImage.h">

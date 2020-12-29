@@ -98,7 +98,6 @@
     <ClCompile Include="CImage.cpp" />
     <ClCompile Include="CInput.cpp" />
     <ClCompile Include="CMoney.cpp" />
-    <ClCompile Include="CPlayerHP.cpp" />
     <ClCompile Include="CPower.cpp" />
     <ClCompile Include="CKey.cpp" />
     <ClCompile Include="CMaterial.cpp" />
@@ -140,7 +139,6 @@
     <ClInclude Include="CImage.h" />
     <ClInclude Include="CInput.h" />
     <ClInclude Include="CMoney.h" />
-    <ClInclude Include="CPlayerHP.h" />
     <ClInclude Include="CPower.h" />
     <ClInclude Include="CKey.h" />
     <ClInclude Include="CMaterial.h" />
