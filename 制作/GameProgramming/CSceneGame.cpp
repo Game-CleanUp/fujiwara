@@ -11,6 +11,10 @@ int CSceneGame::mTimeMax = 60 * 60;
 int CSceneGame::mTimeNow = mTimeNow + mTimeMax;
 int CSceneGame::frame = 0;
 
+//外部変数
+extern CSound Sound;
+
+
 CSceneGame::~CSceneGame() {
 	
 	//シーン初期化
@@ -26,6 +30,10 @@ void CSceneGame::Init() {
 
 	//シーンの設定
 	mScene = EGAME;
+
+	Sound.Load("bgm.wav");
+	//BGM再生
+	//Sound.Repeat();
 
 	glMatrixMode(GL_PROJECTION);	//行列をプロジェクションモードへ変更
 	glLoadIdentity();				//行列を初期化
@@ -188,6 +196,7 @@ void CSceneGame::Init() {
 	//地面
 	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(140.0f, 1.0f, 200.0f));
 	new CImage(yuka, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(140.0f, 200.0f, 1.0f));
+
 }
 
 
@@ -208,6 +217,8 @@ void CSceneGame::RenderMiniMap(){
 
 void CSceneGame::Update() {
 	
+	
+
 	if (mBatteryNow >= 0 && CHome::home == 0){
 		mBatteryNow--;
 	}
@@ -324,6 +335,13 @@ void CSceneGame::Update() {
 		CText::DrawString("STAGE CLEAR", 155, 330, 25, 25);
 	}
 
+	if (frame < 120){
+		CText::DrawString("WAVE1", 325, 400, 15, 15);
+	}
+
+	if (frame > 3600){
+		CText::DrawString("WAVE1", 325, 400, 15, 15);
+	}
 	char buf[10];
 
 	//制限時間

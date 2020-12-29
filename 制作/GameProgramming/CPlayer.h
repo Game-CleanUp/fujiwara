@@ -39,7 +39,7 @@ public:
 	static int Jump;
 	static int Down;
 
-	int frame;
+	int frame;	//Œø‰ÊŠÔ
 	int frame2;	//•œ‹AŠÔ
 	int frameMax;
 	int level;
