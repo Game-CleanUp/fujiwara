@@ -29,6 +29,8 @@ public:
 
 	CSound()
 		: mpSourceVoice(0)
+		, g_hmmio(0)
+		, buf(0)
 	{
 		file[0] = 0;
 		if (mNum == 0) {

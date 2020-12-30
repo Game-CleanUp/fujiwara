@@ -49,7 +49,7 @@ public:
 	CModel mPlane;
 	CModel ModelEnemy;	//エネミーモデル
 	CModel mSphere;
-//	CModel mTana;
+	CModel mKagu;
 	//次のシーンの取得
 	EScene GetNextScene();
 	//ステージ数

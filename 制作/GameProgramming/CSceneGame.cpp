@@ -54,9 +54,12 @@ void CSceneGame::Init() {
 	mRover.Load("Rover1.obj", "Rover1.mtl");
 	mCube.Load("cube.obj", "cube.mtl");
 	mPlane.Load("plane.obj", "plane.mtl");
-	//mTana.Load("tana.obj", "cube.mtl");
 	mSphere.Load("sphere.obj", "sphere.mtl");
 	mPlayer.mpModel = &mCube;
+	mKagu.Load("tana.obj", "cube.mtl");
+
+	new CPower(&mKagu, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
+
 
 	/* —”Œn—ñ‚Ì•ÏX */
 	srand((unsigned)time(NULL));
