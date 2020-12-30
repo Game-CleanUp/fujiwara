@@ -33,7 +33,7 @@ void CSceneGame::Init() {
 
 	Sound.Load("bgm.wav");
 	//BGM再生
-//	Sound.Repeat();
+	//Sound.Repeat();
 
 	glMatrixMode(GL_PROJECTION);	//行列をプロジェクションモードへ変更
 	glLoadIdentity();				//行列を初期化
@@ -253,7 +253,7 @@ void CSceneGame::Update() {
 		//ゴミの生成
 		new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	}
-
+	
 	CTaskManager::Get()->Update();
 	//カメラのパラメータを作成する
 	CVector e, c, u;//視点、注視点、上方向
@@ -268,7 +268,7 @@ void CSceneGame::Update() {
 	//ダメージリアクション
 	else{
 		//視点を求める
-		e = CVector(0.0f, 10.0f, -15.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 10.0f, -10.0f)*mPlayer.mMatrix;
 		//注視点を求める
 		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 		//上方向を求める
@@ -319,6 +319,7 @@ void CSceneGame::Update() {
 	//ゲームオーバー条件(バッテリー切れ）
 	if (mBatteryNow == 0 || mTimeNow <= 0){
 		CText::DrawString("GAME OVER", 200, 330, 25, 25);
+		Sound.Stop();
 	}
 
 	//ボスとの衝突

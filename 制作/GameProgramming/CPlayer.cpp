@@ -7,7 +7,8 @@ int CPlayer::Jump = 0;
 int CPlayer::Down = 0;
 CPlayer *CPlayer::mpPlayer = 0;
 
-extern CSound Sound;
+CSound CPlayer::Sound;
+CSound CPlayer::Sound2;
 
 CPlayer::CPlayer()
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 1.5f)

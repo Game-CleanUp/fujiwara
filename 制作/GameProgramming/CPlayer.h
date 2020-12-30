@@ -47,9 +47,9 @@ public:
 	CGaugeBack Back;
 	CMatrix matrix;
 
-	CSound Sound;
+	static CSound Sound;
 
-	CSound Sound2;
+	static CSound Sound2;
 
 };
 

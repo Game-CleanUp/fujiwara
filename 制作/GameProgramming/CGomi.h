@@ -17,7 +17,7 @@ public:
 	static CModel mModel;
 	float mVelocityJump;
 
-	CSound Sound;
+	static CSound Sound;
 
 };
 
