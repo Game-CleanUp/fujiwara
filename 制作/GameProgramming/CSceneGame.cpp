@@ -56,9 +56,10 @@ void CSceneGame::Init() {
 	mPlane.Load("plane.obj", "plane.mtl");
 	mSphere.Load("sphere.obj", "sphere.mtl");
 	mPlayer.mpModel = &mCube;
-	mKagu.Load("tana.obj", "cube.mtl");
-
-	new CPower(&mKagu, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
+	mKagu.Load("table.obj", "table.mtl");
+	//mBed.Load("sofa.obj", "sofa.mtl");
+	new CObj(&mKagu, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(15.0f, 15.0f, 15.0f));
+//	new CObj(&mBed, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 
 	/* óêêîånóÒÇÃïœçX */

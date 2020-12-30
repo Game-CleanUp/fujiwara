@@ -50,6 +50,7 @@ public:
 	CModel ModelEnemy;	//エネミーモデル
 	CModel mSphere;
 	CModel mKagu;
+	CModel mBed;
 	//次のシーンの取得
 	EScene GetNextScene();
 	//ステージ数
