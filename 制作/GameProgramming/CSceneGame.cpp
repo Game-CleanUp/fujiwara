@@ -10,12 +10,13 @@ int CSceneGame::mBatteryNow = mBatteryNow + mBatteryMax;
 int CSceneGame::mTimeMax = 60 * 60;
 int CSceneGame::mTimeNow = mTimeNow + mTimeMax;
 int CSceneGame::frame = 0;
+int CSceneGame::frame2 = 0;
 
 //外部変数
 extern CSound Sound;
 
 
-CSceneGame::~CSceneGame() {
+CSceneGame::~CSceneGame(){
 	
 	//シーン初期化
 	CTaskManager::Get()->Delete();
@@ -148,6 +149,8 @@ void CSceneGame::Init() {
 	//キッチン
 	new CObj(&mCube, CVector(30.0f, 0.0f, 45.0f), CVector(), CVector(10.0f, 5.0f, 30.0f));
 
+	new CObj(&mCube, CVector(-50.0f, 0.0f, 25.0f), CVector(), CVector(8.0f, 3.0f, 5.0f));
+
 	/*
 	//枠
 	new CObj(&mCube, CVector(-95.0f, 0.0f, -150.0f), CVector(), CVector(90.0f, H, W));
@@ -180,10 +183,10 @@ void CSceneGame::Init() {
 */
 	//敵(追尾)
 	new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
-
+	new CBoss(&mRover, CVector(0.0f, 0.0f, -70.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	new CBoss(&mRover, CVector(-50.0f, 0.0f, 50.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
 	//ホーム
-	new CHome(&mCube, CVector(-50.0f, -0.7f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-
+	new CHome(&mCube, CVector(-50.0f, -0.7f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));	
 
 	//天井
 	//new CObj(&mPlane, CVector(0.0f, 90.0f, 0.0f), CVector(-180.0f, 0.0f, 0.0f), CVector(150.0f, 1.0f, 200.0f));
@@ -336,9 +339,10 @@ void CSceneGame::Update() {
 	//	CText::DrawString("STAGE CLEAR", 155, 330, 25, 25);
 	//}
 
-	
-	if (frame < 120){
+	frame2++;
+	if (frame2 < 120){
 		CText::DrawString("WAVE1", 325, 400, 15, 15);
+		//frame2 = 0;
 	}
 
 	if (CPlayer::clear >= 10){

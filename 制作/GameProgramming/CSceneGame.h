@@ -60,6 +60,7 @@ public:
 	static int mTimeNow;
 	static int frame;
 
+	static int frame2;
 	CSound Sound;
 	
 };
