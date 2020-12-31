@@ -59,8 +59,11 @@ void CSceneGame::Init() {
 	mPlayer.mpModel = &mCube;
 
 	mSofa.Load("sofa.obj", "sofa.mtl");
+//	mTable.Load("table.obj", "table.mtl");
 
-	new CObj(&mSofa, CVector(-80.0f, 2.0f, 10.0f), CVector(), CVector(8.0f, 8.0f, 8.0f));
+	new CObj(&mSofa, CVector(-95.0f, 0.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
+//	new CObj(&mTable, CVector(-80.0f, 0.0f, 40.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
+
 
 
 	/* 乱数系列の変更 */
@@ -76,78 +79,42 @@ void CSceneGame::Init() {
 	
 
 	//上
-	new CObj(&mCube, CVector(120.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 200.0f));
-	new CImage(kabe, CVector(114.9f, 0.0f, -150.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(114.9f, 0.0f, -50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(114.9f, 0.0f, 50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(114.9f, 0.0f, 150.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
-
+	new CObj(&mCube, CVector(90.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 100.0f));
+	new CImage(kabe, CVector(84.1f, 0.0f, -50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(84.1f, 0.0f, 50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	
 
 	//下
-	new CObj(&mCube, CVector(-130.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 200.0f));
-	new CImage(kabe, CVector(-124.9f, 0.0f, -150.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CObj(&mCube, CVector(-130.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 100.0f));
 	new CImage(kabe, CVector(-124.9f, 0.0f, -50.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
 	new CImage(kabe, CVector(-124.9f, 0.0f, 50.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(-124.9f, 0.0f, 150.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
 
 	//右
-	new CObj(&mCube, CVector(0.0f, 0.0f, 190.0f), CVector(), CVector(140.0f, H, W));
-	new CImage(kabe, CVector(70.0f, 0.0f, 184.9f), CVector(-180.0f, 0.0f, 0.0f), CVector(70.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(-70.0f, 0.0f, 184.9f), CVector(180.0f, 0.0f, 0.0f), CVector(70.0f, 50.0f, 0.0f));
+	new CObj(&mCube, CVector(0.0f, 0.0f, 100.0f), CVector(), CVector(130.0f, H, W));
+	new CImage(kabe, CVector(65.0f, 0.0f, 94.9f), CVector(-180.0f, 0.0f, 0.0f), CVector(65.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(-65.0f, 0.0f, 94.9f), CVector(180.0f, 0.0f, 0.0f), CVector(65.0f, 50.0f, 0.0f));
 
 	//左
-	new CObj(&mCube, CVector(0.0f, 0.0f, -180.0f), CVector(), CVector(140.0f, H, W));
-	new CImage(kabe, CVector(70.0f, 0.0f, -174.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 70.0f, 0.0f));
-	new CImage(kabe, CVector(-70.0f, 0.0f, -174.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 70.0f, 0.0f));
-
+	new CObj(&mCube, CVector(0.0f, 0.0f, -100.0f), CVector(), CVector(130.0f, H, W));
+	new CImage(kabe, CVector(65.0f, 0.0f, -94.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 65.0f, 0.0f));
+	new CImage(kabe, CVector(-65.0f, 0.0f, -94.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 65.0f, 0.0f));
+	
+	
 	//①
-	new CObj(&mCube, CVector(-20.0f, 0.0f, -120.0f), CVector(), CVector(W, H, 75.0f));
-	new CImage(kabe, CVector(-25.1f, 0.0f, -120.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 75.0f, 0.0f));
-	new CImage(kabe, CVector(-14.9f, 0.0f, -115.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 80.0f, 0.0f));
-
+	new CObj(&mCube, CVector(15.0f, 0.0f, 5.0f), CVector(), CVector(W, H, 70.0f));
+	new CImage(kabe, CVector(9.9f, 0.0f, 5.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 70.0f, 0.0f));
+	new CImage(kabe, CVector(20.1f, 0.0f, 5.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 70.0f, 0.0f));
 
 	//②
-	new CObj(&mCube, CVector(-60.0f, 0.0f, -40.0f), CVector(), CVector(45.0f, H, W));
-	new CImage(kabe, CVector(-60.0f, 0.0f, -45.1f), CVector(180.0f, 0.0f, 0.0f), CVector(45.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(-60.0f, 0.0f, -34.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 45.0f, 0.0f));
-
+	new CObj(&mCube, CVector(35.0f, 0.0f, 10.0f), CVector(), CVector(25.0f, H, W));
+	new CImage(kabe, CVector(35.0f, 0.0f, 4.9f), CVector(180.0f, 0.0f, 0.0f), CVector(25.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(35.0f, 0.0f, 15.1f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 25.0f, 0.0f));
 
 	//③
-	new CObj(&mCube, CVector(-75.0f, 0.0f, 80.0f), CVector(), CVector(60.0f, H, W));
-	new CImage(kabe, CVector(-75.0f, 0.0f, 74.9f), CVector(180.0f, 0.0f, 0.0f), CVector(60.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(-75.0f, 0.0f, 85.1f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 60.0f, 0.0f));
+	new CObj(&mCube, CVector(-75.0f, 0.0f, 10.0f), CVector(), CVector(60.0f, H, W));
+	new CImage(kabe, CVector(-75.0f, 0.0f, 4.9f), CVector(180.0f, 0.0f, 0.0f), CVector(60.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(-75.0f, 0.0f, 15.1f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 60.0f, 0.0f));
 
-
-	//④
-	new CObj(&mCube, CVector(40.0f, 0.0f, -120.0f), CVector(), CVector(W, H, 75.0f));
-	new CImage(kabe, CVector(34.9f, 0.0f, -115.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 80.0f, 0.0f));
-	new CImage(kabe, CVector(45.1f, 0.0f, -115.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 80.0f, 0.0f));
-
-
-
-	//⑤
-	new CObj(&mCube, CVector(65.0f, 0.0f, -40.0f), CVector(), CVector(30.0f, H, W));
-	new CImage(kabe, CVector(65.0f, 0.0f, -45.1f), CVector(180.0f, 0.0f, 0.0f), CVector(30.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(65.0f, 0.0f, -34.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 30.0f, 0.0f));
-
-
-	//⑥
-	new CObj(&mCube, CVector(35.0f, 0.0f, 80.0f), CVector(), CVector(25.0f, H, W));
-	new CImage(kabe, CVector(35.0f, 0.0f, 74.9f), CVector(180.0f, 0.0f, 0.0f), CVector(25.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(35.0f, 0.0f, 85.1f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 25.0f, 0.0f));
-
-	//⑦
-	new CObj(&mCube, CVector(110.0f, 0.0f, 80.0f), CVector(), CVector(25.0f, H, W));
-	new CImage(kabe, CVector(110.0f, 0.0f, 74.9f), CVector(180.0f, 0.0f, 0.0f), CVector(25.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(110.0f, 0.0f, 85.1f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 25.0f, 0.0f));
-
-	//⑧
-	new CObj(&mCube, CVector(25.0f, 0.0f, 120.0f), CVector(), CVector(W, H, 45.0f));
-	new CImage(kabe, CVector(19.9f, 0.0f, 120.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 45.0f, 0.0f));
-	new CImage(kabe, CVector(30.1f, 0.0f, 120.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 45.0f, 0.0f));
-
-	//キッチン
-	new CObj(&mCube, CVector(30.0f, 0.0f, 45.0f), CVector(), CVector(10.0f, 5.0f, 30.0f));
 
 
 	/*
@@ -181,24 +148,23 @@ void CSceneGame::Init() {
 	new CEnemy2(&mSphere, CVector(-30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 */
 	//敵(追尾)
-	new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	new CBoss(&mRover, CVector(0.0f, 0.0f, -70.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	new CBoss(&mRover, CVector(-50.0f, 0.0f, 50.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	/*new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
+	new CBoss(&mRover, CVector(0.0f, 0.0f, -70.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
+	new CBoss(&mRover, CVector(-50.0f, 0.0f, 50.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));*/
 	//ホーム
-	new CHome(&mCube, CVector(-50.0f, -0.7f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));	
+	new CHome(&mCube, CVector(-120.0f, -0.7f, -90.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));	
 
 	//天井
 	//new CObj(&mPlane, CVector(0.0f, 90.0f, 0.0f), CVector(-180.0f, 0.0f, 0.0f), CVector(150.0f, 1.0f, 200.0f));
 
 	//プレイヤー初期位置
-	mPlayer.mPosition = CVector(-50.0f, 10.0f, 0.0f);
-	mPlayer.mRotation = CVector(0.0f, 90.0f, 0.0f);
+	mPlayer.mPosition = CVector(-120.0f, 10.0f, -80.0f);
 
 	//テクスチャ(床）
 	std::shared_ptr<CTexture>yuka(new CTexture("yuka.tga"));
 	//地面
-	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(140.0f, 1.0f, 200.0f));
-	new CImage(yuka, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(140.0f, 200.0f, 1.0f));
+	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(130.0f, 1.0f, 100.0f));
+	new CImage(yuka, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(130.0f, 100.0f, 1.0f));
 
 }
 
@@ -257,7 +223,7 @@ void CSceneGame::Update() {
 	if (frame < 1000 && frame % 100 == 0){
 
 		//ゴミの生成
-		new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+		//new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	}
 	
 	CTaskManager::Get()->Update();
@@ -265,7 +231,7 @@ void CSceneGame::Update() {
 	CVector e, c, u;//視点、注視点、上方向
 	if (CPlayer::Down == FALSE){
 		//視点を求める
-		e = CVector(0.0f, 10.0f, -20.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 10.0f, -15.0f)*mPlayer.mMatrix;
 		//注視点を求める
 		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 		//上方向を求める

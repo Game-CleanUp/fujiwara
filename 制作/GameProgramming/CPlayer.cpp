@@ -217,7 +217,6 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 				if (frame2 > RETRY){
 					//èâä˙à íu
 					mPosition = CVector(-50.0f, 10.0f, 0.0f);
-					mRotation = CVector(0.0f, 90.0f, 0.0f);
 					CSceneGame::mBatteryNow = CSceneGame::mBatteryMax;
 					Down = FALSE;
 					frame2 = 0;
