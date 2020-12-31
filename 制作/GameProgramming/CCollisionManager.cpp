@@ -40,7 +40,7 @@ void CCollisionManager::Collision() {
 		pos = (CCollider*)pos->mpNext;
 	}
 }
-#define RANGE 15
+#define RANGE 300
 ///U
 //Collision(コライダ）
 //コライダとの衝突処理を実行する

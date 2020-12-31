@@ -11,7 +11,7 @@ CSound CPlayer::Sound;
 CSound CPlayer::Sound2;
 
 CPlayer::CPlayer()
-:mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 1.5f)
+:mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 3.5f)
 //ƒT[ƒ`
 , mSearch(this, CVector(0.0f, 0.0f, 5.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
 , mVelocityJump(0.0f)
@@ -28,8 +28,8 @@ void CPlayer::TaskCollision()
 {
 	mColBody.ChangePriority();
 	mSearch.ChangePriority();
-	CollisionManager.Collision(&mColBody);
-	CollisionManager.Collision(&mSearch);
+	CCollisionManager::Get()->Collision(&mColBody);
+	CCollisionManager::Get()->Collision(&mSearch);
 }
 
 

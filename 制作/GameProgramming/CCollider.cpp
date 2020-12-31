@@ -349,7 +349,7 @@ void CCollider::ChangePriority()
 	CCollisionManager::Get()->Remove(this); //リストから削除する
 	CCollisionManager::Get()->Add(this); //リストに追加する
 
-
+}
 
 
 //	CMatrix m;
@@ -628,4 +628,4 @@ void CCollider::ChangePriority()
 //	}
 //	return true;
 
-}
+//}

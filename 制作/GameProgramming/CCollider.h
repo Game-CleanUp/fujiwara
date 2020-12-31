@@ -68,13 +68,9 @@ public:
 	void CCollider::ChangePriority();
 
 
+};
 
-
-
-
-
-
-
+#endif
 
 
 	////デフォルトコンストラクタ
@@ -110,6 +106,4 @@ public:
 	////COllisionTriangleSphere(三角コライダ、球コライダ、調整値）
 	//static bool CollisionTriangleSphere(CCollider *triangle, CCollider *sphere, CVector *adjust);
 
-};
 
-#endif

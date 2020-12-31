@@ -163,6 +163,24 @@ void CTaskManager::TaskCollision()
 	}
 }
 
+//ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì”jŠü
+void CTaskManager::Destory(){
+	if (spInstance){
+		delete spInstance;
+		spInstance = 0;
+	}
+}
+
+void CTaskManager::AllDelete(){
+	//æ“ª‚©‚çÅŒã‚Ü‚ÅŒJ‚è•Ô‚µ
+	CTask *pos = mpHead->mpNext;
+	while (pos) {
+		//
+		pos->mEnabled = false;
+		//Ÿ‚Ö
+		pos = pos->mpNext;
+	}
+}
 
 //CTaskManager *CTaskManager::instance = 0;
 //

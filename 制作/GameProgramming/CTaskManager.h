@@ -36,13 +36,10 @@ public:
 	void CTaskManager::TaskCollision();
 	//
 	static CTaskManager* Get();
+
+	void Destory();
+	void AllDelete();
 };
-
-//タスクマネージャyの外部参照
-extern CTaskManager TaskManager;
-
-
-
 
 
 

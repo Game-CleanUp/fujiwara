@@ -16,6 +16,7 @@ CObj::CObj(CModel*model, const CVector &position, const CVector &rotation, const
 			model->mTriangles[i].mV[0],
 			model->mTriangles[i].mV[1],
 			model->mTriangles[i].mV[2]);
+		mpCollider[i].ChangePriority();
 	}
 	
 }

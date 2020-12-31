@@ -60,7 +60,7 @@ void CSceneGame::Init() {
 
 	mSofa.Load("sofa.obj", "sofa.mtl");
 
-	new CObj(&mSofa, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(8.0f, 8.0f, 8.0f));
+	new CObj(&mSofa, CVector(-80.0f, 2.0f, 10.0f), CVector(), CVector(8.0f, 8.0f, 8.0f));
 
 
 	/* 乱数系列の変更 */
@@ -149,7 +149,6 @@ void CSceneGame::Init() {
 	//キッチン
 	new CObj(&mCube, CVector(30.0f, 0.0f, 45.0f), CVector(), CVector(10.0f, 5.0f, 30.0f));
 
-	new CObj(&mCube, CVector(-50.0f, 0.0f, 25.0f), CVector(), CVector(8.0f, 3.0f, 5.0f));
 
 	/*
 	//枠
@@ -308,7 +307,7 @@ void CSceneGame::Update() {
 	CollisionManager.Render();
 
 	//コリジョンマネージャーの衝突処理
-	TaskManager.TaskCollision();
+	CTaskManager::Get()->TaskCollision();
 
 	//コリジョンリストから削除
 	CTaskManager::Get()->Delete();
