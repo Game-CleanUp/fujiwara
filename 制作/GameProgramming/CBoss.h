@@ -16,6 +16,7 @@ public:
 	//Õ“Ë”»’è
 	void Collision(CCollider*m, CCollider*y);
 	void Update();
+	void TaskCollision();
 
 	int state;
 	int frame;

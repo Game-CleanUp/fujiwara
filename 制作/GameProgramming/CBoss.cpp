@@ -18,6 +18,17 @@ CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 	mSearch.mTag = CCollider::ESEARCH2;
 }
 
+void CBoss::TaskCollision()
+{
+	/*mColBody.ChangePriority();
+	mSearch.ChangePriority();
+	CCollisionManager::Get()->Collision(&mColBody);
+	CCollisionManager::Get()->Collision(&mSearch);*/
+}
+
+
+
+
 void CBoss::Update(){
 
 	if (CPlayer::clear < GAMECLEAR){
