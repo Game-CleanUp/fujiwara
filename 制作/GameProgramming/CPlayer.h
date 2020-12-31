@@ -26,6 +26,7 @@ public:
 	void Render();
 	void Init();
 	void Collision(CCollider*m, CCollider*y);
+	void TaskCollision();
 	//デフォルトコンストラクタ
 	CPlayer();
 	CCollider mColBody;

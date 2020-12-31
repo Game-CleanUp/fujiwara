@@ -60,7 +60,7 @@ void CSceneGame::Init() {
 
 	mSofa.Load("sofa.obj", "sofa.mtl");
 
-	new CPower(&mSofa, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
+	new CObj(&mSofa, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(8.0f, 8.0f, 8.0f));
 
 
 	/* 乱数系列の変更 */
@@ -308,7 +308,7 @@ void CSceneGame::Update() {
 	CollisionManager.Render();
 
 	//コリジョンマネージャーの衝突処理
-	CollisionManager.Collision();
+	TaskManager.TaskCollision();
 
 	//コリジョンリストから削除
 	CTaskManager::Get()->Delete();

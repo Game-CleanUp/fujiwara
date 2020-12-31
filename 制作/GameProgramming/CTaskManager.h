@@ -7,13 +7,17 @@
 タスクマネージャ
 タスクリストの管理
 */
+
 class CTaskManager {
+	static CTaskManager *spInstance;
+protected:
+	//デフォルトコンストラクタ
+	//	CTaskManager();
 public:
-	CTask *mpHead;	//先頭ポインタ
-//	CTask *mpTail;	//最後ポインタ
-	
 	//デフォルトコンストラクタ
 	CTaskManager();
+	CTask *mpHead;	//先頭ポインタ
+	//	CTask *mpTail;	//最後ポインタ
 	//デストラクタ
 	virtual ~CTaskManager();
 	//リストに追加
@@ -23,26 +27,61 @@ public:
 	void Update();
 	//描画
 	void Render();
-	//22
 	//リストから削除
 	//Remove(タスクのポインタ)
 	void Remove(CTask *task);
-	//22
 	//タスクの削除
 	void Delete();
-
-	//インスタンスのポインタ変数
-	static CTaskManager *CTaskManager::instance;
+	///U
+	void CTaskManager::TaskCollision();
+	//
 	static CTaskManager* Get();
-	void Destory();
-	void AllDelete();
 };
 
-//タスクマネージャの外部参照
-//extern CTaskManager TaskManager;
+//タスクマネージャyの外部参照
+extern CTaskManager TaskManager;
 
 
 
 
+
+
+//class CTaskManager {
+//public:
+//	CTask *mpHead;	//先頭ポインタ
+////	CTask *mpTail;	//最後ポインタ
+//	
+//	//デフォルトコンストラクタ
+//	CTaskManager();
+//	//デストラクタ
+//	virtual ~CTaskManager();
+//	//リストに追加
+//	//Add(タスクのポインタ)
+//	void Add(CTask *task);
+//	//更新
+//	void Update();
+//	//描画
+//	void Render();
+//	//22
+//	//リストから削除
+//	//Remove(タスクのポインタ)
+//	void Remove(CTask *task);
+//	//22
+//	//タスクの削除
+//	void Delete();
+//
+//	//インスタンスのポインタ変数
+//	static CTaskManager *CTaskManager::instance;
+//	static CTaskManager* Get();
+//	void Destory();
+//	void AllDelete();
+//};
+//
+////タスクマネージャの外部参照
+////extern CTaskManager TaskManager;
+//
+//
+//
+//
 
 #endif

@@ -24,6 +24,15 @@ CPlayer::CPlayer()
 	Sound2.Load("act.wav");
 }
 
+void CPlayer::TaskCollision()
+{
+	mColBody.ChangePriority();
+	mSearch.ChangePriority();
+	CollisionManager.Collision(&mColBody);
+	CollisionManager.Collision(&mSearch);
+}
+
+
 
 void CPlayer::Update(){
 
