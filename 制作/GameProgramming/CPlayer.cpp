@@ -41,18 +41,18 @@ void CPlayer::Update(){
 			if (CSceneGame::mBatteryNow > 0){
 				if (CSceneGame::mTimeNow > 0){
 					if (CKey::Push('A')){
-						mRotation.mY += 2.0f;
+						mRotation.mY += DIRECTION;
 					}
 
 					if (CKey::Push('D')){
-						mRotation.mY -= 2.0f;
+						mRotation.mY -= DIRECTION;
 					}
 
 					if (CKey::Push('W')){
-						mPosition = CVector(0.0f, 0.0f, 0.5f)*mMatrix;
+						mPosition = CVector(0.0f, 0.0f, FORWARD)*mMatrix;
 						//ダッシュ
 						if (CKey::Push(VK_SHIFT)){
-							mPosition = CVector(0.0f, 0.0f, 0.8f)*mMatrix;
+							mPosition = CVector(0.0f, 0.0f, DASH)*mMatrix;
 							Dash = TRUE;
 						}
 						else{
@@ -61,7 +61,7 @@ void CPlayer::Update(){
 					}
 
 					if (CKey::Push('S')){
-						mPosition = CVector(0.0f, 0.0f, -0.5f)*mMatrix;
+						mPosition = CVector(0.0f, 0.0f, BACK)*mMatrix;
 						//ダッシュ
 						if (CKey::Push(VK_SHIFT)){
 							mPosition = CVector(0.0f, 0.0f, -0.8f)*mMatrix;
@@ -71,7 +71,7 @@ void CPlayer::Update(){
 							Dash = FALSE;
 						}
 					}
-
+					//ジャンプ
 					if (CKey::Once('J') && mVelocityJump == 0){
 						mVelocityJump = JUMPV0;
 						Jump = TRUE;

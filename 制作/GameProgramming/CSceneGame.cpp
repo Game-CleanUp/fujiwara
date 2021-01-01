@@ -63,7 +63,11 @@ void CSceneGame::Init() {
 
 	new CObj(&mSofa, CVector(-95.0f, 0.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
 //	new CObj(&mTable, CVector(-80.0f, 0.0f, 40.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
-
+	/*new CObj(&mSofa, CVector(-95.0f, 30.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
+	new CObj(&mSofa, CVector(-95.0f, 30.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
+	new CObj(&mSofa, CVector(-95.0f, 30.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
+	new CObj(&mSofa, CVector(-95.0f, 30.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
+*/
 
 
 	/* 乱数系列の変更 */
@@ -201,11 +205,11 @@ void CSceneGame::Update() {
 		mBatteryNow = 0;
 	}
 	//ダッシュ時
-	if (CPlayer::Dash == 1){
+	if (CPlayer::Dash == TRUE){
 		mBatteryNow -= 3;
 	}
 	//ジャンプ時
-	if (CPlayer::Jump > 0){
+	if (CPlayer::Jump == TRUE){
 		mBatteryNow -= 10;
 	}
 

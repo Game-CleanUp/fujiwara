@@ -13,6 +13,7 @@ public:
 	void Update();
 	//Õ“Ë”»’è
 	void Collision(CCollider*m, CCollider*y);
+	void TaskCollision();
 	static int GomiCount;
 	static CModel mModel;
 	float mVelocityJump;

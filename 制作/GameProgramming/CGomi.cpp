@@ -39,6 +39,15 @@ void CGomi::Update(){
 
 }
 
+void CGomi::TaskCollision()
+{
+	/*mColBody.ChangePriority();
+
+	CCollisionManager::Get()->Collision(&mColBody);
+	*/
+}
+
+
 void CGomi::Collision(CCollider*m, CCollider*y){
 
 

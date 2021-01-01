@@ -18,6 +18,10 @@
 #define RETRY	60		//復帰時間
 #define DROP	15.0f	//ゴミのドロップ位置
 #define DROP_RAND	rand() % 360	//ゴミのドロップ方向
+#define FORWARD	1.5f	//前進
+#define DASH	2.0f	//ダッシュ
+#define DIRECTION	8.0f	//方向転換
+#define BACK	-1.0f	//後退
 
 class CPlayer : public CCharacter{
 public:
