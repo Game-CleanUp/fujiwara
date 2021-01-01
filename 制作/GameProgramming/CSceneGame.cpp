@@ -59,6 +59,7 @@ void CSceneGame::Init() {
 	mPlayer.mpModel = &mCube;
 
 	mSofa.Load("sofa.obj", "sofa.mtl");
+	mPlant.Load("Plant.obj", "Plant.mtl");
 //	mTable.Load("table.obj", "table.mtl");
 
 	new CObj(&mSofa, CVector(-95.0f, 0.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
@@ -68,6 +69,7 @@ void CSceneGame::Init() {
 	new CObj(&mSofa, CVector(-95.0f, 30.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
 	new CObj(&mSofa, CVector(-95.0f, 30.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
 */
+	new CHome(&mPlant, CVector(-20.0f, 0.0f, 0.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 
 
 	/* óêêîånóÒÇÃïœçX */
