@@ -51,6 +51,7 @@ public:
 	CModel mSofa;
 	CModel mTable;
 	CModel mPlant;
+	CModel mDog;
 	//次のシーンの取得
 	EScene GetNextScene();
 	//ステージ数

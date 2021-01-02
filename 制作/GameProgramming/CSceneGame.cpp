@@ -60,6 +60,7 @@ void CSceneGame::Init() {
 
 	mSofa.Load("sofa.obj", "sofa.mtl");
 	mPlant.Load("Plant.obj", "Plant.mtl");
+	mDog.Load("Dog.obj", "Dog.mtl");
 //	mTable.Load("table.obj", "table.mtl");
 
 	new CObj(&mSofa, CVector(-95.0f, 0.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
@@ -69,8 +70,10 @@ void CSceneGame::Init() {
 	new CObj(&mSofa, CVector(-95.0f, 30.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
 	new CObj(&mSofa, CVector(-95.0f, 30.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
 */
-	new CHome(&mPlant, CVector(-20.0f, 0.0f, 0.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
-
+	new CObj(&mPlant, CVector(-20.0f, 0.0f, -10.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+	/*new CObj(&mPlant, CVector(-20.0f, 0.0f, -10.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+	new CObj(&mPlant, CVector(-20.0f, 0.0f, -10.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));*/
+	
 
 	/* 乱数系列の変更 */
 	srand((unsigned)time(NULL));
@@ -85,9 +88,9 @@ void CSceneGame::Init() {
 	
 
 	//上
-	new CObj(&mCube, CVector(90.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 100.0f));
-	new CImage(kabe, CVector(84.1f, 0.0f, -50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(84.1f, 0.0f, 50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CObj(&mCube, CVector(130.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 100.0f));
+	new CImage(kabe, CVector(124.1f, 0.0f, -50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(124.1f, 0.0f, 50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
 	
 
 	//下
@@ -180,7 +183,7 @@ void CSceneGame::RenderMiniMap(){
 	glViewport(600, 450, 200, 150); //画面の描画エリアの指定
 	glLoadIdentity();
 	//視点調整必要
-	gluLookAt(0, 150, 0, 0, 0, 0, 0, 0, 1);
+	gluLookAt(0, 180, 0, 0, 0, 0, 0, 0, 1);
 	glDisable(GL_DEPTH_TEST);
 	//描画
 	CTaskManager::Get()->Render();
@@ -302,7 +305,7 @@ void CSceneGame::Update() {
 
 	//ボスとの衝突
 	if (CPlayer::Down == TRUE){
-		CText::DrawString("OUT!", 330, 450, 25, 25);
+		CText::DrawString("CRASH!", 330, 450, 25, 25);
 	}
 
 	////クリア条件(ゴミ全回収)

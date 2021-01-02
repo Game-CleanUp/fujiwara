@@ -149,6 +149,8 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 				//着地
 				mVelocityJump = 0;
 				Jump = FALSE;
+			//	mPosition = CVector(-120.0f, 10.0f, -80.0f);
+				//mPosition = CVector(-50.0f, 10.0f, -80.0f);
 			}
 
 			//位置の更新
@@ -216,7 +218,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 				//リトライ(ホームに戻る)
 				if (frame2 > RETRY){
 					//初期位置
-					mPosition = CVector(-50.0f, 10.0f, 0.0f);
+					mPosition = CVector(-120.0f, 10.0f, -80.0f);
 					CSceneGame::mBatteryNow = CSceneGame::mBatteryMax;
 					Down = FALSE;
 					frame2 = 0;
