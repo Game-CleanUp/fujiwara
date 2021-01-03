@@ -338,10 +338,6 @@ void CSceneGame::Update() {
 	sprintf(buf, "%d", mTimeNow / 60);
 	CText::DrawString(buf, 15, 550, 15, 15);
 
-	//アイテム数(パワー）
-	sprintf(buf, "%d", CPower::power);
-	CText::DrawString(buf, 750, 30, 15, 15);
-
 	//目標数
 	sprintf(buf, "%d", CPlayer::clear);
 	CText::DrawString(buf, 650, 30, 15, 15);

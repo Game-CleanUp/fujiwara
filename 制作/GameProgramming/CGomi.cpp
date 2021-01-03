@@ -1,7 +1,7 @@
 #include"CGomi.h"
 
 
-int CGomi::GomiCount = 0;
+int CGomi::GomiCount = 3;
 CModel CGomi::mModel;
 
 CSound CGomi::Sound;
@@ -28,6 +28,15 @@ CGomi::CGomi(CModel*model, CVector position, CVector rotation, CVector scale)
 
 }
 
+void CGomi::TaskCollision()
+{
+	/*mColBody.ChangePriority();
+
+	CCollisionManager::Get()->Collision(&mColBody);*/
+
+}
+
+
 void CGomi::Update(){
 
 	mVelocityJump = JUMPV0;
@@ -38,15 +47,6 @@ void CGomi::Update(){
 
 
 }
-
-void CGomi::TaskCollision()
-{
-	/*mColBody.ChangePriority();
-
-	CCollisionManager::Get()->Collision(&mColBody);
-	*/
-}
-
 
 void CGomi::Collision(CCollider*m, CCollider*y){
 

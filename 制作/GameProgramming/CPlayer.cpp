@@ -11,7 +11,7 @@ CSound CPlayer::Sound;
 CSound CPlayer::Sound2;
 
 CPlayer::CPlayer()
-:mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 3.5f)
+:mColBody(this, CVector(0.0f, 2.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 2.5f)
 //サーチ
 , mSearch(this, CVector(0.0f, 0.0f, 5.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
 , mVelocityJump(0.0f)
@@ -87,17 +87,7 @@ void CPlayer::Update(){
 					if (frameMax > frame){
 						frame += 1;
 					}
-					//アイテムを持っているとき
-					if (CPower::power >= 1){
-						//効果が消えたら使える
-						if (mSearch.mRadius < 10){
-							if (CKey::Once('Q')){
-								mSearch.mRadius = R + 3.0f;
-								CPower::power -= 1;
-
-							}
-						}
-					}
+					
 					//4秒で効果切れ
 					if (frame > 240){
 						mSearch.mRadius = R;
@@ -161,11 +151,6 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 		}
 
 		break;
-	}
-
-	//アイテム回収
-	if (y->mTag == CCollider::EPOWER){
-		CPower::power += 1;
 	}
 
 	//ボスとの衝突

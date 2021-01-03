@@ -8,7 +8,6 @@
 #include"CCollisionManager.h"
 #include"CFall.h"
 #include"CObj.h"
-#include"CInput.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include<time.h>
@@ -17,7 +16,6 @@
 #include"CEnemy2.h"
 #include"CImage.h"
 #include"CGomi.h"
-#include"CPower.h"
 #include"CHome.h"
 #include"CMoney.h"
 #include"CBoss.h"

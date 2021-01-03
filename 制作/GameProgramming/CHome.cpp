@@ -2,6 +2,15 @@
 
 int CHome::home = 0;
 
+void CHome::TaskCollision()
+{
+	/*mColBody.ChangePriority();
+
+	CCollisionManager::Get()->Collision(&mColBody);*/
+	
+}
+
+
 CHome::CHome(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f),
 CVector(1.0f, 1.0f, 1.0f), 10.0f)

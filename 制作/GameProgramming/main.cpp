@@ -4,7 +4,6 @@
 #include "GLFW/glfw3.h"
 #include "main.h"
 #include "CSceneManager.h"
-#include "CInput.h"
 
 bool InitFlg = true;
 
@@ -85,10 +84,6 @@ int main(void)
 		glfwTerminate();
 		return -1;
 	}
-
-	//“ü—ÍƒNƒ‰ƒX‚Ì‰Šú‰»
-	CInput::Init(window);
-
 
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);

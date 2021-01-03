@@ -16,9 +16,9 @@ public:
 	void TaskCollision();
 	static int GomiCount;
 	static CModel mModel;
-	float mVelocityJump;
-
 	static CSound Sound;
+
+	float mVelocityJump;
 
 };
 
