@@ -84,9 +84,6 @@
     <ClCompile Include="CObj.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CInput.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CEnemy.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -100,9 +97,6 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CGomi.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CPower.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CHome.cpp">
@@ -209,9 +203,6 @@
     <ClInclude Include="CObj.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CInput.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CEnemy.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -225,9 +216,6 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CGomi.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CPower.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CHome.h">

@@ -5,7 +5,7 @@
 #include"CCharacter.h"
 #include"CCollider.h"
 
-#define TURN 25 //Œü‚«
+#define TURN 13 //Œü‚«
 
 class CBoss : public CCharacter{
 public:

@@ -15,7 +15,7 @@ CPlayer::CPlayer()
 //サーチ
 , mSearch(this, CVector(0.0f, 0.0f, 5.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
 , mVelocityJump(0.0f)
-, frame(0), level(100), frameMax(300), frame2(0)
+, frame(0), frameMax(300), levelNow(0),levelMax(100) ,frame2(0)
 {
 
 	mColBody.mTag = CCollider::EBODY;
@@ -94,12 +94,13 @@ void CPlayer::Update(){
 						frame = 0;
 					}
 
-					//ゴミ回収
-					if (CHome::home == TRUE){
+					//ゴミ回収(ホームにいるとき、ゴミを持っているとき)
+					if (CHome::home == TRUE && CGomi::GomiCount > 0){
 						if (CKey::Once('E')){
 							clear = clear + CGomi::GomiCount;
 							CGomi::GomiCount = 0;
 							CSceneGame::mTimeNow += 5 * 60;
+							levelNow += 5;
 						}
 					}
 				}

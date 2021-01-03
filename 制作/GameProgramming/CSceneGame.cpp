@@ -65,7 +65,7 @@ void CSceneGame::Init() {
 
 	new CObj(&mSofa, CVector(-95.0f, 0.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
 
-	new CObj(&mTable, CVector(-50.0f, 0.0f, -30.0f), CVector(), CVector(65.0f, 25.0f, 25.0f));
+	new CObj(&mTable, CVector(-50.0f, -1.0f, -20.0f), CVector(), CVector(65.0f, 25.0f, 25.0f));
 	//new CObj(&mPlant, CVector(-20.0f, 0.0f, -25.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	//new CObj(&mPlant, CVector(-20.0f, 0.0f, -10.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	
@@ -153,7 +153,7 @@ void CSceneGame::Init() {
 */
 	//敵(追尾)
 	new CBoss(&mDog, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CBoss(&mDog, CVector(-50.0f, 0.0f, 70.0f), CVector(), CVector(1.0f, 1.0f,1.0f));
+	new CBoss(&mDog, CVector(-50.0f, 0.0f, 70.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	//new CBoss(&mRover, CVector(-50.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	//ホーム
 	new CHome(&mCube, CVector(-120.0f, -0.7f, -90.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));	
@@ -235,7 +235,7 @@ void CSceneGame::Update() {
 	CVector e, c, u;//視点、注視点、上方向
 	if (CPlayer::Down == FALSE){
 		//視点を求める
-		e = CVector(0.0f, 10.0f, -15.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 5.0f, -10.0f)*mPlayer.mMatrix;
 		//注視点を求める
 		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 		//上方向を求める
@@ -309,7 +309,7 @@ void CSceneGame::Update() {
 	//}
 
 	frame2++;
-	if (frame2 < 120){
+	if (frame2 < 30){
 		CText::DrawString("WAVE1", 325, 400, 15, 15);
 		//frame2 = 0;
 	}
@@ -341,10 +341,13 @@ void CSceneGame::Update() {
 	//目標数
 	sprintf(buf, "%d", CPlayer::clear);
 	CText::DrawString(buf, 650, 30, 15, 15);
+	//目標数
+	sprintf(buf, "%d", CPlayer::clear);
+	CText::DrawString(buf, 700, 30, 15, 15);
 
-	////ゴミ回収数
-	//sprintf(buf, "%d", CGomi::GomiCount);
-	//CText::DrawString(buf, 140, 50, 15, 15);
+	//ゴミ回収数
+	sprintf(buf, "%d", CGomi::GomiCount);
+	CText::DrawString(buf, 230, 50, 15, 15);
 
 	//2D描画終了
 	End2D();

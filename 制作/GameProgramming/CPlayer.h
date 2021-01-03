@@ -42,7 +42,8 @@ public:
 	int frame;	//Œø‰ÊŽžŠÔ
 	int frame2;	//•œ‹AŽžŠÔ
 	int frameMax;
-	int level;
+	int levelNow;
+	int levelMax;
 	float mVelocityJump;
 
 	CBattery Battery;
