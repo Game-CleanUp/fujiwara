@@ -157,7 +157,7 @@ void CSceneGame::Init() {
 	new CEnemy2(&mSphere, CVector(-30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 */
 	//ìG(í«îˆ)
-	new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CBoss(&mDog, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	//new CBoss(&mRover, CVector(0.0f, 0.0f, -70.0f), CVector(), CVector(1.0f, 1.0f,1.0f));
 	//new CBoss(&mRover, CVector(-50.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	//ÉzÅ[ÉÄ
