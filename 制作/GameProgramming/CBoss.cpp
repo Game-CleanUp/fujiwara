@@ -38,7 +38,7 @@ void CBoss::Update(){
 				switch (state){
 				case 0:
 					frame += 1;
-					if (frame > 30){
+					if (frame > 15){
 						state = rand() % 5;
 						frame = 0;
 					}
@@ -46,15 +46,15 @@ void CBoss::Update(){
 
 				case 1:
 					frame += 1;
-					if (frame < 20){
+					if (frame < 10){
 						//左回転
 						mRotation.mY += rand() % TURN;
 					}
-					if (frame > 30){
+					if (frame > 15){
 						//前進
 						mPosition = CVector(0.0f, 0.0f, 1.0f)*mMatrix;
 					}
-					if (frame > 90){
+					if (frame > 45){
 						state = rand() % 5;
 						frame = 0;
 					}
@@ -62,15 +62,15 @@ void CBoss::Update(){
 
 				case 2:
 					frame += 1;
-					if (frame < 20){
+					if (frame < 10){
 						//右回転
 						mRotation.mY -= rand() % TURN;
 					}
-					if (frame > 30){
+					if (frame > 15){
 						//前進
 						mPosition = CVector(0.0f, 0.0f, 1.0f)*mMatrix;
 					}
-					if (frame > 90){
+					if (frame > 45){
 						state = rand() % 5;
 						frame = 0;
 					}
@@ -78,7 +78,7 @@ void CBoss::Update(){
 
 				case 3:
 					frame += 1;
-					if (frame > 60){
+					if (frame > 30){
 						state = rand() % 5;
 						frame = 0;
 					}
@@ -86,7 +86,7 @@ void CBoss::Update(){
 
 				case 4:
 					frame += 1;
-					if (frame > 30){
+					if (frame > 15){
 						state = rand() % 5;
 						frame = 0;
 					}
@@ -106,7 +106,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 				//プレイヤーの方向
 				CVector dir = y->mpParent->mPosition - mPosition;
 				//正規化（長さを1にする）Normalize()
-				mPosition = mPosition + dir.Normalize() * 0.6;
+				mPosition = mPosition + dir.Normalize() * 0.8;
 				tracking = TRUE;
 			}
 		}

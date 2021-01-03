@@ -70,8 +70,8 @@ void CSceneGame::Init() {
 	new CObj(&mSofa, CVector(-95.0f, 30.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
 	new CObj(&mSofa, CVector(-95.0f, 30.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
 */
-	new CObj(&mTable, CVector(-20.0f, 0.0f, -10.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
-	new CObj(&mPlant, CVector(-20.0f, 0.0f, -25.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+	new CObj(&mTable, CVector(-50.0f, 0.0f, -30.0f), CVector(), CVector(65.0f, 25.0f, 25.0f));
+//	new CObj(&mPlant, CVector(-20.0f, 0.0f, -25.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	//new CObj(&mPlant, CVector(-20.0f, 0.0f, -10.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	
 
@@ -305,7 +305,7 @@ void CSceneGame::Update() {
 
 	//ボスとの衝突
 	if (CPlayer::Down == TRUE){
-		CText::DrawString("CRASH!", 300, 450, 25, 25);
+		CText::DrawString("CRASH!", 290, 450, 25, 25);
 	}
 
 	////クリア条件(ゴミ全回収)
