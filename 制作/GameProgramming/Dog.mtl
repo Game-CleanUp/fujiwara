@@ -1,8 +1,8 @@
-# Blender MTL File: 'GermanShephardLowPoly.blend'
+# Blender MTL File: 'None'
 # Material Count: 16
 
 newmtl Ear
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.202355 0.092221 0.034825
 Ks 0.500000 0.500000 0.500000
@@ -12,7 +12,7 @@ d 1.000000
 illum 2
 
 newmtl Ear_2
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.055983 0.055983 0.055983
 Ks 0.500000 0.500000 0.500000
@@ -22,7 +22,7 @@ d 1.000000
 illum 2
 
 newmtl Ear__3
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.321575 0.176565 0.066390
 Ks 0.500000 0.500000 0.500000
@@ -32,7 +32,7 @@ d 1.000000
 illum 2
 
 newmtl Eye_Area
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.343381 0.123758 0.029477
 Ks 0.500000 0.500000 0.500000
@@ -40,10 +40,10 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd D:\Blender Projects\German Shephard (Low Poly)\Source File\24549031-german-shepherd-dog-lying-on-white-background.jpg
+map_Kd File\24549031-german-shepherd-dog-lying-on-white-background.jpg
 
 newmtl Eye_Area_2
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.113921 0.100329 0.094622
 Ks 0.500000 0.500000 0.500000
@@ -53,7 +53,7 @@ d 1.000000
 illum 2
 
 newmtl Eye_Area_NONE
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.343381 0.123758 0.029477
 Ks 0.500000 0.500000 0.500000
@@ -63,7 +63,7 @@ d 1.000000
 illum 2
 
 newmtl Jaw
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.113921 0.113921 0.113921
 Ks 0.500000 0.500000 0.500000
@@ -71,10 +71,10 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd D:\Blender Projects\German Shephard (Low Poly)\Source File\24549031-german-shepherd-dog-lying-on-white-background.jpg
+map_Kd File\24549031-german-shepherd-dog-lying-on-white-background.jpg
 
 newmtl Jaw_NONE
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.113921 0.113921 0.113921
 Ks 0.500000 0.500000 0.500000
@@ -84,7 +84,7 @@ d 1.000000
 illum 2
 
 newmtl Paws
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.113921 0.069220 0.038529
 Ks 0.500000 0.500000 0.500000
@@ -94,7 +94,7 @@ d 1.000000
 illum 2
 
 newmtl Paws_2.001
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.381592 0.106260 0.029554
 Ks 0.500000 0.500000 0.500000
@@ -104,7 +104,7 @@ d 1.000000
 illum 2
 
 newmtl Seat
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.081979 0.071084 0.071084
 Ks 0.500000 0.500000 0.500000
@@ -114,7 +114,7 @@ d 1.000000
 illum 2
 
 newmtl Skin
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.672962 0.257981 0.078718
 Ks 0.500000 0.500000 0.500000
@@ -122,10 +122,10 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd D:\Blender Projects\German Shephard (Low Poly)\Source File\24549031-german-shepherd-dog-lying-on-white-background.jpg
+map_Kd File\24549031-german-shepherd-dog-lying-on-white-background.jpg
 
 newmtl Skin_NONE
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.672962 0.257981 0.078718
 Ks 0.500000 0.500000 0.500000
@@ -135,7 +135,7 @@ d 1.000000
 illum 2
 
 newmtl Tail_1
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.548766 0.217401 0.063218
 Ks 0.500000 0.500000 0.500000
@@ -145,7 +145,7 @@ d 1.000000
 illum 2
 
 newmtl Tail_2
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.800000 0.625192 0.314568
 Ks 0.500000 0.500000 0.500000
@@ -155,7 +155,7 @@ d 1.000000
 illum 2
 
 newmtl UnderSkin
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.800000 0.724220 0.301969
 Ks 0.500000 0.500000 0.500000

@@ -20,10 +20,10 @@ CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 
 void CBoss::TaskCollision()
 {
-	/*mColBody.ChangePriority();
+	mColBody.ChangePriority();
 	mSearch.ChangePriority();
 	CCollisionManager::Get()->Collision(&mColBody);
-	CCollisionManager::Get()->Collision(&mSearch);*/
+	CCollisionManager::Get()->Collision(&mSearch);
 }
 
 

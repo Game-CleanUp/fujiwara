@@ -157,9 +157,9 @@ void CSceneGame::Init() {
 	new CEnemy2(&mSphere, CVector(-30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 */
 	//敵(追尾)
-	/*new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
-	new CBoss(&mRover, CVector(0.0f, 0.0f, -70.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
-	new CBoss(&mRover, CVector(-50.0f, 0.0f, 50.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));*/
+	new CBoss(&mRover, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	//new CBoss(&mRover, CVector(0.0f, 0.0f, -70.0f), CVector(), CVector(1.0f, 1.0f,1.0f));
+	//new CBoss(&mRover, CVector(-50.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	//ホーム
 	new CHome(&mCube, CVector(-120.0f, -0.7f, -90.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));	
 
@@ -305,7 +305,7 @@ void CSceneGame::Update() {
 
 	//ボスとの衝突
 	if (CPlayer::Down == TRUE){
-		CText::DrawString("CRASH!", 330, 450, 25, 25);
+		CText::DrawString("CRASH!", 300, 450, 25, 25);
 	}
 
 	////クリア条件(ゴミ全回収)
