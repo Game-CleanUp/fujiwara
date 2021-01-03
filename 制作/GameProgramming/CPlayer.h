@@ -15,7 +15,7 @@
 #define G       9.8f/60.0f//重力加速度
 #define JUMPV0  1.8f	//ジャンプ初速
 #define R		7.0f	//半径
-#define RETRY	30		//復帰時間
+#define RETRY	20		//復帰時間
 #define DROP	15.0f	//ゴミのドロップ位置
 #define DROP_RAND	rand() % 360	//ゴミのドロップ方向
 #define FORWARD	1.5f	//前進

@@ -5,7 +5,7 @@
 #include "CText.h"
 
 int CSceneGame::StageCount = 0;
-int CSceneGame::mBatteryMax = 50 * 60;
+int CSceneGame::mBatteryMax = 30 * 60;
 int CSceneGame::mBatteryNow = mBatteryNow + mBatteryMax;
 int CSceneGame::mTimeMax = 60 * 60;
 int CSceneGame::mTimeNow = mTimeNow + mTimeMax;
@@ -64,14 +64,9 @@ void CSceneGame::Init() {
 	mTable.Load("Table.obj", "Table.mtl");
 
 	new CObj(&mSofa, CVector(-95.0f, 0.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
-//	new CObj(&mTable, CVector(-80.0f, 0.0f, 40.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
-	/*new CObj(&mSofa, CVector(-95.0f, 30.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
-	new CObj(&mSofa, CVector(-95.0f, 30.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
-	new CObj(&mSofa, CVector(-95.0f, 30.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
-	new CObj(&mSofa, CVector(-95.0f, 30.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
-*/
+
 	new CObj(&mTable, CVector(-50.0f, 0.0f, -30.0f), CVector(), CVector(65.0f, 25.0f, 25.0f));
-//	new CObj(&mPlant, CVector(-20.0f, 0.0f, -25.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+	//new CObj(&mPlant, CVector(-20.0f, 0.0f, -25.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	//new CObj(&mPlant, CVector(-20.0f, 0.0f, -10.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	
 
@@ -158,7 +153,7 @@ void CSceneGame::Init() {
 */
 	//敵(追尾)
 	new CBoss(&mDog, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	//new CBoss(&mRover, CVector(0.0f, 0.0f, -70.0f), CVector(), CVector(1.0f, 1.0f,1.0f));
+	new CBoss(&mDog, CVector(-50.0f, 0.0f, 70.0f), CVector(), CVector(1.0f, 1.0f,1.0f));
 	//new CBoss(&mRover, CVector(-50.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	//ホーム
 	new CHome(&mCube, CVector(-120.0f, -0.7f, -90.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));	
@@ -198,7 +193,7 @@ void CSceneGame::Update() {
 	
 
 	if (mBatteryNow >= 0 && CHome::home == 0){
-		mBatteryNow--;
+		mBatteryNow -= 2;
 	}
 	//最大値を超えない
 	else if (mBatteryMax >= mBatteryNow){
@@ -305,7 +300,7 @@ void CSceneGame::Update() {
 
 	//ボスとの衝突
 	if (CPlayer::Down == TRUE){
-		CText::DrawString("CRASH!", 290, 450, 25, 25);
+		CText::DrawString("CRASH!", 285, 450, 25, 25);
 	}
 
 	////クリア条件(ゴミ全回収)
