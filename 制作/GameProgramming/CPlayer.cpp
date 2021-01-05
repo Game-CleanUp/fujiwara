@@ -5,6 +5,9 @@ int CPlayer::clear = 0;
 int CPlayer::Dash = 0;
 int CPlayer::Jump = 0;
 int CPlayer::Down = 0;
+int CPlayer::levelMax = 100;
+int CPlayer::levelNow = 1;
+int CPlayer::PlayerLevel = 1;
 CPlayer *CPlayer::mpPlayer = 0;
 
 CSound CPlayer::Sound;
@@ -15,7 +18,7 @@ CPlayer::CPlayer()
 //サーチ
 , mSearch(this, CVector(0.0f, 0.0f, 5.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
 , mVelocityJump(0.0f)
-, frame(0), frameMax(300), levelNow(0),levelMax(100) ,frame2(0)
+, frame(0), frameMax(300), frame2(0)
 {
 
 	mColBody.mTag = CCollider::EBODY;
@@ -41,11 +44,11 @@ void CPlayer::Update(){
 			if (CSceneGame::mBatteryNow > 0){
 				if (CSceneGame::mTimeNow > 0){
 					if (CKey::Push('A')){
-						mRotation.mY += DIRECTION;
+						mRotation.mY += DIR;
 					}
 
 					if (CKey::Push('D')){
-						mRotation.mY -= DIRECTION;
+						mRotation.mY -= DIR;
 					}
 
 					if (CKey::Push('W')){
@@ -100,7 +103,14 @@ void CPlayer::Update(){
 							clear = clear + CGomi::GomiCount;
 							CGomi::GomiCount = 0;
 							CSceneGame::mTimeNow += 5 * 60;
-							levelNow += 5;
+							//経験値獲得
+							levelNow += 50;
+							if (levelNow >= levelMax){
+								//経験値を初期値にする
+								levelNow = 1;
+								//レベルアップ
+								PlayerLevel += 1;
+							}
 						}
 					}
 				}
@@ -121,6 +131,7 @@ void CPlayer::Render(){
 	Back.Render();
 	Battery.Render();
 	Time.Render();
+	Level.Render();
 }
 
 

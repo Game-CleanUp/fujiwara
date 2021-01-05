@@ -24,7 +24,7 @@ void CBattery::Render(){
 	glColor3f(1.0f, 1.0f, 0.0f);
 
 	x = -390 + 150 * CSceneGame::mBatteryNow / CSceneGame::mBatteryMax;
-	y = -280;
+	y = -275;
 	w = 150 * CSceneGame::mBatteryNow / CSceneGame::mBatteryMax;
 	h = 5;
 	//mEnabled = true;

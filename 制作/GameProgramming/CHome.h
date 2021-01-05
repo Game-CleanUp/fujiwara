@@ -4,7 +4,7 @@
 #include"CCharacter.h"
 #include"CCollider.h"
 #include"CGomi.h"
-
+#include "CCollisionManager.h"
 
 class CHome : public CCharacter{
 public:

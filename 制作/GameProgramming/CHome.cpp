@@ -4,9 +4,9 @@ int CHome::home = 0;
 
 void CHome::TaskCollision()
 {
-	/*mColBody.ChangePriority();
+	mColBody.ChangePriority();
 
-	CCollisionManager::Get()->Collision(&mColBody);*/
+	CCollisionManager::Get()->Collision(&mColBody);
 	
 }
 

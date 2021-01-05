@@ -25,7 +25,7 @@ void CGaugeBack::Render(){
 	glColor3f(1.0f, 1.0f, 1.0f);
 
 	x = -240;
-	y = -280;
+	y = -275;
 	w = 152;
 	h = 7;
 	//mEnabled = true;

@@ -309,13 +309,15 @@ void CSceneGame::Update() {
 	//}
 
 	frame2++;
-	if (frame2 < 30){
+	if (frame2 < 40){
 		CText::DrawString("WAVE1", 325, 400, 15, 15);
+		CText::DrawString("CLEAR:5", 290, 300, 15, 15);
 		//frame2 = 0;
 	}
 
-	if (CPlayer::clear >= 10){
+	if (CPlayer::clear >= 5){
 		CText::DrawString("WAVE2", 325, 400, 15, 15);
+		
 		
 	}
 	//if (CPlayer::clear >= 10){
@@ -330,7 +332,7 @@ void CSceneGame::Update() {
 	//	CText::DrawString("WAVE5", 325, 400, 15, 15);
 
 	//}
-	CText::DrawString("BATTERY", 17, 40, 13, 13);
+	CText::DrawString("BATTERY", 17, 50, 11, 11);
 
 	char buf[10];
 
@@ -339,15 +341,15 @@ void CSceneGame::Update() {
 	CText::DrawString(buf, 15, 550, 15, 15);
 
 	//目標数
-	sprintf(buf, "%d", CPlayer::clear);
-	CText::DrawString(buf, 650, 30, 15, 15);
+	sprintf(buf, "%d", CPlayer::PlayerLevel);
+	CText::DrawString(buf, 600, 30, 15, 15);
 	//目標数
 	sprintf(buf, "%d", CPlayer::clear);
 	CText::DrawString(buf, 700, 30, 15, 15);
 
 	//ゴミ回収数
 	sprintf(buf, "%d", CGomi::GomiCount);
-	CText::DrawString(buf, 230, 50, 15, 15);
+	CText::DrawString(buf, 300, 50, 15, 15);
 
 	//2D描画終了
 	End2D();

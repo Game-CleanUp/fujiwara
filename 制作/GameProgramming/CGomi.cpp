@@ -30,9 +30,9 @@ CGomi::CGomi(CModel*model, CVector position, CVector rotation, CVector scale)
 
 void CGomi::TaskCollision()
 {
-	/*mColBody.ChangePriority();
+	mColBody.ChangePriority();
 
-	CCollisionManager::Get()->Collision(&mColBody);*/
+	CCollisionManager::Get()->Collision(&mColBody);
 
 }
 
@@ -45,7 +45,7 @@ void CGomi::Update(){
 	//移動
 	mPosition.mY = mPosition.mY - mVelocityJump;
 
-
+	CCharacter::Update();
 }
 
 void CGomi::Collision(CCollider*m, CCollider*y){
@@ -81,6 +81,7 @@ void CGomi::Collision(CCollider*m, CCollider*y){
 			if (CCollider::Collision(m, y)){
 				//衝突しているときは無効にする
 				mEnabled = false;
+				Sound.Play();
 				GomiCount += 1;
 			}
 		}
@@ -90,8 +91,8 @@ void CGomi::Collision(CCollider*m, CCollider*y){
 				//プレイヤーの方向
 				CVector dir = y->mpParent->mPosition - mPosition;
 				//正規化（長さを1にする）Normalize()
-				mPosition = mPosition + dir.Normalize()*1.0;
-				Sound.Play();
+				mPosition = mPosition + dir.Normalize()*1.5;
+				
 			}
 		}
 	}
