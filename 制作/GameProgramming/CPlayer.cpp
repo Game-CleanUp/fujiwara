@@ -104,7 +104,7 @@ void CPlayer::Update(){
 							CGomi::GomiCount = 0;
 							CSceneGame::mTimeNow += 5 * 60;
 							//経験値獲得
-							levelNow += 50;
+							levelNow += 100;
 							if (levelNow >= levelMax){
 								//経験値を初期値にする
 								levelNow = 1;
