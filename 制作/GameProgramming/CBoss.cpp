@@ -5,7 +5,7 @@ int CBoss::tracking = 0;
 
 CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 5.0f)
-, mSearch(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 50.0f)
+, mSearch(this, CVector(0.0f, -5.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 40.0f)
 , frame(0), state(0), mVelocityJump(0.0f)
 {
 	//モデル、位置、回転、拡縮を設定する
@@ -52,7 +52,7 @@ void CBoss::Update(){
 					}
 					if (frame > 30){
 						//前進
-						mPosition = CVector(0.0f, 0.0f, SPEED)*mMatrix;
+						mPosition = CVector(SPEED, 0.0f, 0.0f)*mMatrix;
 					}
 					if (frame > 90){
 						state = rand() % 5;
@@ -68,7 +68,7 @@ void CBoss::Update(){
 					}
 					if (frame > 30){
 						//前進
-						mPosition = CVector(0.0f, 0.0f, SPEED)*mMatrix;
+						mPosition = CVector(SPEED, 0.0f, 0.0f)*mMatrix;
 					}
 					if (frame > 90){
 						state = rand() % 5;

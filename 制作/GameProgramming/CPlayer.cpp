@@ -14,7 +14,7 @@ CSound CPlayer::Sound;
 CSound CPlayer::Sound2;
 
 CPlayer::CPlayer()
-:mColBody(this, CVector(0.0f, 2.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 2.5f)
+:mColBody(this, CVector(0.0f, 2.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 3.0f)
 //サーチ
 , mSearch(this, CVector(0.0f, 0.0f, 5.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
 , mVelocityJump(0.0f)
@@ -151,8 +151,6 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 				//着地
 				mVelocityJump = 0;
 				Jump = FALSE;
-			//	mPosition = CVector(-120.0f, 10.0f, -80.0f);
-				//mPosition = CVector(-50.0f, 10.0f, -80.0f);
 			}
 
 			//位置の更新
@@ -215,7 +213,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 				//リトライ(ホームに戻る)
 				if (frame2 > RETRY){
 					//初期位置
-					mPosition = CVector(-120.0f, 10.0f, -80.0f);
+					mPosition = CVector(-70.0f, 10.0f, 50.0f);
 					CSceneGame::mBatteryNow = CSceneGame::mBatteryMax;
 					Down = FALSE;
 					frame2 = 0;
