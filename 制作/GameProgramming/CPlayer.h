@@ -14,12 +14,12 @@
 #define G       9.8f/50.0f//重力加速度 9.8f
 #define JUMPV0  1.5f	//ジャンプ初速
 #define R		7.0f	//半径
-#define RETRY	10		//復帰時間
+#define RETRY	60		//復帰時間
 #define DROP	15.0f	//ゴミのドロップ位置
 #define DROP_RAND	rand() % 360	//ゴミのドロップ方向
-#define FORWARD	3.0f	//前進
-#define DASH	4.0f	//ダッシュ
-#define DIR	13.0f	//方向転換
+#define FORWARD	0.7f	//前進
+#define DASH	1.0f	//ダッシュ
+#define DIR		5.0f	//方向転換
 #define BACK	-1.0f	//後退
 
 class CPlayer : public CCharacter{

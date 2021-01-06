@@ -59,14 +59,14 @@ void CSceneGame::Init() {
 	mPlayer.mpModel = &mCube;
 
 	mSofa.Load("sofa.obj", "sofa.mtl");
-	mPlant.Load("Plant.obj", "Plant.mtl");
+	//mBed.Load("bed.obj", "bed.mtl");
 	mDog.Load("Dog.obj", "Dog.mtl");
 	mTable.Load("Table.obj", "Table.mtl");
 
-	new CObj(&mSofa, CVector(-95.0f, 0.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
+	//new CObj(&mSofa, CVector(-95.0f, 0.0f, -20.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
 
 	new CObj(&mTable, CVector(-50.0f, -1.0f, -20.0f), CVector(), CVector(65.0f, 25.0f, 25.0f));
-	//new CObj(&mPlant, CVector(-20.0f, 0.0f, -25.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+	//new CObj(&mBed, CVector(-20.0f, 0.0f, 50.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	//new CObj(&mPlant, CVector(-20.0f, 0.0f, -10.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	
 
@@ -152,8 +152,8 @@ void CSceneGame::Init() {
 	new CEnemy2(&mSphere, CVector(-30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 */
 	//“G(’Ç”ö)
-	new CBoss(&mDog, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CBoss(&mDog, CVector(-50.0f, 0.0f, 70.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CBoss(&mDog, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
+	//new CBoss(&mCube, CVector(-50.0f, 0.0f, 70.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
 	//new CBoss(&mRover, CVector(-50.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	//ƒz[ƒ€
 	new CHome(&mCube, CVector(-120.0f, -0.7f, -90.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));	
@@ -170,6 +170,7 @@ void CSceneGame::Init() {
 	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(130.0f, 1.0f, 100.0f));
 	new CImage(yuka, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(130.0f, 100.0f, 1.0f));
 
+	//new CObj(&mPlane, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(200.0f, 1.0f, 200.0f));
 }
 
 
@@ -193,7 +194,7 @@ void CSceneGame::Update() {
 	
 
 	if (mBatteryNow >= 0 && CHome::home == 0){
-		mBatteryNow -= 2;
+		mBatteryNow--;
 	}
 	//Å‘å’l‚ð’´‚¦‚È‚¢
 	else if (mBatteryMax >= mBatteryNow){
@@ -224,10 +225,14 @@ void CSceneGame::Update() {
 	}
 
 	frame++;
-	if (frame < 1000 && frame % 100 == 0){
+	/*if (frame==300){
+		new CBoss(&mCube, CVector(-50.0f, 0.0f, 70.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
+	}*/
+	if (frame < 1000 && frame % 50 == 0){
 
 		//ƒSƒ~‚Ì¶¬
 		//new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+		//new CObj(&mCube, CVector(RAND, 0.0f, RAND), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	}
 	
 	CTaskManager::Get()->Update();

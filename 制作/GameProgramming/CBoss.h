@@ -6,6 +6,7 @@
 #include"CCollider.h"
 
 #define TURN 13 //Œü‚«
+#define SPEED 0.1f	//ˆÚ“®‘¬“x
 
 class CBoss : public CCharacter{
 public:

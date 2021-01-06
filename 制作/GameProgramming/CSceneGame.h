@@ -48,7 +48,7 @@ public:
 	CModel mSphere;
 	CModel mSofa;
 	CModel mTable;
-	CModel mPlant;
+	CModel mBed;
 	CModel mDog;
 	//Ÿ‚ÌƒV[ƒ“‚Ìæ“¾
 	EScene GetNextScene();
