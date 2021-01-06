@@ -61,7 +61,9 @@ public:
 	static int frame;
 
 	static int frame2;
-	CSound Sound;
+	static CSound Sound;
+	static CSound Sound2;
+
 	
 };
 

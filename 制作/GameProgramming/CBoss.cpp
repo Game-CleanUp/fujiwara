@@ -2,6 +2,7 @@
 #include"CSceneGame.h"
 
 int CBoss::tracking = 0;
+CSound CBoss::Sound;
 
 CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 5.0f)
@@ -16,6 +17,8 @@ CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 
 	mColBody.mTag = CCollider::EBODY2;
 	mSearch.mTag = CCollider::ESEARCH2;
+
+	Sound.Load("Dog.wav");
 }
 
 void CBoss::TaskCollision()
@@ -107,12 +110,14 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 				CVector dir = y->mpParent->mPosition - mPosition;
 				//³‹K‰»i’·‚³‚ğ1‚É‚·‚éjNormalize()
 				mPosition = mPosition + dir.Normalize() * 0.5;
+				Sound.Repeat();
 				tracking = TRUE;
 			}
 		}
 		else{
 			//’Ç”ö‚ğ‚â‚ß‚é
 			tracking = FALSE;
+			Sound.Stop();
 		}
 		return;
 	}

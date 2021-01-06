@@ -12,8 +12,8 @@ int CSceneGame::mTimeNow = mTimeNow + mTimeMax;
 int CSceneGame::frame = 0;
 int CSceneGame::frame2 = 0;
 
-//外部変数
-extern CSound Sound;
+ CSound CSceneGame::Sound;
+ CSound CSceneGame::Sound2;
 
 
 CSceneGame::~CSceneGame(){
@@ -33,8 +33,9 @@ void CSceneGame::Init() {
 	mScene = EGAME;
 
 	Sound.Load("bgm.wav");
+	Sound2.Load("GameOver.wav");
 	//BGM再生
-	//Sound.Repeat();
+	Sound.Repeat();
 
 	glMatrixMode(GL_PROJECTION);	//行列をプロジェクションモードへ変更
 	glLoadIdentity();				//行列を初期化
@@ -300,7 +301,8 @@ void CSceneGame::Update() {
 	//ゲームオーバー条件(バッテリー切れ）
 	if (mBatteryNow == 0 || mTimeNow <= 0){
 		CText::DrawString("GAME OVER", 200, 330, 25, 25);
-		Sound.Stop();
+		Sound2.Play();
+		//Sound.Stop();
 	}
 
 	//ボスとの衝突

@@ -4,6 +4,7 @@
 #include"CPlayer.h"
 #include"CCharacter.h"
 #include"CCollider.h"
+#include"CSound.h"
 
 #define TURN 13 //Œü‚«
 #define SPEED -0.1f	//ˆÚ“®‘¬“x
@@ -26,6 +27,7 @@ public:
 
 	float mVelocityJump;
 
+	static CSound Sound;
 };
 
 
