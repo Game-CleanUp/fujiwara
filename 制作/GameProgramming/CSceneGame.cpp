@@ -70,6 +70,7 @@ void CSceneGame::Init() {
 	new CObj(&mTable, CVector(-13.0f, -1.0f, 0.0f), CVector(), CVector(55.0f, 28.0f, 25.0f));
 
 	new CObj(&mKitchen, CVector(50.0f, 0.0f, 50.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+
 	//new CObj(&mPlant, CVector(-20.0f, 0.0f, -10.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	
 
