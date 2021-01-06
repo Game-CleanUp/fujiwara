@@ -63,11 +63,13 @@ void CSceneGame::Init() {
 	//mBed.Load("bed.obj", "bed.mtl");
 	mDog.Load("Dog.obj", "Dog.mtl");
 	mTable.Load("Table.obj", "Table.mtl");
+	mKitchen.Load("kitchen.obj", "kitchen.mtl");
 
 	new CObj(&mSofa, CVector(-50.0f, 0.0f, 15.0f), CVector(), CVector(12.0f, 12.0f, 12.0f));
 
 	new CObj(&mTable, CVector(-13.0f, -1.0f, 0.0f), CVector(), CVector(55.0f, 28.0f, 25.0f));
-	//new CObj(&mBed, CVector(-20.0f, 0.0f, 50.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+
+	new CObj(&mKitchen, CVector(50.0f, 0.0f, 50.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	//new CObj(&mPlant, CVector(-20.0f, 0.0f, -10.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	
 
@@ -241,7 +243,7 @@ void CSceneGame::Update() {
 	CVector e, c, u;//視点、注視点、上方向
 	if (CPlayer::Down == FALSE){
 		//視点を求める
-		e = CVector(0.0f, 5.0f, -10.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 2.0f, 0.0f)*mPlayer.mMatrix;
 		//注視点を求める
 		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 		//上方向を求める
@@ -252,11 +254,10 @@ void CSceneGame::Update() {
 		//視点を求める
 		e = CVector(0.0f, 10.0f, -10.0f)*mPlayer.mMatrix;
 		//注視点を求める
-		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
+		c = CVector(0.0f, 0.0f, 0.0f)*mPlayer.mMatrix;
 		//上方向を求める
 		u = CVector(0.0f, 1.0f, 0.0f)*mPlayer.mMatrixRotate;
 	}
-
 
 	//見下ろし視点
 	if (CKey::Push('I')){
@@ -266,11 +267,6 @@ void CSceneGame::Update() {
 	//確認
 	if (CKey::Push('P')){
 		e = CVector(0.0f, 150.0f, 0.0f);
-	}
-
-	//一人称視点
-	if (CKey::Push('O')){
-		e = CVector(0.0f, 2.0f, 0.0f)*mPlayer.mMatrix;
 	}
 
 	//カメラの設定
