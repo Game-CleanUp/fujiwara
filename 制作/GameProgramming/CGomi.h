@@ -8,9 +8,11 @@
 
 class CGomi : public CCharacter{
 public:
+
 	//デフォルトコンストラクタ(引数のないコンストラクタ）
 	CGomi(CModel*model, CVector position, CVector rotation, CVector scale);
 	CCollider mColBody;
+
 	void Update();
 	//衝突判定
 	void Collision(CCollider*m, CCollider*y);

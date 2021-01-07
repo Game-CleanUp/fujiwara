@@ -67,7 +67,7 @@ void CSceneGame::Init() {
 
 	new CObj(&mSofa, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
 
-	new CObj(&mTable, CVector(-20.0f, -1.0f, 0.0f), CVector(), CVector(40.0f, 25.0f, 20.0f));
+	new CObj(&mTable, CVector(-20.0f, -1.0f, 0.0f), CVector(), CVector(20.0f, 20.0f, 20.0f));
 
 	new CObj(&mKitchen, CVector(50.0f, -1.0f, -20.0f), CVector(0.0f, -90.0f, 0.0f), CVector(8.0f, 8.0f, 10.0f));
 
@@ -140,9 +140,8 @@ void CSceneGame::Init() {
 	new CEnemy2(&mSphere, CVector(-30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 */
 	//敵(追尾)
-	//new CBoss(&mDog, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(1.5f, 1.5f, 1.5f));
-	//new CBoss(&mCube, CVector(-50.0f, 0.0f, 70.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
-	//new CBoss(&mRover, CVector(-50.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CBoss(&mDog, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(1.5f, 1.5f, 1.5f));
+	
 	//ホーム
 	new CHome(&mCube, CVector(-75.0f, -0.7f, 60.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));	
 
@@ -216,7 +215,7 @@ void CSceneGame::Update() {
 	/*if (frame==300){
 		new CBoss(&mCube, CVector(-50.0f, 0.0f, 70.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
 	}*/
-	if (frame < 1000 && frame % 50 == 0){
+	if (frame < 100 && frame % 5 == 0){
 
 		//ゴミの生成
 		//new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
@@ -227,7 +226,7 @@ void CSceneGame::Update() {
 	CVector e, c, u;//視点、注視点、上方向
 	if (CPlayer::Down == FALSE){
 		//視点を求める
-		e = CVector(0.0f, 2.0f, 0.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 10.0f, -10.0f)*mPlayer.mMatrix;
 		//注視点を求める
 		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 		//上方向を求める
@@ -236,16 +235,16 @@ void CSceneGame::Update() {
 	//ダメージリアクション
 	else{
 		//視点を求める
-		e = CVector(0.0f, 2.0f, 0.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 10.0f, -20.0f)*mPlayer.mMatrix;
 		//注視点を求める
-		c = CVector(0.0f, 0.0f, 0.0f)*mPlayer.mMatrix;
+		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 		//上方向を求める
 		u = CVector(0.0f, 1.0f, 0.0f)*mPlayer.mMatrixRotate;
 	}
 
 	//見下ろし視点
 	if (CKey::Push('I')){
-		e = CVector(0.0f, 50.0f, 0.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 30.0f, 0.0f)*mPlayer.mMatrix;
 	}
 
 	//確認
@@ -276,10 +275,11 @@ void CSceneGame::Update() {
 
 	if (CKey::Push(VK_RETURN)){
 		mScene = ETITLE;
+		Sound.Stop();
 	}
 
 	//ゲームオーバー条件(バッテリー切れ）
-	if (mBatteryNow == 0 || mTimeNow <= 0){
+	if (mBatteryNow <= 0 || mTimeNow <= 0){
 		CText::DrawString("GAME OVER", 200, 330, 25, 25);
 		Sound2.Play();
 		//Sound.Stop();

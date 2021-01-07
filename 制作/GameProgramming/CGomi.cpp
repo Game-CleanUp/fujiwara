@@ -6,7 +6,6 @@ CModel CGomi::mModel;
 
 CSound CGomi::Sound;
 
-//‰Û‘è7
 CGomi::CGomi(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 3.0f)
 {
@@ -27,6 +26,7 @@ CGomi::CGomi(CModel*model, CVector position, CVector rotation, CVector scale)
 	Sound.Load("gomi.wav");
 
 }
+
 
 void CGomi::TaskCollision()
 {
