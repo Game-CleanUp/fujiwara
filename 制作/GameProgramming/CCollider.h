@@ -19,6 +19,7 @@ public:
 		ESEARCH2,//敵サーチ
 		EPOWER,//パワーアップ
 		EHOME,//充電エリア
+		EBULLET,//プレイヤー弾
 	
 	};
 	ETag mTag;

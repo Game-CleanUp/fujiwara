@@ -1,4 +1,15 @@
 #include"CBullet.h"
+#include"CSceneGame.h"
+
+//デフォルトコンストラクタ
+CBullet::CBullet()
+:mCollider(this, CVector(0.0f, 0.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 1.0f)
+, mLife(50)
+{
+	mpModel = &CSceneGame::mBullet;	//弾モデル
+	mCollider.mTag = CCollider::EBULLET;
+}
+
 
 //幅と奥行きの設定
 //Set(幅、奥行き)
@@ -12,7 +23,7 @@ void CBullet::Set(float w, float d){
 }
 
 void CBullet::Update(){
-	CCharacter::Update();
+	
 	//生存時間の判定
 	if (mLife-- > 0){
 		CCharacter::Update();
@@ -23,6 +34,7 @@ void CBullet::Update(){
 		//無効にする
 		mEnabled = false;
 	}
+	
 }
 void CBullet::Render(){
 	//DIFFUSE黄色設定
@@ -31,10 +43,8 @@ void CBullet::Render(){
 	//三角形描画
 	mT.Render(mMatrix);
 }
-CBullet::CBullet() :mLife(50)
-, mCollider(this, CVector(0.0f, 0.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 0.1f){
-	//mCollider.mTag = CCollider::EBODY;
-}
+
+
 //衝突判定
 //Collision(コライダ1、コライダ2)
 void CBullet::Collision(CCollider*m, CCollider*y){

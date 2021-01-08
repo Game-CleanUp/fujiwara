@@ -15,6 +15,8 @@ int CSceneGame::frame2 = 0;
  CSound CSceneGame::Sound;
  CSound CSceneGame::Sound2;
 
+ CModel CSceneGame::mBullet;	//弾モデル
+
 CSceneGame::~CSceneGame(){
 	
 	//シーン初期化
@@ -56,6 +58,8 @@ void CSceneGame::Init() {
 	mPlane.Load("plane.obj", "plane.mtl");
 	mSphere.Load("sphere.obj", "sphere.mtl");
 	mPlayer.mpModel = &mCube;
+
+	mBullet.Load("sphere.obj", "sphere.mtl");
 
 	mSofa.Load("sofa.obj", "sofa.mtl");	//ソファ
 	mBed.Load("cama.obj", "cama.mtl");	//ベッド
@@ -160,6 +164,8 @@ void CSceneGame::Init() {
 	new CImage(yuka, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(80.0f, 60.0f, 1.0f));
 
 	//new CObj(&mPlane, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(200.0f, 1.0f, 200.0f));
+
+	//new CBullet(&mBullet, CVector(1.0f, 0.0f, 1.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 }
 
 

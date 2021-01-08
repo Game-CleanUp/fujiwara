@@ -18,12 +18,12 @@ public:
 	int mLife;
 	//デフォルトコンストラクタ
 	CBullet();
-	CCollider mCollider;
-
+	
+	CBullet(CModel *model, CVector position, CVector rotation, CVector scale);
 	//衝突判定
 	//Collision(コライダ1、コライダ2)
 	void Collision(CCollider*m, CCollider*y);
-
+	CCollider mCollider;
 };
 
 

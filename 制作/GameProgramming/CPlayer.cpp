@@ -83,6 +83,16 @@ void CPlayer::Update(){
 							Dash = FALSE;
 						}
 					}
+
+					//スペースキー入力で発射
+					if (CKey::Push(VK_SPACE)){
+						CBullet*bullet = new CBullet();
+						bullet->Set(0.1f, 1.5f);
+						bullet->mPosition = CVector(0.0f, 2.0f, 1.0f)*mMatrix;
+						bullet->mRotation = mRotation;
+						
+					}
+
 					//ジャンプ
 					/*if (CKey::Once('J') && mVelocityJump == 0){
 						mVelocityJump = JUMPV0;
