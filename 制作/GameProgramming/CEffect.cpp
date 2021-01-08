@@ -10,9 +10,12 @@ CEffect::CEffect(const CVector &pos, float w, float h, std::shared_ptr<CTexture>
 void CEffect::Update() {
 	//コマ数の計算
 	int frame = mFrame++ / mFps;
+
 	//アニメーション終了で無効
-	if (frame >= mRows * mCols)
+	if (frame >= mRows * mCols){
 		mEnabled = false;
+	}
+
 	frame %= (mRows * mCols);
 	//UV左
 	float left = 1.0f / mCols * (frame % mCols);
@@ -31,8 +34,8 @@ void CEffect::Update() {
 	mT[1].mUv[2] = CVector(righ, top, 0.0f);
 	//ビルボード更新
 	CBillBoard::Update();
-	//終了判定
-	if (mFrame >= mFps * mRows * mCols) {
-		mEnabled = false;
-	}
+	////終了判定
+	//if (mFrame >= mFps * mRows * mCols) {
+	//	mEnabled = false;
+	//}
 }

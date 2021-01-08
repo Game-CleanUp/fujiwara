@@ -23,6 +23,9 @@
 #define DIR		5.0f	//•ûŒü“]Š·
 #define BACK	-1.0f	//Œã‘Þ
 
+
+
+
 class CPlayer : public CCharacter{
 public:
 	

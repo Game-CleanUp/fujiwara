@@ -40,8 +40,7 @@ Ke 0.0 0.0 0.0
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd Files\\Hook1Tex.png
-map_d Files\\Hook1Tex.png
+
 
 newmtl Lightpart1Mtl.003
 Ns 999.999998
@@ -92,8 +91,6 @@ Ke 0.0 0.0 0.0
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd Files\\Part169Tex.png
-map_d Files\\Part169Tex.png
 
 newmtl Part170Mtl.001
 Ns 999.999998
@@ -134,8 +131,6 @@ Ke 0.0 0.0 0.0
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd Files\\Part177Tex.png
-map_d Files\\Part177Tex.png
 
 newmtl Part1Mtl.001
 Ns 999.999998
@@ -156,8 +151,7 @@ Ke 0.0 0.0 0.0
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd Files\\Part251Tex.png
-map_d Files\\Part251Tex.png
+
 
 newmtl Part25Mtl.001
 Ns 999.999998
@@ -198,8 +192,7 @@ Ke 0.0 0.0 0.0
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd Files\\Part295Tex.png
-map_d Files\\Part295Tex.png
+
 
 newmtl Part2Mtl.001
 Ns 999.999998
@@ -270,8 +263,6 @@ Ke 0.0 0.0 0.0
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd Files\\Part39Tex.png
-map_d Files\\Part39Tex.png
 
 newmtl Part40Mtl.001
 Ns 999.999998
@@ -312,8 +303,7 @@ Ke 0.0 0.0 0.0
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd Files\\Part55Tex.png
-map_d Files\\Part55Tex.png
+
 
 newmtl Part67Mtl.001
 Ns 999.999998
@@ -384,8 +374,7 @@ Ke 0.0 0.0 0.0
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd Files\\SteerMesh1Tex.png
-map_d Files\\SteerMesh1Tex.png
+
 
 newmtl Wedge17Mtl.001
 Ns 999.999998
@@ -426,8 +415,7 @@ Ke 0.0 0.0 0.0
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd Files\\Wheel2Tex.png
-map_d Files\\Wheel2Tex.png
+
 
 newmtl Wheel6Mtl.001
 Ns 999.999998
@@ -438,5 +426,3 @@ Ke 0.0 0.0 0.0
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd Files\\Wheel6Tex.png
-map_d Files\\Wheel6Tex.png

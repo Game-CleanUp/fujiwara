@@ -15,6 +15,8 @@ int CSceneGame::frame2 = 0;
  CSound CSceneGame::Sound;
  CSound CSceneGame::Sound2;
 
+ //スマートポインタの外部参照
+ extern std::shared_ptr<CTexture>TextureExp;
 
 CSceneGame::~CSceneGame(){
 	
@@ -65,7 +67,10 @@ void CSceneGame::Init() {
 	mTable.Load("Table.obj", "Table.mtl");
 	mKitchen.Load("kitchen.obj", "kitchen.mtl");
 
-	new CObj(&mSofa, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
+	//爆発テクスチャ
+	TextureExp->Load("exp.tga");
+
+//	new CObj(&mSofa, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
 
 	new CObj(&mTable, CVector(-20.0f, -1.0f, 0.0f), CVector(), CVector(20.0f, 20.0f, 20.0f));
 
@@ -273,16 +278,19 @@ void CSceneGame::Update() {
 	//2D描画開始
 	Start2D(0, 800, 0, 600);
 
-	if (CKey::Push(VK_RETURN)){
-		mScene = ETITLE;
-		Sound.Stop();
-	}
+	
 
 	//ゲームオーバー条件(バッテリー切れ）
 	if (mBatteryNow <= 0 || mTimeNow <= 0){
 		CText::DrawString("GAME OVER", 200, 330, 25, 25);
-		Sound2.Play();
-		//Sound.Stop();
+		
+		Sound2.Play();	//ゲームオーバーSE
+
+		//タイトル画面へ
+		if (CKey::Push(VK_RETURN)){
+			mScene = ETITLE;
+			Sound.Stop();	//BGM終了
+		}
 	}
 
 	//ボスとの衝突
