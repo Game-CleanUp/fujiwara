@@ -217,9 +217,9 @@ void CSceneGame::Update() {
 	}
 
 	frame++;
-	/*if (frame==300){
-		new CBoss(&mCube, CVector(-50.0f, 0.0f, 70.0f), CVector(), CVector(3.0f, 3.0f, 3.0f));
-	}*/
+	if (frame==300 || frame==500 || frame==700){
+		new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	}
 	if (frame < 100 && frame % 5 == 0){
 
 		//ƒSƒ~‚Ì¶¬

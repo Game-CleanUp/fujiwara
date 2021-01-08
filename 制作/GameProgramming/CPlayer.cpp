@@ -9,10 +9,11 @@ int CPlayer::Down = 0;
 int CPlayer::levelMax = 100;
 int CPlayer::levelNow = 1;
 int CPlayer::PlayerLevel = 1;
-CPlayer *CPlayer::mpPlayer = 0;
+CPlayer *CPlayer::mpPlayer;
 
 CSound CPlayer::Sound;
 CSound CPlayer::Sound2;
+CSound CPlayer::Sound3;	//爆発音
 
 //スマートポインタの外部参照
 extern std::shared_ptr<CTexture>TextureExp(new CTexture());
@@ -29,6 +30,7 @@ CPlayer::CPlayer()
 	mSearch.mTag = CCollider::ESEARCH;
 	Sound.Load("jump.wav");
 	Sound2.Load("act.wav");
+	Sound.Load("Bomb.wav");
 }
 
 void CPlayer::TaskCollision()
@@ -177,6 +179,9 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 
 				//エフェクト生成
 				new CEffect(mPosition, 5.0f, 5.0f, TextureExp, 4, 4, 1);
+
+				//爆発音再生
+				Sound3.Play();
 
 				//持っているゴミを周りに出現させる
 				switch (CGomi::GomiCount){

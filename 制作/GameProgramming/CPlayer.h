@@ -62,6 +62,7 @@ public:
 
 	static CSound Sound2;
 
+	static CSound Sound3;	//”š”­‰¹
 };
 
 

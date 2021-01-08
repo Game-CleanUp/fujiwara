@@ -63,10 +63,11 @@ public:
 	static int frame;
 
 	static int frame2;
-	static CSound Sound;
-	static CSound Sound2;
 
-	
+	static CSound Sound;	//BGM
+	static CSound Sound2;	//ゲームオーバー音
+
+	static CSound Sound3;	//
 };
 
 #endif

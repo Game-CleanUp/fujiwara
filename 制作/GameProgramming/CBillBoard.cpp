@@ -3,6 +3,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
+
 CBillBoard::CBillBoard() {
 }
 
@@ -28,7 +29,7 @@ void CBillBoard::Set(CVector pos, float w, float h) {
 
 void CBillBoard::Update() {
 	//カメラへの方向ベクトルの取得
-	CVector dir = Camera.mEye - mPosition;
+	CVector dir = CVector(0.0f, 10.0f, -10.0f);
 	//Y軸の回転値を求める
 	mRotation.mY = atan2f(dir.mX, dir.mZ) * 180.0f / M_PI;
 	//X軸の回転値を求める
