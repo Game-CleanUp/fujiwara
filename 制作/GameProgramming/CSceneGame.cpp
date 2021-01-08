@@ -15,9 +15,6 @@ int CSceneGame::frame2 = 0;
  CSound CSceneGame::Sound;
  CSound CSceneGame::Sound2;
 
- //スマートポインタの外部参照
- extern std::shared_ptr<CTexture>TextureExp;
-
 CSceneGame::~CSceneGame(){
 	
 	//シーン初期化
@@ -27,7 +24,6 @@ CSceneGame::~CSceneGame(){
 	CTaskManager::Get()->AllDelete();
 
 }
-
 
 void CSceneGame::Init() {
 
@@ -61,22 +57,22 @@ void CSceneGame::Init() {
 	mSphere.Load("sphere.obj", "sphere.mtl");
 	mPlayer.mpModel = &mCube;
 
-	mSofa.Load("sofa.obj", "sofa.mtl");
-	mBed.Load("Bed.obj", "Bed.mtl");
-	mDog.Load("Dog.obj", "Dog.mtl");
-	mTable.Load("Table.obj", "Table.mtl");
-	mKitchen.Load("kitchen.obj", "kitchen.mtl");
+	mSofa.Load("sofa.obj", "sofa.mtl");	//ソファ
+	mBed.Load("cama.obj", "cama.mtl");	//ベッド
+	mDog.Load("Dog.obj", "Dog.mtl");	//犬
+	mTable.Load("Table.obj", "Table.mtl");	//テーブル
+	mKitchen.Load("kitchen.obj", "kitchen.mtl");	//キッチン
 
-	//爆発テクスチャ
-	TextureExp->Load("exp.tga");
+	
 
-	new CObj(&mBed, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
+	new CObj(&mBed, CVector(-55.0f, -6.0f, 30.0f), CVector(0.0f, 90.0f, 0.0f), CVector(20.0f, 25.0f, 20.0f));
 
-	new CObj(&mTable, CVector(-20.0f, -1.0f, 0.0f), CVector(), CVector(20.0f, 20.0f, 20.0f));
+	new CObj(&mTable, CVector(-20.0f, -1.0f, 0.0f), CVector(), CVector(30.0f, 20.0f, 20.0f));
 
-	new CObj(&mKitchen, CVector(50.0f, -1.0f, -20.0f), CVector(0.0f, -90.0f, 0.0f), CVector(8.0f, 8.0f, 10.0f));
+	new CObj(&mKitchen, CVector(50.0f, -1.0f, -20.0f), CVector(0.0f, -90.0f, 0.0f), CVector(8.0f, 10.0f, 10.0f));
+	//new CObj(&mKitchen, CVector(50.0f, -1.0f, 10.0f), CVector(0.0f, 180.0f, 0.0f), CVector(8.0f, 10.0f, 10.0f));
 
-	//new CObj(&mSofa, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
+	new CObj(&mSofa, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
 
 	
 
@@ -172,7 +168,7 @@ void CSceneGame::RenderMiniMap(){
 	glViewport(600, 450, 200, 150); //画面の描画エリアの指定
 	glLoadIdentity();
 	//視点調整必要
-	gluLookAt(0, 100, 0, 0, 0, 0, 0, 0, 1);
+	gluLookAt(0, 90, 0, 0, 0, 0, 0, 0, 1);
 	glDisable(GL_DEPTH_TEST);
 	//描画
 	CTaskManager::Get()->Render();
@@ -219,7 +215,7 @@ void CSceneGame::Update() {
 
 	frame++;
 	if (frame==300 || frame==500 || frame==700){
-		new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+		//new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	}
 	if (frame < 100 && frame % 5 == 0){
 
@@ -232,7 +228,7 @@ void CSceneGame::Update() {
 	CVector e, c, u;//視点、注視点、上方向
 	if (CPlayer::Down == FALSE){
 		//視点を求める
-		e = CVector(0.0f, 10.0f, -10.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 0.0f, 0.0f)*mPlayer.mMatrix;
 		//注視点を求める
 		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 		//上方向を求める
@@ -259,7 +255,8 @@ void CSceneGame::Update() {
 	}
 
 	//カメラの設定
-	Camera3D(e.mX, e.mY, e.mZ, c.mX, c.mY, c.mZ, u.mX, u.mY, u.mZ);
+	Camera.Set(e, c, u);
+	Camera.Render();
 
 	//背景描画(カメラの後ろ2Dの前に入れる）
 	//mSky.Render();
@@ -278,8 +275,6 @@ void CSceneGame::Update() {
 
 	//2D描画開始
 	Start2D(0, 800, 0, 600);
-
-	
 
 	//ゲームオーバー条件(バッテリー切れ）
 	if (mBatteryNow <= 0 || mTimeNow <= 0){
@@ -307,7 +302,7 @@ void CSceneGame::Update() {
 	frame2++;
 	if (frame2 < 40){
 		CText::DrawString("WAVE1", 325, 400, 15, 15);
-		CText::DrawString("CLEAR:5", 290, 300, 15, 15);
+		//CText::DrawString("CLEAR:5", 290, 300, 15, 15);
 		//frame2 = 0;
 	}
 

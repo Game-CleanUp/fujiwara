@@ -24,7 +24,7 @@
 
 #define RAND rand() % 100 - 50	//ランダム配置(-150~149)
 #define W	5.0f	//幅
-#define H	5.0f //高さ
+#define H	25.0f //高さ
 #define GAMECLEAR	50 //クリア条件
 
 /*

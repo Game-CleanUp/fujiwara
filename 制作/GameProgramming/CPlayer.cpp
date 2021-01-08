@@ -19,7 +19,7 @@ CSound CPlayer::Sound3;	//爆発音
 extern std::shared_ptr<CTexture>TextureExp(new CTexture());
 
 CPlayer::CPlayer()
-:mColBody(this, CVector(0.0f, 2.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 3.0f)
+:mColBody(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 2.0f)
 //サーチ
 , mSearch(this, CVector(0.0f, 0.0f, 5.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
 , mVelocityJump(0.0f)
@@ -28,9 +28,12 @@ CPlayer::CPlayer()
 
 	mColBody.mTag = CCollider::EBODY;
 	mSearch.mTag = CCollider::ESEARCH;
-	Sound.Load("jump.wav");
-	Sound2.Load("act.wav");
-	Sound.Load("Bomb.wav");
+	Sound.Load("jump.wav");	//ジャンプ音
+	Sound2.Load("act.wav");	//移動音
+	Sound.Load("Bomb.wav");	//爆発音
+
+	//爆発テクスチャ
+	TextureExp->Load("exp.tga");
 }
 
 void CPlayer::TaskCollision()
@@ -81,11 +84,11 @@ void CPlayer::Update(){
 						}
 					}
 					//ジャンプ
-					if (CKey::Once('J') && mVelocityJump == 0){
+					/*if (CKey::Once('J') && mVelocityJump == 0){
 						mVelocityJump = JUMPV0;
 						Jump = TRUE;
 						Sound.Play();
-					}
+					}*/
 
 					//回避
 					if (CKey::Once('H')){
@@ -177,8 +180,8 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 				frame2++;
 				Down = TRUE;
 
-				//エフェクト生成
-				new CEffect(mPosition, 5.0f, 5.0f, TextureExp, 4, 4, 1);
+				//エフェクト生成(爆発)
+				new CEffect(mPosition, 8.0f, 8.0f, TextureExp, 4, 4, 1);
 
 				//爆発音再生
 				Sound3.Play();
@@ -224,7 +227,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 				}
 
 				//リトライ(ホームに戻る)
-				if (frame2 > RETRY){
+				if (frame2 >= RETRY){
 					//初期位置
 					mPosition = CVector(-70.0f, 10.0f, 50.0f);
 					mRotation = CVector(0.0f, -225.0f, 0.0f);
