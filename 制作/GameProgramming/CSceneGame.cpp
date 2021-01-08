@@ -62,7 +62,7 @@ void CSceneGame::Init() {
 	mPlayer.mpModel = &mCube;
 
 	mSofa.Load("sofa.obj", "sofa.mtl");
-	//mBed.Load("bed.obj", "bed.mtl");
+	mBed.Load("Bed.obj", "Bed.mtl");
 	mDog.Load("Dog.obj", "Dog.mtl");
 	mTable.Load("Table.obj", "Table.mtl");
 	mKitchen.Load("kitchen.obj", "kitchen.mtl");
@@ -70,13 +70,14 @@ void CSceneGame::Init() {
 	//爆発テクスチャ
 	TextureExp->Load("exp.tga");
 
-//	new CObj(&mSofa, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
+	new CObj(&mBed, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
 
 	new CObj(&mTable, CVector(-20.0f, -1.0f, 0.0f), CVector(), CVector(20.0f, 20.0f, 20.0f));
 
 	new CObj(&mKitchen, CVector(50.0f, -1.0f, -20.0f), CVector(0.0f, -90.0f, 0.0f), CVector(8.0f, 8.0f, 10.0f));
 
-	//new CObj(&mPlant, CVector(-20.0f, 0.0f, -10.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+	//new CObj(&mSofa, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
+
 	
 
 	/* 乱数系列の変更 */
