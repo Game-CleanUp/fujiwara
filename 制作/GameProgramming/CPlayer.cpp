@@ -1,5 +1,6 @@
 #include"CPlayer.h"
 #include"CSceneGame.h"
+#include"CEffect.h"
 
 int CPlayer::clear = 0;
 int CPlayer::Dash = 0;
@@ -12,6 +13,9 @@ CPlayer *CPlayer::mpPlayer = 0;
 
 CSound CPlayer::Sound;
 CSound CPlayer::Sound2;
+
+//スマートポインタの外部参照
+extern std::shared_ptr<CTexture>TextureExp;
 
 CPlayer::CPlayer()
 :mColBody(this, CVector(0.0f, 2.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 3.0f)
@@ -170,6 +174,8 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 				CSceneGame::mBatteryNow++;
 				frame2++;
 				Down = TRUE;
+				//エフェクト生成
+				new CEffect(mPosition, 1.0f, 1.0f, TextureExp, 4, 4, 1);
 				//持っているゴミを周りに出現させる
 				switch (CGomi::GomiCount){
 

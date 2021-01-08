@@ -11,6 +11,7 @@
 #include"CMoney.h"
 #include"CSound.h"
 
+
 #define G       9.8f/60.0f//重力加速度 9.8f
 #define JUMPV0  2.5f	//ジャンプ初速
 #define R		7.0f	//半径
