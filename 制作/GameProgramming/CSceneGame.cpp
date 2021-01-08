@@ -70,11 +70,11 @@ void CSceneGame::Init() {
 	new CObj(&mTable, CVector(-20.0f, -1.0f, 0.0f), CVector(), CVector(30.0f, 20.0f, 20.0f));
 
 	new CObj(&mKitchen, CVector(50.0f, -1.0f, -20.0f), CVector(0.0f, -90.0f, 0.0f), CVector(8.0f, 10.0f, 10.0f));
-	//new CObj(&mKitchen, CVector(50.0f, -1.0f, 10.0f), CVector(0.0f, 180.0f, 0.0f), CVector(8.0f, 10.0f, 10.0f));
 
-	new CObj(&mSofa, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
+	//new CObj(&mSofa, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
 
 	
+
 
 	/* óêêîånóÒÇÃïœçX */
 	srand((unsigned)time(NULL));

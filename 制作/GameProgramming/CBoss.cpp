@@ -5,7 +5,7 @@ int CBoss::tracking = 0;
 CSound CBoss::Sound;
 
 CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
-:mColBody(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 5.0f)
+:mColBody(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 3.0f)
 , mSearch(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 50.0f)	
 , frame(0), state(0), mVelocityJump(0.0f)
 {
@@ -108,6 +108,18 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 			if (CCollider::Collision(m, y)){
 				//プレイヤーの方向
 				CVector dir = y->mpParent->mPosition - mPosition;
+				/*CVector left = CVector(1.0f, 0.0f, 0.0f)  * CMatrix().RotateY(mRotation.mY);
+				CVector right = CVector(-1.0f, 0.0f, 0.0f) * CMatrix().RotateY(mRotation.mY);
+
+				if (left.Dot(dir) > 0.0f){
+					mRotation.mY += 2.0f;
+				}
+				else if (left.Dot(dir) < 0.0f){
+					mRotation.mY -= 2.0f;
+				}
+
+				mPosition = CVector(0.0f, 0.0f, 0.1f)*mMatrix;*/
+
 				//正規化（長さを1にする）Normalize()
 				mPosition = mPosition + dir.Normalize() * 0.5;
 				Sound.Play();
