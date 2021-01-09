@@ -22,7 +22,6 @@ public:
 	int mLife;
 
 	CBullet();
-	CBullet(CModel *model, CVector position, CVector rotation, CVector scale);
 	//XV
 	void Update();
 	//Õ“Ëˆ—

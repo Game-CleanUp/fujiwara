@@ -18,8 +18,8 @@
 #define RETRY	50		//復帰時間
 #define DROP	15.0f	//ゴミのドロップ位置
 #define DROP_RAND	rand() % 360	//ゴミのドロップ方向
-#define FORWARD	1.0f	//前進
-#define DASH	1.3f	//ダッシュ
+#define FORWARD	0.7f	//前進
+#define DASH	1.0f	//ダッシュ
 #define DIR		5.0f	//方向転換
 #define BACK	-1.0f	//後退
 
@@ -40,8 +40,6 @@ public:
 	CCollider mSearch;
 	static CPlayer *mpPlayer;
 	static int clear;
-	static int Dash;
-	static int Jump;
 	static int Down;
 
 	int frame;	//効果時間

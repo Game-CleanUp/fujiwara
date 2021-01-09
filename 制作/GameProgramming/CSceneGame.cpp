@@ -15,8 +15,6 @@ int CSceneGame::frame2 = 0;
  CSound CSceneGame::Sound;
  CSound CSceneGame::Sound2;
 
- CModel CSceneGame::mBullet;	//弾モデル
-
 CSceneGame::~CSceneGame(){
 	
 	//シーン初期化
@@ -39,7 +37,6 @@ void CSceneGame::Init() {
 
 	glMatrixMode(GL_PROJECTION);	//行列をプロジェクションモードへ変更
 	glLoadIdentity();				//行列を初期化
-	//	gluOrtho2D(-width / 2, width / 2, -height / 2, height / 2);	//2Dの画面を設定
 	gluPerspective(75.0, (double)800 / (double)600, 1.0, 10000.0);	//3Dの画面を設定
 
 	glMatrixMode(GL_MODELVIEW);		//行列をモデルビューモードへ変更
@@ -57,9 +54,7 @@ void CSceneGame::Init() {
 	mCube.Load("cube.obj", "cube.mtl");
 	mPlane.Load("plane.obj", "plane.mtl");
 	mSphere.Load("sphere.obj", "sphere.mtl");
-	mPlayer.mpModel = &mSphere;
 
-	mBullet.Load("sphere.obj", "sphere.mtl");
 
 	mSofa.Load("sofa.obj", "sofa.mtl");	//ソファ
 	mBed.Load("cama.obj", "cama.mtl");	//ベッド
@@ -67,7 +62,7 @@ void CSceneGame::Init() {
 	mTable.Load("Table.obj", "Table.mtl");	//テーブル
 	mKitchen.Load("kitchen.obj", "kitchen.mtl");	//キッチン
 
-	
+	mPlayer.mpModel = &mSphere;	//プレイヤーモデル
 
 	new CObj(&mBed, CVector(-55.0f, -6.0f, 30.0f), CVector(0.0f, 90.0f, 0.0f), CVector(20.0f, 25.0f, 20.0f));
 
@@ -75,7 +70,7 @@ void CSceneGame::Init() {
 
 	new CObj(&mKitchen, CVector(50.0f, -1.0f, -20.0f), CVector(0.0f, -90.0f, 0.0f), CVector(8.0f, 10.0f, 10.0f));
 
-	//new CObj(&mSofa, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
+	new CObj(&mSofa, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
 
 	
 
@@ -94,8 +89,8 @@ void CSceneGame::Init() {
 
 	//上
 	new CObj(&mCube, CVector(80.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 60.0f));
-	/*new CImage(kabe, CVector(74.1f, 0.0f, -50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(74.1f, 0.0f, 50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));*/
+	new CImage(kabe, CVector(74.1f, 0.0f, -50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(20.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(74.1f, 0.0f, 50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(20.0f, 50.0f, 0.0f));
 	
 
 	//下
@@ -146,7 +141,7 @@ void CSceneGame::Init() {
 	new CEnemy2(&mSphere, CVector(-30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 */
 	//敵(追尾)
-	new CBoss(&mDog, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(1.5f, 1.5f, 1.5f));
+	new CBoss(&mDog, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	
 	//ホーム
 	new CHome(&mCube, CVector(-75.0f, -0.7f, 60.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));	
@@ -189,7 +184,7 @@ void CSceneGame::Update() {
 	
 
 	if (mBatteryNow >= 0 && CHome::home == 0){
-		mBatteryNow--;
+		mBatteryNow -= 2;
 	}
 	//最大値を超えない
 	else if (mBatteryMax >= mBatteryNow){
@@ -200,15 +195,7 @@ void CSceneGame::Update() {
 	if (mBatteryNow < 0){
 		mBatteryNow = 0;
 	}
-	//ダッシュ時
-	if (CPlayer::Dash == TRUE){
-		mBatteryNow -= 3;
-	}
-	//ジャンプ時
-	if (CPlayer::Jump == TRUE){
-		mBatteryNow -= 10;
-	}
-
+	
 	//制限時間
 	if (mBatteryNow > 0){
 		mTimeNow--;
@@ -221,12 +208,13 @@ void CSceneGame::Update() {
 
 	frame++;
 	if (frame==300 || frame==500 || frame==700){
-		//new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+		new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
 	}
-	if (frame < 100 && frame % 5 == 0){
+	if (frame < 100 && frame % 50 == 0){
 
 		//ゴミの生成
 		//new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+		//new CObj(&mCube, CVector(rand() % 100 - 50, 0.0f, rand() % 100 - 50), CVector(), CVector(2.0f, 5.0f, 2.0f));
 	}
 	
 	CTaskManager::Get()->Update();
@@ -330,6 +318,9 @@ void CSceneGame::Update() {
 
 	//}
 	CText::DrawString("BATTERY", 17, 50, 11, 11);
+	CText::DrawString("[", 15, 25, 11, 11);
+	CText::DrawString("]", 305, 25, 11, 11);
+
 
 	char buf[10];
 

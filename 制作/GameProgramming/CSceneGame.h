@@ -53,8 +53,6 @@ public:
 	CModel mDog;
 	CModel mKitchen;
 
-	static CModel mBullet;
-
 	//次のシーンの取得
 	EScene GetNextScene();
 	//ステージ数

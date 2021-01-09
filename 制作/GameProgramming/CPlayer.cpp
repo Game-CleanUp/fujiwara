@@ -3,11 +3,9 @@
 #include"CEffect.h"
 
 int CPlayer::clear = 0;
-int CPlayer::Dash = 0;
-int CPlayer::Jump = 0;
 int CPlayer::Down = 0;
 int CPlayer::levelMax = 100;
-int CPlayer::levelNow = 1;
+int CPlayer::levelNow = 73;
 int CPlayer::PlayerLevel = 1;
 CPlayer *CPlayer::mpPlayer;
 
@@ -65,39 +63,29 @@ void CPlayer::Update(){
 						//ダッシュ
 						if (CKey::Push(VK_SHIFT)){
 							mPosition = CVector(0.0f, 0.0f, DASH)*mMatrix;
-							Dash = TRUE;
-						}
-						else{
-							Dash = FALSE;
+							CSceneGame::mBatteryNow -= 3;
 						}
 					}
 
 					if (CKey::Push('S')){
 						mPosition = CVector(0.0f, 0.0f, BACK)*mMatrix;
-						//ダッシュ
-						if (CKey::Push(VK_SHIFT)){
-							mPosition = CVector(0.0f, 0.0f, -0.8f)*mMatrix;
-							Dash = TRUE;
-						}
-						else{
-							Dash = FALSE;
-						}
 					}
 
 					//スペースキー入力で発射
-					if (CKey::Push(VK_SPACE)){
-						CBullet*bullet = new CBullet();
-						bullet->Set(0.5f, 1.5f);
-						bullet->mPosition = CVector(0.0f, 0.0f, 1.0f)*mMatrix;
-						bullet->mRotation = mRotation;
-						bullet->mTag = CCharacter::EBULLET;
-						CSceneGame::mBatteryNow -= 5;	//バッテリー消費
+					if (mVelocityJump == 0){
+						if (CKey::Push(VK_SPACE)){
+							CBullet*bullet = new CBullet();
+							bullet->Set(0.5f, 1.5f);
+							bullet->mPosition = CVector(0.0f, 0.0f, 1.0f)*mMatrix;
+							bullet->mRotation = mRotation;
+							bullet->mTag = CCharacter::EBULLET;
+							CSceneGame::mBatteryNow -= 5;	//バッテリー消費
+						}
 					}
-
 					//ジャンプ
 					if (CKey::Once('J') && mVelocityJump == 0){
 						mVelocityJump = JUMPV0;
-						Jump = TRUE;
+						CSceneGame::mBatteryNow -= 10 * 60;
 						Sound.Play();
 					}
 
@@ -124,7 +112,7 @@ void CPlayer::Update(){
 							CGomi::GomiCount = 0;
 							CSceneGame::mTimeNow += 5 * 60;
 							//経験値獲得
-							levelNow += 100;
+							levelNow += 20;
 							if (levelNow >= levelMax){
 								//経験値を初期値にする
 								levelNow = 1;
@@ -170,7 +158,6 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 			if (CCollider::CollisionTriangleSphere(y, m, &adjust)){
 				//着地
 				mVelocityJump = 0;
-				Jump = FALSE;
 			}
 
 			//位置の更新
