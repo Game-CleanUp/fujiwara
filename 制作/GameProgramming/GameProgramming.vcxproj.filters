@@ -84,9 +84,6 @@
     <ClCompile Include="CObj.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CEnemy.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CSceneTitle.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -133,6 +130,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CBullet.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemy.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -209,9 +209,6 @@
     <ClInclude Include="CObj.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CEnemy.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CSceneTitle.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -255,6 +252,9 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CBullet.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemy.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
