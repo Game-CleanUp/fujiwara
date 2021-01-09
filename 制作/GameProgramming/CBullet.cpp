@@ -2,14 +2,25 @@
 #include"CSceneGame.h"
 
 //デフォルトコンストラクタ
-CBullet::CBullet()
+CBullet::CBullet(CModel *model, CVector position, CVector rotation, CVector scale)
 :mCollider(this, CVector(0.0f, 0.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 1.0f)
 , mLife(50)
 {
 	mpModel = &CSceneGame::mBullet;	//弾モデル
+	mpModel = model;
+	mPosition = position;
+	mRotation = rotation;
+	mScale = scale;
 	mCollider.mTag = CCollider::EBULLET;
 }
 
+CBullet::CBullet()
+:mCollider(this, CVector(0.0f, 0.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 1.0f)
+, mLife(30)
+{
+	mpModel = &CSceneGame::mBullet;	//弾モデル
+	mCollider.mTag = CCollider::EBULLET;
+}
 
 //幅と奥行きの設定
 //Set(幅、奥行き)
@@ -17,7 +28,7 @@ void CBullet::Set(float w, float d){
 	//スケール設定
 	mScale = CVector(1.0f, 1.0f, 1.0f);
 	//三角形の頂点設定
-	mT.SetVertex(CVector(w, 0.0f, 0.0f), CVector(0.0f, 0.0f, -d), CVector(-w, 0.0f, 0.0f));
+	mT.SetVertex(CVector(w, 0.0f, 0.0f), CVector(-w, 0.0f, 0.0f), CVector(0.0f, 0.0f, d));
 	//三角形の法線設定
 	mT.SetNormal(CVector(0.0f, 1.0f, 0.0f));
 }
@@ -27,8 +38,8 @@ void CBullet::Update(){
 	//生存時間の判定
 	if (mLife-- > 0){
 		CCharacter::Update();
-		//位置更新
-		mPosition = CVector(0.0f, 0.0f, 1.0f)*mMatrix;
+		//弾速
+		mPosition = CVector(0.0f, 0.0f, 1.5f)*mMatrix;
 	}
 	else{
 		//無効にする

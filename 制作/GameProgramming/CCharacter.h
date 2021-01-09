@@ -27,6 +27,8 @@ public:
 		EENEMY, //敵
 		EOUT,
 		ESUI,   //吸い寄せ
+		EBULLET,//プレイヤー弾
+
 	};
 	ETag mTag;
 //	CCharacter *mpParent;	//親

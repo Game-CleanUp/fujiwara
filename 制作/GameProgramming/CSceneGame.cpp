@@ -57,7 +57,7 @@ void CSceneGame::Init() {
 	mCube.Load("cube.obj", "cube.mtl");
 	mPlane.Load("plane.obj", "plane.mtl");
 	mSphere.Load("sphere.obj", "sphere.mtl");
-	mPlayer.mpModel = &mCube;
+	mPlayer.mpModel = &mSphere;
 
 	mBullet.Load("sphere.obj", "sphere.mtl");
 
@@ -234,7 +234,7 @@ void CSceneGame::Update() {
 	CVector e, c, u;//視点、注視点、上方向
 	if (CPlayer::Down == FALSE){
 		//視点を求める
-		e = CVector(0.0f, 0.0f, 0.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 3.0f, -3.0f)*mPlayer.mMatrix;
 		//注視点を求める
 		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 		//上方向を求める

@@ -20,6 +20,7 @@ public:
 		EPOWER,//パワーアップ
 		EHOME,//充電エリア
 		EBULLET,//プレイヤー弾
+		EBOMB,//爆弾
 	
 	};
 	ETag mTag;

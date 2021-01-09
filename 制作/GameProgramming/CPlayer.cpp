@@ -87,18 +87,19 @@ void CPlayer::Update(){
 					//スペースキー入力で発射
 					if (CKey::Push(VK_SPACE)){
 						CBullet*bullet = new CBullet();
-						bullet->Set(0.1f, 1.5f);
-						bullet->mPosition = CVector(0.0f, 2.0f, 1.0f)*mMatrix;
+						bullet->Set(0.5f, 1.5f);
+						bullet->mPosition = CVector(0.0f, 0.0f, 1.0f)*mMatrix;
 						bullet->mRotation = mRotation;
-						
+						bullet->mTag = CCharacter::EBULLET;
+						CSceneGame::mBatteryNow -= 5;	//バッテリー消費
 					}
 
 					//ジャンプ
-					/*if (CKey::Once('J') && mVelocityJump == 0){
+					if (CKey::Once('J') && mVelocityJump == 0){
 						mVelocityJump = JUMPV0;
 						Jump = TRUE;
 						Sound.Play();
-					}*/
+					}
 
 					//回避
 					if (CKey::Once('H')){
