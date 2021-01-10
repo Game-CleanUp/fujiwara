@@ -2,9 +2,6 @@
 #include "CKey.h"
 
 void CSceneTitle::Init() {
-	//テクスチャファイルを読み込む
-	//////フォントの設定
-	////CText::mFont.Load("FontG.tga");
 
 	//テキストフォントの読み込みと設定
 	CText::mFont.Load("FontG.tga");
@@ -39,8 +36,8 @@ void CSceneTitle::Update() {
 	Start2D(0, 800, 0, 600);
 
 	////文字列の描画
-	CText::DrawString("TITLE", 200, 300, 16, 16);
-	CText::DrawString("PUSH ENTER KEY", 200, 380, 16, 16);
+	CText::DrawString("CLEAN UP", 150, 400, 35, 35);
+	CText::DrawString("PUSH ENTER KEY", 165, 200, 17, 17);
 
 	//2D描画終了
 	End2D();

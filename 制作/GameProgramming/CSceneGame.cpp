@@ -70,7 +70,7 @@ void CSceneGame::Init() {
 
 	new CObj(&mKitchen, CVector(50.0f, -1.0f, -20.0f), CVector(0.0f, -90.0f, 0.0f), CVector(8.0f, 10.0f, 10.0f));
 
-	new CObj(&mSofa, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
+	//new CObj(&mSofa, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
 
 	
 
@@ -89,8 +89,8 @@ void CSceneGame::Init() {
 
 	//è„
 	new CObj(&mCube, CVector(80.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 60.0f));
-	new CImage(kabe, CVector(74.1f, 0.0f, -50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(20.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(74.1f, 0.0f, 50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(20.0f, 50.0f, 0.0f));
+	/*new CImage(kabe, CVector(74.1f, 0.0f, -50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(20.0f, 50.0f, 0.0f));
+	new CImage(kabe, CVector(74.1f, 0.0f, 50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(20.0f, 50.0f, 0.0f));*/
 	
 
 	//â∫
