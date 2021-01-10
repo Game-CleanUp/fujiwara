@@ -76,7 +76,7 @@ void CPlayer::Update(){
 						if (CKey::Push(VK_SPACE)){
 							CBullet*bullet = new CBullet();
 							bullet->Set(0.5f, 1.5f);
-							bullet->mPosition = CVector(0.0f, 0.0f, 1.0f)*mMatrix;
+							bullet->mPosition = CVector(0.0f, 0.0f, 0.0f)*mMatrix;
 							bullet->mRotation = mRotation;
 							bullet->mTag = CCharacter::EBULLET;
 							CSceneGame::mBatteryNow -= 5;	//バッテリー消費
@@ -169,6 +169,10 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 
 		break;
 	}
+	if (Down == TRUE){
+		//爆発音再生
+		Sound3.Play();
+	}
 
 	//ボスとの衝突
 	if (m->mTag == CCollider::EBODY){
@@ -180,9 +184,9 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 
 				//エフェクト生成(爆発)
 				new CEffect(mPosition, 8.0f, 8.0f, TextureExp, 4, 4, 1);
-
+				
 				//爆発音再生
-				Sound3.Play();
+				//Sound3.Play();
 
 				//持っているゴミを周りに出現させる
 				switch (CGomi::GomiCount){

@@ -12,7 +12,7 @@ public:
 	CCollider mColBody;
 	//Õ“Ë”»’è
 	void Collision(CCollider*m, CCollider*y);
-
+	void TaskCollision();
 };
 
 

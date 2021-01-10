@@ -3,8 +3,7 @@
 
 //課題7
 CEnemy2::CEnemy2(CModel*model, CVector position, CVector rotation, CVector scale)
-:mColBody(this, CVector(0.0f, 0.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f),
-CVector(1.0f, 1.0f, 1.0f), 1.0f)
+:mColBody(this, CVector(0.0f, 0.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 5.0f)
 {
 	//モデル、位置、回転、拡縮を設定する
 	mpModel = model; //モデルの設定
@@ -14,6 +13,15 @@ CVector(1.0f, 1.0f, 1.0f), 1.0f)
 
 	mColBody.mTag = CCollider::EBOMB;
 }
+
+void CEnemy2::TaskCollision()
+{
+	mColBody.ChangePriority();
+
+	CCollisionManager::Get()->Collision(&mColBody);
+
+}
+
 
 //課題8
 void CEnemy2::Collision(CCollider*m, CCollider*y){
@@ -27,6 +35,18 @@ void CEnemy2::Collision(CCollider*m, CCollider*y){
 		}
 	}
 
+	if (m->mTag == CCollider::EBOMB){
+		if (y->mTag == CCollider::EBULLET){
+			if (CCollider::Collision(m, y)){
+				//プレイヤーの方向
+				CVector dir = y->mpParent->mPosition - mPosition;
+				//正規化（長さを1にする）Normalize()
+				mPosition = mPosition - dir.Normalize() * 0.5;
+				//mEnabled = false;
+
+			}
+		}
+	}
 
 
 	//引き寄せ

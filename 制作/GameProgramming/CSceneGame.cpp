@@ -88,58 +88,22 @@ void CSceneGame::Init() {
 	
 
 	//上
-	new CObj(&mCube, CVector(80.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 60.0f));
-	/*new CImage(kabe, CVector(74.1f, 0.0f, -50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(20.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(74.1f, 0.0f, 50.0f), CVector(180.0f, 90.0f, -90.0f), CVector(20.0f, 50.0f, 0.0f));*/
+	new CObj(&mCube, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 80.0f));
 	
-
 	//下
-	new CObj(&mCube, CVector(-80.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 60.0f));
-	/*new CImage(kabe, CVector(-74.9f, 0.0f, -50.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(-74.9f, 0.0f, 50.0f), CVector(180.0f, -90.0f, -90.0f), CVector(50.0f, 50.0f, 0.0f));*/
+	new CObj(&mCube, CVector(-100.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 80.0f));
 
 	//右
-	new CObj(&mCube, CVector(0.0f, 0.0f, 60.0f), CVector(), CVector(80.0f, H, W));
-	/*new CImage(kabe, CVector(65.0f, 0.0f, 54.9f), CVector(-180.0f, 0.0f, 0.0f), CVector(65.0f, 50.0f, 0.0f));
-	new CImage(kabe, CVector(-65.0f, 0.0f, 54.9f), CVector(180.0f, 0.0f, 0.0f), CVector(65.0f, 50.0f, 0.0f));*/
-
-	//左
-	new CObj(&mCube, CVector(0.0f, 0.0f, -60.0f), CVector(), CVector(80.0f, H, W));
-	/*new CImage(kabe, CVector(65.0f, 0.0f, -54.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 65.0f, 0.0f));
-	new CImage(kabe, CVector(-65.0f, 0.0f, -54.9f), CVector(180.0f, -180.0f, -90.0f), CVector(50.0f, 65.0f, 0.0f));
-	*/
+	new CObj(&mCube, CVector(0.0f, 0.0f, 80.0f), CVector(), CVector(100.0f, H, W));
 	
-
-	/*
-	//枠
-	new CObj(&mCube, CVector(-95.0f, 0.0f, -150.0f), CVector(), CVector(90.0f, H, W));
-
-	new CObj(&mCube, CVector(-190.0f, 0.0f, -115.0f), CVector(), CVector(W, H, 40.0f));
-
 	//左
-	new CObj(&mCube, CVector(-235.0f, 0.0f, -70.0f), CVector(), CVector(50.0f, H, W));
+	new CObj(&mCube, CVector(0.0f, 0.0f, -80.0f), CVector(), CVector(100.0f, H, W));
 
-	//下
-	new CObj(&mCube, CVector(-290.0f, 0.0f, -15.0f), CVector(), CVector(W, H, 60.0f));
-
-	//右
-	new CObj(&mCube, CVector(-235.0f, 0.0f, 40.0f), CVector(), CVector(50.0f, H, W));
-
-	//入口左
-	new CObj(&mCube, CVector(-190.0f, 0.0f, -45.0f), CVector(), CVector(W, H, 20.0f));
-
-	//入口右
-	new CObj(&mCube, CVector(-190.0f, 0.0f, 20.0f), CVector(), CVector(W, H, 20.0f));
-
-	new CObj(&mCube, CVector(-250.0f, 0.0f, 105.0f), CVector(), CVector(W, H, 60.0f));
-
-	new CObj(&mCube, CVector(-200.0f, 0.0f, 160.0f), CVector(), CVector(45.0f, H, W));
-	*/
 
 	//敵(ダメージが入る)
-	/*new CEnemy2(&mSphere, CVector(-20.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
-	new CEnemy2(&mSphere, CVector(-30.0f, 0.0f, 0.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
-*/
+	new CEnemy2(&mCube, CVector(-20.0f, 0.0f, 20.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
+	new CEnemy2(&mCube, CVector(-30.0f, 0.0f, 20.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
+
 	//敵(追尾)
 	new CBoss(&mDog, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	
@@ -155,8 +119,8 @@ void CSceneGame::Init() {
 	//テクスチャ(床）
 	std::shared_ptr<CTexture>yuka(new CTexture("yuka.tga"));
 	//地面
-	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(80.0f, 1.0f, 60.0f));
-	new CImage(yuka, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(80.0f, 60.0f, 1.0f));
+	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(100.0f, 1.0f, 80.0f));
+	new CImage(yuka, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(100.0f, 80.0f, 1.0f));
 
 	//new CObj(&mPlane, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(200.0f, 1.0f, 200.0f));
 
@@ -210,10 +174,10 @@ void CSceneGame::Update() {
 	if (frame==300 || frame==500 || frame==700){
 		new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
 	}
-	if (frame < 100 && frame % 50 == 0){
+	if (frame < 100 && frame % 10 == 0){
 
 		//ゴミの生成
-		//new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+		new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
 		//new CObj(&mCube, CVector(rand() % 100 - 50, 0.0f, rand() % 100 - 50), CVector(), CVector(2.0f, 5.0f, 2.0f));
 	}
 	
@@ -222,7 +186,7 @@ void CSceneGame::Update() {
 	CVector e, c, u;//視点、注視点、上方向
 	if (CPlayer::Down == FALSE){
 		//視点を求める
-		e = CVector(0.0f, 3.0f, -3.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 2.0f, -1.0f)*mPlayer.mMatrix;
 		//注視点を求める
 		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 		//上方向を求める
@@ -231,7 +195,7 @@ void CSceneGame::Update() {
 	//ダメージリアクション
 	else{
 		//視点を求める
-		e = CVector(0.0f, 10.0f, -20.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 30.0f, -10.0f)*mPlayer.mMatrix;
 		//注視点を求める
 		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 		//上方向を求める
@@ -280,6 +244,10 @@ void CSceneGame::Update() {
 		if (CKey::Push(VK_RETURN)){
 			mScene = ETITLE;
 			Sound.Stop();	//BGM終了
+			mTimeNow = mTimeMax;
+			mBatteryNow = mBatteryMax;
+			CGomi::GomiCount = 0;
+			frame = 0;
 		}
 	}
 
