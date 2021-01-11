@@ -129,7 +129,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 				mPosition = CVector(0.0f, 0.0f, 0.1f)*mMatrix;*/
 
 				//ê≥ãKâªÅií∑Ç≥Ç1Ç…Ç∑ÇÈÅjNormalize()
-				mPosition = mPosition + dir.Normalize() * 0.5;
+				mPosition = mPosition + dir.Normalize() * 0.3;
 				Sound.Play();
 				tracking = TRUE;
 			}

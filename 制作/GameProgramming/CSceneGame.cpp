@@ -46,7 +46,7 @@ void CSceneGame::Init() {
 
 	//テキストフォントの読み込みと設定
 	CText::mFont.Load("FontG.tga");
-	CText::mFont.SetRowCol(1, 4096 / 64);
+	CText::mFont.SetRowCol(1, 4096 / 64);	//画像の横幅/1文字の横幅
 
 	mSky.Load("sky.obj", "sky.mtl");
 	mRock.Load("Rock1.obj", "Rock1.mtl");
