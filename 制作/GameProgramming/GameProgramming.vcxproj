@@ -93,7 +93,7 @@
     <ClCompile Include="CCollisionManager.cpp" />
     <ClCompile Include="CEffect.cpp" />
     <ClCompile Include="CEnemy.cpp" />
-    <ClCompile Include="CEnemy2.cpp" />
+    <ClCompile Include="CBlock.cpp" />
     <ClCompile Include="CGaugeBack.cpp" />
     <ClCompile Include="CHome.cpp" />
     <ClCompile Include="CImage.cpp" />
@@ -134,7 +134,7 @@
     <ClInclude Include="CCollisionManager.h" />
     <ClInclude Include="CEffect.h" />
     <ClInclude Include="CEnemy.h" />
-    <ClInclude Include="CEnemy2.h" />
+    <ClInclude Include="CBlock.h" />
     <ClInclude Include="CGaugeBack.h" />
     <ClInclude Include="CHome.h" />
     <ClInclude Include="CImage.h" />

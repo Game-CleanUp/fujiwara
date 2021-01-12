@@ -127,7 +127,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 				}
 
 				mPosition = CVector(0.0f, 0.0f, 0.1f)*mMatrix;*/
-
+	
 				//正規化（長さを1にする）Normalize()
 				mPosition = mPosition + dir.Normalize() * 0.3;
 				Sound.Play();
@@ -149,7 +149,6 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 				CVector dir = y->mpParent->mPosition - mPosition;
 				//正規化（長さを1にする）Normalize()
 				mPosition = mPosition + dir.Normalize() * 0.5;	//機体から遠ざける
-				//mEnabled = false;
 			}
 		}
 	}

@@ -5,6 +5,7 @@
 #include"CCharacter.h"
 #include"CCollider.h"
 #include"CSound.h"
+#include"math.h"
 
 #define TURN 13 //Œü‚«
 #define SPEED -0.1f	//ˆÚ“®‘¬“x

@@ -72,26 +72,32 @@ void CPlayer::Update(){
 					}
 
 					//スペースキー入力で発射
-					if (mVelocityJump == 0){
+					if (mVelocityJump == 0){	//ジャンプ中無効
 						if (CKey::Push(VK_SPACE)){
 							CBullet*bullet = new CBullet();
 							bullet->Set(0.5f, 1.5f);
 							bullet->mPosition = CVector(0.0f, 0.0f, 0.0f)*mMatrix;
 							bullet->mRotation = mRotation;
 							bullet->mTag = CCharacter::EBULLET;
-							CSceneGame::mBatteryNow -= 5;	//バッテリー消費
+							CSceneGame::mBatteryNow -= 1;	//バッテリー消費
 						}
 					}
 					//ジャンプ
 					if (CKey::Once('J') && mVelocityJump == 0){
 						mVelocityJump = JUMPV0;
-						CSceneGame::mBatteryNow -= 10 * 60;
+						CSceneGame::mBatteryNow -= 5 * 60;	//バッテリー消費
 						Sound.Play();
+					}
+					if (CKey::Push('Q')){
+						mRotation.mX -= 0.5f;
+					}
+					else{
+						mRotation.mX = 0;
 					}
 
 					//回避
 					if (CKey::Once('H')){
-						mSearch.mRadius = R - 7.0f;
+						//mSearch.mRadius = mEnabled;
 					}
 
 					//アイテム使用(パワー)
@@ -110,7 +116,7 @@ void CPlayer::Update(){
 						if (CKey::Once('E')){
 							clear = clear + CGomi::GomiCount;
 							CGomi::GomiCount = 0;
-							CSceneGame::mTimeNow += 5 * 60;
+							CSceneGame::mTimeNow += 3 * 60;	//タイム加算
 							//経験値獲得
 							levelNow += 20;
 							if (levelNow >= levelMax){
@@ -145,6 +151,7 @@ void CPlayer::Render(){
 
 
 void CPlayer::Collision(CCollider*m, CCollider*y){
+
 	if (m->mTag == CCollider::ESEARCH){
 		return;
 	}
@@ -178,13 +185,14 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::EBODY){
 		if (y->mTag == CCollider::EBODY2){
 			if (CCollider::Collision(m, y)){
+
 				CSceneGame::mBatteryNow++;
-				frame2++;
+				frame2++;	//復帰までの時間
 				Down = TRUE;
 
 				//エフェクト生成(爆発)
-				new CEffect(mPosition, 8.0f, 8.0f, TextureExp, 4, 4, 1);
-				
+				new CEffect(mPosition, 3.0f, 3.0f, TextureExp, 4, 4, 1);
+
 				//爆発音再生
 				//Sound3.Play();
 

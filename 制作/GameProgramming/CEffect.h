@@ -2,12 +2,15 @@
 #define CEFFECT_H
 //ビルボードクラスのインクルード
 #include "CBillBoard.h"
+
 /*
 エフェクトクラス
 テクスチャのアニメーション
 */
+
 class CEffect : public CBillBoard {
 public:
+
 	//行数
 	int mRows;
 	//列数

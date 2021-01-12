@@ -36,7 +36,7 @@ void CSceneTitle::Update() {
 	Start2D(0, 800, 0, 600);
 
 	////•¶š—ñ‚Ì•`‰æ
-	CText::DrawString("CLEAN UP", 150, 400, 35, 35);
+	//CText::DrawString("CLEAN UP", 150, 400, 35, 35);
 	CText::DrawString("PUSH ENTER KEY", 165, 200, 17, 17);
 
 	//2D•`‰æI—¹

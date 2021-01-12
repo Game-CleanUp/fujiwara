@@ -101,33 +101,28 @@ void CSceneGame::Init() {
 
 
 	//敵(ダメージが入る)
-	new CEnemy2(&mCube, CVector(-20.0f, 0.0f, 20.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
+	new CEnemy2(&mCube, CVector(-20.0f, 0.0f, 40.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 	new CEnemy2(&mCube, CVector(-30.0f, 0.0f, 20.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 
 	//敵(追尾)
 	new CBoss(&mDog, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	
 	//ホーム
-	new CHome(&mCube, CVector(-75.0f, -0.7f, 60.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));	
-
-	//天井
-	//new CObj(&mPlane, CVector(0.0f, 90.0f, 0.0f), CVector(-180.0f, 0.0f, 0.0f), CVector(150.0f, 1.0f, 200.0f));
+	new CHome(&mCube, CVector(-90.0f, -0.7f, 75.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));	
 
 	//プレイヤー初期位置
-	mPlayer.mPosition = CVector(-70.0f, 10.0f, 50.0f);
+	mPlayer.mPosition = CVector(-90.0f, 10.0f, 75.0f);
 	mPlayer.mRotation = CVector(0.0f, -225.0f, 0.0f);
+
 	//テクスチャ(床）
 	std::shared_ptr<CTexture>yuka(new CTexture("yuka.tga"));
 	//地面
 	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(100.0f, 1.0f, 80.0f));
 	new CImage(yuka, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(100.0f, 80.0f, 1.0f));
 
-	//new CObj(&mPlane, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(200.0f, 1.0f, 200.0f));
-
-	//new CBullet(&mBullet, CVector(1.0f, 0.0f, 1.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 }
 
-
+//ミニマップ
 void CSceneGame::RenderMiniMap(){
 	glPushMatrix();
 	glViewport(600, 450, 200, 150); //画面の描画エリアの指定
@@ -144,13 +139,11 @@ void CSceneGame::RenderMiniMap(){
 
 
 void CSceneGame::Update() {
-	
-	
 
 	if (mBatteryNow >= 0 && CHome::home == 0){
 		mBatteryNow -= 2;
 	}
-	//最大値を超えない
+	//充電(最大値を超えない)
 	else if (mBatteryMax >= mBatteryNow){
 		mBatteryNow += 15;
 	}
@@ -171,10 +164,11 @@ void CSceneGame::Update() {
 	}
 
 	frame++;
-	if (frame==300 || frame==500 || frame==700){
-		new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	}
-	if (frame < 100 && frame % 10 == 0){
+	//if (frame==300 || frame==500 || frame==700){
+	//	new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
+	//}
+
+	if (frame < 100 && frame % 20 == 0){
 
 		//ゴミの生成
 		new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
@@ -195,7 +189,7 @@ void CSceneGame::Update() {
 	//ダメージリアクション
 	else{
 		//視点を求める
-		e = CVector(0.0f, 30.0f, -10.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 20.0f, -10.0f)*mPlayer.mMatrix;
 		//注視点を求める
 		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 		//上方向を求める
@@ -231,10 +225,10 @@ void CSceneGame::Update() {
 	//ミニマップ表示
 	RenderMiniMap();
 
-	//2D描画開始
+	//2D描画開始(UI表示)
 	Start2D(0, 800, 0, 600);
 
-	//ゲームオーバー条件(バッテリー切れ）
+	//ゲームオーバー条件(バッテリー切れ,時間切れ）
 	if (mBatteryNow <= 0 || mTimeNow <= 0){
 		CText::DrawString("GAME OVER", 200, 330, 25, 25);
 		
@@ -256,39 +250,21 @@ void CSceneGame::Update() {
 		CText::DrawString("CRASH!", 285, 450, 25, 25);
 	}
 
-	////クリア条件(ゴミ全回収)
-	//if (CPlayer::clear >= GAMECLEAR && CHome::home == 1){
-	//	CText::DrawString("STAGE CLEAR", 155, 330, 25, 25);
-	//}
+	//クリア条件(ゴミ全回収)
+	if (CPlayer::clear >= GAMECLEAR){
+		CText::DrawString("STAGE CLEAR", 155, 330, 25, 25);
+	}
 
 	frame2++;
 	if (frame2 < 40){
-		CText::DrawString("WAVE1", 325, 400, 15, 15);
+		CText::DrawString("STAGE1", 310, 400, 15, 15);
 		//CText::DrawString("CLEAR:5", 290, 300, 15, 15);
 		//frame2 = 0;
 	}
 
-	if (CPlayer::clear >= 5){
-		CText::DrawString("WAVE2", 325, 400, 15, 15);
-		
-		
-	}
-	//if (CPlayer::clear >= 10){
-	//	CText::DrawString("WAVE3", 325, 400, 15, 15);
-
-	//}
-	//if (CPlayer::clear >= 10){
-	//	CText::DrawString("WAVE4", 325, 400, 15, 15);
-
-	//}
-	//if (CPlayer::clear >= 10){
-	//	CText::DrawString("WAVE5", 325, 400, 15, 15);
-
-	//}
 	CText::DrawString("BATTERY", 17, 50, 11, 11);
 	CText::DrawString("[", 15, 25, 11, 11);
 	CText::DrawString("]", 305, 25, 11, 11);
-
 
 	char buf[10];
 
@@ -296,14 +272,15 @@ void CSceneGame::Update() {
 	sprintf(buf, "%d", mTimeNow / 60);
 	CText::DrawString(buf, 15, 550, 15, 15);
 
-	//目標数
+	//プレイヤーレベル
 	sprintf(buf, "%d", CPlayer::PlayerLevel);
 	CText::DrawString(buf, 600, 30, 15, 15);
+
 	//目標数
 	sprintf(buf, "%d", CPlayer::clear);
 	CText::DrawString(buf, 700, 30, 15, 15);
 
-	//ゴミ回収数
+	//ゴミ保有数
 	sprintf(buf, "%d", CGomi::GomiCount);
 	CText::DrawString(buf, 300, 50, 15, 15);
 

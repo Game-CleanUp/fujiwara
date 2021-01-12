@@ -14,6 +14,7 @@ public:
 		EGAME2,  //ステージ2
 		EGAME3,  //ステージ3
 	};
+
 	//次のシーン
 	EScene mScene;
 	//virtual 仮想関数
