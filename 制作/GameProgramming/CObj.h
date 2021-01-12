@@ -11,7 +11,6 @@ public:
 	//コンストラクタで初期設定
 	CObj(CModel*model, const CVector &position, const CVector &rotation, const CVector &scale);
 	~CObj();
-
 };
 
 

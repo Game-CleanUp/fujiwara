@@ -14,7 +14,7 @@
 #include<time.h>
 #include"CKey.h"
 #include"CEnemy.h"
-#include"CEnemy2.h"
+#include"CBlock.h"
 #include"CImage.h"
 #include"CGomi.h"
 #include"CHome.h"

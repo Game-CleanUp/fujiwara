@@ -100,9 +100,9 @@ void CSceneGame::Init() {
 	new CObj(&mCube, CVector(0.0f, 0.0f, -80.0f), CVector(), CVector(100.0f, H, W));
 
 
-	//敵(ダメージが入る)
-	new CEnemy2(&mCube, CVector(-20.0f, 0.0f, 40.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
-	new CEnemy2(&mCube, CVector(-30.0f, 0.0f, 20.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
+	//ブロック(移動させることができる)
+	new CBlock(&mCube, CVector(-20.0f, 0.0f, 40.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
+	new CBlock(&mCube, CVector(-30.0f, 0.0f, 20.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
 
 	//敵(追尾)
 	new CBoss(&mDog, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
