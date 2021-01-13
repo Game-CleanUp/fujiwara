@@ -48,24 +48,18 @@ void CBullet::Collision(CCollider *m, CCollider *y){
 		}
 	}
 
-	if (y->mTag == CCollider::EBLOCK){
-		if (CCollider::Collision(m, y)){
-			mEnabled = false;
+	//自身のコライダタイプの判定
+	switch (m->mType){
+	case CCollider::ESPHERE://球コライダ
+		//相手のコライダが三角コライダの時
+		if (y->mType == CCollider::ETRIANGLE){
+			CVector adjust;//調整値ベクトル
+			//三角形と球の衝突判定
+			if (CCollider::CollisionTriangleSphere(y, m, &adjust)){
+				mEnabled = false;
+			}
 		}
 	}
-
-	////自身のコライダタイプの判定
-	//switch (m->mType){
-	//case CCollider::ESPHERE://球コライダ
-	//	//相手のコライダが三角コライダの時
-	//	if (y->mType == CCollider::ETRIANGLE){
-	//		CVector adjust;//調整値ベクトル
-	//		//三角形と球の衝突判定
-	//		if (CCollider::CollisionTriangleSphere(y, m, &adjust)){
-	//			mEnabled = false;
-	//		}
-	//	}
-	//}
 }
 
 //描画

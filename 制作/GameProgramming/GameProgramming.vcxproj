@@ -97,6 +97,7 @@
     <ClCompile Include="CGaugeBack.cpp" />
     <ClCompile Include="CHome.cpp" />
     <ClCompile Include="CImage.cpp" />
+    <ClCompile Include="CInput.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CMoney.cpp" />
     <ClCompile Include="CKey.cpp" />
@@ -138,6 +139,7 @@
     <ClInclude Include="CGaugeBack.h" />
     <ClInclude Include="CHome.h" />
     <ClInclude Include="CImage.h" />
+    <ClInclude Include="CInput.h" />
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="CMoney.h" />
     <ClInclude Include="CKey.h" />

@@ -13,7 +13,7 @@
 #include"CBullet.h"
 
 #define G       9.8f/60.0f//重力加速度 9.8f
-#define JUMPV0  2.5f	//ジャンプ初速
+#define JUMPV0  1.5f	//ジャンプ初速
 #define R		5.0f	//半径
 #define RETRY	50		//復帰時間
 #define DROP	14.0f	//ゴミのドロップ位置
