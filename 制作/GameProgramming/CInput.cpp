@@ -48,4 +48,18 @@ void CInput::SetMousePos(int x, int y) {
 	SetCursorPos(x, y);
 }
 
+/*
+マウスカーソルの座標を取得する
+GetMousePosW(X座標ポインタ, Y座標ポインタ)
+ウィンドウの左上が原点(0,0)
+*/
+void CInput::GetMousePosW(int *px, int *py)
+{
+	double xpos, ypos;
+	glfwGetCursorPos(mpWindow, &xpos, &ypos);
+	*px = xpos;
+	*py = ypos;
+	return;
+}
+
 

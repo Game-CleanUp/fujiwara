@@ -33,12 +33,20 @@ public:
 	false:押されていない
 	*/
 	static bool GetMouseButton(int button);
+
 	/*
 	マウスカーソルの座標を設定する
 	SetCursorPos(X座標,Y座標)
 	ディスプレイの左上が原点(0,0)
 	*/
 	static void SetMousePos(int x, int y);
+
+	/*
+	マウスカーソルの座標を取得する
+	GetMousePosW(X座標ポインタ, Y座標ポインタ)
+	ウィンドウの左上が原点(0,0)
+	*/
+	static void GetMousePosW(int *px, int *py);
 
 };
 

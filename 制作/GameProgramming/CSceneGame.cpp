@@ -108,7 +108,9 @@ void CSceneGame::Init() {
 	new CBoss(&mDog, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	
 	//ホーム
-	new CHome(&mCube, CVector(-90.0f, -0.7f, 75.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));	
+	new CHome(&mCube, CVector(-90.0f, -0.7f, 75.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+
+	new CObj(mCube, CVector(-80.0f, 0.0f, 60.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//プレイヤー初期位置
 	mPlayer.mPosition = CVector(-90.0f, 10.0f, 75.0f);
@@ -286,6 +288,9 @@ void CSceneGame::Update() {
 
 	//2D描画終了
 	End2D();
+
+	//マウスカーソルを起動時の座標に移動
+	//CInput::SetMousePos(CPlayer::mpPlayer->mMouseX, CPlayer::mpPlayer->mMouseY);
 
 	return;
 }

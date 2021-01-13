@@ -19,7 +19,20 @@ CObj::CObj(CModel*model, const CVector &position, const CVector &rotation, const
 		mpCollider[i].ChangePriority();
 	}
 	
-}
+	if (m->mTag == CCollider::EBLOCK){
+		if (y->mTag == CCollider::EBULLET){
+			if (CCollider::Collision(m, y)){
+				//プレイヤーの方向
+				CVector dir = y->mpParent->mPosition - mPosition;
+				//正規化（長さを1にする）Normalize()
+				mPosition = mPosition + dir.Normalize() * 0.5;
+			}
+		}
+	}
+
+
+
+
 //デストラクタ
 CObj::~CObj(){
 	//コライダがあれば削除

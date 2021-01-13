@@ -11,6 +11,7 @@
 #include"CMoney.h"
 #include"CSound.h"
 #include"CBullet.h"
+#include"CInput.h"
 
 #define G       9.8f/60.0f//重力加速度 9.8f
 #define JUMPV0  1.5f	//ジャンプ初速
@@ -44,6 +45,11 @@ public:
 	int frame;	//効果時間
 	int frame2;	//復帰時間
 	int frameMax;
+
+	//起動時のマウスカーソルの座標を覚える
+	int mMouseX;
+	int mMouseY;
+
 	static int levelNow;
 	static int levelMax;
 	static int PlayerLevel;

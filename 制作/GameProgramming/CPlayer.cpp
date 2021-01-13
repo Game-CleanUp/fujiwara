@@ -7,7 +7,7 @@ int CPlayer::Down = 0;
 int CPlayer::levelMax = 100;
 int CPlayer::levelNow = 73;
 int CPlayer::PlayerLevel = 1;
-CPlayer *CPlayer::mpPlayer;
+CPlayer *CPlayer::mpPlayer = 0;
 
 CSound CPlayer::Sound;
 CSound CPlayer::Sound2;
@@ -32,6 +32,11 @@ CPlayer::CPlayer()
 
 	//爆発テクスチャ
 	TextureExp->Load("exp.tga");
+
+	//起動時のマウスカーソルの座標を覚える
+	CInput::GetMousePos(&mMouseX, &mMouseY);
+
+
 }
 
 void CPlayer::TaskCollision()
@@ -127,6 +132,19 @@ void CPlayer::Update(){
 							}
 						}
 					}
+
+					//// マウスカーソルの座標を取得
+					//	int mx, my;
+					//CInput::GetMousePos(&mx, &my);
+					//if (mx < mMouseX) {
+					//	//マウスの移動量の分だけ回転
+					//	mRotation.mY += (mMouseX - mx) / 2.0;
+					//}
+					//if (mMouseX < mx) {
+					//	//マウスの移動量の分だけ回転
+					//	mRotation.mY += (mMouseX - mx) / 2.0;
+					//}
+
 				}
 			}
 		}
