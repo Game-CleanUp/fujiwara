@@ -21,12 +21,14 @@ void CBlock::TaskCollision()
 }
 
 void CBlock::Update(){
-	////重力加速度
-	//mVelocityJump -= G;
-	////移動
-	////mPosition.mY = mPosition.mY + mVelocityJump;
+	
+	mVelocityJump = JUMPV0;
+	//重力加速度
+	mVelocityJump -= G;
+	//移動
+	mPosition.mY = mPosition.mY - mVelocityJump;
 
-	//CCharacter::Update();
+	CCharacter::Update();
 }
 
 void CBlock::Collision(CCollider*m, CCollider*y){
@@ -37,7 +39,7 @@ void CBlock::Collision(CCollider*m, CCollider*y){
 				//プレイヤーの方向
 				CVector dir = y->mpParent->mPosition - mPosition;
 				//正規化（長さを1にする）Normalize()
-				mPosition = mPosition + dir.Normalize() * 0.5;
+				mPosition = mPosition + dir.Normalize();
 			}
 		}
 	}
@@ -49,6 +51,8 @@ void CBlock::Collision(CCollider*m, CCollider*y){
 			CVector adjust;//調整値ベクトル
 			//三角形と球の衝突判定
 			if (CCollider::CollisionTriangleSphere(y, m, &adjust)){
+				//着地
+				mVelocityJump = 0;
 			}
 
 			//位置の更新

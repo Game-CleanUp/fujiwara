@@ -2,7 +2,7 @@
 #include"CSceneGame.h"
 
 CBullet::CBullet()
-:mLife(20), mCollider(this, CVector(0.0f, 0.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 1.0f)
+:mLife(15), mCollider(this, CVector(0.0f, 0.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 2.0f)
 {
 	
 	mCollider.mTag = CCollider::EBULLET;

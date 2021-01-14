@@ -110,7 +110,7 @@ void CSceneGame::Init() {
 	//ホーム
 	new CHome(&mCube, CVector(-90.0f, -0.7f, 75.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
-	new CObj(mCube, CVector(-80.0f, 0.0f, 60.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CObj(&mCube, CVector(-80.0f, 0.0f, 60.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//プレイヤー初期位置
 	mPlayer.mPosition = CVector(-90.0f, 10.0f, 75.0f);

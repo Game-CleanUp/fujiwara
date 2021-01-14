@@ -84,7 +84,7 @@ void CPlayer::Update(){
 							bullet->mPosition = CVector(0.0f, 0.0f, 0.0f)*mMatrix;
 							bullet->mRotation = mRotation;
 							bullet->mTag = CCharacter::EBULLET;
-							CSceneGame::mBatteryNow -= 1;	//バッテリー消費
+							//CSceneGame::mBatteryNow -= 1;	//バッテリー消費
 						}
 					}
 					//ジャンプ
@@ -94,11 +94,14 @@ void CPlayer::Update(){
 						Sound.Play();
 					}
 					if (CKey::Push('Q')){
-						mRotation.mX -= 0.5f;
+						mRotation.mX -= 0.3f;
 					}
-					else{
-						mRotation.mX = 0;
+					
+					if (CKey::Push('R')){
+						mRotation.mX += 0.3f;
 					}
+						
+					
 
 					//回避
 					if (CKey::Once('H')){

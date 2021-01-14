@@ -21,7 +21,7 @@
 #define DROP_RAND	rand() % 360	//ゴミのドロップ方向
 #define FORWARD	0.7f	//前進
 #define DASH	1.0f	//ダッシュ
-#define DIR		5.0f	//方向転換
+#define DIR		3.0f	//方向転換
 #define BACK	-1.0f	//後退
 
 
