@@ -35,7 +35,10 @@ CPlayer::CPlayer()
 
 	//起動時のマウスカーソルの座標を覚える
 	CInput::GetMousePos(&mMouseX, &mMouseY);
+	mMouseX = 1920 / 2;
+	mMouseY = 1080 / 2;
 
+	mpPlayer = this;
 
 }
 
@@ -80,7 +83,7 @@ void CPlayer::Update(){
 					if (mVelocityJump == 0){	//ジャンプ中無効
 						if (CKey::Push(VK_SPACE)){
 							CBullet*bullet = new CBullet();
-							bullet->Set(0.5f, 1.5f);
+							bullet->Set(0.3f, 2.0f);
 							bullet->mPosition = CVector(0.0f, 0.0f, 0.0f)*mMatrix;
 							bullet->mRotation = mRotation;
 							bullet->mTag = CCharacter::EBULLET;
@@ -93,6 +96,7 @@ void CPlayer::Update(){
 						CSceneGame::mBatteryNow -= 5 * 60;	//バッテリー消費
 						Sound.Play();
 					}
+
 					if (CKey::Push('Q')){
 						mRotation.mX -= 0.3f;
 					}
@@ -136,22 +140,23 @@ void CPlayer::Update(){
 						}
 					}
 
-					//// マウスカーソルの座標を取得
-					//	int mx, my;
-					//CInput::GetMousePos(&mx, &my);
-					//if (mx < mMouseX) {
-					//	//マウスの移動量の分だけ回転
-					//	mRotation.mY += (mMouseX - mx) / 2.0;
-					//}
-					//if (mMouseX < mx) {
-					//	//マウスの移動量の分だけ回転
-					//	mRotation.mY += (mMouseX - mx) / 2.0;
-					//}
+					// マウスカーソルの座標を取得
+						int mx, my;
+					CInput::GetMousePos(&mx, &my);
+					if (mx < mMouseX) {
+						//マウスの移動量の分だけ回転
+						mRotation.mY += (mMouseX - mx) / 2.0;
+					}
+					if (mMouseX < mx) {
+						//マウスの移動量の分だけ回転
+						mRotation.mY += (mMouseX - mx) / 2.0;
+					}
 
 				}
 			}
 		}
 	}
+
 	//重力加速度
 	mVelocityJump -= G;
 	//移動
@@ -203,14 +208,14 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 	}
 
 	//ボスとの衝突
-	if (m->mTag == CCollider::EBODY){
+	//if (m->mTag == CCollider::EBODY){
 		if (y->mTag == CCollider::EBODY2){
 			if (CCollider::Collision(m, y)){
 
 				CSceneGame::mBatteryNow++;
 				frame2++;	//復帰までの時間
 				Down = TRUE;
-
+				
 				//エフェクト生成(爆発)
 				new CEffect(mPosition, 3.0f, 3.0f, TextureExp, 4, 4, 1);
 
@@ -267,6 +272,6 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 					frame2 = 0;
 				}
 			}
-		}
+		//}
 	}
 }

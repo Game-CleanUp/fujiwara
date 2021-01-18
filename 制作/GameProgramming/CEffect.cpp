@@ -4,7 +4,11 @@ CEffect::CEffect(const CVector &pos, float w, float h, std::shared_ptr<CTexture>
 : CBillBoard(pos, w, h), mRows(row), mCols(col), mFps(fps), mFrame(0)
 {
 	mMaterial.mpTexture = texture;
-//	ChangePriority(-1);
+//	ChangePriority(0);
+	mPriority = 0;
+	CTaskManager::Get()->Remove(this); //リストから削除する
+	CTaskManager::Get()->Add(this); //リストに追加する
+
 }
 
 void CEffect::Update() {

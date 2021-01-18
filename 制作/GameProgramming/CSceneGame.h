@@ -15,12 +15,12 @@
 #include"CKey.h"
 #include"CEnemy.h"
 #include"CBlock.h"
-#include"CImage.h"
 #include"CGomi.h"
 #include"CHome.h"
 #include"CMoney.h"
 #include"CBoss.h"
 #include"CSound.h"
+#include"CImage.h"
 
 #define RAND rand() % 100 - 50	//ƒ‰ƒ“ƒ_ƒ€”z’u(-150~149)
 #define W	5.0f	//•

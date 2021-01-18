@@ -4,6 +4,8 @@
 //
 #include "CText.h"
 
+#include"CInput.h"
+
 int CSceneGame::StageCount = 0;
 int CSceneGame::mBatteryMax = 60 * 60;
 int CSceneGame::mBatteryNow = mBatteryNow + mBatteryMax;
@@ -64,7 +66,7 @@ void CSceneGame::Init() {
 
 	mPlayer.mpModel = &mSphere;	//プレイヤーモデル
 
-	new CObj(&mBed, CVector(-55.0f, -6.0f, 30.0f), CVector(0.0f, 90.0f, 0.0f), CVector(20.0f, 25.0f, 20.0f));
+	//new CObj(&mBed, CVector(-55.0f, -6.0f, 30.0f), CVector(0.0f, 90.0f, 0.0f), CVector(20.0f, 25.0f, 20.0f));
 
 	new CObj(&mTable, CVector(-20.0f, -1.0f, 0.0f), CVector(), CVector(30.0f, 20.0f, 20.0f));
 
@@ -101,24 +103,29 @@ void CSceneGame::Init() {
 
 
 	//ブロック(移動させることができる)
-	new CBlock(&mCube, CVector(-20.0f, 0.0f, 40.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
-	new CBlock(&mCube, CVector(-30.0f, 0.0f, 20.0f), CVector(), CVector(2.0f, 2.0f, 2.0f));
+	new CBlock(&mCube, CVector(-20.0f, 3.0f, 40.0f), CVector(), CVector(2.0f, 2.0f, 5.0f));
+	new CBlock(&mCube, CVector(-30.0f, 0.0f, 20.0f), CVector(), CVector(5.0f, 2.0f, 2.0f));
 
 	//敵(追尾)
 	new CBoss(&mDog, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	
+
+	//new CBoss(&mDog, CVector(50.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+
+
 	//ホーム
 	new CHome(&mCube, CVector(-90.0f, -0.7f, 75.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
-	new CObj(&mCube, CVector(-80.0f, 0.0f, 60.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CBlock(&mCube, CVector(-80.0f, 1.0f, 60.0f), CVector(), CVector(3.0f, 1.0f, 5.0f));
 
 	//プレイヤー初期位置
 	mPlayer.mPosition = CVector(-90.0f, 10.0f, 75.0f);
 	mPlayer.mRotation = CVector(0.0f, -225.0f, 0.0f);
-
+	//mPlayer.mScale = CVector(10.0f, 10.0f, 10.0f);
+	
 	//テクスチャ(床）
 	std::shared_ptr<CTexture>yuka(new CTexture("yuka.tga"));
-	//地面
+	//床
 	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(100.0f, 1.0f, 80.0f));
 	new CImage(yuka, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(100.0f, 80.0f, 1.0f));
 
@@ -143,24 +150,24 @@ void CSceneGame::RenderMiniMap(){
 void CSceneGame::Update() {
 
 	if (mBatteryNow >= 0 && CHome::home == 0){
-		mBatteryNow -= 2;
+		mBatteryNow--;
 	}
-	//充電(最大値を超えない)
+	//充電(最大値を超えない、バッテリー増加)
 	else if (mBatteryMax >= mBatteryNow){
 		mBatteryNow += 15;
 	}
 	
-	//0以下にならない
+	//0以下にならない(バッテリー)
 	if (mBatteryNow < 0){
 		mBatteryNow = 0;
 	}
 	
-	//制限時間
+	//制限時間減少
 	if (mBatteryNow > 0){
 		mTimeNow--;
 	}
 
-	//0以下にならない
+	//0以下にならない(タイム)
 	if (mTimeNow < 0){
 		mTimeNow = 0;
 	}
@@ -200,7 +207,7 @@ void CSceneGame::Update() {
 
 	//見下ろし視点
 	if (CKey::Push('I')){
-		e = CVector(0.0f, 30.0f, 0.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 10.0f, -10.0f)*mPlayer.mMatrix;
 	}
 
 	//確認
@@ -258,8 +265,8 @@ void CSceneGame::Update() {
 	}
 
 	frame2++;
-	if (frame2 < 40){
-		CText::DrawString("STAGE1", 310, 400, 15, 15);
+	if (frame2 < 60){
+		CText::DrawString("START", 310, 400, 15, 15);
 		//CText::DrawString("CLEAR:5", 290, 300, 15, 15);
 		//frame2 = 0;
 	}
@@ -268,7 +275,8 @@ void CSceneGame::Update() {
 	CText::DrawString("[", 15, 25, 11, 11);
 	CText::DrawString("]", 305, 25, 11, 11);
 
-	char buf[10];
+	//整数を文字列に変換する
+	char buf[10];	//9文字までOK
 
 	//制限時間
 	sprintf(buf, "%d", mTimeNow / 60);
@@ -290,7 +298,7 @@ void CSceneGame::Update() {
 	End2D();
 
 	//マウスカーソルを起動時の座標に移動
-	//CInput::SetMousePos(CPlayer::mpPlayer->mMouseX, CPlayer::mpPlayer->mMouseY);
+	CInput::SetMousePos(CPlayer::mpPlayer->mMouseX, CPlayer::mpPlayer->mMouseY);
 
 	return;
 }

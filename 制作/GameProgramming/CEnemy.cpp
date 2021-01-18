@@ -1,10 +1,8 @@
 #include"CEnemy.h"
 #include"CSceneGame.h"
 
-//課題7
 CEnemy::CEnemy(CModel*model, CVector position, CVector rotation, CVector scale)
-:mColBody(this, CVector(0.0f, 2.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f),
-CVector(1.0f, 1.0f, 1.0f), 2.0f)
+:mColBody(this, CVector(0.0f, 0.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 3.0f)
 , state(0), frame(0)
 {
 	//モデル、位置、回転、拡縮を設定する
@@ -13,7 +11,7 @@ CVector(1.0f, 1.0f, 1.0f), 2.0f)
 	mRotation = rotation; //回転の設定
 	mScale = scale; //拡縮の設定
 }
-//課題8
+
 void CEnemy::Collision(CCollider*m, CCollider*y){
 	
 	//自身のコライダタイプの判定

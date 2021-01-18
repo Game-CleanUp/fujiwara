@@ -1,6 +1,5 @@
 #include"CGaugeBack.h"
 #include"CSceneGame.h"
-	
 
 void CGaugeBack::Render(){
 

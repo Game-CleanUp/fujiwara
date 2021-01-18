@@ -345,6 +345,7 @@ void CCollider::ChangePriority()
 		position = position * (1.0 / 2.0f); //合計値の2分の1が中心
 		break;
 	}
+
 	mPriority = position.Length(); //原点からの距離を優先度にする
 	CCollisionManager::Get()->Remove(this); //リストから削除する
 	CCollisionManager::Get()->Add(this); //リストに追加する

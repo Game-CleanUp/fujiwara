@@ -114,9 +114,9 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::ESEARCH2){
 		if (y->mTag == CCollider::EBODY){
 			if (CCollider::Collision(m, y)){
-				//プレイヤーの方向
+				//プレイヤー本体の方向
 				CVector dir = y->mpParent->mPosition - mPosition;
-				/*CVector left = CVector(1.0f, 0.0f, 0.0f)  * CMatrix().RotateY(mRotation.mY);
+				CVector left = CVector(1.0f, 0.0f, 0.0f)  * CMatrix().RotateY(mRotation.mY);
 				CVector right = CVector(-1.0f, 0.0f, 0.0f) * CMatrix().RotateY(mRotation.mY);
 
 				if (left.Dot(dir) > 0.0f){
@@ -126,8 +126,6 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 					mRotation.mY -= 2.0f;
 				}
 
-				mPosition = CVector(0.0f, 0.0f, 0.1f)*mMatrix;*/
-	
 				//正規化（長さを1にする）Normalize()
 				mPosition = mPosition + dir.Normalize() * 0.3;
 				Sound.Play();

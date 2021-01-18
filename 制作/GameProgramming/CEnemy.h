@@ -4,6 +4,7 @@
 #include"CCollider.h"
 #include "CVector.h"
 #include"CSceneGame.h"
+#include"CHome.h"
 
 class CEnemy : public CCharacter{
 public:
@@ -14,6 +15,9 @@ public:
 	//è’ìÀîªíË
 	void Collision(CCollider*m, CCollider*y);
 	void Update();
+
+	CHome *mpHome;
+
 	int state;
 	int frame;
 
