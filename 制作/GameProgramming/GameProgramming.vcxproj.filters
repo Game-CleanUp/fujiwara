@@ -123,9 +123,6 @@
     <ClCompile Include="CSound.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CLevel.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CBullet.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -136,6 +133,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CInput.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CTrap.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -248,9 +248,6 @@
     <ClInclude Include="CTime.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CLevel.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CBullet.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -261,6 +258,9 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CInput.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CTrap.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>

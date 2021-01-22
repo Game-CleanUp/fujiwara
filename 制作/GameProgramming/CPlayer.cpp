@@ -4,9 +4,7 @@
 
 int CPlayer::clear = 0;
 int CPlayer::Down = 0;
-int CPlayer::levelMax = 100;
-int CPlayer::levelNow = 73;
-int CPlayer::PlayerLevel = 1;
+
 CPlayer *CPlayer::mpPlayer = 0;
 
 CSound CPlayer::Sound;
@@ -68,11 +66,7 @@ void CPlayer::Update(){
 
 					if (CKey::Push('W')){
 						mPosition = CVector(0.0f, 0.0f, FORWARD)*mMatrix;
-						//ダッシュ
-						if (CKey::Push(VK_SHIFT)){
-							mPosition = CVector(0.0f, 0.0f, DASH)*mMatrix;
-							CSceneGame::mBatteryNow -= 3;
-						}
+		
 					}
 
 					if (CKey::Push('S')){
@@ -81,7 +75,7 @@ void CPlayer::Update(){
 
 					//スペースキー入力で発射
 					if (mVelocityJump == 0){	//ジャンプ中無効
-						if (CKey::Push(VK_SPACE)){
+						if (CKey::Once(VK_SPACE)){
 							CBullet*bullet = new CBullet();
 							bullet->Set(0.3f, 2.0f);
 							bullet->mPosition = CVector(0.0f, 0.0f, 0.0f)*mMatrix;
@@ -90,15 +84,19 @@ void CPlayer::Update(){
 							//CSceneGame::mBatteryNow -= 1;	//バッテリー消費
 						}
 					}
+
+					if (CKey::Once('Q')){
+
+						//罠設置
+						new CTrap(NULL, mPosition + CVector(0.0f, 0.0f, 5.0f)*matrix.RotateY(0), CVector(), CVector(1.5f, 1.5f, 1.5f));
+
+					}
+
 					//ジャンプ
 					if (CKey::Once('J') && mVelocityJump == 0){
 						mVelocityJump = JUMPV0;
 						CSceneGame::mBatteryNow -= 5 * 60;	//バッテリー消費
 						Sound.Play();
-					}
-
-					if (CKey::Push('Q')){
-						mRotation.mX -= 0.3f;
 					}
 					
 					if (CKey::Push('R')){
@@ -128,29 +126,20 @@ void CPlayer::Update(){
 						if (CKey::Once('E')){
 							clear = clear + CGomi::GomiCount;
 							CGomi::GomiCount = 0;
-							CSceneGame::mTimeNow += 3 * 60;	//タイム加算
-							//経験値獲得
-							levelNow += 20;
-							if (levelNow >= levelMax){
-								//経験値を初期値にする
-								levelNow = 1;
-								//レベルアップ
-								PlayerLevel += 1;
 							}
 						}
-					}
 
-					// マウスカーソルの座標を取得
-						int mx, my;
-					CInput::GetMousePos(&mx, &my);
-					if (mx < mMouseX) {
-						//マウスの移動量の分だけ回転
-						mRotation.mY += (mMouseX - mx) / 2.0;
-					}
-					if (mMouseX < mx) {
-						//マウスの移動量の分だけ回転
-						mRotation.mY += (mMouseX - mx) / 2.0;
-					}
+					//// マウスカーソルの座標を取得
+					//	int mx, my;
+					//CInput::GetMousePos(&mx, &my);
+					//if (mx < mMouseX) {
+					//	//マウスの移動量の分だけ回転
+					//	mRotation.mY += (mMouseX - mx) / 5.0;
+					//}
+					//if (mMouseX < mx) {
+					//	//マウスの移動量の分だけ回転
+					//	mRotation.mY += (mMouseX - mx) / 5.0;
+					//}
 
 				}
 			}
@@ -171,7 +160,7 @@ void CPlayer::Render(){
 	Back.Render();
 	Battery.Render();
 	Time.Render();
-	Level.Render();
+
 }
 
 
@@ -217,7 +206,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 				Down = TRUE;
 				
 				//エフェクト生成(爆発)
-				new CEffect(mPosition, 3.0f, 3.0f, TextureExp, 4, 4, 1);
+				new CEffect(mPosition, 8.0f, 8.0f, TextureExp, 4, 4, 1);
 
 				//爆発音再生
 				//Sound3.Play();

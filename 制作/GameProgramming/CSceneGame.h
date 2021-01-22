@@ -21,6 +21,7 @@
 #include"CBoss.h"
 #include"CSound.h"
 #include"CImage.h"
+#include"CTrap.h"
 
 #define RAND rand() % 100 - 50	//ƒ‰ƒ“ƒ_ƒ€”z’u(-150~149)
 #define W	5.0f	//•

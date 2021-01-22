@@ -98,7 +98,6 @@
     <ClCompile Include="CHome.cpp" />
     <ClCompile Include="CImage.cpp" />
     <ClCompile Include="CInput.cpp" />
-    <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CMoney.cpp" />
     <ClCompile Include="CKey.cpp" />
     <ClCompile Include="CMaterial.cpp" />
@@ -120,6 +119,7 @@
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTime.cpp" />
     <ClCompile Include="CTransform.cpp" />
+    <ClCompile Include="CTrap.cpp" />
     <ClCompile Include="CTriangle.cpp" />
     <ClCompile Include="CVector.cpp" />
     <ClCompile Include="main.cpp" />
@@ -140,7 +140,6 @@
     <ClInclude Include="CHome.h" />
     <ClInclude Include="CImage.h" />
     <ClInclude Include="CInput.h" />
-    <ClInclude Include="CLevel.h" />
     <ClInclude Include="CMoney.h" />
     <ClInclude Include="CKey.h" />
     <ClInclude Include="CMaterial.h" />
@@ -163,6 +162,7 @@
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTime.h" />
     <ClInclude Include="CTransform.h" />
+    <ClInclude Include="CTrap.h" />
     <ClInclude Include="CTriangle.h" />
     <ClInclude Include="CVector.h" />
     <ClInclude Include="main.h" />

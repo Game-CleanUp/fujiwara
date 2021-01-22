@@ -7,8 +7,8 @@
 #include"CSound.h"
 #include"math.h"
 
-#define TURN 13 //向き
-#define SPEED -0.1f	//移動速度
+#define TURN 13		//向き
+#define SPEED 0.1f	//移動速度
 
 class CBoss : public CCharacter{
 public:
@@ -22,9 +22,12 @@ public:
 	void TaskCollision();
 
 	int state;
-	int frame;
+	int ActFrame;	//行動時間
+	int EnemyDown; //敵ダウン判定
+	int DownFrame;	//気絶時間
 
-	static int tracking;
+    int tracking;
+	int traptracking;
 
 	float mVelocityJump;
 

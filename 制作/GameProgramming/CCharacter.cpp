@@ -43,7 +43,7 @@ CCharacter::CCharacter()
 	//タスクリストに追加
 	CTaskManager::Get()->Add(this);
 }
-//22
+
 CCharacter::~CCharacter() {
 	//タスクリストから削除
 	CTaskManager::Get()->Remove(this);

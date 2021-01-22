@@ -1,13 +1,13 @@
 #include"CBoss.h"
 #include"CSceneGame.h"
 
-int CBoss::tracking = 0;
+
 CSound CBoss::Sound;
 
 CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 3.0f)
 , mSearch(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 50.0f)	
-, frame(0), state(0), mVelocityJump(0.0f)
+, ActFrame(0), state(0), mVelocityJump(0.0f), EnemyDown(0), DownFrame(0), traptracking(0)
 {
 	//モデル、位置、回転、拡縮を設定する
 	mpModel = model; //モデルの設定
@@ -37,61 +37,61 @@ void CBoss::Update(){
 	if (CPlayer::clear < GAMECLEAR){
 		if (CSceneGame::mBatteryNow > 0){
 			//追尾してないとき
-			if (tracking == FALSE){
+			if (tracking == FALSE || traptracking == FALSE){
 				switch (state){
 				case 0:
-					frame += 1;
-					if (frame > 30){
+					ActFrame += 1;
+					if (ActFrame > 30){
 						state = rand() % 5;
-						frame = 0;
+						ActFrame = 0;
 					}
 					break;
 
 				case 1:
-					frame += 1;
-					if (frame < 20){
+					ActFrame += 1;
+					if (ActFrame < 20){
 						//左回転
 						mRotation.mY += rand() % TURN;
 					}
-					if (frame > 30){
+					if (ActFrame > 30){
 						//前進
-						mPosition = CVector(SPEED, 0.0f, 0.0f)*mMatrix;
+						mPosition = CVector(0.0f, 0.0f, SPEED)*mMatrix;
 					}
-					if (frame > 90){
+					if (ActFrame > 90){
 						state = rand() % 5;
-						frame = 0;
+						ActFrame = 0;
 					}
 					break;
 
 				case 2:
-					frame += 1;
-					if (frame < 20){
+					ActFrame += 1;
+					if (ActFrame < 20){
 						//右回転
 						mRotation.mY -= rand() % TURN;
 					}
-					if (frame > 30){
+					if (ActFrame > 30){
 						//前進
-						mPosition = CVector(SPEED, 0.0f, 0.0f)*mMatrix;
+						mPosition = CVector(0.0f, 0.0f, SPEED)*mMatrix;
 					}
-					if (frame > 90){
+					if (ActFrame > 90){
 						state = rand() % 5;
-						frame = 0;
+						ActFrame = 0;
 					}
 					break;
 
 				case 3:
-					frame += 1;
-					if (frame > 60){
+					ActFrame += 1;
+					if (ActFrame > 60){
 						state = rand() % 5;
-						frame = 0;
+						ActFrame = 0;
 					}
 					break;
 
 				case 4:
-					frame += 1;
-					if (frame > 30){
+					ActFrame += 1;
+					if (ActFrame > 30){
 						state = rand() % 5;
-						frame = 0;
+						ActFrame = 0;
 					}
 					break;
 				}
@@ -114,16 +114,19 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::ESEARCH2){
 		if (y->mTag == CCollider::EBODY){
 			if (CCollider::Collision(m, y)){
+
 				//プレイヤー本体の方向
 				CVector dir = y->mpParent->mPosition - mPosition;
 				CVector left = CVector(1.0f, 0.0f, 0.0f)  * CMatrix().RotateY(mRotation.mY);
 				CVector right = CVector(-1.0f, 0.0f, 0.0f) * CMatrix().RotateY(mRotation.mY);
 
+				float Rote = 4.0f;	//プレイヤー方向に方向転換
+
 				if (left.Dot(dir) > 0.0f){
-					mRotation.mY += 2.0f;
+					mRotation.mY += Rote;
 				}
 				else if (left.Dot(dir) < 0.0f){
-					mRotation.mY -= 2.0f;
+					mRotation.mY -= Rote;
 				}
 
 				//正規化（長さを1にする）Normalize()
@@ -140,14 +143,43 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 		return;
 	}
 	
-	//プレイヤー弾との衝突判定
-	if (m->mTag == CCollider::EBODY2){
-		if (y->mTag == CCollider::EBULLET){
+	//トラップに引き寄せられる
+	if (m->mTag == CCollider::ESEARCH2){
+		if (y->mTag == CCollider::ETRAP){
 			if (CCollider::Collision(m, y)){
+
+				//プレイヤー本体の方向
 				CVector dir = y->mpParent->mPosition - mPosition;
+				CVector left = CVector(1.0f, 0.0f, 0.0f)  * CMatrix().RotateY(mRotation.mY);
+				CVector right = CVector(-1.0f, 0.0f, 0.0f) * CMatrix().RotateY(mRotation.mY);
+
+				float Rote = 6.0f;	//トラップ方向に方向転換
+
+				if (left.Dot(dir) > 0.0f){
+					mRotation.mY += Rote;
+				}
+				else if (left.Dot(dir) < 0.0f){
+					mRotation.mY -= Rote;
+				}
+
 				//正規化（長さを1にする）Normalize()
-				mPosition = mPosition + dir.Normalize() * 0.5;	//機体から遠ざける
+				mPosition = mPosition + dir.Normalize() * 0.5;
+				tracking = TRUE;
+
 			}
+		}
+		else{
+			tracking = FALSE;
+		}
+		return;
+	}
+	
+	//プレイヤー弾との衝突判定
+	if (m->mTag == CCollider::EBODY2 && y->mTag == CCollider::EBULLET){
+
+		if (CCollider::Collision(m, y)){
+
+			mRotation = CVector(0.0f, 0.0f, 90.0f);	//敵ダウン(気絶)
 		}
 	}
 

@@ -5,24 +5,23 @@
 #include"CCollider.h"
 #include"CHome.h"
 #include"CBattery.h"
-#include"CLevel.h"
 #include"CTime.h"
 #include"CGaugeBack.h"
 #include"CMoney.h"
 #include"CSound.h"
 #include"CBullet.h"
 #include"CInput.h"
+#include"CTrap.h"
 
 #define G       9.8f/60.0f//重力加速度 9.8f
 #define JUMPV0  2.0f	//ジャンプ初速
 #define R		5.0f	//半径
 #define RETRY	50		//復帰時間
-#define DROP	14.0f	//ゴミのドロップ位置
+#define DROP	18.0f	//ゴミのドロップ位置
 #define DROP_RAND	rand() % 360	//ゴミのドロップ方向
-#define FORWARD	0.7f	//前進
-#define DASH	1.0f	//ダッシュ
+#define FORWARD	0.5f	//前進
 #define DIR		3.0f	//方向転換
-#define BACK	-1.0f	//後退
+#define BACK	-0.3f	//後退
 
 
 
@@ -50,14 +49,10 @@ public:
 	int mMouseX;
 	int mMouseY;
 
-	static int levelNow;
-	static int levelMax;
-	static int PlayerLevel;
 	float mVelocityJump;
 
 	CBattery Battery;
 	CTime Time;
-	CLevel Level;
 	CGaugeBack Back;
 	CMatrix matrix;
 

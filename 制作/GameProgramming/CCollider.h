@@ -21,6 +21,7 @@ public:
 		EHOME,//充電エリア
 		EBULLET,//プレイヤー弾
 		EBLOCK,//ブロック
+		ETRAP,//トラップ
 	
 	};
 	ETag mTag;

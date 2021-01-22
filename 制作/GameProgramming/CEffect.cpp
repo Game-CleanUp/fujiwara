@@ -4,7 +4,8 @@ CEffect::CEffect(const CVector &pos, float w, float h, std::shared_ptr<CTexture>
 : CBillBoard(pos, w, h), mRows(row), mCols(col), mFps(fps), mFrame(0)
 {
 	mMaterial.mpTexture = texture;
-//	ChangePriority(0);
+
+	//描画優先度(最後に表示)
 	mPriority = 0;
 	CTaskManager::Get()->Remove(this); //リストから削除する
 	CTaskManager::Get()->Add(this); //リストに追加する
@@ -12,6 +13,7 @@ CEffect::CEffect(const CVector &pos, float w, float h, std::shared_ptr<CTexture>
 }
 
 void CEffect::Update() {
+
 	//コマ数の計算
 	int frame = mFrame++ / mFps;
 
@@ -38,8 +40,4 @@ void CEffect::Update() {
 	mT[1].mUv[2] = CVector(righ, top, 0.0f);
 	//ビルボード更新
 	CBillBoard::Update();
-	////終了判定
-	//if (mFrame >= mFps * mRows * mCols) {
-	//	mEnabled = false;
-	//}
 }

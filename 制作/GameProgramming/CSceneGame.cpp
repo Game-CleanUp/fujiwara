@@ -101,17 +101,17 @@ void CSceneGame::Init() {
 	//左
 	new CObj(&mCube, CVector(0.0f, 0.0f, -80.0f), CVector(), CVector(100.0f, H, W));
 
+	//中央
+	new CObj(&mCube, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(5.0f, 20.0f, 5.0f));
 
 	//ブロック(移動させることができる)
 	new CBlock(&mCube, CVector(-20.0f, 3.0f, 40.0f), CVector(), CVector(2.0f, 2.0f, 5.0f));
 	new CBlock(&mCube, CVector(-30.0f, 0.0f, 20.0f), CVector(), CVector(5.0f, 2.0f, 2.0f));
 
 	//敵(追尾)
-	new CBoss(&mDog, CVector(50.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	
+	new CBoss(&mDog, CVector(-20.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
-	//new CBoss(&mDog, CVector(50.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-
+	new CTrap(&mSphere, CVector(0.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//ホーム
 	new CHome(&mCube, CVector(-90.0f, -0.7f, 75.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
@@ -149,30 +149,30 @@ void CSceneGame::RenderMiniMap(){
 
 void CSceneGame::Update() {
 
-	if (mBatteryNow >= 0 && CHome::home == 0){
-		mBatteryNow--;
-	}
-	//充電(最大値を超えない、バッテリー増加)
-	else if (mBatteryMax >= mBatteryNow){
-		mBatteryNow += 15;
-	}
-	
-	//0以下にならない(バッテリー)
-	if (mBatteryNow < 0){
-		mBatteryNow = 0;
-	}
-	
-	//制限時間減少
-	if (mBatteryNow > 0){
-		mTimeNow--;
-	}
+	//if (mBatteryNow >= 0 && CHome::home == 0){
+	//	mBatteryNow--;
+	//}
+	////充電(最大値を超えない、バッテリー増加)
+	//else if (mBatteryMax >= mBatteryNow){
+	//	mBatteryNow += 15;
+	//}
+	//
+	////0以下にならない(バッテリー)
+	//if (mBatteryNow < 0){
+	//	mBatteryNow = 0;
+	//}
+	//
+	////制限時間減少
+	//if (mBatteryNow > 0){
+	//	mTimeNow--;
+	//}
 
-	//0以下にならない(タイム)
-	if (mTimeNow < 0){
-		mTimeNow = 0;
-	}
+	////0以下にならない(タイム)
+	//if (mTimeNow < 0){
+	//	mTimeNow = 0;
+	//}
 
-	frame++;
+	//frame++;
 	//if (frame==300 || frame==500 || frame==700){
 	//	new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
 	//}
@@ -180,7 +180,7 @@ void CSceneGame::Update() {
 	if (frame < 100 && frame % 20 == 0){
 
 		//ゴミの生成
-		new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+		//new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
 		//new CObj(&mCube, CVector(rand() % 100 - 50, 0.0f, rand() % 100 - 50), CVector(), CVector(2.0f, 5.0f, 2.0f));
 	}
 	
@@ -207,12 +207,13 @@ void CSceneGame::Update() {
 
 	//見下ろし視点
 	if (CKey::Push('I')){
-		e = CVector(0.0f, 10.0f, -10.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 100.0f, 0.0f)*mPlayer.mMatrix;
 	}
 
 	//確認
 	if (CKey::Push('P')){
-		e = CVector(0.0f, 150.0f, 0.0f);
+		e = CVector(0.0f, -100.0f, 10.0f);
+		u = CVector(20.0f, 0.0f, 0.0f)*mPlayer.mMatrixRotate;
 	}
 
 	//カメラの設定
@@ -282,10 +283,6 @@ void CSceneGame::Update() {
 	sprintf(buf, "%d", mTimeNow / 60);
 	CText::DrawString(buf, 15, 550, 15, 15);
 
-	//プレイヤーレベル
-	sprintf(buf, "%d", CPlayer::PlayerLevel);
-	CText::DrawString(buf, 600, 30, 15, 15);
-
 	//目標数
 	sprintf(buf, "%d", CPlayer::clear);
 	CText::DrawString(buf, 700, 30, 15, 15);
@@ -298,7 +295,7 @@ void CSceneGame::Update() {
 	End2D();
 
 	//マウスカーソルを起動時の座標に移動
-	CInput::SetMousePos(CPlayer::mpPlayer->mMouseX, CPlayer::mpPlayer->mMouseY);
+	//CInput::SetMousePos(CPlayer::mpPlayer->mMouseX, CPlayer::mpPlayer->mMouseY);
 
 	return;
 }
