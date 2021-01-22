@@ -54,7 +54,7 @@ void CCollider::Render() {
 	glDisable(GL_LIGHTING);
 
 	//DIFFUSEê‘êFê›íË
-	float c[] = { 1.0f, 1.0f, 0.0f, 0.3f };
+	float c[] = { 1.0f, 0.0f, 0.0f, 0.3f };
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, c);
 	glColor4fv(c);
 

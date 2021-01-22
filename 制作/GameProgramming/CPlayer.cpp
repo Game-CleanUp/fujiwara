@@ -81,17 +81,16 @@ void CPlayer::Update(){
 							bullet->mPosition = CVector(0.0f, 0.0f, 0.0f)*mMatrix;
 							bullet->mRotation = mRotation;
 							bullet->mTag = CCharacter::EBULLET;
-							//CSceneGame::mBatteryNow -= 1;	//バッテリー消費
+							CSceneGame::mBatteryNow -= 100;	//バッテリー消費
 						}
 					}
-
-					if (CKey::Once('Q')){
-
-						//罠設置
-						new CTrap(NULL, mPosition + CVector(0.0f, 0.0f, 5.0f)*matrix.RotateY(0), CVector(), CVector(1.5f, 1.5f, 1.5f));
-
+					if (CTrap::TrapCount > 0){
+						if (CKey::Once('Q')){
+							//tラップ設置
+							new CTrap(NULL, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
+							CTrap::TrapCount -= 1;	//トラップ消費
+						}
 					}
-
 					//ジャンプ
 					if (CKey::Once('J') && mVelocityJump == 0){
 						mVelocityJump = JUMPV0;
@@ -254,7 +253,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 				//リトライ(ホームに戻る)
 				if (frame2 >= RETRY){
 					//初期位置
-					mPosition = CVector(-70.0f, 10.0f, 50.0f);
+					mPosition = CVector(-90.0f, 10.0f, 70.0f);
 					mRotation = CVector(0.0f, -225.0f, 0.0f);
 					CSceneGame::mBatteryNow = CSceneGame::mBatteryMax;
 					Down = FALSE;

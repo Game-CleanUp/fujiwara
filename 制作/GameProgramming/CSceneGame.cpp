@@ -116,12 +116,10 @@ void CSceneGame::Init() {
 	//ホーム
 	new CHome(&mCube, CVector(-90.0f, -0.7f, 75.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
-	new CBlock(&mCube, CVector(-80.0f, 1.0f, 60.0f), CVector(), CVector(3.0f, 1.0f, 5.0f));
 
 	//プレイヤー初期位置
 	mPlayer.mPosition = CVector(-90.0f, 10.0f, 75.0f);
 	mPlayer.mRotation = CVector(0.0f, -225.0f, 0.0f);
-	//mPlayer.mScale = CVector(10.0f, 10.0f, 10.0f);
 	
 	//テクスチャ(床）
 	std::shared_ptr<CTexture>yuka(new CTexture("yuka.tga"));
@@ -149,39 +147,37 @@ void CSceneGame::RenderMiniMap(){
 
 void CSceneGame::Update() {
 
-	//if (mBatteryNow >= 0 && CHome::home == 0){
-	//	mBatteryNow--;
-	//}
-	////充電(最大値を超えない、バッテリー増加)
-	//else if (mBatteryMax >= mBatteryNow){
-	//	mBatteryNow += 15;
-	//}
-	//
-	////0以下にならない(バッテリー)
-	//if (mBatteryNow < 0){
-	//	mBatteryNow = 0;
-	//}
-	//
-	////制限時間減少
-	//if (mBatteryNow > 0){
-	//	mTimeNow--;
-	//}
+	if (mBatteryNow >= 0 && CHome::home == 0){
+		mBatteryNow--;
+	}
+	//充電(最大値を超えない、バッテリー増加)
+	else if (mBatteryMax >= mBatteryNow){
+		mBatteryNow += 15;
+	}
+	
+	//0以下にならない(バッテリー)
+	if (mBatteryNow < 0){
+		mBatteryNow = 0;
+	}
+	
+	//制限時間減少
+	if (mBatteryNow > 0){
+		mTimeNow--;
+	}
 
-	////0以下にならない(タイム)
-	//if (mTimeNow < 0){
-	//	mTimeNow = 0;
-	//}
+	//0以下にならない(タイム)
+	if (mTimeNow < 0){
+		mTimeNow = 0;
+	}
 
-	//frame++;
+	frame++;
 	//if (frame==300 || frame==500 || frame==700){
 	//	new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
 	//}
 
-	if (frame < 100 && frame % 20 == 0){
-
+	if (frame < 1000 && frame % 150 == 0){
 		//ゴミの生成
 		//new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
-		//new CObj(&mCube, CVector(rand() % 100 - 50, 0.0f, rand() % 100 - 50), CVector(), CVector(2.0f, 5.0f, 2.0f));
 	}
 	
 	CTaskManager::Get()->Update();
@@ -198,7 +194,7 @@ void CSceneGame::Update() {
 	//ダメージリアクション
 	else{
 		//視点を求める
-		e = CVector(0.0f, 20.0f, -10.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 25.0f, -15.0f)*mPlayer.mMatrix;
 		//注視点を求める
 		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 		//上方向を求める
@@ -224,7 +220,7 @@ void CSceneGame::Update() {
 	//mSky.Render();
 
 	CTaskManager::Get()->Render();
-	CollisionManager.Render();
+	CCollisionManager::Get()->Render();
 
 	//コリジョンマネージャーの衝突処理
 	CTaskManager::Get()->TaskCollision();
@@ -284,7 +280,7 @@ void CSceneGame::Update() {
 	CText::DrawString(buf, 15, 550, 15, 15);
 
 	//目標数
-	sprintf(buf, "%d", CPlayer::clear);
+	sprintf(buf, "%d", CTrap::TrapCount);
 	CText::DrawString(buf, 700, 30, 15, 15);
 
 	//ゴミ保有数

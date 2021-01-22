@@ -8,7 +8,8 @@
 #include"math.h"
 
 #define TURN 13		//向き
-#define SPEED 0.1f	//移動速度
+#define SPEED 0.3f	//移動速度
+#define STATERAND	5	//パターン
 
 class CBoss : public CCharacter{
 public:
@@ -16,11 +17,12 @@ public:
 	CBoss(CModel*model, CVector position, CVector rotation, CVector scale);
 	CCollider mColBody;
 	CCollider mSearch;
+
 	//衝突判定
 	void Collision(CCollider*m, CCollider*y);
 	void Update();
 	void TaskCollision();
-
+	
 	int state;
 	int ActFrame;	//行動時間
 	int EnemyDown; //敵ダウン判定
@@ -28,10 +30,12 @@ public:
 
     int tracking;
 	int traptracking;
-
+	int mTrap;
 	float mVelocityJump;
 
 	static CSound Sound;
+
+	CMatrix matrix;
 };
 
 

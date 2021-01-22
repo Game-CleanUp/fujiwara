@@ -1,7 +1,7 @@
 #include"CGomi.h"
 
 
-int CGomi::GomiCount = 0;
+int CGomi::GomiCount = 5;
 CModel CGomi::mModel;
 
 CSound CGomi::Sound;
