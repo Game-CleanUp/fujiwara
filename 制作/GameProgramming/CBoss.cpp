@@ -93,21 +93,20 @@ void CBoss::Update(){
 						ActFrame = 0;
 					}
 					break;
-				
-				case 5:
-					CVector dir = CPlayer::mpPlayer->mPosition - mPosition;
-					CVector left = CVector(1.0f, 0.0f, 0.0f)  * CMatrix().RotateY(mRotation.mY);
-					float Rote = 4.0f;	//プレイヤー方向に方向転換
+		
+				//	CVector dir = CPlayer::mpPlayer->mPosition - mPosition;
+				//	CVector left = CVector(1.0f, 0.0f, 0.0f)  * CMatrix().RotateY(mRotation.mY);
+				//	float Rote = 4.0f;	//プレイヤー方向に方向転換
 
-					if (left.Dot(dir) > 0.0f){
-						mRotation.mY += Rote;
-					}
-					else if (left.Dot(dir) < 0.0f){
-						mRotation.mY -= Rote;
-					}
+				//	if (left.Dot(dir) > 0.0f){
+				//		mRotation.mY += Rote;
+				//	}
+				//	else if (left.Dot(dir) < 0.0f){
+				//		mRotation.mY -= Rote;
+				//	}
 
-					//正規化（長さを1にする）Normalize()
-					mPosition = mPosition + dir.Normalize() * 0.3;
+				//	//正規化（長さを1にする）Normalize()
+				//	mPosition = mPosition + dir.Normalize() * 0.3;
 				}
 			}
 		}
@@ -197,7 +196,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 
 		if (CCollider::Collision(m, y)){
 			mRotation = CVector(0.0f, 0.0f, 90.0f);	//敵ダウン(気絶)
-			DownFrame++;
+			DownFrame += 1;;
 		}
 	
 	}
