@@ -30,7 +30,7 @@ public:
 
     int tracking;
 	int traptracking;
-	int mTrap;
+	
 	float mVelocityJump;
 
 	static CSound Sound;

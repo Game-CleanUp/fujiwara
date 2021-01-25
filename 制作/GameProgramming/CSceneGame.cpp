@@ -90,23 +90,23 @@ void CSceneGame::Init() {
 	
 
 	//上
-	new CObj(&mCube, CVector(100.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 80.0f));
+	new CObj(&mCube, CVector(100.0f, -1.0f, 0.0f), CVector(), CVector(W, H, 80.0f));
 	
 	//下
-	new CObj(&mCube, CVector(-100.0f, 0.0f, 0.0f), CVector(), CVector(W, H, 80.0f));
+	new CObj(&mCube, CVector(-100.0f, -1.0f, 0.0f), CVector(), CVector(W, H, 80.0f));
 
 	//右
-	new CObj(&mCube, CVector(0.0f, 0.0f, 80.0f), CVector(), CVector(100.0f, H, W));
+	new CObj(&mCube, CVector(0.0f, -1.0f, 80.0f), CVector(), CVector(100.0f, H, W));
 	
 	//左
-	new CObj(&mCube, CVector(0.0f, 0.0f, -80.0f), CVector(), CVector(100.0f, H, W));
+	new CObj(&mCube, CVector(0.0f, -1.0f, -80.0f), CVector(), CVector(100.0f, H, W));
 
 	//中央
-	new CObj(&mCube, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(5.0f, 20.0f, 5.0f));
+	new CObj(&mCube, CVector(0.0f, -1.0f, 0.0f), CVector(), CVector(5.0f, 20.0f, 5.0f));
 
 	//ブロック(移動させることができる)
-	new CBlock(&mCube, CVector(-20.0f, 3.0f, 40.0f), CVector(), CVector(2.0f, 2.0f, 5.0f));
-	new CBlock(&mCube, CVector(-30.0f, 0.0f, 20.0f), CVector(), CVector(5.0f, 2.0f, 2.0f));
+	//new CBlock(&mCube, CVector(-20.0f, 3.0f, 40.0f), CVector(), CVector(2.0f, 2.0f, 5.0f));
+	//new CBlock(&mCube, CVector(-30.0f, 0.0f, 20.0f), CVector(), CVector(5.0f, 2.0f, 2.0f));
 
 	//敵(追尾)
 	new CBoss(&mDog, CVector(-20.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
@@ -175,9 +175,9 @@ void CSceneGame::Update() {
 	//	new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
 	//}
 
-	if (frame < 1000 && frame % 150 == 0){
+	if (frame < 1000 && frame % 100 == 0){
 		//ゴミの生成
-		//new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+		new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	}
 	
 	CTaskManager::Get()->Update();

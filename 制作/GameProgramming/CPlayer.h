@@ -18,7 +18,7 @@
 #define R		5.0f	//半径
 #define RETRY	50		//復帰時間
 #define DROP	rand() % 25 + 15	//ゴミのドロップ位置
-#define DROP_RAND	rand() % 360	//ゴミのドロップ方向
+#define DROP_DIR	rand() % 360	//ゴミのドロップ方向
 #define FORWARD	0.5f	//前進
 #define DIR		3.0f	//方向転換
 #define BACK	-0.3f	//後退

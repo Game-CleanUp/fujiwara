@@ -1,13 +1,13 @@
-#include"CGomi.h"
+#include"CTrap.h"
 
 
-int CGomi::GomiCount = 0;
-CModel CGomi::mModel;
+int CTrap::TrapCount = 10;
+CModel CTrap::mModel;
 
-CSound CGomi::Sound;
+CSound CTrap::Sound;
 
-CGomi::CGomi(CModel*model, CVector position, CVector rotation, CVector scale)
-:mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 3.0f)
+CTrap::CTrap(CModel*model, CVector position, CVector rotation, CVector scale)
+:mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 5.0f)
 {
 	//モデル、位置、回転、拡縮を設定する
 	mpModel = model; //モデルの設定
@@ -18,17 +18,17 @@ CGomi::CGomi(CModel*model, CVector position, CVector rotation, CVector scale)
 	//モデルが無いときは読み込む
 	if (mModel.mTriangles.size() == 0)
 	{
-		mModel.Load("Rock1.obj", "Rock1.mtl");
+		mModel.Load("sphere.obj", "sphere.mtl");
 	}
 	//モデルのポインタ設定
 	mpModel = &mModel;
 
-	Sound.Load("gomi.wav");
+	mColBody.mTag == CCollider::ETRAP;
 
 }
 
 
-void CGomi::TaskCollision()
+void CTrap::TaskCollision()
 {
 	mColBody.ChangePriority();
 
@@ -37,7 +37,7 @@ void CGomi::TaskCollision()
 }
 
 
-void CGomi::Update(){
+void CTrap::Update(){
 
 	mVelocityJump = JUMPV0;
 	//重力加速度
@@ -48,7 +48,7 @@ void CGomi::Update(){
 	CCharacter::Update();
 }
 
-void CGomi::Collision(CCollider*m, CCollider*y){
+void CTrap::Collision(CCollider*m, CCollider*y){
 
 
 	//自身のコライダタイプの判定
@@ -74,26 +74,10 @@ void CGomi::Collision(CCollider*m, CCollider*y){
 		break;
 	}
 
-	//ゴミ保有数上限で無効
-	if (GomiCount < 5){
-		//相手がプレイヤー
-		if (y->mTag == CCollider::EBODY){
-			if (CCollider::Collision(m, y)){
-				//衝突しているときは無効にする
-				mEnabled = false;
-				Sound.Play();
-				GomiCount += 1;
-			}
-		}
-		//引き寄せ(プレイヤーのサーチに当たった時)
-		if (y->mTag == CCollider::ESEARCH){
-			if (CCollider::Collision(m, y)){
-				//プレイヤーの方向
-				CVector dir = y->mpParent->mPosition - mPosition;
-				//正規化（長さを1にする）Normalize()
-				mPosition = mPosition + dir.Normalize()*1.5;
-				
-			}
+	//相手がCBoss(犬と衝突)
+	if (y->mTag == CCollider::EBODY2){
+		if (CCollider::Collision(m, y)){
+			mEnabled = false;
 		}
 	}
 }

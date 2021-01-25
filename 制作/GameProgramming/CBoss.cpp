@@ -5,7 +5,7 @@
 CSound CBoss::Sound;
 
 CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
-:mColBody(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 3.0f)
+:mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 3.0f)
 , mSearch(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 50.0f)	
 , ActFrame(0), state(0), mVelocityJump(0.0f), EnemyDown(0), DownFrame(0), traptracking(0)
 {
@@ -29,18 +29,15 @@ void CBoss::TaskCollision()
 	CCollisionManager::Get()->Collision(&mSearch);
 }
 
-
-
-
 void CBoss::Update(){
 
 	if (CPlayer::clear < GAMECLEAR){
-		if (CSceneGame::mBatteryNow <= 0 || CSceneGame::mTimeNow <= 0){
+		//if (CSceneGame::mBatteryNow <= 0 || CSceneGame::mTimeNow <= 0){
 			//追尾してないとき
 			if (tracking == FALSE){
 				switch (state){
-
-				case 0:
+					
+				case 0:	//立ち止まる
 					ActFrame += 1;
 					if (ActFrame > 30){
 						state = rand() % STATERAND;
@@ -48,7 +45,7 @@ void CBoss::Update(){
 					}
 					break;
 
-				case 1:
+				case 1:	//左方向に移動
 					ActFrame += 1;
 					if (ActFrame < 20){
 						//左回転
@@ -58,13 +55,13 @@ void CBoss::Update(){
 						//前進
 						mPosition = CVector(0.0f, 0.0f, SPEED)*mMatrix;
 					}
-					if (ActFrame > 90){
+					if (ActFrame > 120){
 						state = rand() % STATERAND;
 						ActFrame = 0;
 					}
 					break;
 
-				case 2:
+				case 2:	//右方向に移動
 					ActFrame += 1;
 					if (ActFrame < 20){
 						//右回転
@@ -74,13 +71,13 @@ void CBoss::Update(){
 						//前進
 						mPosition = CVector(0.0f, 0.0f, SPEED)*mMatrix;
 					}
-					if (ActFrame > 90){
+					if (ActFrame > 120){
 						state = rand() % STATERAND;
 						ActFrame = 0;
 					}
 					break;
 
-				case 3:
+				case 3:	//立ち止まる
 					ActFrame += 1;
 					if (ActFrame > 60){
 						state = rand() % STATERAND;
@@ -88,7 +85,7 @@ void CBoss::Update(){
 					}
 					break;
 
-				case 4:
+				case 4:	//ゴミを出す
 					ActFrame += 1;
 					if (ActFrame > 90){
 						new CGomi(NULL, mPosition, CVector(), CVector(1.0f, 1.0f, 1.0f));
@@ -96,18 +93,25 @@ void CBoss::Update(){
 						ActFrame = 0;
 					}
 					break;
-
-				case 6:
-					//プレイヤー本体の方向
-					CVector dir = mPosition - mPosition;
+				
+				case 5:
+					CVector dir = CPlayer::mpPlayer->mPosition - mPosition;
 					CVector left = CVector(1.0f, 0.0f, 0.0f)  * CMatrix().RotateY(mRotation.mY);
-					CVector right = CVector(-1.0f, 0.0f, 0.0f) * CMatrix().RotateY(mRotation.mY);
+					float Rote = 4.0f;	//プレイヤー方向に方向転換
+
+					if (left.Dot(dir) > 0.0f){
+						mRotation.mY += Rote;
+					}
+					else if (left.Dot(dir) < 0.0f){
+						mRotation.mY -= Rote;
+					}
+
 					//正規化（長さを1にする）Normalize()
 					mPosition = mPosition + dir.Normalize() * 0.3;
 				}
 			}
 		}
-	}
+//	}
 	if (CSceneGame::mBatteryNow <= 0 || CSceneGame::mTimeNow <= 0){
 		mEnabled = false;
 	}
@@ -119,6 +123,7 @@ void CBoss::Update(){
 	mPosition.mY = mPosition.mY - mVelocityJump;
 	
 	CCharacter::Update();
+	
 }
 
 void CBoss::Collision(CCollider*m, CCollider*y){
@@ -127,7 +132,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::ESEARCH2){
 		if (y->mTag == CCollider::EBODY){
 			if (CCollider::Collision(m, y)){
-				
+
 				//プレイヤー本体の方向
 				CVector dir = y->mpParent->mPosition - mPosition;
 				CVector left = CVector(1.0f, 0.0f, 0.0f)  * CMatrix().RotateY(mRotation.mY);
@@ -155,35 +160,35 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 		}
 		return;
 	}
-	
+
 	//トラップに引き寄せられる
 	if (m->mTag == CCollider::ESEARCH2){
 		if (y->mTag == CCollider::ETRAP){
 			if (CCollider::Collision(m, y)){
-				state = 6;
-				////プレイヤー本体の方向
-				//CVector dir = y->mpParent->mPosition - mPosition;
-				//CVector left = CVector(1.0f, 0.0f, 0.0f)  * CMatrix().RotateY(mRotation.mY);
-				//CVector right = CVector(-1.0f, 0.0f, 0.0f) * CMatrix().RotateY(mRotation.mY);
+				state = 5;
+		//		//プレイヤー本体の方向
+		//		CVector dir = y->mpParent->mPosition - mPosition;
+		//		CVector left = CVector(1.0f, 0.0f, 0.0f)  * CMatrix().RotateY(mRotation.mY);
+		//		CVector right = CVector(-1.0f, 0.0f, 0.0f) * CMatrix().RotateY(mRotation.mY);
 
-				//float Rote = 6.0f;	//トラップ方向に方向転換
+		//		float Rote = 6.0f;	//トラップ方向に方向転換
 
-				//if (left.Dot(dir) > 0.0f){
-				//	mRotation.mY += Rote;
-				//}
-				//else if (left.Dot(dir) < 0.0f){
-				//	mRotation.mY -= Rote;
-				//}
+		//		if (left.Dot(dir) > 0.0f){
+		//			mRotation.mY += Rote;
+		//		}
+		//		else if (left.Dot(dir) < 0.0f){
+		//			mRotation.mY -= Rote;
+		//		}
 
-				////正規化（長さを1にする）Normalize()
-				//mPosition = mPosition + dir.Normalize() * 0.5;
-				//tracking = TRUE;
+		//		//正規化（長さを1にする）Normalize()
+		//		mPosition = mPosition + dir.Normalize() * 0.5;
+		//		tracking = TRUE;
 
 			}
 		}
-		/*else{
-			tracking = FALSE;
-		}*/
+		//else{
+		//	tracking = FALSE;
+		//}
 		return;
 	}
 	
@@ -192,6 +197,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 
 		if (CCollider::Collision(m, y)){
 			mRotation = CVector(0.0f, 0.0f, 90.0f);	//敵ダウン(気絶)
+			DownFrame++;
 		}
 	
 	}

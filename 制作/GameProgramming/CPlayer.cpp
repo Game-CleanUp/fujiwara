@@ -102,25 +102,7 @@ void CPlayer::Update(){
 						mRotation.mX += 0.3f;
 					}
 						
-					
-
-					//回避
-					if (CKey::Once('H')){
-						//mSearch.mRadius = mEnabled;
-					}
-
-					//アイテム使用(パワー)
-					if (frameMax > frame){
-						frame += 1;
-					}
-					
-					//4秒で効果切れ
-					if (frame > 240){
-						mSearch.mRadius = R;
-						frame = 0;
-					}
-
-					//ゴミ回収(ホームにいるとき、ゴミを持っているとき)
+					//ゴミを捨てる(ホームにいるとき、ゴミを持っているとき)
 					if (CHome::home == TRUE && CGomi::GomiCount > 0){
 						if (CKey::Once('E')){
 							clear = clear + CGomi::GomiCount;
@@ -196,70 +178,68 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 	}
 
 	//ボスとの衝突
-	//if (m->mTag == CCollider::EBODY){
-		if (y->mTag == CCollider::EBODY2){
-			if (CCollider::Collision(m, y)){
+	if (y->mTag == CCollider::EBODY2){
+		if (CCollider::Collision(m, y)){
 
-				CSceneGame::mBatteryNow++;
-				frame2++;	//復帰までの時間
-				Down = TRUE;
-				
-				//エフェクト生成(爆発)
-				new CEffect(mPosition, 8.0f, 8.0f, TextureExp, 4, 4, 1);
+			CSceneGame::mBatteryNow++;
+			frame2++;	//復帰までの時間
+			Down = TRUE;
 
-				//爆発音再生
-				//Sound3.Play();
+			//エフェクト生成(爆発)
+			new CEffect(mPosition, 8.0f, 8.0f, TextureExp, 4, 4, 1);
 
-				//持っているゴミを周りに出現させる
-				switch (CGomi::GomiCount){
+			//爆発音再生
+			//Sound3.Play();
 
-				case 1:
-					//プレイヤーの周りに出現
-					for (int i = 0; i < 1; i++){
-						new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					}
-					CGomi::GomiCount = 0;
-					break;
+			//持っているゴミを周りに出現させる
+			switch (CGomi::GomiCount){
 
-				case 2:
-					for (int i = 0; i < 2; i++){
-						new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					}
-					CGomi::GomiCount = 0;
-					break;
-
-				case 3:
-					for (int i = 0; i < 3; i++){
-						new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					}
-					CGomi::GomiCount = 0;
-					break;
-
-				case 4:
-					for (int i = 0; i < 4; i++){
-						new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					}
-					CGomi::GomiCount = 0;
-					break;
-
-				case 5:
-					for (int i = 0; i < 5; i++){
-						new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
-					}
-					CGomi::GomiCount = 0;
-					break;
+			case 1:
+				//プレイヤーの周りに出現
+				for (int i = 0; i < 1; i++){
+					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_DIR), CVector(), CVector(1.0f, 1.0f, 1.0f));
 				}
+				CGomi::GomiCount = 0;
+				break;
 
-				//リトライ(ホームに戻る)
-				if (frame2 >= RETRY){
-					//初期位置
-					mPosition = CVector(-90.0f, 10.0f, 70.0f);
-					mRotation = CVector(0.0f, -225.0f, 0.0f);
-					CSceneGame::mBatteryNow = CSceneGame::mBatteryMax;
-					Down = FALSE;
-					frame2 = 0;
+			case 2:
+				for (int i = 0; i < 2; i++){
+					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_DIR), CVector(), CVector(1.0f, 1.0f, 1.0f));
 				}
+				CGomi::GomiCount = 0;
+				break;
+
+			case 3:
+				for (int i = 0; i < 3; i++){
+					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_DIR), CVector(), CVector(1.0f, 1.0f, 1.0f));
+				}
+				CGomi::GomiCount = 0;
+				break;
+
+			case 4:
+				for (int i = 0; i < 4; i++){
+					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_DIR), CVector(), CVector(1.0f, 1.0f, 1.0f));
+				}
+				CGomi::GomiCount = 0;
+				break;
+
+			case 5:
+				for (int i = 0; i < 5; i++){
+					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_DIR), CVector(), CVector(1.0f, 1.0f, 1.0f));
+				}
+				CGomi::GomiCount = 0;
+				break;
 			}
-		//}
+
+			//リトライ(ホームに戻る)
+			if (frame2 >= RETRY){
+				//初期位置
+				mPosition = CVector(-90.0f, 10.0f, 70.0f);
+				mRotation = CVector(0.0f, -225.0f, 0.0f);
+				CSceneGame::mBatteryNow = CSceneGame::mBatteryMax;
+				Down = FALSE;
+				frame2 = 0;
+			}
+		}
 	}
 }
