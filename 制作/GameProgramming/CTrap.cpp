@@ -2,6 +2,7 @@
 
 
 int CTrap::TrapCount = 10;
+CTrap *CTrap::mpTrap = 0;
 CModel CTrap::mModel;
 
 CSound CTrap::Sound;
@@ -25,6 +26,7 @@ CTrap::CTrap(CModel*model, CVector position, CVector rotation, CVector scale)
 
 	mColBody.mTag == CCollider::ETRAP;
 
+	mpTrap = this;
 }
 
 
@@ -77,7 +79,12 @@ void CTrap::Collision(CCollider*m, CCollider*y){
 	//‘Šè‚ªCBoss(Œ¢‚ÆÕ“Ë)
 	if (y->mTag == CCollider::EBODY2){
 		if (CCollider::Collision(m, y)){
+			trapframe++;
 			mEnabled = false;
 		}
 	}
+
+	/*if (trapframe > 120){
+		mEnabled = false;
+	}*/
 }

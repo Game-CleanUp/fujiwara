@@ -6,6 +6,7 @@
 #include"CCollider.h"
 #include"CSound.h"
 #include"math.h"
+#include"CTrap.h"
 
 #define TURN 13		//向き
 #define SPEED 0.3f	//移動速度
@@ -22,7 +23,7 @@ public:
 	void Collision(CCollider*m, CCollider*y);
 	void Update();
 	void TaskCollision();
-	
+
 	int state;
 	int ActFrame;	//行動時間
 	int EnemyDown; //敵ダウン判定

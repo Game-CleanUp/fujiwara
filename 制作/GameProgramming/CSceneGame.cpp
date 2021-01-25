@@ -106,12 +106,14 @@ void CSceneGame::Init() {
 
 	//ブロック(移動させることができる)
 	//new CBlock(&mCube, CVector(-20.0f, 3.0f, 40.0f), CVector(), CVector(2.0f, 2.0f, 5.0f));
-	//new CBlock(&mCube, CVector(-30.0f, 0.0f, 20.0f), CVector(), CVector(5.0f, 2.0f, 2.0f));
+	//new CBlock(&mCube, CVector(-80.0f, 5.0f, 75.0f), CVector(), CVector(5.0f, 5.0f, 2.0f));
 
 	//敵(追尾)
 	new CBoss(&mDog, CVector(-20.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	new CTrap(&mSphere, CVector(0.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CTrap(&mSphere, CVector(-40.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CTrap(&mSphere, CVector(0.0f, 0.0f, 30.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//ホーム
 	new CHome(&mCube, CVector(-90.0f, -0.7f, 75.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
@@ -147,37 +149,37 @@ void CSceneGame::RenderMiniMap(){
 
 void CSceneGame::Update() {
 
-	if (mBatteryNow >= 0 && CHome::home == 0){
-		mBatteryNow--;
-	}
-	//充電(最大値を超えない、バッテリー増加)
-	else if (mBatteryMax >= mBatteryNow){
-		mBatteryNow += 15;
-	}
-	
-	//0以下にならない(バッテリー)
-	if (mBatteryNow < 0){
-		mBatteryNow = 0;
-	}
-	
-	//制限時間減少
-	if (mBatteryNow > 0){
-		mTimeNow--;
-	}
+	//if (mBatteryNow >= 0 && CHome::home == 0){
+	//	mBatteryNow--;
+	//}
+	////充電(最大値を超えない、バッテリー増加)
+	//else if (mBatteryMax >= mBatteryNow){
+	//	mBatteryNow += 15;
+	//}
+	//
+	////0以下にならない(バッテリー)
+	//if (mBatteryNow < 0){
+	//	mBatteryNow = 0;
+	//}
+	//
+	////制限時間減少
+	//if (mBatteryNow > 0){
+	//	mTimeNow--;
+	//}
 
-	//0以下にならない(タイム)
-	if (mTimeNow < 0){
-		mTimeNow = 0;
-	}
+	////0以下にならない(タイム)
+	//if (mTimeNow < 0){
+	//	mTimeNow = 0;
+	//}
 
-	frame++;
-	//if (frame==300 || frame==500 || frame==700){
+	//frame++;
+	//if (frame==1000 || frame==2000 || frame==3000){
 	//	new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
 	//}
 
 	if (frame < 1000 && frame % 100 == 0){
 		//ゴミの生成
-		new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+		//new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	}
 	
 	CTaskManager::Get()->Update();

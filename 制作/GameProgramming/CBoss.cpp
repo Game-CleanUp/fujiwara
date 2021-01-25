@@ -31,86 +31,102 @@ void CBoss::TaskCollision()
 
 void CBoss::Update(){
 
+	CVector dir_player = CPlayer::mpPlayer->mPosition - mPosition;	//プレイヤー方向
+	CVector dir_trap = CTrap::mpTrap->mPosition - mPosition;	//トラップ方向
+
+	CVector left = CVector(1.0f, 0.0f, 0.0f)  * CMatrix().RotateY(mRotation.mY);
+
+	float Rote = 4.0f;	//追尾対象に方向転換
+
 	if (CPlayer::clear < GAMECLEAR){
-		//if (CSceneGame::mBatteryNow <= 0 || CSceneGame::mTimeNow <= 0){
-			//追尾してないとき
-			if (tracking == FALSE){
-				switch (state){
-					
-				case 0:	//立ち止まる
-					ActFrame += 1;
-					if (ActFrame > 30){
-						state = rand() % STATERAND;
-						ActFrame = 0;
-					}
-					break;
+		switch (state){
 
-				case 1:	//左方向に移動
-					ActFrame += 1;
-					if (ActFrame < 20){
-						//左回転
-						mRotation.mY += rand() % TURN;
-					}
-					if (ActFrame > 30){
-						//前進
-						mPosition = CVector(0.0f, 0.0f, SPEED)*mMatrix;
-					}
-					if (ActFrame > 120){
-						state = rand() % STATERAND;
-						ActFrame = 0;
-					}
-					break;
-
-				case 2:	//右方向に移動
-					ActFrame += 1;
-					if (ActFrame < 20){
-						//右回転
-						mRotation.mY -= rand() % TURN;
-					}
-					if (ActFrame > 30){
-						//前進
-						mPosition = CVector(0.0f, 0.0f, SPEED)*mMatrix;
-					}
-					if (ActFrame > 120){
-						state = rand() % STATERAND;
-						ActFrame = 0;
-					}
-					break;
-
-				case 3:	//立ち止まる
-					ActFrame += 1;
-					if (ActFrame > 60){
-						state = rand() % STATERAND;
-						ActFrame = 0;
-					}
-					break;
-
-				case 4:	//ゴミを出す
-					ActFrame += 1;
-					if (ActFrame > 90){
-						new CGomi(NULL, mPosition, CVector(), CVector(1.0f, 1.0f, 1.0f));
-						state = rand() % STATERAND;
-						ActFrame = 0;
-					}
-					break;
-		
-				//	CVector dir = CPlayer::mpPlayer->mPosition - mPosition;
-				//	CVector left = CVector(1.0f, 0.0f, 0.0f)  * CMatrix().RotateY(mRotation.mY);
-				//	float Rote = 4.0f;	//プレイヤー方向に方向転換
-
-				//	if (left.Dot(dir) > 0.0f){
-				//		mRotation.mY += Rote;
-				//	}
-				//	else if (left.Dot(dir) < 0.0f){
-				//		mRotation.mY -= Rote;
-				//	}
-
-				//	//正規化（長さを1にする）Normalize()
-				//	mPosition = mPosition + dir.Normalize() * 0.3;
-				}
+		case 0:	//立ち止まる
+			ActFrame += 1;
+			if (ActFrame > 30){
+				state = rand() % STATERAND;
+				ActFrame = 0;
 			}
+			break;
+
+		case 1:	//左方向に移動
+			ActFrame += 1;
+			if (ActFrame < 20){
+				//左回転
+				mRotation.mY += rand() % TURN;
+			}
+			if (ActFrame > 30){
+				//前進
+				mPosition = CVector(0.0f, 0.0f, SPEED)*mMatrix;
+			}
+			if (ActFrame > 120){
+				state = rand() % STATERAND;
+				ActFrame = 0;
+			}
+			break;
+
+		case 2:	//右方向に移動
+			ActFrame += 1;
+			if (ActFrame < 20){
+				//右回転
+				mRotation.mY -= rand() % TURN;
+			}
+			if (ActFrame > 30){
+				//前進
+				mPosition = CVector(0.0f, 0.0f, SPEED)*mMatrix;
+			}
+			if (ActFrame > 120){
+				state = rand() % STATERAND;
+				ActFrame = 0;
+			}
+			break;
+
+		case 3:	//立ち止まる
+			ActFrame += 1;
+			if (ActFrame > 60){
+				state = rand() % STATERAND;
+				ActFrame = 0;
+			}
+			break;
+
+		case 4:	//ゴミを出す
+			ActFrame += 1;
+			if (ActFrame > 90){
+				new CGomi(NULL, mPosition, CVector(), CVector(0.5f, 0.5f, 0.5f));
+				state = rand() % STATERAND;
+				ActFrame = 0;
+			}
+			break;
+
+		case 5:	//トラップ追尾
+			if (left.Dot(dir_trap) > 0.0f){
+				mRotation.mY += Rote;
+			}
+			else if (left.Dot(dir_trap) < 0.0f){
+				mRotation.mY -= Rote;
+			}
+
+			//正規化（長さを1にする）Normalize()
+			mPosition = mPosition + dir_trap.Normalize() * 0.3;
+			state = rand() % STATERAND;
+			break;
+
+		case 6:
+			//プレイヤー追尾
+			if (left.Dot(dir_player) > 0.0f){
+				mRotation.mY += Rote;
+			}
+			else if (left.Dot(dir_player) < 0.0f){
+				mRotation.mY -= Rote;
+			}
+
+			//正規化（長さを1にする）Normalize()
+			mPosition = mPosition + dir_player.Normalize() * 0.3;
+			state = rand() % STATERAND;
+			break;
 		}
-//	}
+	}
+
 	if (CSceneGame::mBatteryNow <= 0 || CSceneGame::mTimeNow <= 0){
 		mEnabled = false;
 	}
@@ -131,30 +147,12 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::ESEARCH2){
 		if (y->mTag == CCollider::EBODY){
 			if (CCollider::Collision(m, y)){
-
-				//プレイヤー本体の方向
-				CVector dir = y->mpParent->mPosition - mPosition;
-				CVector left = CVector(1.0f, 0.0f, 0.0f)  * CMatrix().RotateY(mRotation.mY);
-				CVector right = CVector(-1.0f, 0.0f, 0.0f) * CMatrix().RotateY(mRotation.mY);
-
-				float Rote = 4.0f;	//プレイヤー方向に方向転換
-
-				if (left.Dot(dir) > 0.0f){
-					mRotation.mY += Rote;
+				if (state != 5){
+					state = 6;
 				}
-				else if (left.Dot(dir) < 0.0f){
-					mRotation.mY -= Rote;
-				}
-
-				//正規化（長さを1にする）Normalize()
-				mPosition = mPosition + dir.Normalize() * 0.3;
-				Sound.Play();
-				tracking = TRUE;
 			}
 		}
 		else{
-			//追尾をやめる
-			tracking = FALSE;
 			Sound.Stop();
 		}
 		return;
@@ -165,29 +163,9 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 		if (y->mTag == CCollider::ETRAP){
 			if (CCollider::Collision(m, y)){
 				state = 5;
-		//		//プレイヤー本体の方向
-		//		CVector dir = y->mpParent->mPosition - mPosition;
-		//		CVector left = CVector(1.0f, 0.0f, 0.0f)  * CMatrix().RotateY(mRotation.mY);
-		//		CVector right = CVector(-1.0f, 0.0f, 0.0f) * CMatrix().RotateY(mRotation.mY);
-
-		//		float Rote = 6.0f;	//トラップ方向に方向転換
-
-		//		if (left.Dot(dir) > 0.0f){
-		//			mRotation.mY += Rote;
-		//		}
-		//		else if (left.Dot(dir) < 0.0f){
-		//			mRotation.mY -= Rote;
-		//		}
-
-		//		//正規化（長さを1にする）Normalize()
-		//		mPosition = mPosition + dir.Normalize() * 0.5;
-		//		tracking = TRUE;
-
+				
 			}
 		}
-		//else{
-		//	tracking = FALSE;
-		//}
 		return;
 	}
 	
@@ -196,7 +174,8 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 
 		if (CCollider::Collision(m, y)){
 			mRotation = CVector(0.0f, 0.0f, 90.0f);	//敵ダウン(気絶)
-			DownFrame += 1;;
+			state = 7;
+			DownFrame += 1;
 		}
 	
 	}

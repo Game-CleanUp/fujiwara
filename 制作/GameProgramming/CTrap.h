@@ -23,6 +23,7 @@ public:
 	static int TrapCount;	//罠を持っている数
 	static CModel mModel;
 	static CSound Sound;
+	static CTrap *mpTrap;	//トラップのポインタ
 
 	float mVelocityJump;
 
