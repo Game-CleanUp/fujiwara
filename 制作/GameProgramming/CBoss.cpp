@@ -124,6 +124,15 @@ void CBoss::Update(){
 			mPosition = mPosition + dir_player.Normalize() * 0.3;
 			state = rand() % STATERAND;
 			break;
+
+		case 7:	//気絶
+			ActFrame += 1;
+			if (ActFrame > 120){
+				mRotation = CVector(0.0f, 0.0f, 0.0f);	//復帰
+				ActFrame = 0;
+				state = rand() % STATERAND;
+			}
+			break;
 		}
 	}
 
@@ -143,39 +152,39 @@ void CBoss::Update(){
 
 void CBoss::Collision(CCollider*m, CCollider*y){
 
+	//if (m->mTag == CCollider::ESEARCH2){
+	//	//return;
+	//}
+
 	//追尾(プレイヤーがサーチに入ると)
 	if (m->mTag == CCollider::ESEARCH2){
 		if (y->mTag == CCollider::EBODY){
 			if (CCollider::Collision(m, y)){
-				if (state != 5){
-					state = 6;
+				if (state != 5 && state != 7){	//トラップ、気絶以外
+					state = 6;	//プレイヤー追尾へ
 				}
 			}
 		}
-		else{
-			Sound.Stop();
+	}
+	
+	//トラップとの衝突
+	if (m->mTag == CCollider::ESEARCH2){
+		if (y->mTag == CCollider::ETRAP){
+			if (CCollider::Collision(m, y)){
+				state = 5;	//トラップ誘導へ
+				
+			}
+			
 		}
 		return;
 	}
 
-	//トラップに引き寄せられる
-	if (m->mTag == CCollider::ESEARCH2){
-		if (y->mTag == CCollider::ETRAP){
-			if (CCollider::Collision(m, y)){
-				state = 5;
-				
-			}
-		}
-		return;
-	}
-	
 	//プレイヤー弾との衝突判定
 	if (m->mTag == CCollider::EBODY2 && y->mTag == CCollider::EBULLET){
 
 		if (CCollider::Collision(m, y)){
-			mRotation = CVector(0.0f, 0.0f, 90.0f);	//敵ダウン(気絶)
-			state = 7;
-			DownFrame += 1;
+			mRotation = CVector(0.0f, 0.0f, 90.0f);	//横になる
+			state = 7;	//気絶へ
 		}
 	
 	}

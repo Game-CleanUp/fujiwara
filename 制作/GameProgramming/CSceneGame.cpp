@@ -149,37 +149,38 @@ void CSceneGame::RenderMiniMap(){
 
 void CSceneGame::Update() {
 
-	if (mBatteryNow >= 0 && CHome::home == 0){
-		mBatteryNow--;
-	}
-	//充電(最大値を超えない、バッテリー増加)
-	else if (mBatteryMax >= mBatteryNow){
-		mBatteryNow += 15;
-	}
-	
-	//0以下にならない(バッテリー)
-	if (mBatteryNow < 0){
-		mBatteryNow = 0;
-	}
-	
-	//制限時間減少
-	if (mBatteryNow > 0){
-		mTimeNow--;
-	}
+	////バッテリー減少
+	//if (mBatteryNow >= 0 && CHome::home == 0){
+	//	mBatteryNow--;
+	//}
+	////充電(最大値を超えない、バッテリー増加)
+	//else if (mBatteryMax >= mBatteryNow){
+	//	mBatteryNow += 15;
+	//}
+	//
+	////0以下にならない(バッテリー)
+	//if (mBatteryNow < 0){
+	//	mBatteryNow = 0;
+	//}
+	//
+	////制限時間減少
+	//if (mBatteryNow > 0){
+	//	mTimeNow--;
+	//}
 
-	//0以下にならない(タイム)
-	if (mTimeNow < 0){
-		mTimeNow = 0;
-	}
+	////0以下にならない(タイム)
+	//if (mTimeNow < 0){
+	//	mTimeNow = 0;
+	//}
 
-	frame++;
+	//frame++;
 	//if (frame==1000 || frame==2000 || frame==3000){
 	//	new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
 	//}
 
 	if (frame < 1000 && frame % 100 == 0){
 		//ゴミの生成
-		new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+		//new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	}
 	
 	CTaskManager::Get()->Update();
@@ -203,9 +204,14 @@ void CSceneGame::Update() {
 		u = CVector(0.0f, 1.0f, 0.0f)*mPlayer.mMatrixRotate;
 	}
 
+	//後方視点
+	if (CKey::Push('O')){
+		c = CVector(0.0f, 0.0f, -10.0f)*mPlayer.mMatrix;
+	}
+
 	//見下ろし視点
 	if (CKey::Push('I')){
-		e = CVector(0.0f, 100.0f, 0.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 50.0f, 0.0f)*mPlayer.mMatrix;
 	}
 
 	//確認
