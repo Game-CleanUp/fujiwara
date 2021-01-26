@@ -29,7 +29,7 @@ void CBullet::Update(){
 		//位置更新
 		
 		//弾速
-		mPosition = CVector(0.0f, 0.0f, 1.5f) * mMatrix;
+		mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
 	}
 	else{
 		//無効にする
@@ -40,6 +40,7 @@ void CBullet::Update(){
 //衝突処理
 //Collision(コライダ1,コライダ2)
 void CBullet::Collision(CCollider *m, CCollider *y){
+
 	//共に球コライダの時
 	if (m->mType == CCollider::ESPHERE && y->mType == CCollider::ESPHERE){
 		//コライダのｍとｙが衝突しているか判定

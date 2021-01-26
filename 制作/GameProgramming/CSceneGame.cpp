@@ -109,6 +109,9 @@ void CSceneGame::Init() {
 	//敵(追尾)
 	new CBoss(&mDog, CVector(-20.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
+	new CTrap(&mSphere, CVector(0.0f, 100.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	
+
 	//ホーム
 	new CHome(&mCube, CVector(-90.0f, -0.7f, 75.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
@@ -205,7 +208,7 @@ void CSceneGame::Update() {
 
 	//見下ろし視点
 	if (CKey::Push('I')){
-		e = CVector(0.0f, 50.0f, 0.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 100.0f, 0.0f)*mPlayer.mMatrix;
 	}
 
 	//確認

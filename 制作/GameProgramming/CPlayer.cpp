@@ -78,7 +78,7 @@ void CPlayer::Update(){
 						if (CKey::Once(VK_SPACE)){
 							CBullet*bullet = new CBullet();
 							bullet->Set(0.3f, 2.0f);
-							bullet->mPosition = CVector(0.0f, 0.0f, 0.0f)*mMatrix;
+							bullet->mPosition = CVector(0.0f, 0.0f, 0.0f)*mMatrix;	//発射位置
 							bullet->mRotation = mRotation;
 							bullet->mTag = CCharacter::EBULLET;
 							CSceneGame::mBatteryNow -= 100;	//バッテリー消費
