@@ -69,7 +69,9 @@ public:
 	static CSound Sound;	//BGM
 	static CSound Sound2;	//ゲームオーバー音
 
-	static CSound Sound3;	//
+	static CSound Sound3;
+
+
 };
 
 #endif

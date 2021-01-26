@@ -44,8 +44,6 @@ void CSceneGame::Init() {
 	glMatrixMode(GL_MODELVIEW);		//行列をモデルビューモードへ変更
 	glLoadIdentity();				//行列を初期化
 
-
-
 	//テキストフォントの読み込みと設定
 	CText::mFont.Load("FontG.tga");
 	CText::mFont.SetRowCol(1, 4096 / 64);	//画像の横幅/1文字の横幅
@@ -110,10 +108,6 @@ void CSceneGame::Init() {
 
 	//敵(追尾)
 	new CBoss(&mDog, CVector(-20.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-
-	new CTrap(&mSphere, CVector(0.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CTrap(&mSphere, CVector(-40.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	new CTrap(&mSphere, CVector(0.0f, 0.0f, 30.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//ホーム
 	new CHome(&mCube, CVector(-90.0f, -0.7f, 75.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));

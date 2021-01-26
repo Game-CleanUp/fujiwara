@@ -24,7 +24,7 @@ CTrap::CTrap(CModel*model, CVector position, CVector rotation, CVector scale)
 	//モデルのポインタ設定
 	mpModel = &mModel;
 
-	mColBody.mTag == CCollider::ETRAP;
+	mColBody.mTag = CCollider::ETRAP;
 
 	mpTrap = this;
 }

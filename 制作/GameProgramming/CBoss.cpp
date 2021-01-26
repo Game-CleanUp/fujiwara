@@ -152,17 +152,11 @@ void CBoss::Update(){
 
 void CBoss::Collision(CCollider*m, CCollider*y){
 
-	//if (m->mTag == CCollider::ESEARCH2){
-	//	//return;
-	//}
-
 	//追尾(プレイヤーがサーチに入ると)
-	if (m->mTag == CCollider::ESEARCH2){
-		if (y->mTag == CCollider::EBODY){
-			if (CCollider::Collision(m, y)){
-				if (state != 5 && state != 7){	//トラップ、気絶以外
-					state = 6;	//プレイヤー追尾へ
-				}
+	if (m->mTag == CCollider::ESEARCH2 && y->mTag == CCollider::EBODY){
+		if (CCollider::Collision(m, y)){
+			if (state != 5 && state != 7){	//トラップ、気絶以外
+				state = 6;	//プレイヤー追尾へ
 			}
 		}
 	}
@@ -181,7 +175,6 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 
 	//プレイヤー弾との衝突判定
 	if (m->mTag == CCollider::EBODY2 && y->mTag == CCollider::EBULLET){
-
 		if (CCollider::Collision(m, y)){
 			mRotation = CVector(0.0f, 0.0f, 90.0f);	//横になる
 			state = 7;	//気絶へ
