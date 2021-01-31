@@ -41,7 +41,7 @@ void CGomi::Update(){
 
 	mVelocityJump = JUMPV0;
 	//d—Í‰Á‘¬“x
-	mVelocityJump -= G;
+	mVelocityJump -= 9.8f / 30.0f;
 	//ˆÚ“®
 	mPosition.mY = mPosition.mY - mVelocityJump;
 

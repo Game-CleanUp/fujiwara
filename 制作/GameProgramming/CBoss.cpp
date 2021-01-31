@@ -55,7 +55,7 @@ void CBoss::Update(){
 				//左回転
 				mRotation.mY += rand() % TURN;
 			}
-			if (ActFrame > 30){
+			if (ActFrame > 60){
 				//前進
 				mPosition = CVector(0.0f, 0.0f, SPEED)*mMatrix;
 			}
@@ -71,7 +71,7 @@ void CBoss::Update(){
 				//右回転
 				mRotation.mY -= rand() % TURN;
 			}
-			if (ActFrame > 30){
+			if (ActFrame > 60){
 				//前進
 				mPosition = CVector(0.0f, 0.0f, SPEED)*mMatrix;
 			}
@@ -119,6 +119,7 @@ void CBoss::Update(){
 			else if (left.Dot(dir_player) < 0.0f){
 				mRotation.mY -= Rote;
 			}
+			
 
 			//正規化（長さを1にする）Normalize()
 			mPosition = mPosition + dir_player.Normalize() * 0.3;
@@ -157,6 +158,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 		if (CCollider::Collision(m, y)){
 			if (state != 5 && state != 7){	//トラップ、気絶以外
 				state = 6;	//プレイヤー追尾へ
+				Sound.Repeat();
 			}
 		}
 	}
@@ -165,10 +167,10 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::ESEARCH2){
 		if (y->mTag == CCollider::ETRAP){
 			if (CCollider::Collision(m, y)){
-				state = 5;	//トラップ誘導へ
-				
+				if (state != 7){	//気絶以外
+					state = 5;	//トラップ誘導へ
+				}
 			}
-			
 		}
 		return;
 	}
@@ -177,7 +179,9 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::EBODY2 && y->mTag == CCollider::EBULLET){
 		if (CCollider::Collision(m, y)){
 			mRotation = CVector(0.0f, 0.0f, 90.0f);	//横になる
+			//Sound.Play();
 			state = 7;	//気絶へ
+			
 		}
 	
 	}

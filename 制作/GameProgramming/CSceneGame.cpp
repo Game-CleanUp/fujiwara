@@ -6,7 +6,6 @@
 
 #include"CInput.h"
 
-int CSceneGame::StageCount = 0;
 int CSceneGame::mBatteryMax = 60 * 60;
 int CSceneGame::mBatteryNow = mBatteryNow + mBatteryMax;
 int CSceneGame::mTimeMax = 60 * 60;
@@ -16,6 +15,7 @@ int CSceneGame::frame2 = 0;
 
  CSound CSceneGame::Sound;
  CSound CSceneGame::Sound2;
+ CSound CSceneGame::Sound3;
 
 CSceneGame::~CSceneGame(){
 	
@@ -35,7 +35,7 @@ void CSceneGame::Init() {
 	Sound.Load("bgm.wav");
 	Sound2.Load("GameOver.wav");
 	//BGM再生
-	Sound.Repeat();
+	//Sound.Repeat();
 
 	glMatrixMode(GL_PROJECTION);	//行列をプロジェクションモードへ変更
 	glLoadIdentity();				//行列を初期化
@@ -66,9 +66,9 @@ void CSceneGame::Init() {
 
 	//new CObj(&mBed, CVector(-55.0f, -6.0f, 30.0f), CVector(0.0f, 90.0f, 0.0f), CVector(20.0f, 25.0f, 20.0f));
 
-	new CObj(&mTable, CVector(-20.0f, -1.0f, 0.0f), CVector(), CVector(30.0f, 20.0f, 20.0f));
+	//new CObj(&mTable, CVector(-20.0f, -1.0f, 0.0f), CVector(), CVector(30.0f, 20.0f, 20.0f));
 
-	new CObj(&mKitchen, CVector(50.0f, -1.0f, -20.0f), CVector(0.0f, -90.0f, 0.0f), CVector(8.0f, 10.0f, 10.0f));
+	//new CObj(&mKitchen, CVector(50.0f, -1.0f, -20.0f), CVector(0.0f, -90.0f, 0.0f), CVector(8.0f, 10.0f, 10.0f));
 
 	//new CObj(&mSofa, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
 
@@ -100,7 +100,14 @@ void CSceneGame::Init() {
 	new CObj(&mCube, CVector(0.0f, -1.0f, -80.0f), CVector(), CVector(100.0f, H, W));
 
 	//中央
-	new CObj(&mCube, CVector(0.0f, -1.0f, 0.0f), CVector(), CVector(5.0f, 20.0f, 5.0f));
+	new CObj(&mCube, CVector(0.0f, -1.0f, 0.0f), CVector(), CVector(5.0f, 10.0f, 5.0f));
+	new CObj(&mCube, CVector(0.0f, 10.0f, 20.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+	new CObj(&mCube, CVector(80.0f, -1.0f, 20.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+	new CObj(&mCube, CVector(-40.0f, -1.0f, -50.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+	new CObj(&mCube, CVector(0.0f, -1.0f, -60.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+	new CObj(&mCube, CVector(-78.0f, 10.0f, 30.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+	new CObj(&mCube, CVector(-70.0f, -1.0f, 70.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+	new CObj(&mCube, CVector(50.0f, 10.0f, 0.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 
 	//ブロック(移動させることができる)
 	//new CBlock(&mCube, CVector(-20.0f, 3.0f, 40.0f), CVector(), CVector(2.0f, 2.0f, 5.0f));
@@ -109,9 +116,9 @@ void CSceneGame::Init() {
 	//敵(追尾)
 	new CBoss(&mDog, CVector(-20.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
-	new CTrap(&mSphere, CVector(0.0f, 100.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	
 
+	new CTrap(&mSphere, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	
 	//ホーム
 	new CHome(&mCube, CVector(-90.0f, -0.7f, 75.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
@@ -122,6 +129,7 @@ void CSceneGame::Init() {
 	
 	//テクスチャ(床）
 	std::shared_ptr<CTexture>yuka(new CTexture("yuka.tga"));
+
 	//床
 	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(100.0f, 1.0f, 80.0f));
 	new CImage(yuka, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(100.0f, 80.0f, 1.0f));
@@ -146,34 +154,34 @@ void CSceneGame::RenderMiniMap(){
 
 void CSceneGame::Update() {
 
-	////バッテリー減少
-	//if (mBatteryNow >= 0 && CHome::home == 0){
-	//	mBatteryNow--;
-	//}
-	////充電(最大値を超えない、バッテリー増加)
-	//else if (mBatteryMax >= mBatteryNow){
-	//	mBatteryNow += 15;
-	//}
-	//
-	////0以下にならない(バッテリー)
-	//if (mBatteryNow < 0){
-	//	mBatteryNow = 0;
-	//}
-	//
-	////制限時間減少
-	//if (mBatteryNow > 0){
-	//	mTimeNow--;
-	//}
+	//バッテリー減少
+	if (mBatteryNow >= 0 && CHome::home == 0){
+		mBatteryNow--;
+	}
+	//充電(最大値を超えない、バッテリー増加)
+	else if (mBatteryMax >= mBatteryNow){
+		mBatteryNow += 15;
+	}
+	
+	//0以下にならない(バッテリー)
+	if (mBatteryNow < 0){
+		mBatteryNow = 0;
+	}
+	
+	//制限時間減少
+	if (mBatteryNow > 0){
+		mTimeNow--;
+	}
 
-	////0以下にならない(タイム)
-	//if (mTimeNow < 0){
-	//	mTimeNow = 0;
-	//}
+	//0以下にならない(タイム)
+	if (mTimeNow < 0){
+		mTimeNow = 0;
+	}
 
-	//frame++;
-	//if (frame==1000 || frame==2000 || frame==3000){
-	//	new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(0.5f, 0.5f, 0.5f));
-	//}
+	frame++;
+	if (frame==1000 || frame==2000 || frame==3000){
+		//new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	}
 
 	if (frame < 1000 && frame % 100 == 0){
 		//ゴミの生成
@@ -208,7 +216,7 @@ void CSceneGame::Update() {
 
 	//見下ろし視点
 	if (CKey::Push('I')){
-		e = CVector(0.0f, 100.0f, 0.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 200.0f, 0.0f)*mPlayer.mMatrix;
 	}
 
 	//確認
@@ -269,8 +277,6 @@ void CSceneGame::Update() {
 	frame2++;
 	if (frame2 < 60){
 		CText::DrawString("START", 310, 400, 15, 15);
-		//CText::DrawString("CLEAR:5", 290, 300, 15, 15);
-		//frame2 = 0;
 	}
 
 	CText::DrawString("BATTERY", 17, 50, 11, 11);

@@ -56,8 +56,7 @@ public:
 
 	//次のシーンの取得
 	EScene GetNextScene();
-	//ステージ数
-	static int StageCount;
+
 	static int mBatteryMax;
 	static int mBatteryNow;
 	static int mTimeMax;

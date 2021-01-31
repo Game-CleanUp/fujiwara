@@ -9,6 +9,7 @@ CSound CTrap::Sound;
 
 CTrap::CTrap(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 5.0f)
+, trapframe(0)
 {
 	//ƒ‚ƒfƒ‹AˆÊ’uA‰ñ“]AŠgk‚ğİ’è‚·‚é
 	mpModel = model; //ƒ‚ƒfƒ‹‚Ìİ’è
@@ -79,12 +80,11 @@ void CTrap::Collision(CCollider*m, CCollider*y){
 	//‘Šè‚ªCBoss(Œ¢‚ÆÕ“Ë)
 	if (y->mTag == CCollider::EBODY2){
 		if (CCollider::Collision(m, y)){
-			trapframe++;
+			trapframe++;	//’â~ŠÔƒJƒEƒ“ƒg
+		}
+		//1•bŒãÁ–Å
+		if (trapframe > 60){
 			mEnabled = false;
 		}
 	}
-
-	/*if (trapframe > 120){
-		mEnabled = false;
-	}*/
 }

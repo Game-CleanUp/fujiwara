@@ -8,7 +8,7 @@
 #include"math.h"
 #include"CTrap.h"
 
-#define TURN 13		//向き
+#define TURN rand() % 5 + 1		//向き
 #define SPEED 0.3f	//移動速度
 #define STATERAND	5	//パターン
 

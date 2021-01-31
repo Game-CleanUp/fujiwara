@@ -9,7 +9,6 @@ CPlayer *CPlayer::mpPlayer = 0;
 
 CSound CPlayer::Sound;
 CSound CPlayer::Sound2;
-CSound CPlayer::Sound3;	//爆発音
 
 //スマートポインタの外部参照
 extern std::shared_ptr<CTexture>TextureExp(new CTexture());
@@ -25,8 +24,7 @@ CPlayer::CPlayer()
 	mColBody.mTag = CCollider::EBODY;
 	mSearch.mTag = CCollider::ESEARCH;
 	Sound.Load("jump.wav");	//ジャンプ音
-	Sound2.Load("act.wav");	//移動音
-	Sound.Load("Bomb.wav");	//爆発音
+	Sound2.Load("Bomb.wav");	//爆発音
 
 	//爆発テクスチャ
 	TextureExp->Load("exp.tga");
@@ -77,7 +75,7 @@ void CPlayer::Update(){
 					if (mVelocityJump == 0){	//ジャンプ中無効
 						if (CKey::Once(VK_SPACE)){
 							CBullet*bullet = new CBullet();
-							bullet->Set(0.3f, 2.0f);
+							bullet->Set(0.3f, 2.0f);	//弾のサイズ
 							bullet->mPosition = CVector(0.0f, 0.0f, 0.0f)*mMatrix;	//発射位置
 							bullet->mRotation = mRotation;
 							bullet->mTag = CCharacter::EBULLET;
@@ -86,7 +84,7 @@ void CPlayer::Update(){
 					}
 					if (CTrap::TrapCount > 0){
 						if (CKey::Once('Q')){
-							//tラップ設置
+							//トラップ設置
 							new CTrap(NULL, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
 							CTrap::TrapCount -= 1;	//トラップ消費
 						}
@@ -97,10 +95,6 @@ void CPlayer::Update(){
 						CSceneGame::mBatteryNow -= 5 * 60;	//バッテリー消費
 						Sound.Play();
 					}
-					
-					if (CKey::Push('R')){
-						mRotation.mX += 0.3f;
-					}
 						
 					//ゴミを捨てる(ホームにいるとき、ゴミを持っているとき)
 					if (CHome::home == TRUE && CGomi::GomiCount > 0){
@@ -109,7 +103,7 @@ void CPlayer::Update(){
 							CGomi::GomiCount = 0;
 							}
 						}
-
+				
 					//// マウスカーソルの座標を取得
 					//	int mx, my;
 					//CInput::GetMousePos(&mx, &my);
@@ -141,6 +135,7 @@ void CPlayer::Render(){
 	Back.Render();
 	Battery.Render();
 	Time.Render();
+	//Ui.Render();
 
 }
 
@@ -172,24 +167,18 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 
 		break;
 	}
-	if (Down == TRUE){
-		//爆発音再生
-		Sound3.Play();
-	}
 
 	//ボスとの衝突
-	if (y->mTag == CCollider::EBODY2){
+	if (m->mTag==CCollider::EBODY && y->mTag == CCollider::EBODY2){
 		if (CCollider::Collision(m, y)){
 
 			CSceneGame::mBatteryNow++;
 			frame2++;	//復帰までの時間
 			Down = TRUE;
+			//Sound2.Play();	//爆発音
 
 			//エフェクト生成(爆発)
-			new CEffect(mPosition, 8.0f, 8.0f, TextureExp, 4, 4, 1);
-
-			//爆発音再生
-			//Sound3.Play();
+			new CEffect(mPosition, 10.0f, 10.0f, TextureExp, 4, 4, 1);
 
 			//持っているゴミを周りに出現させる
 			switch (CGomi::GomiCount){
