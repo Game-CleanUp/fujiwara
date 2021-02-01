@@ -158,8 +158,15 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 		if (CCollider::Collision(m, y)){
 			if (state != 5 && state != 7){	//トラップ、気絶以外
 				state = 6;	//プレイヤー追尾へ
-				Sound.Repeat();
+
+				if (onlyOnce){	//1度だけ実行
+					Sound.Repeat();
+					onlyOnce = false;
+				}
 			}
+		}
+		else{
+			Sound.Stop();
 		}
 	}
 	
