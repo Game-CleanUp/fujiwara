@@ -59,10 +59,11 @@ public:
 
 	static int mBatteryMax;
 	static int mBatteryNow;
+
 	static int mTimeMax;
 	static int mTimeNow;
-	static int frame;
 
+	static int frame;	//ƒQ[ƒ€ƒvƒŒƒCŠÔ
 	static int frame2;
 
 	static CSound Sound;	//BGM
@@ -71,6 +72,7 @@ public:
 	static CSound Sound3;
 
 
+	bool onlyOnce;
 };
 
 #endif

@@ -128,7 +128,6 @@ void CPlayer::Update(){
 
 	CCharacter::Update();
 }
-	
 
 void CPlayer::Render(){
 	CCharacter::Render();
@@ -138,8 +137,6 @@ void CPlayer::Render(){
 	//Ui.Render();
 
 }
-
-
 
 void CPlayer::Collision(CCollider*m, CCollider*y){
 

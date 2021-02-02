@@ -36,6 +36,7 @@ void CSceneGame::Init() {
 	Sound2.Load("GameOver.wav");
 	//BGM再生
 	//Sound.Repeat();
+	bool onlyOnce = true;
 
 	glMatrixMode(GL_PROJECTION);	//行列をプロジェクションモードへ変更
 	glLoadIdentity();				//行列を初期化
@@ -249,12 +250,7 @@ void CSceneGame::Update() {
 
 	//ゲームオーバー条件(バッテリー切れ,時間切れ）
 	if (mBatteryNow <= 0 || mTimeNow <= 0){
-		CText::DrawString("GAME OVER", 200, 330, 25, 25);
-		
-		Sound2.Play();	//ゲームオーバーSE
-
-		//タイトル画面へ
-		if (CKey::Push(VK_RETURN)){
+		if (CKey::Push(VK_RETURN)){	//タイトル画面へ
 			mScene = ETITLE;
 			Sound.Stop();	//BGM終了
 			mTimeNow = mTimeMax;
@@ -262,8 +258,14 @@ void CSceneGame::Update() {
 			CGomi::GomiCount = 0;
 			frame = 0;
 		}
-	}
+		CText::DrawString("GAME OVER", 200, 330, 25, 25);
 
+		if (onlyOnce){
+			Sound2.Play();	//ゲームオーバーSE
+			onlyOnce = false;
+		}
+	}
+	
 	//ボスとの衝突
 	if (CPlayer::Down == TRUE){
 		CText::DrawString("CRASH!", 285, 450, 25, 25);

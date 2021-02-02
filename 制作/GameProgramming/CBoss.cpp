@@ -6,7 +6,7 @@ CSound CBoss::Sound;
 
 CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 3.0f)
-, mSearch(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 50.0f)	
+, mSearch(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 45.0f)	
 , ActFrame(0), state(0), mVelocityJump(0.0f), EnemyDown(0), DownFrame(0), traptracking(0)
 {
 	//モデル、位置、回転、拡縮を設定する
@@ -19,6 +19,8 @@ CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 	mSearch.mTag = CCollider::ESEARCH2;
 
 	Sound.Load("Dog.wav");
+
+	bool onlyOnce = true;	//一度だけ実行
 }
 
 void CBoss::TaskCollision()
@@ -120,7 +122,6 @@ void CBoss::Update(){
 				mRotation.mY -= Rote;
 			}
 			
-
 			//正規化（長さを1にする）Normalize()
 			mPosition = mPosition + dir_player.Normalize() * 0.3;
 			state = rand() % STATERAND;
@@ -159,13 +160,14 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 			if (state != 5 && state != 7){	//トラップ、気絶以外
 				state = 6;	//プレイヤー追尾へ
 
-				if (onlyOnce){	//1度だけ実行
+				if (onlyOnce){
 					Sound.Repeat();
 					onlyOnce = false;
 				}
 			}
 		}
-		else{
+		else if (onlyOnce == false){
+			onlyOnce = true;
 			Sound.Stop();
 		}
 	}
@@ -195,8 +197,8 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 
 	//自身のコライダタイプの判定
 	switch (m->mType){
-	case CCollider::ESPHERE://球コライダ
-		//相手のコライダが三角コライダの時
+	case CCollider::ESPHERE:
+		//相手が三角コライダ
 		if (y->mType == CCollider::ETRIANGLE){
 			CVector adjust;//調整値ベクトル
 			//三角形と球の衝突判定
@@ -207,7 +209,6 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 			//位置の更新
 			mPosition = mPosition - adjust*-1;
 
-			//行列の更新
 			CCharacter::Update();
 		}
 		break;

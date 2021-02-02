@@ -32,9 +32,9 @@ public:
     int tracking;
 	int traptracking;
 
-	bool onlyOnce = true;	//ˆê“x‚¾‚¯Às
-
 	float mVelocityJump;
+
+	bool onlyOnce;
 
 	static CSound Sound;
 
