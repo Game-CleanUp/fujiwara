@@ -71,8 +71,8 @@ public:
 
 	static CSound Sound3;
 
-
-	bool onlyOnce;
+	bool BatterySE;	//一度だけ充電SE再生
+	bool GameOverSE;	//一度だけゲームオーバーSE再生
 };
 
 #endif

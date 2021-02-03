@@ -1,6 +1,8 @@
 #include "CSceneTitle.h"
 #include "CKey.h"
 
+CSound CSceneTitle::Sound;
+
 void CSceneTitle::Init() {
 
 	//テキストフォントの読み込みと設定
@@ -15,6 +17,9 @@ void CSceneTitle::Init() {
 	mRight = 400;
 	mBottom = -300;
 	mTop = 300;
+
+	Sound.Load("enter.wav");
+
 }
 
 //更新処理のオーバーライド
@@ -45,14 +50,7 @@ void CSceneTitle::Update() {
 	if (CKey::Once(VK_RETURN)) {
 		//次のシーンはゲーム
 		mScene = EGAME;
-	}
-	if (CKey::Once('N')) {
-		//次のシーンはゲーム3
-		mScene = EGAME3;
-	}
-	if (CKey::Once('B')) {
-		//次のシーンはゲーム2
-		mScene = EGAME2;
+		Sound.Play();	//決定SE再生
 	}
 }
 //次のシーンの取得

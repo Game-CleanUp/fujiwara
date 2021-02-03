@@ -36,7 +36,8 @@ public:
 
 	bool onlyOnce;
 
-	static CSound Sound;
+	static CSound Sound;	//’Ç”ö‰¹
+	static CSound Sound2;	//ƒ_ƒ[ƒW‰¹
 
 	CMatrix matrix;
 };

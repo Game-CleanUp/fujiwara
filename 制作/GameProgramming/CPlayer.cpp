@@ -64,7 +64,7 @@ void CPlayer::Update(){
 
 					if (CKey::Push('W')){
 						mPosition = CVector(0.0f, 0.0f, FORWARD)*mMatrix;
-		
+
 					}
 
 					if (CKey::Push('S')){
@@ -95,27 +95,14 @@ void CPlayer::Update(){
 						CSceneGame::mBatteryNow -= 5 * 60;	//バッテリー消費
 						Sound.Play();
 					}
-						
+
 					//ゴミを捨てる(ホームにいるとき、ゴミを持っているとき)
 					if (CHome::home == TRUE && CGomi::GomiCount > 0){
 						if (CKey::Once('E')){
 							clear = clear + CGomi::GomiCount;
 							CGomi::GomiCount = 0;
-							}
 						}
-				
-					//// マウスカーソルの座標を取得
-					//	int mx, my;
-					//CInput::GetMousePos(&mx, &my);
-					//if (mx < mMouseX) {
-					//	//マウスの移動量の分だけ回転
-					//	mRotation.mY += (mMouseX - mx) / 5.0;
-					//}
-					//if (mMouseX < mx) {
-					//	//マウスの移動量の分だけ回転
-					//	mRotation.mY += (mMouseX - mx) / 5.0;
-					//}
-
+					}
 				}
 			}
 		}

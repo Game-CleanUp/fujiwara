@@ -3,11 +3,12 @@
 
 
 CSound CBoss::Sound;
+CSound CBoss::Sound2;
 
 CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 3.0f)
-, mSearch(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 45.0f)	
-, ActFrame(0), state(0), mVelocityJump(0.0f), EnemyDown(0), DownFrame(0), traptracking(0)
+, mSearch(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 45.0f)
+, ActFrame(0), state(0), mVelocityJump(0.0f), EnemyDown(0), DownFrame(0), traptracking(0), onlyOnce(true)
 {
 	//モデル、位置、回転、拡縮を設定する
 	mpModel = model; //モデルの設定
@@ -19,8 +20,7 @@ CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 	mSearch.mTag = CCollider::ESEARCH2;
 
 	Sound.Load("Dog.wav");
-
-	bool onlyOnce = true;	//一度だけ実行
+	Sound2.Load("Edamage.wav");
 }
 
 void CBoss::TaskCollision()
@@ -122,6 +122,11 @@ void CBoss::Update(){
 				mRotation.mY -= Rote;
 			}
 			
+			if (onlyOnce){
+				Sound.Repeat();
+				onlyOnce = false;
+			}
+
 			//正規化（長さを1にする）Normalize()
 			mPosition = mPosition + dir_player.Normalize() * 0.3;
 			state = rand() % STATERAND;
@@ -160,10 +165,6 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 			if (state != 5 && state != 7){	//トラップ、気絶以外
 				state = 6;	//プレイヤー追尾へ
 
-				if (onlyOnce){
-					Sound.Repeat();
-					onlyOnce = false;
-				}
 			}
 		}
 		else if (onlyOnce == false){
@@ -188,7 +189,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::EBODY2 && y->mTag == CCollider::EBULLET){
 		if (CCollider::Collision(m, y)){
 			mRotation = CVector(0.0f, 0.0f, 90.0f);	//横になる
-			//Sound.Play();
+			Sound2.Play();	//ダメージSE
 			state = 7;	//気絶へ
 			
 		}

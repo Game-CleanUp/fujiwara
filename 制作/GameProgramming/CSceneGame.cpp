@@ -8,7 +8,7 @@
 
 int CSceneGame::mBatteryMax = 60 * 60;
 int CSceneGame::mBatteryNow = mBatteryNow + mBatteryMax;
-int CSceneGame::mTimeMax = 60 * 60;
+int CSceneGame::mTimeMax = 120 * 60;
 int CSceneGame::mTimeNow = mTimeNow + mTimeMax;
 int CSceneGame::frame = 0;
 int CSceneGame::frame2 = 0;
@@ -34,9 +34,13 @@ void CSceneGame::Init() {
 
 	Sound.Load("bgm.wav");
 	Sound2.Load("GameOver.wav");
+	Sound3.Load("chage.wav");
+
 	//BGM再生
 	//Sound.Repeat();
-	bool onlyOnce = true;
+
+	bool BatterySE = true;
+	bool GameOverSE = true;
 
 	glMatrixMode(GL_PROJECTION);	//行列をプロジェクションモードへ変更
 	glLoadIdentity();				//行列を初期化
@@ -102,13 +106,14 @@ void CSceneGame::Init() {
 
 	//中央
 	new CObj(&mCube, CVector(0.0f, -1.0f, 0.0f), CVector(), CVector(5.0f, 10.0f, 5.0f));
-	new CObj(&mCube, CVector(0.0f, 10.0f, 20.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+
+	/*new CObj(&mCube, CVector(0.0f, 10.0f, 20.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	new CObj(&mCube, CVector(80.0f, -1.0f, 20.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	new CObj(&mCube, CVector(-40.0f, -1.0f, -50.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	new CObj(&mCube, CVector(0.0f, -1.0f, -60.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	new CObj(&mCube, CVector(-78.0f, 10.0f, 30.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
 	new CObj(&mCube, CVector(-70.0f, -1.0f, 70.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
-	new CObj(&mCube, CVector(50.0f, 10.0f, 0.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
+	new CObj(&mCube, CVector(50.0f, 10.0f, 0.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));*/
 
 	//ブロック(移動させることができる)
 	//new CBlock(&mCube, CVector(-20.0f, 3.0f, 40.0f), CVector(), CVector(2.0f, 2.0f, 5.0f));
@@ -159,9 +164,19 @@ void CSceneGame::Update() {
 	if (mBatteryNow >= 0 && CHome::home == 0){
 		mBatteryNow--;
 	}
+
 	//充電(最大値を超えない、バッテリー増加)
-	else if (mBatteryMax >= mBatteryNow){
+	if (mBatteryMax >= mBatteryNow && CHome::home == 1){
 		mBatteryNow += 15;
+
+		if (BatterySE && mBatteryNow < mBatteryMax){
+			Sound3.Repeat();	//充電中SE
+			BatterySE = false;
+		}
+	}
+	else{
+		Sound3.Stop();
+		BatterySE = true;
 	}
 	
 	//0以下にならない(バッテリー)
@@ -230,9 +245,6 @@ void CSceneGame::Update() {
 	Camera.Set(e, c, u);
 	Camera.Render();
 
-	//背景描画(カメラの後ろ2Dの前に入れる）
-	//mSky.Render();
-
 	CTaskManager::Get()->Render();
 	CCollisionManager::Get()->Render();
 
@@ -248,8 +260,8 @@ void CSceneGame::Update() {
 	//2D描画開始(UI表示)
 	Start2D(0, 800, 0, 600);
 
-	//ゲームオーバー条件(バッテリー切れ,時間切れ）
-	if (mBatteryNow <= 0 || mTimeNow <= 0){
+	//ゲームオーバー条件(バッテリー切れ）
+	if (mBatteryNow <= 0){
 		if (CKey::Push(VK_RETURN)){	//タイトル画面へ
 			mScene = ETITLE;
 			Sound.Stop();	//BGM終了
@@ -259,16 +271,21 @@ void CSceneGame::Update() {
 			frame = 0;
 		}
 		CText::DrawString("GAME OVER", 200, 330, 25, 25);
-
-		if (onlyOnce){
+	
+		if (GameOverSE){
 			Sound2.Play();	//ゲームオーバーSE
-			onlyOnce = false;
+			GameOverSE = false;
 		}
 	}
 	
+	//タイムアップ
+	if (mTimeNow <= 0){
+		CText::DrawString("FINISH", 250, 330, 25, 25);
+	}
+
 	//ボスとの衝突
 	if (CPlayer::Down == TRUE){
-		CText::DrawString("CRASH!", 285, 450, 25, 25);
+		CText::DrawString("CRASH!", 280, 450, 25, 25);
 	}
 
 	//クリア条件(ゴミ全回収)

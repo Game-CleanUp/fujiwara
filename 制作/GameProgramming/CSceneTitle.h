@@ -3,7 +3,7 @@
 
 #include "CScene.h"
 #include "CText.h"
-
+#include"CSound.h"
 
 class CSceneTitle : public CScene {
 public:
@@ -16,6 +16,7 @@ public:
 	//‰æ–Ê“Š‰e”ÍˆÍ‚Ì•Ï”
 	int mLeft, mRight, mBottom, mTop;
 
+	static CSound Sound;	//Œˆ’è‰¹
 };
 
 #endif
