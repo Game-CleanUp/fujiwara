@@ -1,10 +1,9 @@
 #include "CSceneGame.h"
-//
+
 #include "CCamera.h"
-//
+
 #include "CText.h"
 
-#include"CInput.h"
 
 int CSceneGame::mBatteryMax = 60 * 60;
 int CSceneGame::mBatteryNow = mBatteryNow + mBatteryMax;
@@ -107,14 +106,7 @@ void CSceneGame::Init() {
 	//中央
 	new CObj(&mCube, CVector(0.0f, -1.0f, 0.0f), CVector(), CVector(5.0f, 10.0f, 5.0f));
 
-	/*new CObj(&mCube, CVector(0.0f, 10.0f, 20.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
-	new CObj(&mCube, CVector(80.0f, -1.0f, 20.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
-	new CObj(&mCube, CVector(-40.0f, -1.0f, -50.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
-	new CObj(&mCube, CVector(0.0f, -1.0f, -60.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
-	new CObj(&mCube, CVector(-78.0f, 10.0f, 30.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
-	new CObj(&mCube, CVector(-70.0f, -1.0f, 70.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));
-	new CObj(&mCube, CVector(50.0f, 10.0f, 0.0f), CVector(), CVector(5.0f, 5.0f, 5.0f));*/
-
+	
 	//ブロック(移動させることができる)
 	//new CBlock(&mCube, CVector(-20.0f, 3.0f, 40.0f), CVector(), CVector(2.0f, 2.0f, 5.0f));
 	//new CBlock(&mCube, CVector(-80.0f, 5.0f, 75.0f), CVector(), CVector(5.0f, 5.0f, 2.0f));
@@ -167,7 +159,7 @@ void CSceneGame::Update() {
 
 	//充電(最大値を超えない、バッテリー増加)
 	if (mBatteryMax >= mBatteryNow && CHome::home == 1){
-		mBatteryNow += 15;
+		mBatteryNow += CHAGE;
 
 		if (BatterySE && mBatteryNow < mBatteryMax){
 			Sound3.Repeat();	//充電中SE
@@ -255,7 +247,7 @@ void CSceneGame::Update() {
 	CTaskManager::Get()->Delete();
 
 	//ミニマップ表示
-	RenderMiniMap();
+	//RenderMiniMap();
 
 	//2D描画開始(UI表示)
 	Start2D(0, 800, 0, 600);
@@ -280,7 +272,7 @@ void CSceneGame::Update() {
 	
 	//タイムアップ
 	if (mTimeNow <= 0){
-		CText::DrawString("FINISH", 250, 330, 25, 25);
+		CText::DrawString("TIME UP", 245, 330, 25, 25);
 	}
 
 	//ボスとの衝突
@@ -319,9 +311,6 @@ void CSceneGame::Update() {
 
 	//2D描画終了
 	End2D();
-
-	//マウスカーソルを起動時の座標に移動
-	//CInput::SetMousePos(CPlayer::mpPlayer->mMouseX, CPlayer::mpPlayer->mMouseY);
 
 	return;
 }

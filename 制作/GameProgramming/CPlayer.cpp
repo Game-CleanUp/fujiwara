@@ -9,6 +9,8 @@ CPlayer *CPlayer::mpPlayer = 0;
 
 CSound CPlayer::Sound;
 CSound CPlayer::Sound2;
+CSound CPlayer::Sound3;
+CSound CPlayer::Sound4;
 
 //スマートポインタの外部参照
 extern std::shared_ptr<CTexture>TextureExp(new CTexture());
@@ -18,21 +20,19 @@ CPlayer::CPlayer()
 //サーチ
 , mSearch(this, CVector(0.0f, 0.0f, 5.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
 , mVelocityJump(0.0f)
-, frame(0), frameMax(300), frame2(0)
+, frame(0), frameMax(300), frame2(0), state(0), onlyOnce(true)
 {
 
 	mColBody.mTag = CCollider::EBODY;
 	mSearch.mTag = CCollider::ESEARCH;
+
 	Sound.Load("jump.wav");	//ジャンプ音
 	Sound2.Load("Bomb.wav");	//爆発音
+	Sound3.Load("shoot.wav");	//攻撃音
+	Sound4.Load("throw.wav");	//ゴミ回収
 
 	//爆発テクスチャ
 	TextureExp->Load("exp.tga");
-
-	//起動時のマウスカーソルの座標を覚える
-	CInput::GetMousePos(&mMouseX, &mMouseY);
-	mMouseX = 1920 / 2;
-	mMouseY = 1080 / 2;
 
 	mpPlayer = this;
 
@@ -50,59 +50,59 @@ void CPlayer::TaskCollision()
 
 void CPlayer::Update(){
 
-	if (Down == FALSE){
-		if (clear < GAMECLEAR){
-			if (CSceneGame::mBatteryNow > 0){
-				if (CSceneGame::mTimeNow > 0){
-					if (CKey::Push('A')){
-						mRotation.mY += DIR;
-					}
+	if (Down == FALSE && clear < GAMECLEAR){
+		if (CSceneGame::mBatteryNow > 0 && CSceneGame::mTimeNow > 0){
 
-					if (CKey::Push('D')){
-						mRotation.mY -= DIR;
-					}
+			if (CKey::Push('A')){
+				mRotation.mY += DIR;
+			}
 
-					if (CKey::Push('W')){
-						mPosition = CVector(0.0f, 0.0f, FORWARD)*mMatrix;
+			if (CKey::Push('D')){
+				mRotation.mY -= DIR;
+			}
 
-					}
+			if (CKey::Push('W')){
+				mPosition = CVector(0.0f, 0.0f, FORWARD)*mMatrix;
 
-					if (CKey::Push('S')){
-						mPosition = CVector(0.0f, 0.0f, BACK)*mMatrix;
-					}
+			}
 
-					//スペースキー入力で発射
-					if (mVelocityJump == 0){	//ジャンプ中無効
-						if (CKey::Once(VK_SPACE)){
-							CBullet*bullet = new CBullet();
-							bullet->Set(0.3f, 2.0f);	//弾のサイズ
-							bullet->mPosition = CVector(0.0f, 0.0f, 0.0f)*mMatrix;	//発射位置
-							bullet->mRotation = mRotation;
-							bullet->mTag = CCharacter::EBULLET;
-							CSceneGame::mBatteryNow -= 100;	//バッテリー消費
-						}
-					}
-					if (CTrap::TrapCount > 0){
-						if (CKey::Once('Q')){
-							//トラップ設置
-							new CTrap(NULL, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
-							CTrap::TrapCount -= 1;	//トラップ消費
-						}
-					}
-					//ジャンプ
-					if (CKey::Once('J') && mVelocityJump == 0){
-						mVelocityJump = JUMPV0;
-						CSceneGame::mBatteryNow -= 5 * 60;	//バッテリー消費
-						Sound.Play();
-					}
+			if (CKey::Push('S')){
+				mPosition = CVector(0.0f, 0.0f, BACK)*mMatrix;
+			}
 
-					//ゴミを捨てる(ホームにいるとき、ゴミを持っているとき)
-					if (CHome::home == TRUE && CGomi::GomiCount > 0){
-						if (CKey::Once('E')){
-							clear = clear + CGomi::GomiCount;
-							CGomi::GomiCount = 0;
-						}
-					}
+			//スペースキー入力で発射
+			if (mVelocityJump == 0){	//ジャンプ中無効
+				if (CKey::Once(VK_SPACE)){
+					CBullet*bullet = new CBullet();
+					bullet->Set(0.3f, 2.0f);	//弾のサイズ
+					bullet->mPosition = CVector(0.0f, 0.0f, 0.0f)*mMatrix;
+					bullet->mRotation = mRotation;
+					bullet->mTag = CCharacter::EBULLET;
+					Sound3.Play();
+					CSceneGame::mBatteryNow -= 100;	//バッテリー消費
+				}
+			}
+
+			//トラップ設置
+			if (CTrap::TrapCount > 0){
+				if (CKey::Once('Q')){
+					new CTrap(NULL, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
+					CTrap::TrapCount -= 1;	//トラップ消費
+				}
+			}
+			//ジャンプ
+			if (CKey::Once('J') && mVelocityJump == 0){
+				mVelocityJump = JUMPV0;
+				CSceneGame::mBatteryNow -= 5 * 60;	//バッテリー消費
+				Sound.Play();
+			}
+
+			//ゴミを捨てる(ホームにいるとき、ゴミを持っているとき)
+			if (CHome::home == TRUE && CGomi::GomiCount > 0){
+				if (CKey::Once('E')){
+					clear = clear + CGomi::GomiCount;
+					Sound4.Play();
+					CGomi::GomiCount = 0;
 				}
 			}
 		}
@@ -130,13 +130,12 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::ESEARCH){
 		return;
 	}
-	//自身のコライダタイプの判定
+
 	switch (m->mType){
 	case CCollider::ESPHERE://球コライダ
-		//相手のコライダが三角コライダの時
+		//相手が三角コライダ
 		if (y->mType == CCollider::ETRIANGLE){
 			CVector adjust;//調整値ベクトル
-			//三角形と球の衝突判定
 			if (CCollider::CollisionTriangleSphere(y, m, &adjust)){
 				//着地
 				mVelocityJump = 0;
@@ -156,10 +155,13 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 	if (m->mTag==CCollider::EBODY && y->mTag == CCollider::EBODY2){
 		if (CCollider::Collision(m, y)){
 
-			CSceneGame::mBatteryNow++;
 			frame2++;	//復帰までの時間
 			Down = TRUE;
-			//Sound2.Play();	//爆発音
+
+			if (onlyOnce){
+				Sound2.Play();	//爆発音
+				onlyOnce = false;
+			}
 
 			//エフェクト生成(爆発)
 			new CEffect(mPosition, 10.0f, 10.0f, TextureExp, 4, 4, 1);
@@ -204,7 +206,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 				break;
 			}
 
-			//リトライ(ホームに戻る)
+			//リトライ(初期位置に戻る)
 			if (frame2 >= RETRY){
 				//初期位置
 				mPosition = CVector(-90.0f, 10.0f, 70.0f);
@@ -214,5 +216,9 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 				frame2 = 0;
 			}
 		}
+		else {
+			onlyOnce = true;
+		}
 	}
+
 }

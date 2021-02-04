@@ -54,11 +54,9 @@ void CBoss::Update(){
 		case 1:	//左方向に移動
 			ActFrame += 1;
 			if (ActFrame < 20){
-				//左回転
 				mRotation.mY += rand() % TURN;
 			}
 			if (ActFrame > 60){
-				//前進
 				mPosition = CVector(0.0f, 0.0f, SPEED)*mMatrix;
 			}
 			if (ActFrame > 120){
@@ -70,11 +68,9 @@ void CBoss::Update(){
 		case 2:	//右方向に移動
 			ActFrame += 1;
 			if (ActFrame < 20){
-				//右回転
 				mRotation.mY -= rand() % TURN;
 			}
 			if (ActFrame > 60){
-				//前進
 				mPosition = CVector(0.0f, 0.0f, SPEED)*mMatrix;
 			}
 			if (ActFrame > 120){
@@ -150,7 +146,7 @@ void CBoss::Update(){
 	mVelocityJump = JUMPV0;
 	//重力加速度
 	mVelocityJump -= G;
-	//移動
+
 	mPosition.mY = mPosition.mY - mVelocityJump;
 	
 	CCharacter::Update();
@@ -167,7 +163,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 
 			}
 		}
-		else if (onlyOnce == false){
+		else{
 			onlyOnce = true;
 			Sound.Stop();
 		}
@@ -190,6 +186,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 		if (CCollider::Collision(m, y)){
 			mRotation = CVector(0.0f, 0.0f, 90.0f);	//横になる
 			Sound2.Play();	//ダメージSE
+			Sound.Stop();
 			state = 7;	//気絶へ
 			
 		}

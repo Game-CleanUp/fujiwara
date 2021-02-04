@@ -7,10 +7,8 @@
 #include"CBattery.h"
 #include"CTime.h"
 #include"CGaugeBack.h"
-#include"CMoney.h"
 #include"CSound.h"
 #include"CBullet.h"
-#include"CInput.h"
 #include"CTrap.h"
 #include"CText.h"
 
@@ -42,15 +40,19 @@ public:
 	static int clear;
 	static int Down;
 
+	static CSound Sound;	//ジャンプ音
+	static CSound Sound2;	//爆発音
+	static CSound Sound3;	//攻撃音
+	static CSound Sound4;	//ゴミ回収
+
 	int frame;	//効果時間
 	int frame2;	//復帰時間
 	int frameMax;
-
-	//起動時のマウスカーソルの座標を覚える
-	int mMouseX;
-	int mMouseY;
+	int state;
 
 	float mVelocityJump;
+
+	bool onlyOnce;
 
 	CBattery Battery;
 	CTime Time;
@@ -58,9 +60,7 @@ public:
 	CMatrix matrix;
 	CUI Ui;
 
-	static CSound Sound;
 
-	static CSound Sound2;	//爆発音
 };
 
 
