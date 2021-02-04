@@ -197,7 +197,7 @@ void CSceneGame::Update() {
 	}
 	
 	CTaskManager::Get()->Update();
-	//カメラのパラメータを作成する
+
 	CVector e, c, u;//視点、注視点、上方向
 	if (CPlayer::Down == FALSE){
 		//視点を求める
@@ -224,13 +224,7 @@ void CSceneGame::Update() {
 
 	//見下ろし視点
 	if (CKey::Push('I')){
-		e = CVector(0.0f, 200.0f, 0.0f)*mPlayer.mMatrix;
-	}
-
-	//確認
-	if (CKey::Push('P')){
-		e = CVector(0.0f, -100.0f, 10.0f);
-		u = CVector(20.0f, 0.0f, 0.0f)*mPlayer.mMatrixRotate;
+		e = CVector(0.0f, 30.0f, 0.0f)*mPlayer.mMatrix;
 	}
 
 	//カメラの設定
@@ -280,14 +274,9 @@ void CSceneGame::Update() {
 		CText::DrawString("CRASH!", 280, 450, 25, 25);
 	}
 
-	//クリア条件(ゴミ全回収)
-	if (CPlayer::clear >= GAMECLEAR){
-		CText::DrawString("STAGE CLEAR", 155, 330, 25, 25);
-	}
-
 	frame2++;
 	if (frame2 < 60){
-		CText::DrawString("START", 310, 400, 15, 15);
+		CText::DrawString("START", 293, 400, 25, 25);
 	}
 
 	CText::DrawString("BATTERY", 17, 50, 11, 11);
@@ -295,13 +284,13 @@ void CSceneGame::Update() {
 	CText::DrawString("]", 305, 25, 11, 11);
 
 	//整数を文字列に変換する
-	char buf[10];	//9文字までOK
+	char buf[10];
 
 	//制限時間
 	sprintf(buf, "%d", mTimeNow / 60);
 	CText::DrawString(buf, 15, 550, 15, 15);
 
-	//目標数
+	//トラップ数
 	sprintf(buf, "%d", CTrap::TrapCount);
 	CText::DrawString(buf, 700, 30, 15, 15);
 
@@ -309,7 +298,6 @@ void CSceneGame::Update() {
 	sprintf(buf, "%d", CGomi::GomiCount);
 	CText::DrawString(buf, 300, 50, 15, 15);
 
-	//2D描画終了
 	End2D();
 
 	return;

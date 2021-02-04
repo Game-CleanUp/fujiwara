@@ -107,6 +107,7 @@
     <ClCompile Include="CFall.cpp" />
     <ClCompile Include="CGomi.cpp" />
     <ClCompile Include="CRectangle.cpp" />
+    <ClCompile Include="CResult.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneGame.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="CFall.h" />
     <ClInclude Include="CGomi.h" />
     <ClInclude Include="CRectangle.h" />
+    <ClInclude Include="CResult.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneGame.h" />
     <ClInclude Include="CSceneManager.h" />

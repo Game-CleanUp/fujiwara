@@ -18,7 +18,7 @@
 #define RETRY	60		//復帰時間
 #define DROP	rand() % 20 + 10	//ゴミのドロップ位置
 #define DROP_DIR	rand() % 360	//ゴミのドロップ方向
-#define FORWARD	0.5f	//前進
+#define FORWARD	0.4f	//前進
 #define DIR		2.0f	//方向転換
 #define BACK	-0.3f	//後退
 

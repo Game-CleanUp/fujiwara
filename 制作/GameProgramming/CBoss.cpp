@@ -40,7 +40,6 @@ void CBoss::Update(){
 
 	float Rote = 4.0f;	//追尾対象に方向転換
 
-	if (CPlayer::clear < GAMECLEAR){
 		switch (state){
 
 		case 0:	//立ち止まる
@@ -137,7 +136,6 @@ void CBoss::Update(){
 			}
 			break;
 		}
-	}
 
 	if (CSceneGame::mBatteryNow <= 0 || CSceneGame::mTimeNow <= 0){
 		mEnabled = false;
@@ -169,7 +167,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 		}
 	}
 	
-	//トラップとの衝突
+	//トラップ発見
 	if (m->mTag == CCollider::ESEARCH2){
 		if (y->mTag == CCollider::ETRAP){
 			if (CCollider::Collision(m, y)){

@@ -50,7 +50,7 @@ void CPlayer::TaskCollision()
 
 void CPlayer::Update(){
 
-	if (Down == FALSE && clear < GAMECLEAR){
+	if (Down == FALSE){
 		if (CSceneGame::mBatteryNow > 0 && CSceneGame::mTimeNow > 0){
 
 			if (CKey::Push('A')){
@@ -63,7 +63,6 @@ void CPlayer::Update(){
 
 			if (CKey::Push('W')){
 				mPosition = CVector(0.0f, 0.0f, FORWARD)*mMatrix;
-
 			}
 
 			if (CKey::Push('S')){
@@ -102,7 +101,7 @@ void CPlayer::Update(){
 				if (CKey::Once('E')){
 					clear = clear + CGomi::GomiCount;
 					Sound4.Play();
-					CGomi::GomiCount = 0;
+					CGomi::GomiCount -= 1;
 				}
 			}
 		}

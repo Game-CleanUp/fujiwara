@@ -1,16 +1,15 @@
-#include "CSceneTitle.h"
+#include "CResult.h"
 #include "CKey.h"
 
-CSound CSceneTitle::Sound;
+CSound CResult::Sound;
 
-void CSceneTitle::Init() {
+void CResult::Init() {
 
-	//テキストフォントの読み込みと設定
 	CText::mFont.Load("FontG.tga");
 	CText::mFont.SetRowCol(1, 4096 / 64);
 
 	//シーンの設定
-	mScene = ETITLE;
+	mScene = ERESULT;
 
 	//画面投影範囲の設定
 	mLeft = -400;
@@ -23,7 +22,7 @@ void CSceneTitle::Init() {
 }
 
 //更新処理のオーバーライド
-void CSceneTitle::Update() {
+void CResult::Update() {
 
 	//画面投影範囲の変更
 	//行列をプロジェクションモードへ変更
@@ -40,19 +39,25 @@ void CSceneTitle::Update() {
 	//2D描画開始
 	Start2D(0, 800, 0, 600);
 
+	////文字列の描画
 	CText::DrawString("CLEAN UP", 250, 400, 20, 20);
 	CText::DrawString("PUSH ENTER KEY", 165, 200, 17, 17);
+
+	char buf[10];
+	//制限時間
+	sprintf(buf, "%d", CSceneGame::mTimeNow / 60);
+	CText::DrawString(buf, 15, 550, 15, 15);
 
 	//2D描画終了
 	End2D();
 
-	//次のシーンはゲーム
+	//タイトルへ
 	if (CKey::Once(VK_RETURN)) {
-		mScene = EGAME;
+		mScene = ETITLE;
 		Sound.Play();	//決定SE再生
 	}
 }
 //次のシーンの取得
-CScene::EScene CSceneTitle::GetNextScene() {
+CScene::EScene CResult::GetNextScene() {
 	return mScene;
 }

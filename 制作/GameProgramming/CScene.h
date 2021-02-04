@@ -10,6 +10,7 @@ public:
 	//シーンの識別子
 	enum EScene {
 		ETITLE, 	//タイトル
+		ERESULT,	//リザルト
 		EGAME,	//ゲーム
 		EGAME2,  //ステージ2
 		EGAME3,  //ステージ3
