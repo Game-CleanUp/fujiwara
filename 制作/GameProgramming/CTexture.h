@@ -56,13 +56,13 @@ public:
 	tbottom:âÊëúâ∫ç¿ïW
 	ttop:âÊëúè„ç¿ïW
 	*/
-	void DrawImage(float left, float right, float bottom, float top, float tleft, float tright, float tbottom, float ttop) ;
-	void DrawImage(float left, float right, float bottom, float top, int tleft, int tright, int tbottom, int ttop);
-	void DrawImage(float left, float right, float bottom, float top, int index);
+	void DrawImage(float left, float right, float bottom, float top, float tleft, float tright, float tbottom, float ttop) const;
+	void DrawImage(float left, float right, float bottom, float top, int tleft, int tright, int tbottom, int ttop) const;
+	void DrawImage(float left, float right, float bottom, float top, int index) const;
 	void Destory();
 	void SetParts(int row, int col);
-	void Draw(float left, float right, float bottom, float top, float tleft, float tright, float tbottom, float ttop);
-	void Draw(float left, float right, float bottom, float top, int tleft, int tright, int tbottom, int ttop);
+	void Draw(float left, float right, float bottom, float top, float tleft, float tright, float tbottom, float ttop) const;
+	void Draw(float left, float right, float bottom, float top, int tleft, int tright, int tbottom, int ttop) const;
 
 };
 

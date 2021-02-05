@@ -53,7 +53,7 @@ public:
 	CModel mDog;
 	CModel mKitchen;
 
-
+	
 	//Ÿ‚ÌƒV[ƒ“‚Ìæ“¾
 	EScene GetNextScene();
 

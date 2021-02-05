@@ -5,8 +5,6 @@
 #include "CText.h"
 
 
-CTexture Texture;
-
 int CSceneGame::mBatteryMax = BATTERY;
 int CSceneGame::mBatteryNow = mBatteryNow + mBatteryMax;
 int CSceneGame::mTimeMax = TIME;
@@ -17,6 +15,8 @@ int CSceneGame::frame2 = 0;
  CSound CSceneGame::Sound;
  CSound CSceneGame::Sound2;
  CSound CSceneGame::Sound3;
+
+ CTexture Texture;
 
 CSceneGame::~CSceneGame(){
 	
@@ -304,7 +304,7 @@ void CSceneGame::Update() {
 
 	//êßå¿éûä‘
 	sprintf(buf, "%d", mTimeNow / 60);
-	CText::DrawString(buf, 15, 550, 15, 15);
+	CText::DrawString(buf, 30, 550, 15, 15);
 
 	//ÉgÉâÉbÉvêî
 	sprintf(buf, "%d", CTrap::TrapCount);

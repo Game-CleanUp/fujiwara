@@ -1,9 +1,5 @@
 #ifndef CRECTANGLE_H
-/*
-#ifndef CRECTANGLE_H
-もしCRECTANGLE_Hのdefineがなければ#endifまで有効
-*/
-#define CRECTANGLE_H //CRECTANGLE_Hを定義する
+#define CRECTANGLE_H 
 
 #include "glut.h"
 #include"CTexture.h"
@@ -71,9 +67,9 @@ public:
 	t:テクスチャのポインタ left:テクスチャの左X座標 right:テクスチャの右X座標
 	bottom:テクスチャの下Y座標 top:テクスチャの上Y座標
 	*/
-	//virtual void Render(const CTexture &t, int left, int right, int bottom, int top){
-	//	t.DrawImage(x - w, x + w, y - h, y + h, left, right, bottom, top);
-	//}
+	virtual void Render(const CTexture &t, int left, int right, int bottom, int top){
+		t.DrawImage(x - w, x + w, y - h, y + h, left, right, bottom, top);
+	}
 
 	virtual void Update() {};
 
@@ -84,4 +80,4 @@ public:
 //可変長配列の定義
 extern std::vector<CRectangle*> VectorRect;
 
-#endif //#ifndefの終わり
+#endif

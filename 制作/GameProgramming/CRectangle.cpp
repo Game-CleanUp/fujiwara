@@ -1,25 +1,15 @@
 #include "CRectangle.h"
-//vector型のインクルード
 #include <vector>
-/*
-可変長配列の定義
-std;;vector<配列要素のデータ型> 配列名
-*/
+
 std::vector<CRectangle*> VectorRect;
 
 //デフォルトコンストラクタ
 CRectangle::CRectangle()
 : mTag(EBLOCK)	//初期値ブロック
-//37
 //, mEnabled(true)
 , mStatus(EDISABLED)
 {
-	/*
-	可変長配列に自身のポインタを追加する
-	配列名.push_back(値)
-	値を配列の最後に追加する
-	*/
-	//VectorRect.push_back(this);
+
 }
 
 
@@ -38,6 +28,7 @@ void CRectangle::DrawRectangle(int x0, int y0, int x1, int y1, int x2, int y2, i
 }
 
 void CRectangle::Render() {
+	//クラスメンバの変数x,y,w,hを使用する
 	DrawRectangle(x + w, y + h, x - w, y + h, x - w, y - h, x + w, y - h);
 }
 

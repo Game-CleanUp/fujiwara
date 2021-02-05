@@ -3,7 +3,7 @@
 #include <string.h>
 
 //std::map<std::string, CTexture>CTexture::mTexFile;
-CTexture Texture;
+//CTexture Texture;
 
 CTexture::CTexture()
 	: mId(0)
@@ -117,11 +117,11 @@ void CTexture::Load(const char* filename) {
 	delete[] data2;
 }
 
-void CTexture::Draw(float left, float right, float bottom, float top, float tleft, float tright, float tbottom, float ttop) {
+void CTexture::Draw(float left, float right, float bottom, float top, float tleft, float tright, float tbottom, float ttop) const {
 	DrawImage(left, right, bottom, top, tleft, tright, tbottom, ttop);
 }
 
-void CTexture::DrawImage(float left, float right, float bottom, float top, float tleft, float tright, float tbottom, float ttop) {
+void CTexture::DrawImage(float left, float right, float bottom, float top, float tleft, float tright, float tbottom, float ttop) const {
 	//テクスチャを有効にする
 	glEnable(GL_TEXTURE_2D);
 	//アルファブレンドを有効にする
@@ -159,11 +159,11 @@ void CTexture::DrawImage(float left, float right, float bottom, float top, float
 	glDisable(GL_TEXTURE_2D);
 }
 
-void CTexture::Draw(float left, float right, float bottom, float top, int tleft, int tright, int tbottom, int ttop) {
+void CTexture::Draw(float left, float right, float bottom, float top, int tleft, int tright, int tbottom, int ttop) const {
 	DrawImage(left, right, bottom, top, tleft, tright, tbottom, ttop);
 }
 
-void CTexture::DrawImage(float left, float right, float bottom, float top, int tleft, int tright, int tbottom, int ttop) {
+void CTexture::DrawImage(float left, float right, float bottom, float top, int tleft, int tright, int tbottom, int ttop) const {
 	DrawImage(left, right, bottom, top,
 		(float)tleft / mHeader.width,
 		(float)tright / mHeader.width,
@@ -215,7 +215,7 @@ void CTexture::SetParts(int row, int col) {
 	mCol = col;
 }
 
-void CTexture::DrawImage(float left, float right, float bottom, float top, int index) {
+void CTexture::DrawImage(float left, float right, float bottom, float top, int index) const {
 	int row = index / mCol + 1;
 	int col = index % mCol;
 	DrawImage(left, right, bottom, top,

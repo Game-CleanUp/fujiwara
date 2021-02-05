@@ -1,6 +1,8 @@
 #include"CGaugeBack.h"
 #include"CSceneGame.h"
 
+extern CTexture Texture;
+
 void CGaugeBack::Render(){
 
 	//モデルビュー行列の退避
@@ -63,12 +65,12 @@ void CUI::Render(){
 	//緑
 	glColor3f(1.0f, 1.0f, 1.0f);
 
-	x = 650;
-	y = 40;
+	x = 640;
+	y = 50;
 	w = 25;
-	h = 25;
+	h = 40;
 	//mEnabled = true;
-	CRectangle::Render(Texture, 0, 0, 1800, 2700);
+	CRectangle::Render(Texture, 0, 1800, 2770, 0);
 
 	//プロジェクション行列を戻す
 	glPopMatrix();

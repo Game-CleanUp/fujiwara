@@ -3,8 +3,6 @@
 
 #include"CRectangle.h"
 
-extern CTexture Texture;
-
 class CGaugeBack : public CRectangle{
 public:
 
