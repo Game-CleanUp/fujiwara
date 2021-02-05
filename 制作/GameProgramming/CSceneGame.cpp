@@ -154,7 +154,6 @@ void CSceneGame::RenderMiniMap(){
 	glEnable(GL_DEPTH_TEST);
 }
 
-
 void CSceneGame::Update() {
 
 	//バッテリー減少

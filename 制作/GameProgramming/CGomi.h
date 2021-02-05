@@ -6,6 +6,8 @@
 #include"CSound.h"
 #include "CCollisionManager.h"
 
+#define ATTRACT	1.5	//ˆø‚«Šñ‚¹‚é‘¬“x
+
 class CGomi : public CCharacter{
 public:
 

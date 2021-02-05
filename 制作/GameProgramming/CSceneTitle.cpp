@@ -5,6 +5,13 @@ CSound CSceneTitle::Sound;
 
 void CSceneTitle::Init() {
 
+	glMatrixMode(GL_PROJECTION);	//行列をプロジェクションモードへ変更
+	glLoadIdentity();				//行列を初期化
+	gluPerspective(75.0, (double)800 / (double)600, 1.0, 10000.0);	//3Dの画面を設定
+
+	glMatrixMode(GL_MODELVIEW);		//行列をモデルビューモードへ変更
+	glLoadIdentity();				//行列を初期化
+
 	//テキストフォントの読み込みと設定
 	CText::mFont.Load("FontG.tga");
 	CText::mFont.SetRowCol(1, 4096 / 64);
@@ -24,6 +31,8 @@ void CSceneTitle::Init() {
 
 //更新処理のオーバーライド
 void CSceneTitle::Update() {
+
+	Title.Render();
 
 	//画面投影範囲の変更
 	//行列をプロジェクションモードへ変更
@@ -45,13 +54,14 @@ void CSceneTitle::Update() {
 
 	//2D描画終了
 	End2D();
-
+	
 	//次のシーンはゲーム
 	if (CKey::Once(VK_RETURN)) {
 		mScene = EGAME;
 		Sound.Play();	//決定SE再生
 	}
 }
+
 //次のシーンの取得
 CScene::EScene CSceneTitle::GetNextScene() {
 	return mScene;

@@ -121,7 +121,6 @@ void CPlayer::Render(){
 	Battery.Render();
 	Time.Render();
 	Ui.Render();
-
 }
 
 void CPlayer::Collision(CCollider*m, CCollider*y){

@@ -8,7 +8,7 @@ CSound CBoss::Sound2;
 CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 3.0f)
 , mSearch(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 45.0f)
-, ActFrame(0), state(0), mVelocityJump(0.0f), EnemyDown(0), DownFrame(0), traptracking(0), onlyOnce(true)
+, ActFrame(0), state(0), mVelocityJump(0.0f), EnemyDown(0), DownFrame(0), onlyOnce(true)
 {
 	//モデル、位置、回転、拡縮を設定する
 	mpModel = model; //モデルの設定
@@ -44,7 +44,7 @@ void CBoss::Update(){
 
 		case 0:	//立ち止まる
 			ActFrame += 1;
-			if (ActFrame > 30){
+			if (ActFrame >STOP){
 				state = rand() % STATERAND;
 				ActFrame = 0;
 			}
@@ -80,7 +80,7 @@ void CBoss::Update(){
 
 		case 3:	//立ち止まる
 			ActFrame += 1;
-			if (ActFrame > 60){
+			if (ActFrame > STOP){
 				state = rand() % STATERAND;
 				ActFrame = 0;
 			}
@@ -104,7 +104,7 @@ void CBoss::Update(){
 			}
 
 			//正規化（長さを1にする）Normalize()
-			mPosition = mPosition + dir_trap.Normalize() * 0.3;
+			mPosition = mPosition + dir_trap.Normalize() * TRACKSPEED;
 			state = rand() % STATERAND;
 			break;
 
@@ -123,7 +123,7 @@ void CBoss::Update(){
 			}
 
 			//正規化（長さを1にする）Normalize()
-			mPosition = mPosition + dir_player.Normalize() * 0.3;
+			mPosition = mPosition + dir_player.Normalize() * TRACKSPEED;
 			state = rand() % STATERAND;
 			break;
 
@@ -182,6 +182,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 	//プレイヤー弾との衝突判定
 	if (m->mTag == CCollider::EBODY2 && y->mTag == CCollider::EBULLET){
 		if (CCollider::Collision(m, y)){
+			mPosition = CVector(2.0f, 0.0f, 0.0f)*mMatrix;	//跳ねる
 			mRotation = CVector(0.0f, 0.0f, 90.0f);	//横になる
 			Sound2.Play();	//ダメージSE
 			Sound.Stop();

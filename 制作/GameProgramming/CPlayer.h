@@ -6,7 +6,7 @@
 #include"CHome.h"
 #include"CBattery.h"
 #include"CTime.h"
-#include"CGaugeBack.h"
+#include"CUi.h"
 #include"CSound.h"
 #include"CBullet.h"
 #include"CTrap.h"
@@ -15,11 +15,11 @@
 #define G       9.8f/60.0f//重力加速度 9.8f
 #define JUMPV0  2.0f	//ジャンプ初速
 #define R		5.0f	//半径
-#define RETRY	60		//復帰時間
+#define RETRY	80		//復帰時間
 #define DROP	rand() % 20 + 10	//ゴミのドロップ位置
 #define DROP_DIR	rand() % 360	//ゴミのドロップ方向
-#define FORWARD	0.4f	//前進
-#define DIR		2.0f	//方向転換
+#define FORWARD	0.3f	//前進
+#define DIR		3.0f	//方向転換
 #define BACK	-0.3f	//後退
 
 
@@ -58,9 +58,7 @@ public:
 	CTime Time;
 	CGaugeBack Back;
 	CMatrix matrix;
-	CUI Ui;
-
-
+	CTrapUI Ui;
 };
 
 
