@@ -21,10 +21,13 @@
 #include"CSound.h"
 #include"CImage.h"
 #include"CTrap.h"
+#include"CTexture.h"
 
 #define RAND rand() % 100 - 50	//ランダム配置(-150~149)
 #define W	5.0f	//幅
 #define H	25.0f //高さ
+#define TIME	120 * 60	//制限時間
+#define BATTERY	60 * 60	//バッテリー最大値
 #define CHAGE	15	//バッテリー増加
 
 class CSceneGame : public CScene {
@@ -49,6 +52,7 @@ public:
 	CModel mBed;
 	CModel mDog;
 	CModel mKitchen;
+
 
 	//次のシーンの取得
 	EScene GetNextScene();

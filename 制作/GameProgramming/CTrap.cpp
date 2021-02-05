@@ -1,7 +1,7 @@
 #include"CTrap.h"
 
 
-int CTrap::TrapCount = 10;
+int CTrap::TrapCount = INIT_TRAP;
 CTrap *CTrap::mpTrap = 0;
 CModel CTrap::mModel;
 
@@ -11,7 +11,6 @@ CTrap::CTrap(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 5.0f)
 , trapframe(0)
 {
-	//モデル、位置、回転、拡縮を設定する
 	mpModel = model; //モデルの設定
 	mPosition = position; //位置の設定
 	mRotation = rotation; //回転の設定
@@ -53,11 +52,10 @@ void CTrap::Update(){
 
 void CTrap::Collision(CCollider*m, CCollider*y){
 
-
 	//自身のコライダタイプの判定
 	switch (m->mType){
-	case CCollider::ESPHERE://球コライダ
-		//相手のコライダが三角コライダの時
+	case CCollider::ESPHERE:
+		//相手が三角コライダ
 		if (y->mType == CCollider::ETRIANGLE){
 			CVector adjust;//調整値ベクトル
 			//三角形と球の衝突判定

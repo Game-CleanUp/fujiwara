@@ -40,13 +40,13 @@ void CResult::Update() {
 	Start2D(0, 800, 0, 600);
 
 	////ï∂éöóÒÇÃï`âÊ
-	CText::DrawString("CLEAN UP", 250, 400, 20, 20);
+	CText::DrawString("RESULT", 270, 450, 20, 20);
 	CText::DrawString("PUSH ENTER KEY", 165, 200, 17, 17);
 
 	char buf[10];
 	//êßå¿éûä‘
-	sprintf(buf, "%d", CSceneGame::mTimeNow / 60);
-	CText::DrawString(buf, 15, 550, 15, 15);
+	//sprintf(buf, "%d", CSceneGame::mTimeNow / 60);
+	//CText::DrawString(buf, 15, 550, 15, 15);
 
 	//2Dï`âÊèIóπ
 	End2D();

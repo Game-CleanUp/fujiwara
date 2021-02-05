@@ -38,7 +38,6 @@ void CRectangle::DrawRectangle(int x0, int y0, int x1, int y1, int x2, int y2, i
 }
 
 void CRectangle::Render() {
-	//クラスメンバの変数x,y,w,hを使用します
 	DrawRectangle(x + w, y + h, x - w, y + h, x - w, y - h, x + w, y - h);
 }
 

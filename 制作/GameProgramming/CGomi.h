@@ -17,6 +17,7 @@ public:
 	//Õ“Ë”»’è
 	void Collision(CCollider*m, CCollider*y);
 	void TaskCollision();
+
 	static int GomiCount;	//ƒSƒ~•Û—L”
 	static CModel mModel;
 	static CSound Sound;

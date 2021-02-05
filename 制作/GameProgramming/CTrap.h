@@ -6,6 +6,8 @@
 #include"CSound.h"
 #include "CCollisionManager.h"
 
+#define INIT_TRAP	10	//‰Šúƒgƒ‰ƒbƒvŠ”
+
 class CTrap : public CCharacter{
 public:
 

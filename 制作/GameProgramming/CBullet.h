@@ -1,8 +1,8 @@
 #ifndef CBULLET_H
 #define CBULLET_H
-//キャラクタクラスのインクルード
+
 #include"CCharacter.h"
-//三角形クラスのインクルード
+
 #include"CTriangle.h"
 #include"CCollider.h"
 

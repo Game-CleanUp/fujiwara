@@ -9,14 +9,6 @@
 
 //表示確認用
 void CMatrix::Print() {
-	//printf("%10f %10f %10f %10f \n",
-	//	mM[0][0], mM[0][1], mM[0][2], mM[0][3]);
-	//printf("%10f %10f %10f %10f \n",
-	//	mM[1][0], mM[1][1], mM[1][2], mM[1][3]);
-	//printf("%10f %10f %10f %10f \n",
-	//	mM[2][0], mM[2][1], mM[2][2], mM[2][3]);
-	//printf("%10f %10f %10f %10f \n",
-	//	mM[3][0], mM[3][1], mM[3][2], mM[3][3]);
 	
 	printf("%f %f %f %f \n",
 		mM[0][0], mM[0][1], mM[0][2], mM[0][3]);
@@ -103,10 +95,6 @@ CMatrix CMatrix::Scale(float x, float y, float z) {
 //CMatrix * CMatrix の演算結果を返す
 CMatrix CMatrix::operator*(const CMatrix &m) {
 	CMatrix t;
-	//t.mM[0][0] = mM[0][0] * m.mM[0][0] + mM[0][1] * m.mM[1][0] + mM[0][2] * m.mM[2][0] + mM[0][3] * m.mM[3][0];
-	//t.mM[0][1] = mM[0][0] * m.mM[0][1] + mM[0][1] * m.mM[1][1] + mM[0][2] * m.mM[2][1] + mM[0][3] * m.mM[3][1];
-	//t.mM[0][2] = mM[0][0] * m.mM[0][2] + mM[0][1] * m.mM[1][2] + mM[0][2] * m.mM[2][2] + mM[0][3] * m.mM[3][2];
-	//t.mM[0][3] = mM[0][0] * m.mM[0][3] + mM[0][1] * m.mM[1][3] + mM[0][2] * m.mM[2][3] + mM[0][3] * m.mM[3][3];
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			t.mM[i][j] = 0;

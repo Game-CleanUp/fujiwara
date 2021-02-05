@@ -10,12 +10,10 @@ void CHome::TaskCollision()
 	
 }
 
-
 CHome::CHome(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f),
 CVector(1.0f, 1.0f, 1.0f), 10.0f)
 {
-	//ƒ‚ƒfƒ‹AˆÊ’uA‰ñ“]AŠgk‚ðÝ’è‚·‚é
 	mpModel = model; //ƒ‚ƒfƒ‹‚ÌÝ’è
 	mPosition = position; //ˆÊ’u‚ÌÝ’è
 	mRotation = rotation; //‰ñ“]‚ÌÝ’è
@@ -23,16 +21,16 @@ CVector(1.0f, 1.0f, 1.0f), 10.0f)
 
 	mColBody.mTag = CCollider::EHOME;
 }
-//‰Û‘è8
+
 void CHome::Collision(CCollider*m, CCollider*y){
 	//[“d
 	if (y->mTag == CCollider::EBODY){
 		if (CCollider::Collision(m, y)){
-			home = 1;
+			home = true;
 			}
 
 		else{
-			home = 0;
+			home = false;
 		}
 	}
 }

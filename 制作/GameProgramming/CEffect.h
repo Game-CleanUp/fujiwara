@@ -1,12 +1,8 @@
 #ifndef CEFFECT_H
 #define CEFFECT_H
-//ビルボードクラスのインクルード
+
 #include "CBillBoard.h"
 
-/*
-エフェクトクラス
-テクスチャのアニメーション
-*/
 
 class CEffect : public CBillBoard {
 public:

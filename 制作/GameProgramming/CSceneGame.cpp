@@ -5,9 +5,11 @@
 #include "CText.h"
 
 
-int CSceneGame::mBatteryMax = 60 * 60;
+CTexture Texture;
+
+int CSceneGame::mBatteryMax = BATTERY;
 int CSceneGame::mBatteryNow = mBatteryNow + mBatteryMax;
-int CSceneGame::mTimeMax = 120 * 60;
+int CSceneGame::mTimeMax = TIME;
 int CSceneGame::mTimeNow = mTimeNow + mTimeMax;
 int CSceneGame::frame = 0;
 int CSceneGame::frame2 = 0;
@@ -40,6 +42,9 @@ void CSceneGame::Init() {
 
 	bool BatterySE = true;
 	bool GameOverSE = true;
+
+	//テクスチャの読み込み
+	Texture.Load("DogFood.tga");
 
 	glMatrixMode(GL_PROJECTION);	//行列をプロジェクションモードへ変更
 	glLoadIdentity();				//行列を初期化
@@ -153,12 +158,13 @@ void CSceneGame::RenderMiniMap(){
 void CSceneGame::Update() {
 
 	//バッテリー減少
-	if (mBatteryNow >= 0 && CHome::home == 0){
+	if (mBatteryNow >= 0 && CHome::home == false && mTimeNow > 0){
 		mBatteryNow--;
 	}
 
 	//充電(最大値を超えない、バッテリー増加)
 	if (mBatteryMax >= mBatteryNow && CHome::home == 1){
+
 		mBatteryNow += CHAGE;
 
 		if (BatterySE && mBatteryNow < mBatteryMax){
@@ -248,7 +254,7 @@ void CSceneGame::Update() {
 
 	//ゲームオーバー条件(バッテリー切れ）
 	if (mBatteryNow <= 0){
-		if (CKey::Push(VK_RETURN)){	//タイトル画面へ
+		if (CKey::Once(VK_RETURN)){	//タイトル画面へ
 			mScene = ETITLE;
 			Sound.Stop();	//BGM終了
 			mTimeNow = mTimeMax;
@@ -256,6 +262,7 @@ void CSceneGame::Update() {
 			CGomi::GomiCount = 0;
 			frame = 0;
 		}
+
 		CText::DrawString("GAME OVER", 200, 330, 25, 25);
 	
 		if (GameOverSE){
@@ -266,6 +273,15 @@ void CSceneGame::Update() {
 	
 	//タイムアップ
 	if (mTimeNow <= 0){
+		if (CKey::Once(VK_RETURN)){
+			mScene = ERESULT;
+			Sound.Stop();
+			mTimeNow = mTimeMax;
+			mBatteryNow = mBatteryMax;
+			CGomi::GomiCount = 0;
+			frame = 0;
+		}
+
 		CText::DrawString("TIME UP", 245, 330, 25, 25);
 	}
 

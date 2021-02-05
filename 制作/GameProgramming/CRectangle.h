@@ -6,11 +6,8 @@
 #define CRECTANGLE_H //CRECTANGLE_Hを定義する
 
 #include "glut.h"
+#include"CTexture.h"
 
-/*
-CRectangleクラス
-四角形に関するクラス
-*/
 class CRectangle {
 public:
 	//列挙型の定義
@@ -18,11 +15,7 @@ public:
 		EBLOCK,			//ブロック
 		EPLAYERBULLET,	//プレイヤー弾
 		EPLAYER,
-		EPLAYER2,
-		EENEMYBULLET,
 		EENEMY,
-		EENEMY2,
-		EHPGAUGE,
 	};
 	ETag mTag;	//列挙型の変数
 	//デフォルトコンストラクタ
@@ -78,15 +71,12 @@ public:
 	t:テクスチャのポインタ left:テクスチャの左X座標 right:テクスチャの右X座標
 	bottom:テクスチャの下Y座標 top:テクスチャの上Y座標
 	*/
-	/*virtual void Render(const CTexture &t, int left, int right
-		, int bottom, int top) {
-		t.DrawImage(x - w, x + w, y - h, y + h
-			, left, right, bottom, top);
-	}*/
+	//virtual void Render(const CTexture &t, int left, int right, int bottom, int top){
+	//	t.DrawImage(x - w, x + w, y - h, y + h, left, right, bottom, top);
+	//}
 
 	virtual void Update() {};
 
-	//36
 	virtual void Collision(CRectangle *i, CRectangle *y) {};
 };
 

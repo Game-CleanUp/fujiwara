@@ -1,13 +1,10 @@
 #ifndef CMATERIAL_H
 #define CMATERIAL_H
-//テクスチャクラスのインクルード
+
 #include "CTexture.h"
-//shared_ptrのインクルード
+
 #include <memory>
-/*
-マテリアルクラス
-マテリアルのデータを扱う
-*/
+
 class CMaterial {
 public:
 	//マテリアル名

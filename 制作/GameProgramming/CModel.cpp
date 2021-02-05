@@ -1,9 +1,9 @@
 #include "CModel.h"
-//標準入出力のインクルード
+
 #include <stdio.h>
-//文字列関数のインクルード
+
 #include <string.h>
-//CVectorのインクルード
+
 #include "CVector.h"
 
 //モデルファイルの入力

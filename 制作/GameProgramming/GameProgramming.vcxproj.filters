@@ -90,9 +90,6 @@
     <ClCompile Include="CFall.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="COut.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CGomi.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -213,9 +210,6 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CFall.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="COut.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CGomi.h">

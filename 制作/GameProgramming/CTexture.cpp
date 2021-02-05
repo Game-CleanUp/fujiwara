@@ -3,6 +3,7 @@
 #include <string.h>
 
 //std::map<std::string, CTexture>CTexture::mTexFile;
+CTexture Texture;
 
 CTexture::CTexture()
 	: mId(0)

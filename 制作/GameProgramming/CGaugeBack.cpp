@@ -63,12 +63,12 @@ void CUI::Render(){
 	//緑
 	glColor3f(1.0f, 1.0f, 1.0f);
 
-	x = 400;
-	y = 300;
-	w = 150;
-	h = 150;
+	x = 650;
+	y = 40;
+	w = 25;
+	h = 25;
 	//mEnabled = true;
-	CRectangle::Render();
+	CRectangle::Render(Texture, 0, 0, 1800, 2700);
 
 	//プロジェクション行列を戻す
 	glPopMatrix();

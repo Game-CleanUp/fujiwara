@@ -22,11 +22,7 @@ public:
 		ENONE,	//初期値
 		EPOINT,	//ポイント
 		EPLAYER,//プレイヤー
-		EAIRBASE,//空軍基地
-		EMISSILE,//ミサイル
 		EENEMY, //敵
-		EOUT,
-		ESUI,   //吸い寄せ
 		EBULLET,//プレイヤー弾
 
 	};

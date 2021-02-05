@@ -50,7 +50,7 @@ void CPlayer::TaskCollision()
 
 void CPlayer::Update(){
 
-	if (Down == FALSE){
+	if (Down == false){
 		if (CSceneGame::mBatteryNow > 0 && CSceneGame::mTimeNow > 0){
 
 			if (CKey::Push('A')){
@@ -97,7 +97,7 @@ void CPlayer::Update(){
 			}
 
 			//ゴミを捨てる(ホームにいるとき、ゴミを持っているとき)
-			if (CHome::home == TRUE && CGomi::GomiCount > 0){
+			if (CHome::home == true && CGomi::GomiCount > 0){
 				if (CKey::Once('E')){
 					clear = clear + CGomi::GomiCount;
 					Sound4.Play();
@@ -120,7 +120,7 @@ void CPlayer::Render(){
 	Back.Render();
 	Battery.Render();
 	Time.Render();
-	//Ui.Render();
+	Ui.Render();
 
 }
 
@@ -155,7 +155,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 		if (CCollider::Collision(m, y)){
 
 			frame2++;	//復帰までの時間
-			Down = TRUE;
+			Down = true;
 
 			if (onlyOnce){
 				Sound2.Play();	//爆発音
@@ -211,7 +211,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 				mPosition = CVector(-90.0f, 10.0f, 70.0f);
 				mRotation = CVector(0.0f, -225.0f, 0.0f);
 				CSceneGame::mBatteryNow = CSceneGame::mBatteryMax;
-				Down = FALSE;
+				Down = false;
 				frame2 = 0;
 			}
 		}
