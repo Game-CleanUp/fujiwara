@@ -120,7 +120,8 @@ void CPlayer::Render(){
 	Back.Render();
 	Battery.Render();
 	Time.Render();
-	Ui.Render();
+	TrapUi.Render();
+	GomiUI.Render();
 }
 
 void CPlayer::Collision(CCollider*m, CCollider*y){

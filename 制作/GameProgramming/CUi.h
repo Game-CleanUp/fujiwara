@@ -18,4 +18,10 @@ public:
 	void Render();
 };
 
+class CGomiUI :public CRectangle{
+public:
+	void Render();
+};
+
+
 #endif

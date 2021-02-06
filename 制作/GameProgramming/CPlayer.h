@@ -58,7 +58,9 @@ public:
 	CTime Time;
 	CGaugeBack Back;
 	CMatrix matrix;
-	CTrapUI Ui;
+	CTrapUI TrapUi;
+	CGomiUI GomiUI;
+
 };
 
 

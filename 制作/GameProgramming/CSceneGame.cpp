@@ -17,6 +17,7 @@ int CSceneGame::frame2 = 0;
  CSound CSceneGame::Sound3;
 
  CTexture Texture;
+ CTexture Texture2;
 
 CSceneGame::~CSceneGame(){
 	
@@ -45,6 +46,7 @@ void CSceneGame::Init() {
 
 	//テクスチャの読み込み
 	Texture.Load("DogFood.tga");
+	Texture2.Load("Gomi.tga");
 
 	glMatrixMode(GL_PROJECTION);	//行列をプロジェクションモードへ変更
 	glLoadIdentity();				//行列を初期化
@@ -66,14 +68,14 @@ void CSceneGame::Init() {
 
 
 	mSofa.Load("sofa.obj", "sofa.mtl");	//ソファ
-	mBed.Load("cama.obj", "cama.mtl");	//ベッド
+	mBed.Load("bedSingle.obj", "bedSingle.mtl");	//ベッド
 	mDog.Load("Dog.obj", "Dog.mtl");	//犬
 	mTable.Load("Table.obj", "Table.mtl");	//テーブル
 	mKitchen.Load("kitchen.obj", "kitchen.mtl");	//キッチン
 
 	mPlayer.mpModel = &mSphere;	//プレイヤーモデル
 
-	//new CObj(&mBed, CVector(-55.0f, -6.0f, 30.0f), CVector(0.0f, 90.0f, 0.0f), CVector(20.0f, 25.0f, 20.0f));
+	//new CObj(&mBed, CVector(-20.0f, 0.0f, 0.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
 
 	//new CObj(&mTable, CVector(-20.0f, -1.0f, 0.0f), CVector(), CVector(30.0f, 20.0f, 20.0f));
 
@@ -229,7 +231,7 @@ void CSceneGame::Update() {
 
 	//見下ろし視点
 	if (CKey::Push('I')){
-		e = CVector(0.0f, 30.0f, 0.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 100.0f, 0.0f)*mPlayer.mMatrix;
 	}
 
 	//カメラの設定
@@ -303,15 +305,15 @@ void CSceneGame::Update() {
 
 	//制限時間
 	sprintf(buf, "%d", mTimeNow / 60);
-	CText::DrawString(buf, 30, 550, 15, 15);
+	CText::DrawString(buf, 30, 550, 13, 13);
 
 	//トラップ数
 	sprintf(buf, "%d", CTrap::TrapCount);
-	CText::DrawString(buf, 700, 30, 15, 15);
+	CText::DrawString(buf, 700, 30, 13, 13);
 
 	//ゴミ保有数
 	sprintf(buf, "%d", CGomi::GomiCount);
-	CText::DrawString(buf, 300, 50, 15, 15);
+	CText::DrawString(buf, 300, 50, 13, 13);
 
 	End2D();
 

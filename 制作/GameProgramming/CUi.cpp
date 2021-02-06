@@ -2,6 +2,7 @@
 #include"CSceneGame.h"
 
 extern CTexture Texture;
+extern CTexture Texture2;
 
 void CGaugeBack::Render(){
 
@@ -9,8 +10,6 @@ void CGaugeBack::Render(){
 	glPushMatrix();
 	//モデルビュー行列の初期化
 	glLoadIdentity();
-
-	//モデルビュー行列から
 	//プロジェクション行列へ切り替え
 	glMatrixMode(GL_PROJECTION);
 	//プロジェクション行列の退避
@@ -47,8 +46,6 @@ void CTrapUI::Render(){
 	glPushMatrix();
 	//モデルビュー行列の初期化
 	glLoadIdentity();
-
-	//モデルビュー行列から
 	//プロジェクション行列へ切り替え
 	glMatrixMode(GL_PROJECTION);
 	//プロジェクション行列の退避
@@ -62,9 +59,9 @@ void CTrapUI::Render(){
 	glDisable(GL_LIGHTING);
 
 	x = 640;
-	y = 50;
-	w = 25;
-	h = 40;
+	y = 45;
+	w = 20;
+	h = 25;
 	CRectangle::Render(Texture, 0, 1800, 2770, 0);
 
 	//プロジェクション行列を戻す
@@ -84,8 +81,6 @@ void CTitleUI::Render(){
 	glPushMatrix();
 	//モデルビュー行列の初期化
 	glLoadIdentity();
-
-	//モデルビュー行列から
 	//プロジェクション行列へ切り替え
 	glMatrixMode(GL_PROJECTION);
 	//プロジェクション行列の退避
@@ -97,13 +92,48 @@ void CTitleUI::Render(){
 	//Depthテストオフ
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_LIGHTING);
-	glColor3f(0.0f, 1.0f, 1.0f);
+	glColor3f(0.0f, 1.0f, 0.0f);
 
 	x = 0;
 	y = 0;
 	w = 800;
 	h = 600;
 	CRectangle::Render();
+
+	//プロジェクション行列を戻す
+	glPopMatrix();
+	//モデルビューモードへ切り替え
+	glMatrixMode(GL_MODELVIEW);
+	//モデルビュー行列を戻す
+	glPopMatrix();
+	//Depthテストオン
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_LIGHTING);
+}
+
+void CGomiUI::Render(){
+
+	//モデルビュー行列の退避
+	glPushMatrix();
+	//モデルビュー行列の初期化
+	glLoadIdentity();
+	//プロジェクション行列へ切り替え
+	glMatrixMode(GL_PROJECTION);
+	//プロジェクション行列の退避
+	glPushMatrix();
+	//プロジェクション行列の初期化
+	glLoadIdentity();
+	//2D描画の設定
+	gluOrtho2D(0, 800, 0, 600);
+	//Depthテストオフ
+	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_LIGHTING);
+
+	x = 250;
+	y = 60;
+	w = 25;
+	h = 25;
+	CRectangle::Render(Texture2, 0, 2770, 2314, 0);
 
 	//プロジェクション行列を戻す
 	glPopMatrix();
