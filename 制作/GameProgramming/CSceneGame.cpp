@@ -71,22 +71,24 @@ void CSceneGame::Init() {
 	mSofa.Load("loungeSofa.obj", "loungeSofa.mtl");	//ソファ
 	mBed.Load("bedSingle.obj", "bedSingle.mtl");	//ベッド
 	mChair.Load("stoolBarSquare.obj", "stoolBarSquare.mtl");
-	mTVCabnet.Load("cabinetTelevisionDoors.obj", "cabinetTelevisionDoors.mtl");
+	mTVCabinet.Load("cabinetTelevisionDoors.obj", "cabinetTelevisionDoors.mtl");
 	mKichenCabinet.Load("kichenCabinetDrawer.obj", "kichenCabinetDrawer.mtl");
 	mBedCabinet.Load("cabinetBedDrawerTable.obj", "cabinetBedDrawerTable.mtl");
 
 
 	mPlayer.mpModel = &mSphere;	//プレイヤーモデル
 
-	//new CObj(&mBed, CVector(-20.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CObj(&mBed, CVector(-20.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//new CObj(&mTable, CVector(-20.0f, -1.0f, 0.0f), CVector(), CVector(30.0f, 20.0f, 20.0f));
 
-	//new CObj(&mKitchen, CVector(50.0f, -1.0f, -20.0f), CVector(0.0f, -90.0f, 0.0f), CVector(8.0f, 10.0f, 10.0f));
+	new CObj(&mKitchen, CVector(50.0f, -1.0f, -20.0f), CVector(0.0f, -90.0f, 0.0f), CVector(8.0f, 10.0f, 10.0f));
 
-	//new CObj(&mSofa, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(10.0f, 10.0f, 10.0f));
+	new CObj(&mChair, CVector(25.0f, -1.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
-	
+	new CObj(&mTVCabinet, CVector(-30.0f, -1.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+
+	new CObj(&mKichenCabinet, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 
 	/* 乱数系列の変更 */
@@ -98,20 +100,21 @@ void CSceneGame::Init() {
 	-50引くことで、-50~49までのランダム値になる。
 	*/
 	//テクスチャ(壁紙)
-	std::shared_ptr<CTexture>kabe(new CTexture("kabe.tga"));
-	
+	std::shared_ptr<CTexture>wall(new CTexture("kabe2.tga"));
 
 	//上
 	new CObj(&mCube, CVector(100.0f, -1.0f, 0.0f), CVector(), CVector(W, H, 80.0f));
-	
+	new CImage(wall, CVector(95.0f, 0.0f, 0.0f), CVector(0.0f, 0.0f, 90.0f), CVector(100.0f, 80.0f, 1.0f));
 	//下
 	new CObj(&mCube, CVector(-100.0f, -1.0f, 0.0f), CVector(), CVector(W, H, 80.0f));
-
+	//new CImage(wall, CVector(-95.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(100.0f, 80.0f, 1.0f));
 	//右
 	new CObj(&mCube, CVector(0.0f, -1.0f, 80.0f), CVector(), CVector(100.0f, H, W));
-	
+	//new CImage(wall, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(100.0f, 80.0f, 1.0f));
 	//左
 	new CObj(&mCube, CVector(0.0f, -1.0f, -80.0f), CVector(), CVector(100.0f, H, W));
+	//new CImage(wall, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(100.0f, 80.0f, 1.0f));
+
 
 	//中央
 	new CObj(&mCube, CVector(0.0f, -1.0f, 0.0f), CVector(), CVector(5.0f, 10.0f, 5.0f));
@@ -136,11 +139,11 @@ void CSceneGame::Init() {
 	mPlayer.mRotation = CVector(0.0f, -225.0f, 0.0f);
 	
 	//テクスチャ(床）
-	std::shared_ptr<CTexture>yuka(new CTexture("yuka.tga"));
+	std::shared_ptr<CTexture>floor(new CTexture("floor.tga"));
 
 	//床
 	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(100.0f, 1.0f, 80.0f));
-	new CImage(yuka, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(100.0f, 80.0f, 1.0f));
+	new CImage(floor, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(100.0f, 80.0f, 1.0f));
 
 }
 

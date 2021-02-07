@@ -52,7 +52,7 @@ public:
 	CModel mBed;
 	CModel mKitchen;
 	CModel mChair;
-	CModel mTVCabnet;
+	CModel mTVCabinet;
 	CModel mKichenCabinet;
 	CModel mBedCabinet;
 
