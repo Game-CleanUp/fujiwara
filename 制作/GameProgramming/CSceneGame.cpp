@@ -59,23 +59,26 @@ void CSceneGame::Init() {
 	CText::mFont.Load("FontG.tga");
 	CText::mFont.SetRowCol(1, 4096 / 64);	//画像の横幅/1文字の横幅
 
-	mSky.Load("sky.obj", "sky.mtl");
 	mRock.Load("Rock1.obj", "Rock1.mtl");
-	mRover.Load("Rover1.obj", "Rover1.mtl");
 	mCube.Load("cube.obj", "cube.mtl");
 	mPlane.Load("plane.obj", "plane.mtl");
 	mSphere.Load("sphere.obj", "sphere.mtl");
 
-
-	mSofa.Load("sofa.obj", "sofa.mtl");	//ソファ
-	mBed.Load("bedSingle.obj", "bedSingle.mtl");	//ベッド
 	mDog.Load("Dog.obj", "Dog.mtl");	//犬
 	mTable.Load("Table.obj", "Table.mtl");	//テーブル
 	mKitchen.Load("kitchen.obj", "kitchen.mtl");	//キッチン
 
+	mSofa.Load("loungeSofa.obj", "loungeSofa.mtl");	//ソファ
+	mBed.Load("bedSingle.obj", "bedSingle.mtl");	//ベッド
+	mChair.Load("stoolBarSquare.obj", "stoolBarSquare.mtl");
+	mTVCabnet.Load("cabinetTelevisionDoors.obj", "cabinetTelevisionDoors.mtl");
+	mKichenCabinet.Load("kichenCabinetDrawer.obj", "kichenCabinetDrawer.mtl");
+	mBedCabinet.Load("cabinetBedDrawerTable.obj", "cabinetBedDrawerTable.mtl");
+
+
 	mPlayer.mpModel = &mSphere;	//プレイヤーモデル
 
-	//new CObj(&mBed, CVector(-20.0f, 0.0f, 0.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
+	//new CObj(&mBed, CVector(-20.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	//new CObj(&mTable, CVector(-20.0f, -1.0f, 0.0f), CVector(), CVector(30.0f, 20.0f, 20.0f));
 

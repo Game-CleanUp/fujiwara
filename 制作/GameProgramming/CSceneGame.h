@@ -40,18 +40,22 @@ public:
 	void Update();
 	//ミニマップの表示
 	void RenderMiniMap();
-	CModel mSky;
+
 	CModel mRock;
-	CModel mRover;
 	CPlayer mPlayer;
 	CModel mCube;
 	CModel mPlane;
 	CModel mSphere;
 	CModel mSofa;
 	CModel mTable;
-	CModel mBed;
 	CModel mDog;
+	CModel mBed;
 	CModel mKitchen;
+	CModel mChair;
+	CModel mTVCabnet;
+	CModel mKichenCabinet;
+	CModel mBedCabinet;
+
 	
 	//次のシーンの取得
 	EScene GetNextScene();
