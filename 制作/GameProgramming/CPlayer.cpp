@@ -46,8 +46,6 @@ void CPlayer::TaskCollision()
 	CCollisionManager::Get()->Collision(&mSearch);
 }
 
-
-
 void CPlayer::Update(){
 
 	if (Down == false){
@@ -92,7 +90,7 @@ void CPlayer::Update(){
 			//ジャンプ
 			if (CKey::Once('J') && mVelocityJump == 0){
 				mVelocityJump = JUMPV0;
-				CSceneGame::mBatteryNow -= 5 * 60;	//バッテリー消費
+				CSceneGame::mBatteryNow -= 300;	//バッテリー消費
 				Sound.Play();
 			}
 

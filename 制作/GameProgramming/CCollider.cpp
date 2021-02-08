@@ -250,7 +250,15 @@ bool CCollider::CollisionTriangleSphere(CCollider *t, CCollider *s, CVector *a) 
 	v[2] = t->mV[2] * t->mMatrix * t->mpParent->mMatrix;
 
 	//面の法線を、外積を正規化して求める
-	CVector normal = (v[1] - v[0]).Cross(v[2] - v[0]).Normalize();
+	CVector normal = (v[1] - v[0]).Cross(v[2] - v[0]);
+
+	if (normal.Length() == 0){
+		*a = CVector(0.0f, 0.0f, 0.0f);
+		return false;
+	}
+	else{
+		normal = normal.Normalize();
+	}
 
 	sv = s->mV[0] * s->mMatrix * s->mpParent->mMatrix + normal*s->mRadius;
 
@@ -312,7 +320,7 @@ bool CCollider::CollisionTriangleSphere(CCollider *t, CCollider *s, CVector *a) 
 	return true;
 }
 
-///U
+//優先度
 void CCollider::ChangePriority()
 {
 	CMatrix matrix = mMatrix;//コライダの行列退避

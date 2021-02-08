@@ -41,8 +41,8 @@ public:
 	//ミニマップの表示
 	void RenderMiniMap();
 
-	CModel mRock;
 	CPlayer mPlayer;
+
 	CModel mCube;
 	CModel mPlane;
 	CModel mSphere;

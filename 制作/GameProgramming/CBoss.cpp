@@ -158,7 +158,6 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 		if (CCollider::Collision(m, y)){
 			if (state != 5 && state != 7){	//トラップ、気絶以外
 				state = 6;	//プレイヤー追尾へ
-
 			}
 		}
 		else{
@@ -187,9 +186,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 			Sound2.Play();	//ダメージSE
 			Sound.Stop();
 			state = 7;	//気絶へ
-			
 		}
-	
 	}
 
 	//自身のコライダタイプの判定

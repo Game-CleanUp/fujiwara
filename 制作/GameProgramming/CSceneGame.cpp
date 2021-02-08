@@ -59,36 +59,30 @@ void CSceneGame::Init() {
 	CText::mFont.Load("FontG.tga");
 	CText::mFont.SetRowCol(1, 4096 / 64);	//画像の横幅/1文字の横幅
 
-	mRock.Load("Rock1.obj", "Rock1.mtl");
 	mCube.Load("cube.obj", "cube.mtl");
 	mPlane.Load("plane.obj", "plane.mtl");
 	mSphere.Load("sphere.obj", "sphere.mtl");
 
 	mDog.Load("Dog.obj", "Dog.mtl");	//犬
-	mTable.Load("Table.obj", "Table.mtl");	//テーブル
-	mKitchen.Load("kitchen.obj", "kitchen.mtl");	//キッチン
 
 	mSofa.Load("loungeSofa.obj", "loungeSofa.mtl");	//ソファ
 	mBed.Load("bedSingle.obj", "bedSingle.mtl");	//ベッド
 	mChair.Load("stoolBarSquare.obj", "stoolBarSquare.mtl");
 	mTVCabinet.Load("cabinetTelevisionDoors.obj", "cabinetTelevisionDoors.mtl");
-	mKichenCabinet.Load("kichenCabinetDrawer.obj", "kichenCabinetDrawer.mtl");
 	mBedCabinet.Load("cabinetBedDrawerTable.obj", "cabinetBedDrawerTable.mtl");
 
 
 	mPlayer.mpModel = &mSphere;	//プレイヤーモデル
 
-	new CObj(&mBed, CVector(-20.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CObj(&mBed, CVector(-20.0f, 0.0f, 0.0f), CVector(), CVector(15.0f, 15.0f, 15.0f));
 
-	//new CObj(&mTable, CVector(-20.0f, -1.0f, 0.0f), CVector(), CVector(30.0f, 20.0f, 20.0f));
+	new CObj(&mChair, CVector(25.0f, -1.0f, 10.0f), CVector(), CVector(15.0f, 15.0f, 15.0f));
 
-	new CObj(&mKitchen, CVector(50.0f, -1.0f, -20.0f), CVector(0.0f, -90.0f, 0.0f), CVector(8.0f, 10.0f, 10.0f));
+	new CObj(&mTVCabinet, CVector(-40.0f, -1.0f, 10.0f), CVector(), CVector(15.0f, 15.0f, 15.0f));
 
-	new CObj(&mChair, CVector(25.0f, -1.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CObj(&mBedCabinet, CVector(-70.0f, -1.0f, 10.0f), CVector(), CVector(25.0f, 30.0f, 25.0f));
 
-	new CObj(&mTVCabinet, CVector(-30.0f, -1.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-
-	new CObj(&mKichenCabinet, CVector(-55.0f, -1.0f, 10.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CObj(&mSofa, CVector(50.0f, -1.0f, -20.0f), CVector(0.0f, -90.0f, 0.0f), CVector(15.0f, 15.0f, 15.0f));
 
 
 	/* 乱数系列の変更 */
@@ -100,20 +94,20 @@ void CSceneGame::Init() {
 	-50引くことで、-50~49までのランダム値になる。
 	*/
 	//テクスチャ(壁紙)
-	std::shared_ptr<CTexture>wall(new CTexture("kabe2.tga"));
+	std::shared_ptr<CTexture>Wall(new CTexture("kabe2.tga"));
 
 	//上
 	new CObj(&mCube, CVector(100.0f, -1.0f, 0.0f), CVector(), CVector(W, H, 80.0f));
-	new CImage(wall, CVector(95.0f, 0.0f, 0.0f), CVector(0.0f, 0.0f, 90.0f), CVector(100.0f, 80.0f, 1.0f));
+	//new CImage(Wall, CVector(95.0f, 0.0f, 0.0f), CVector(0.0f, 0.0f, 90.0f), CVector(100.0f, 80.0f, 1.0f));
 	//下
 	new CObj(&mCube, CVector(-100.0f, -1.0f, 0.0f), CVector(), CVector(W, H, 80.0f));
-	//new CImage(wall, CVector(-95.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(100.0f, 80.0f, 1.0f));
+	//new CImage(Wall, CVector(-95.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(100.0f, 80.0f, 1.0f));
 	//右
 	new CObj(&mCube, CVector(0.0f, -1.0f, 80.0f), CVector(), CVector(100.0f, H, W));
-	//new CImage(wall, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(100.0f, 80.0f, 1.0f));
+	//new CImage(Wall, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(100.0f, 80.0f, 1.0f));
 	//左
 	new CObj(&mCube, CVector(0.0f, -1.0f, -80.0f), CVector(), CVector(100.0f, H, W));
-	//new CImage(wall, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(100.0f, 80.0f, 1.0f));
+	//new CImage(Wall, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(100.0f, 80.0f, 1.0f));
 
 
 	//中央
@@ -206,7 +200,7 @@ void CSceneGame::Update() {
 
 	if (frame < 1000 && frame % 100 == 0){
 		//ゴミの生成
-		//new CGomi(&mRock, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+		//new CGomi(NULL, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	}
 	
 	CTaskManager::Get()->Update();
@@ -280,7 +274,7 @@ void CSceneGame::Update() {
 	
 	//タイムアップ
 	if (mTimeNow <= 0){
-		if (CKey::Once(VK_RETURN)){
+		if (CKey::Once(VK_RETURN)){	//リザルト画面へ
 			mScene = ERESULT;
 			Sound.Stop();
 			mTimeNow = mTimeMax;

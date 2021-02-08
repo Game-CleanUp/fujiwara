@@ -92,7 +92,7 @@ void CTitleUI::Render(){
 	//Depthテストオフ
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_LIGHTING);
-	glColor3f(0.0f, 1.0f, 0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
 
 	x = 0;
 	y = 0;
