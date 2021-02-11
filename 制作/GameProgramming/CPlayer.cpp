@@ -2,7 +2,7 @@
 #include"CSceneGame.h"
 #include"CEffect.h"
 
-int CPlayer::clear = 0;
+int CPlayer::Score = 0;
 int CPlayer::Down = 0;
 
 CPlayer *CPlayer::mpPlayer = 0;
@@ -18,7 +18,7 @@ extern std::shared_ptr<CTexture>TextureExp(new CTexture());
 CPlayer::CPlayer()
 :mColBody(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 2.0f)
 //サーチ
-, mSearch(this, CVector(0.0f, 0.0f, 5.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
+, mSearch(this, CVector(0.0f, -3.0f, 5.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
 , mVelocityJump(0.0f)
 , frame(0), frameMax(300), frame2(0), state(0), onlyOnce(true)
 {
@@ -61,6 +61,11 @@ void CPlayer::Update(){
 
 			if (CKey::Push('W')){
 				mPosition = CVector(0.0f, 0.0f, FORWARD)*mMatrix;
+				//ダッシュ
+				if (CKey::Push(VK_SHIFT)){
+					mPosition = CVector(0.0f, 0.0f, DASH)*mMatrix;
+					CSceneGame::mBatteryNow -= 10;
+				}
 			}
 
 			if (CKey::Push('S')){
@@ -94,10 +99,10 @@ void CPlayer::Update(){
 				Sound.Play();
 			}
 
-			//ゴミを捨てる(ホームにいるとき、ゴミを持っているとき)
+			//ゴミを捨てる,スコア加算(ホームにいるとき、ゴミを持っているとき)
 			if (CHome::home == true && CGomi::GomiCount > 0){
 				if (CKey::Once('E')){
-					clear = clear + CGomi::GomiCount;
+					Score += 1;
 					Sound4.Play();
 					CGomi::GomiCount -= 1;
 				}
@@ -206,8 +211,8 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 			//リトライ(初期位置に戻る)
 			if (frame2 >= RETRY){
 				//初期位置
-				mPosition = CVector(-90.0f, 10.0f, 70.0f);
-				mRotation = CVector(0.0f, -225.0f, 0.0f);
+				mPosition = CVector(70.0f, 10.0f, 55.0f);
+				mRotation = CVector(0.0f, 225.0f, 0.0f);
 				CSceneGame::mBatteryNow = CSceneGame::mBatteryMax;
 				Down = false;
 				frame2 = 0;

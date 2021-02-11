@@ -7,14 +7,11 @@
 #include"CPlayer.h"
 #include"CTaskManager.h"
 #include"CCollisionManager.h"
-#include"CFall.h"
 #include"CObj.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include<time.h>
 #include"CKey.h"
-#include"CEnemy.h"
-#include"CBlock.h"
 #include"CGomi.h"
 #include"CHome.h"
 #include"CBoss.h"
@@ -26,8 +23,8 @@
 #define RAND rand() % 100 - 50	//ランダム配置(-150~149)
 #define W	5.0f	//幅
 #define H	25.0f //高さ
-#define TIME	120 * 60	//制限時間
-#define BATTERY	60 * 60	//バッテリー最大値
+#define TIME	90 * 60	//制限時間
+#define BATTERY	60 * 60	//バッテリー上限
 #define CHAGE	15	//バッテリー増加
 
 class CSceneGame : public CScene {
@@ -40,6 +37,7 @@ public:
 	void Update();
 	//ミニマップの表示
 	void RenderMiniMap();
+	void ValueReset();
 
 	CPlayer mPlayer;
 
@@ -50,12 +48,15 @@ public:
 	CModel mTable;
 	CModel mDog;
 	CModel mBed;
-	CModel mKitchen;
+	CModel mKitchenCabinet;
+	CModel mKichen;
+	CModel mFrige;
 	CModel mChair;
 	CModel mTVCabinet;
-	CModel mKichenCabinet;
 	CModel mBedCabinet;
-
+	CModel mTrashbox;
+	CModel mWall;
+	CModel mDoor;
 	
 	//次のシーンの取得
 	EScene GetNextScene();
@@ -71,11 +72,11 @@ public:
 
 	static CSound Sound;	//BGM
 	static CSound Sound2;	//ゲームオーバー音
-
-	static CSound Sound3;
+	static CSound Sound3;	//充電音
+	static CSound Sound4;	//タイムアップ
 
 	bool BatterySE;	//一度だけ充電SE再生
-	bool GameOverSE;	//一度だけゲームオーバーSE再生
+	bool GameSE;	//一度だけゲームオーバー、タイムアップSE再生
 };
 
 #endif

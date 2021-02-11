@@ -3,8 +3,9 @@
 
 #include "CScene.h"
 #include "CText.h"
-#include"CSound.h"
-#include"CSceneGame.h"
+#include "CSound.h"
+#include "CSceneGame.h"
+#include "CPlayer.h"
 
 class CResult : public CScene{
 public:

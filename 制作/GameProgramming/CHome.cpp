@@ -2,17 +2,8 @@
 
 int CHome::home = 0;
 
-void CHome::TaskCollision()
-{
-	mColBody.ChangePriority();
-
-	CCollisionManager::Get()->Collision(&mColBody);
-	
-}
-
 CHome::CHome(CModel*model, CVector position, CVector rotation, CVector scale)
-:mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f),
-CVector(1.0f, 1.0f, 1.0f), 10.0f)
+:mColBody(this, CVector(0.0f, 0.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(0.2f, 0.2f, 0.2f), 2.0f)
 {
 	mpModel = model; //ƒ‚ƒfƒ‹‚ÌÝ’è
 	mPosition = position; //ˆÊ’u‚ÌÝ’è
@@ -20,6 +11,14 @@ CVector(1.0f, 1.0f, 1.0f), 10.0f)
 	mScale = scale; //Šgk‚ÌÝ’è
 
 	mColBody.mTag = CCollider::EHOME;
+}
+
+void CHome::TaskCollision()
+{
+	mColBody.ChangePriority();
+
+	CCollisionManager::Get()->Collision(&mColBody);
+
 }
 
 void CHome::Collision(CCollider*m, CCollider*y){

@@ -54,7 +54,7 @@ void CCollider::Render() {
 	glDisable(GL_LIGHTING);
 
 	//DIFFUSE赤色設定
-	float c[] = { 1.0f, 0.0f, 0.0f, 0.0f };
+	float c[] = { 1.0f, 0.0f, 0.0f, 0.5f };
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, c);
 	glColor4fv(c);
 
@@ -252,6 +252,7 @@ bool CCollider::CollisionTriangleSphere(CCollider *t, CCollider *s, CVector *a) 
 	//面の法線を、外積を正規化して求める
 	CVector normal = (v[1] - v[0]).Cross(v[2] - v[0]);
 
+	//直線(長さが0)なら衝突しない、直線以外なら法線を正規化する。
 	if (normal.Length() == 0){
 		*a = CVector(0.0f, 0.0f, 0.0f);
 		return false;

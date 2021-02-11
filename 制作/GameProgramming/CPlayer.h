@@ -21,7 +21,7 @@
 #define FORWARD	0.3f	//前進
 #define DIR		3.0f	//方向転換
 #define BACK	-0.3f	//後退
-
+#define DASH	0.5f	//ダッシュスピード
 
 
 class CPlayer : public CCharacter{
@@ -37,7 +37,7 @@ public:
 	CCollider mColBody;
 	CCollider mSearch;
 	static CPlayer *mpPlayer;
-	static int clear;
+	static int Score;
 	static int Down;
 
 	static CSound Sound;	//ジャンプ音

@@ -44,9 +44,25 @@ void CResult::Update() {
 	CText::DrawString("PUSH ENTER KEY", 165, 200, 17, 17);
 
 	char buf[10];
-	//制限時間
-	//sprintf(buf, "%d", CSceneGame::mTimeNow / 60);
-	//CText::DrawString(buf, 15, 550, 15, 15);
+	//スコア表示
+	sprintf(buf, "%d", CPlayer::Score);
+	CText::DrawString(buf, 400, 400, 20, 20);
+
+	if (CPlayer::Score <= 5){
+		CText::DrawString("D", 400, 300, 40, 40);
+	}
+	else if (CPlayer::Score <= 10){
+		CText::DrawString("C", 400, 300, 40, 40);
+	}
+	else if (CPlayer::Score <= 20){
+		CText::DrawString("B", 400, 300, 40, 40);
+	}
+	else if (CPlayer::Score <= 25){
+		CText::DrawString("A", 400, 300, 40, 40);
+	}
+	else{
+		CText::DrawString("S", 400, 300, 40, 40);
+	}
 
 	//2D描画終了
 	End2D();
@@ -54,6 +70,7 @@ void CResult::Update() {
 	//タイトルへ
 	if (CKey::Once(VK_RETURN)) {
 		mScene = ETITLE;
+		CPlayer::Score = 0;
 		Sound.Play();	//決定SE再生
 	}
 }

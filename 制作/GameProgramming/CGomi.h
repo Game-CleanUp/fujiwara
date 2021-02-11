@@ -20,7 +20,7 @@ public:
 	void Collision(CCollider*m, CCollider*y);
 	void TaskCollision();
 
-	static int GomiCount;	//ƒSƒ~•Û—L”
+	static int GomiCount;	//ƒSƒ~Š”
 	static CModel mModel;
 	static CSound Sound;
 
