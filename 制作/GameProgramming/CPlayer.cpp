@@ -175,6 +175,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 				//プレイヤーの周りに出現
 				for (int i = 0; i < 1; i++){
 					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_DIR), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					CGomi::StageGomi += 1;
 				}
 				CGomi::GomiCount = 0;
 				break;
@@ -182,6 +183,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 			case 2:
 				for (int i = 0; i < 2; i++){
 					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_DIR), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					CGomi::StageGomi += 2;
 				}
 				CGomi::GomiCount = 0;
 				break;
@@ -189,6 +191,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 			case 3:
 				for (int i = 0; i < 3; i++){
 					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_DIR), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					CGomi::StageGomi += 3;
 				}
 				CGomi::GomiCount = 0;
 				break;
@@ -196,6 +199,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 			case 4:
 				for (int i = 0; i < 4; i++){
 					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_DIR), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					CGomi::StageGomi += 4;
 				}
 				CGomi::GomiCount = 0;
 				break;
@@ -203,6 +207,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 			case 5:
 				for (int i = 0; i < 5; i++){
 					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_DIR), CVector(), CVector(1.0f, 1.0f, 1.0f));
+					CGomi::StageGomi += 5;
 				}
 				CGomi::GomiCount = 0;
 				break;

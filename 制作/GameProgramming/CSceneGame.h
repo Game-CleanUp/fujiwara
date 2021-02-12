@@ -23,7 +23,7 @@
 #define RAND rand() % 100 - 50	//ランダム配置(-150~149)
 #define W	5.0f	//幅
 #define H	25.0f //高さ
-#define TIME	90 * 60	//制限時間
+#define TIME	60 * 60	//制限時間
 #define BATTERY	60 * 60	//バッテリー上限
 #define CHAGE	15	//バッテリー増加
 

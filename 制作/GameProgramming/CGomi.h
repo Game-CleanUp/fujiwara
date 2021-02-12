@@ -23,6 +23,7 @@ public:
 	static int GomiCount;	//ゴミ所持数
 	static CModel mModel;
 	static CSound Sound;
+	static int StageGomi;	//ステージにあるゴミの数
 
 	float mVelocityJump;
 

@@ -7,7 +7,7 @@ CSound CBoss::Sound2;
 
 CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 3.0f)
-, mSearch(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 25.0f)
+, mSearch(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 20.0f)
 , ActFrame(0), state(0), mVelocityJump(0.0f), EnemyDown(0), DownFrame(0), onlyOnce(true)
 {
 	//ƒ‚ƒfƒ‹AˆÊ’uA‰ñ“]AŠgk‚ðÝ’è‚·‚é
@@ -90,6 +90,7 @@ void CBoss::Update(){
 			ActFrame += 1;
 			if (ActFrame > 600){
 				new CGomi(NULL, mPosition, CVector(), CVector(0.5f, 0.5f, 0.5f));
+				CGomi::StageGomi += 1;
 				state = rand() % STATERAND;
 				ActFrame = 0;
 			}

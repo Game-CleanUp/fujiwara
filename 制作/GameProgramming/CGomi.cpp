@@ -2,6 +2,7 @@
 
 
 int CGomi::GomiCount = 0;
+int CGomi::StageGomi = 0;
 CModel CGomi::mModel;
 
 CSound CGomi::Sound;
@@ -82,6 +83,7 @@ void CGomi::Collision(CCollider*m, CCollider*y){
 				mEnabled = false;
 				Sound.Play();
 				GomiCount += 1;
+				StageGomi -= 1;
 			}
 		}
 		//引き寄せ(プレイヤーのサーチに当たった時)

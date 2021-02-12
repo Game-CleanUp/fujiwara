@@ -131,7 +131,7 @@ void CSceneGame::Init() {
 
 	//“G(’Ç”ö)
 	new CBoss(&mDog, CVector(-20.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-	//new CBoss(&mDog, CVector(0.0f, 0.0f, -15.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+	new CBoss(&mDog, CVector(30.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 
 	new CTrap(&mSphere, CVector(0.0f, -10.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	
@@ -173,6 +173,7 @@ void CSceneGame::ValueReset(){
 	mTimeNow = mTimeMax;
 	mBatteryNow = mBatteryMax;
 	CGomi::GomiCount = 0;
+	CGomi::StageGomi = 0;
 	frame = 0;
 }
 
@@ -221,6 +222,7 @@ void CSceneGame::Update() {
 	if (frame < 1000 && frame % 100 == 0){
 		//ƒSƒ~‚Ì¶¬
 		//new CGomi(NULL, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+		//CGomi::StageGomi += 1;
 	}
 	
 	CTaskManager::Get()->Update();
