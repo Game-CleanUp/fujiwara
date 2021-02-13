@@ -12,10 +12,10 @@ int CSceneGame::mTimeNow = mTimeNow + mTimeMax;
 int CSceneGame::frame = 0;
 int CSceneGame::frame2 = 0;
 
- CSound CSceneGame::Sound;
- CSound CSceneGame::Sound2;
- CSound CSceneGame::Sound3;
- CSound CSceneGame::Sound4;
+ CSound CSceneGame::SoundBGM;
+ CSound CSceneGame::SoundGameOver;
+ CSound CSceneGame::SoundCharge;
+ CSound CSceneGame::SoundTimeUp;
 
  CTexture Texture;
  CTexture Texture2;
@@ -35,16 +35,16 @@ void CSceneGame::Init() {
 	//シーンの設定
 	mScene = EGAME;
 
-	Sound.Load("bgm.wav");
-	Sound2.Load("GameOver.wav");
-	Sound3.Load("chage.wav");
-	Sound4.Load("finish.wav");
+	SoundBGM.Load("BGM1.wav");
+	SoundGameOver.Load("GameOver.wav");
+	SoundCharge.Load("chage.wav");
+	SoundTimeUp.Load("finish.wav");
 
 	//BGM再生
-	//Sound.Repeat();
+	SoundBGM.Repeat();
 
 	bool BatterySE = true;
-	bool GameOverSE = true;
+	bool GameSE = true;
 
 	//テクスチャの読み込み
 	Texture.Load("DogFood.tga");
@@ -83,17 +83,17 @@ void CSceneGame::Init() {
 	mPlayer.mpModel = &mSphere;	//プレイヤーモデル
 	CVector left = CVector(0.0f, -90.0f, 0.0f);
 
-	new CObj(&mBed, CVector(-18.0f, -1.0f, -7.0f), left, CVector(50.0f, 25.0f, 50.0f));
+	new CObj(&mBed, CVector(-18.0f, -1.0f, -7.0f), left, CVector(50.0f, 45.0f, 50.0f));
 
 	//new CObj(&mChair, CVector(-10.0f, 0.0f, -20.0f), CVector(), CVector(40.0f, 10.0f, 40.0f));
 
-	new CObj(&mTVCabinet, CVector(-59.0f, -1.0f, 25.0f), left, CVector(50.0f, 25.0f, 65.0f));
+	new CObj(&mTVCabinet, CVector(-59.0f, -1.0f, 25.0f), left, CVector(50.0f, 35.0f, 65.0f));
 
 	//new CObj(&mBedCabinet, CVector(-70.0f, 0.0f, 10.0f), CVector(), CVector(40.0f, 30.0f, 40.0f));
 
-	new CObj(&mSofa, CVector(-15.0f, -1.0f, -15.0f), CVector(0.0f, 90.0f, 0.0f), CVector(40.0f, 20.0f, 35.0f));
+	new CObj(&mSofa, CVector(-15.0f, -1.0f, -15.0f), CVector(0.0f, 90.0f, 0.0f), CVector(40.0f, 35.0f, 35.0f));
 
-	new CObj(&mTable, CVector(-35.0f, -1.0f, 5.0f), CVector(0.0f, -90.0f, 0.0f), CVector(50.0f, 23.0f, 40.0f));
+	new CObj(&mTable, CVector(-35.0f, -5.0f, 5.0f), CVector(0.0f, -90.0f, 0.0f), CVector(50.0f, 40.0f, 40.0f));
 
 	new CObj(&mWall, CVector(5.0f, -1.0f, -55.0f), CVector(0.0f, 90.0f, 0.0f), CVector(80.0f, 30.0f, 40.0f));
 
@@ -138,7 +138,6 @@ void CSceneGame::Init() {
 	//ホーム
 	new CHome(&mTrashbox, CVector(73.0f, -1.0f, 53.0f), CVector(0.0f, 45.0f, 0.0f), CVector(15.0f, 15.0f, 15.0f));
 
-
 	//プレイヤー初期位置
 	mPlayer.mPosition = CVector(70.0f, 10.0f, 55.0f);
 	mPlayer.mRotation = CVector(0.0f, 225.0f, 0.0f);
@@ -169,9 +168,10 @@ void CSceneGame::RenderMiniMap(){
 
 //数値リセット
 void CSceneGame::ValueReset(){
-	Sound.Stop();	//BGM終了
+	SoundBGM.Stop();	//BGM終了
 	mTimeNow = mTimeMax;
 	mBatteryNow = mBatteryMax;
+	CPlayer::Down = false;
 	CGomi::GomiCount = 0;
 	CGomi::StageGomi = 0;
 	frame = 0;
@@ -190,12 +190,12 @@ void CSceneGame::Update() {
 		mBatteryNow += CHAGE;
 
 		if (BatterySE && mBatteryNow < mBatteryMax){
-			Sound3.Repeat();	//充電中SE
+			SoundCharge.Repeat();
 			BatterySE = false;
 		}
 	}
 	else{
-		Sound3.Stop();
+		SoundCharge.Stop();
 		BatterySE = true;
 	}
 	
@@ -221,7 +221,7 @@ void CSceneGame::Update() {
 
 	if (frame < 1000 && frame % 100 == 0){
 		//ゴミの生成
-		//new CGomi(NULL, CVector(RAND, 0.0f, RAND), CVector(), CVector(1.0f, 1.0f, 1.0f));
+		//new CGomi(NULL, CVector(RAND, 0.0f, RAND), CVector(), CVector(0.5f, 0.5, 0.5f));
 		//CGomi::StageGomi += 1;
 	}
 	
@@ -253,7 +253,7 @@ void CSceneGame::Update() {
 
 	//見下ろし視点
 	if (CKey::Push('I')){
-		e = CVector(0.0f, 50.0f, 0.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 30.0f, 0.0f)*mPlayer.mMatrix;
 	}
 	if (CKey::Push('P')){
 		e = CVector(0.0f, 1.0f, -1.0f)*mPlayer.mMatrix;
@@ -288,7 +288,7 @@ void CSceneGame::Update() {
 		CText::DrawString("GAME OVER", 200, 330, 25, 25);
 	
 		if (GameSE){
-			Sound2.Play();	//ゲームオーバーSE
+			SoundGameOver.Play();
 			GameSE = false;
 		}
 	}
@@ -303,7 +303,7 @@ void CSceneGame::Update() {
 		CText::DrawString("TIME UP", 245, 330, 25, 25);
 
 		if (GameSE){
-			Sound4.Play();	//タイムアップSE
+			SoundTimeUp.Play();
 			GameSE = false;
 		}
 	}

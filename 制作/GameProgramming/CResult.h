@@ -16,7 +16,8 @@ public:
 	//‰æ–Ê“Š‰e”ÍˆÍ‚Ì•Ï”
 	int mLeft, mRight, mBottom, mTop;
 
-	static CSound Sound;
+	static CSound SoundEnter;
+	static CSound SoundResult;
 };
 
 

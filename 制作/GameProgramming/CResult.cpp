@@ -1,7 +1,8 @@
 #include "CResult.h"
 #include "CKey.h"
 
-CSound CResult::Sound;
+CSound CResult::SoundEnter;
+CSound CResult::SoundResult;
 
 void CResult::Init() {
 
@@ -17,7 +18,10 @@ void CResult::Init() {
 	mBottom = -300;
 	mTop = 300;
 
-	Sound.Load("enter.wav");
+	SoundEnter.Load("enter.wav");
+	SoundResult.Load("result.wav");
+
+	SoundResult.Play();
 
 }
 
@@ -40,28 +44,31 @@ void CResult::Update() {
 	Start2D(0, 800, 0, 600);
 
 	////文字列の描画
-	CText::DrawString("RESULT", 270, 450, 20, 20);
-	CText::DrawString("PUSH ENTER KEY", 165, 200, 17, 17);
+	CText::DrawString("RESULT", 200, 500, 40, 40);
+	//CText::DrawString("PUSH ENTER KEY", 165, 100, 17, 17);
+	CText::DrawString("RANK", 350, 400, 15, 15);
+
+	CText::DrawString("SCORE", 280, 150, 15, 15);
 
 	char buf[10];
 	//スコア表示
 	sprintf(buf, "%d", CPlayer::Score);
-	CText::DrawString(buf, 400, 400, 20, 20);
+	CText::DrawString(buf, 480, 150, 15, 15);
 
 	if (CPlayer::Score <= 5){
-		CText::DrawString("D", 400, 300, 40, 40);
+		CText::DrawString("D", 400, 300, 60, 60);
 	}
 	else if (CPlayer::Score <= 10){
-		CText::DrawString("C", 400, 300, 40, 40);
+		CText::DrawString("C", 400, 300, 60, 60);
 	}
 	else if (CPlayer::Score <= 20){
-		CText::DrawString("B", 400, 300, 40, 40);
+		CText::DrawString("B", 400, 300, 60, 60);
 	}
 	else if (CPlayer::Score <= 25){
-		CText::DrawString("A", 400, 300, 40, 40);
+		CText::DrawString("A", 400, 300, 60, 60);
 	}
 	else{
-		CText::DrawString("S", 400, 300, 40, 40);
+		CText::DrawString("S", 400, 300, 60, 60);
 	}
 
 	//2D描画終了
@@ -71,7 +78,8 @@ void CResult::Update() {
 	if (CKey::Once(VK_RETURN)) {
 		mScene = ETITLE;
 		CPlayer::Score = 0;
-		Sound.Play();	//決定SE再生
+		SoundEnter.Play();	//決定SE再生
+		SoundResult.Stop();
 	}
 }
 //次のシーンの取得

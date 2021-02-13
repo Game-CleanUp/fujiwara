@@ -25,7 +25,7 @@
 #define H	25.0f //高さ
 #define TIME	60 * 60	//制限時間
 #define BATTERY	60 * 60	//バッテリー上限
-#define CHAGE	15	//バッテリー増加
+#define CHAGE	50	//バッテリー増加
 
 class CSceneGame : public CScene {
 public:
@@ -70,10 +70,10 @@ public:
 	static int frame;	//ゲームプレイ時間
 	static int frame2;
 
-	static CSound Sound;	//BGM
-	static CSound Sound2;	//ゲームオーバー音
-	static CSound Sound3;	//充電音
-	static CSound Sound4;	//タイムアップ
+	static CSound SoundBGM;	//BGM
+	static CSound SoundGameOver;	//ゲームオーバー音
+	static CSound SoundCharge;	//充電音
+	static CSound SoundTimeUp;	//タイムアップ
 
 	bool BatterySE;	//一度だけ充電SE再生
 	bool GameSE;	//一度だけゲームオーバー、タイムアップSE再生

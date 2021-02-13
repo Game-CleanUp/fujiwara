@@ -18,10 +18,10 @@
 #define RETRY	80		//復帰時間
 #define DROP	rand() % 20 + 10	//ゴミのドロップ位置
 #define DROP_DIR	rand() % 360	//ゴミのドロップ方向
-#define FORWARD	0.3f	//前進
-#define DIR		3.0f	//方向転換
-#define BACK	-0.3f	//後退
-#define DASH	0.5f	//ダッシュスピード
+#define FORWARD	0.5f	//前進
+#define DIR		5.0f	//方向転換
+#define BACK	-0.5f	//後退
+#define DASH	0.7f	//ダッシュスピード
 
 
 class CPlayer : public CCharacter{
@@ -40,10 +40,10 @@ public:
 	static int Score;
 	static int Down;
 
-	static CSound Sound;	//ジャンプ音
-	static CSound Sound2;	//爆発音
-	static CSound Sound3;	//攻撃音
-	static CSound Sound4;	//ゴミ回収
+	static CSound SoundJump;	//ジャンプ音
+	static CSound SoundBomb;	//爆発音
+	static CSound SoundAttack;	//攻撃音
+	static CSound SoundThrow;	//ゴミ回収
 
 	int frame;	//効果時間
 	int frame2;	//復帰時間

@@ -5,7 +5,7 @@ int CGomi::GomiCount = 0;
 int CGomi::StageGomi = 0;
 CModel CGomi::mModel;
 
-CSound CGomi::Sound;
+CSound CGomi::SoundGomi;
 
 CGomi::CGomi(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 3.0f)
@@ -23,7 +23,7 @@ CGomi::CGomi(CModel*model, CVector position, CVector rotation, CVector scale)
 	//モデルのポインタ設定
 	mpModel = &mModel;
 
-	Sound.Load("gomi.wav");
+	SoundGomi.Load("gomi.wav");
 
 }
 
@@ -81,7 +81,7 @@ void CGomi::Collision(CCollider*m, CCollider*y){
 			if (CCollider::Collision(m, y)){
 				//衝突しているときは無効にする
 				mEnabled = false;
-				Sound.Play();
+				SoundGomi.Play();
 				GomiCount += 1;
 				StageGomi -= 1;
 			}

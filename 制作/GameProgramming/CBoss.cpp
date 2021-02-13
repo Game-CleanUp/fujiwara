@@ -2,11 +2,11 @@
 #include"CSceneGame.h"
 
 
-CSound CBoss::Sound;
-CSound CBoss::Sound2;
+//CSound CBoss::SoundTrack;
+//CSound CBoss::SoundDamage;
 
 CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
-:mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 3.0f)
+:mColBody(this, CVector(1.0f, 1.5f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 4.0f)
 , mSearch(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 20.0f)
 , ActFrame(0), state(0), mVelocityJump(0.0f), EnemyDown(0), DownFrame(0), onlyOnce(true)
 {
@@ -19,8 +19,8 @@ CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 	mColBody.mTag = CCollider::EBODY2;
 	mSearch.mTag = CCollider::ESEARCH2;
 
-	Sound.Load("Dog.wav");
-	Sound2.Load("Edamage.wav");
+	SoundTrack.Load("Dog.wav");
+	SoundDamage.Load("Edamage.wav");
 }
 
 void CBoss::TaskCollision()
@@ -88,7 +88,7 @@ void CBoss::Update(){
 
 		case 4:	//ゴミを出す
 			ActFrame += 1;
-			if (ActFrame > 600){
+			if (ActFrame > 90){
 				new CGomi(NULL, mPosition, CVector(), CVector(0.5f, 0.5f, 0.5f));
 				CGomi::StageGomi += 1;
 				state = rand() % STATERAND;
@@ -119,7 +119,7 @@ void CBoss::Update(){
 			}
 			
 			if (onlyOnce){
-				Sound.Repeat();
+				SoundTrack.Repeat();
 				onlyOnce = false;
 			}
 
@@ -163,7 +163,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 		}
 		else{
 			onlyOnce = true;
-			Sound.Stop();
+			SoundTrack.Stop();
 		}
 	}
 	
@@ -184,8 +184,8 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 		if (CCollider::Collision(m, y)){
 			mPosition = CVector(2.0f, 0.0f, 0.0f)*mMatrix;	//跳ねる
 			mRotation = CVector(0.0f, 0.0f, 90.0f);	//横になる
-			Sound2.Play();	//ダメージSE
-			Sound.Stop();
+			SoundDamage.Play();	//ダメージSE
+			SoundTrack.Stop();
 			state = 7;	//気絶へ
 		}
 	}

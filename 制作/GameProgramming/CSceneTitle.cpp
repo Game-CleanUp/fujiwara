@@ -1,7 +1,7 @@
 #include "CSceneTitle.h"
 #include "CKey.h"
 
-CSound CSceneTitle::Sound;
+CSound CSceneTitle::SoundEnter;
 
 void CSceneTitle::Init() {
 
@@ -25,7 +25,7 @@ void CSceneTitle::Init() {
 	mBottom = -300;
 	mTop = 300;
 
-	Sound.Load("enter.wav");
+	SoundEnter.Load("enter.wav");
 
 }
 
@@ -58,7 +58,7 @@ void CSceneTitle::Update() {
 	//Ÿ‚ÌƒV[ƒ“‚ÍƒQ[ƒ€
 	if (CKey::Once(VK_RETURN)) {
 		mScene = EGAME;
-		Sound.Play();	//Œˆ’èSEÄ¶
+		SoundEnter.Play();	//Œˆ’èSEÄ¶
 	}
 }
 

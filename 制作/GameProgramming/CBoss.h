@@ -36,8 +36,8 @@ public:
 
 	bool onlyOnce;
 
-	static CSound Sound;	//追尾音
-	static CSound Sound2;	//ダメージ音
+	CSound SoundTrack;	//追尾音
+	CSound SoundDamage;	//ダメージ音
 
 	CMatrix matrix;
 };

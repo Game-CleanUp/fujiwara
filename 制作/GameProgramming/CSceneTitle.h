@@ -19,7 +19,7 @@ public:
 	//‰æ–Ê“Š‰e”ÍˆÍ‚Ì•Ï”
 	int mLeft, mRight, mBottom, mTop;
 
-	static CSound Sound;	//Œˆ’è‰¹
+	static CSound SoundEnter;	//Œˆ’è‰¹
 
 	CTitleUI Title;
 };
