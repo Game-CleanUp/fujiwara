@@ -1,8 +1,8 @@
 #include"CUi.h"
 #include"CSceneGame.h"
 
-extern CTexture Texture;
-extern CTexture Texture2;
+extern CTexture TextureTrap;
+extern CTexture TextureGomi;
 
 void CGaugeBack::Render(){
 
@@ -21,7 +21,7 @@ void CGaugeBack::Render(){
 	//Depthテストオフ
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_LIGHTING);
-	glColor3f(1.0f, 1.0f, 1.0f);	//緑
+	glColor3f(1.0f, 1.0f, 1.0f);
 
 	x = -240;
 	y = -275;
@@ -58,11 +58,11 @@ void CTrapUI::Render(){
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_LIGHTING);
 
-	x = 640;
-	y = 45;
+	x = 690;
+	y = 40;
 	w = 20;
 	h = 25;
-	CRectangle::Render(Texture, 0, 1800, 2770, 0);
+	CRectangle::Render(TextureTrap, 0, 1800, 2770, 0);
 
 	//プロジェクション行列を戻す
 	glPopMatrix();
@@ -133,7 +133,7 @@ void CGomiUI::Render(){
 	y = 60;
 	w = 25;
 	h = 25;
-	CRectangle::Render(Texture2, 0, 2770, 2314, 0);
+	CRectangle::Render(TextureGomi, 0, 2770, 2314, 0);
 
 	//プロジェクション行列を戻す
 	glPopMatrix();

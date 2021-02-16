@@ -24,7 +24,7 @@
 #define W	5.0f	//幅
 #define H	25.0f //高さ
 #define TIME	60 * 60	//制限時間
-#define BATTERY	60 * 60	//バッテリー上限
+#define BATTERY	50 * 60	//バッテリー上限
 #define CHAGE	50	//バッテリー増加
 
 class CSceneGame : public CScene {
@@ -40,6 +40,8 @@ public:
 	void ValueReset();
 
 	CPlayer mPlayer;
+
+	CModel mPlayerModel;
 
 	CModel mCube;
 	CModel mPlane;
@@ -67,8 +69,8 @@ public:
 	static int mTimeMax;
 	static int mTimeNow;
 
-	static int frame;	//ゲームプレイ時間
-	static int frame2;
+	static int frameGame;	//ゲームプレイ時間
+	static int frameUI;	//UI表示時間
 
 	static CSound SoundBGM;	//BGM
 	static CSound SoundGameOver;	//ゲームオーバー音

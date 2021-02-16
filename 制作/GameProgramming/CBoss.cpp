@@ -42,15 +42,15 @@ void CBoss::Update(){
 
 		switch (state){
 
-		case 0:	//立ち止まる
+		case Move_Stop:	//立ち止まる
 			ActFrame += 1;
-			if (ActFrame >STOP){
+			if (ActFrame >STOPTIME){
 				state = rand() % STATERAND;
 				ActFrame = 0;
 			}
 			break;
 
-		case 1:	//左方向に移動
+		case Move_Left:	//左方向に移動
 			ActFrame += 1;
 			if (ActFrame < 20){
 				mRotation.mY += rand() % TURN;
@@ -64,7 +64,7 @@ void CBoss::Update(){
 			}
 			break;
 
-		case 2:	//右方向に移動
+		case Move_Right:	//右方向に移動
 			ActFrame += 1;
 			if (ActFrame < 20){
 				mRotation.mY -= rand() % TURN;
@@ -78,25 +78,16 @@ void CBoss::Update(){
 			}
 			break;
 
-		case 3:	//立ち止まる
+		case Move_Gomi:	//ゴミを出す
 			ActFrame += 1;
-			if (ActFrame > STOP){
-				state = rand() % STATERAND;
-				ActFrame = 0;
-			}
-			break;
-
-		case 4:	//ゴミを出す
-			ActFrame += 1;
-			if (ActFrame > 90){
+			if (ActFrame > 180){
 				new CGomi(NULL, mPosition, CVector(), CVector(0.5f, 0.5f, 0.5f));
-				CGomi::StageGomi += 1;
 				state = rand() % STATERAND;
 				ActFrame = 0;
 			}
 			break;
 
-		case 5:	//トラップ追尾
+		case Move_TrapTracking:	//トラップ追尾
 			if (left.Dot(dir_trap) > 0.0f){
 				mRotation.mY += Rote;
 			}
@@ -109,7 +100,7 @@ void CBoss::Update(){
 			state = rand() % STATERAND;
 			break;
 
-		case 6:
+		case Move_PlayerTracking:
 			//プレイヤー追尾
 			if (left.Dot(dir_player) > 0.0f){
 				mRotation.mY += Rote;
@@ -128,7 +119,7 @@ void CBoss::Update(){
 			state = rand() % STATERAND;
 			break;
 
-		case 7:	//気絶
+		case Move_Damage:	//気絶
 			ActFrame += 1;
 			if (ActFrame > 120){
 				mRotation = CVector(0.0f, 0.0f, 0.0f);	//復帰
@@ -157,8 +148,8 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 	//追尾(プレイヤーがサーチに入ると)
 	if (m->mTag == CCollider::ESEARCH2 && y->mTag == CCollider::EBODY){
 		if (CCollider::Collision(m, y)){
-			if (state != 5 && state != 7){	//トラップ、気絶以外
-				state = 6;	//プレイヤー追尾へ
+			if (state != Move_TrapTracking && state != Move_Damage){	//トラップ、気絶以外
+				state = Move_PlayerTracking;	//プレイヤー追尾へ
 			}
 		}
 		else{
@@ -171,8 +162,8 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::ESEARCH2){
 		if (y->mTag == CCollider::ETRAP){
 			if (CCollider::Collision(m, y)){
-				if (state != 7){	//気絶以外
-					state = 5;	//トラップ誘導へ
+				if (state != Move_Damage){	//気絶以外
+					state = Move_TrapTracking;	//トラップ誘導へ
 				}
 			}
 		}
@@ -186,7 +177,7 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 			mRotation = CVector(0.0f, 0.0f, 90.0f);	//横になる
 			SoundDamage.Play();	//ダメージSE
 			SoundTrack.Stop();
-			state = 7;	//気絶へ
+			state = Move_Damage;	//気絶へ
 		}
 	}
 

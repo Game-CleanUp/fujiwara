@@ -16,7 +16,7 @@
 #define JUMPV0  2.0f	//ジャンプ初速
 #define R		5.0f	//半径
 #define RETRY	80		//復帰時間
-#define DROP	rand() % 20 + 10	//ゴミのドロップ位置
+#define DROP	13	//ゴミのドロップ位置
 #define DROP_DIR	rand() % 360	//ゴミのドロップ方向
 #define FORWARD	0.5f	//前進
 #define DIR		5.0f	//方向転換
@@ -45,10 +45,8 @@ public:
 	static CSound SoundAttack;	//攻撃音
 	static CSound SoundThrow;	//ゴミ回収
 
-	int frame;	//効果時間
-	int frame2;	//復帰時間
+	int frameRetry;	//復帰時間
 	int frameMax;
-	int state;
 
 	float mVelocityJump;
 

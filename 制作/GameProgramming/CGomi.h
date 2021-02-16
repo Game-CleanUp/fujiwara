@@ -7,6 +7,7 @@
 #include "CCollisionManager.h"
 
 #define ATTRACT	1.5	//引き寄せる速度
+#define GomiLimit	5	//ゴミ所持上限
 
 class CGomi : public CCharacter{
 public:
@@ -23,7 +24,6 @@ public:
 	static int GomiCount;	//ゴミ所持数
 	static CModel mModel;
 	static CSound SoundGomi;
-	static int StageGomi;	//ステージにあるゴミの数
 
 	float mVelocityJump;
 

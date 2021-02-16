@@ -8,7 +8,7 @@ CModel CTrap::mModel;
 CSound CTrap::Sound;
 
 CTrap::CTrap(CModel*model, CVector position, CVector rotation, CVector scale)
-:mColBody(this, CVector(0.0f, 1.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 5.0f)
+:mColBody(this, CVector(0.0f, 2.0f, 0.0f), CVector(0.0f, 0.0f, 0.0f), CVector(1.0f, 1.0f, 1.0f), 3.0f)
 , trapframe(0)
 {
 	mpModel = model; //ÉÇÉfÉãÇÃê›íË

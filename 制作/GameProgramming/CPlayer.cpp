@@ -16,11 +16,10 @@ CSound CPlayer::SoundThrow;
 extern std::shared_ptr<CTexture>TextureExp(new CTexture());
 
 CPlayer::CPlayer()
-:mColBody(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 2.0f)
+:mColBody(this, CVector(0.0f, 0.5f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 1.5f)
 //サーチ
 , mSearch(this, CVector(0.0f, -3.0f, 5.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
-, mVelocityJump(0.0f)
-, frame(0), frameMax(300), frame2(0), state(0), onlyOnce(true)
+, mVelocityJump(0.0f), frameMax(300), frameRetry(0), onlyOnce(true)
 {
 
 	mColBody.mTag = CCollider::EBODY;
@@ -76,8 +75,8 @@ void CPlayer::Update(){
 			if (mVelocityJump == 0){	//ジャンプ中無効
 				if (CKey::Once(VK_SPACE)){
 					CBullet*bullet = new CBullet();
-					bullet->Set(0.3f, 2.0f);	//弾のサイズ
-					bullet->mPosition = CVector(0.0f, 0.0f, 0.0f)*mMatrix;
+					bullet->Set(0.2f, 5.0f);	//弾のサイズ
+					bullet->mPosition = CVector(0.0f, -0.1f, 0.0f)*mMatrix;
 					bullet->mRotation = mRotation;
 					bullet->mTag = CCharacter::EBULLET;
 					SoundAttack.Play();
@@ -88,7 +87,8 @@ void CPlayer::Update(){
 			//トラップ設置
 			if (CTrap::TrapCount > 0){
 				if (CKey::Once('Q')){
-					new CTrap(NULL, mPosition, CVector(), CVector(0.5f, 0.5f, 0.5f));
+					new CTrap(NULL, mPosition, CVector(), CVector(0.3f, 0.3f, 0.3f));
+					SoundThrow.Play();
 					CTrap::TrapCount -= 1;	//トラップ消費
 				}
 			}
@@ -161,7 +161,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::EBODY && y->mTag == CCollider::EBODY2){
 		if (CCollider::Collision(m, y)){
 
-			frame2++;	//復帰までの時間
+			frameRetry++;	//復帰までの時間
 			Down = true;
 
 			if (onlyOnce){
@@ -179,7 +179,6 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 				//プレイヤーの周りに出現
 				for (int i = 0; i < 1; i++){
 					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_DIR), CVector(), CVector(0.5f, 0.5f, 0.5f));
-					CGomi::StageGomi += 1;
 				}
 				CGomi::GomiCount = 0;
 				break;
@@ -187,7 +186,6 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 			case 2:
 				for (int i = 0; i < 2; i++){
 					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_DIR), CVector(), CVector(0.5f, 0.5, 0.5f));
-					CGomi::StageGomi += 2;
 				}
 				CGomi::GomiCount = 0;
 				break;
@@ -195,7 +193,6 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 			case 3:
 				for (int i = 0; i < 3; i++){
 					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_DIR), CVector(), CVector(0.5f, 0.5, 0.5f));
-					CGomi::StageGomi += 3;
 				}
 				CGomi::GomiCount = 0;
 				break;
@@ -203,7 +200,6 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 			case 4:
 				for (int i = 0; i < 4; i++){
 					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_DIR), CVector(), CVector(0.5f, 0.5, 0.5f));
-					CGomi::StageGomi += 4;
 				}
 				CGomi::GomiCount = 0;
 				break;
@@ -211,20 +207,19 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 			case 5:
 				for (int i = 0; i < 5; i++){
 					new CGomi(NULL, mPosition + CVector(0.0f, 15.0f, DROP)*matrix.RotateY(DROP_DIR), CVector(), CVector(0.5f, 0.5, 0.5f));
-					CGomi::StageGomi += 5;
 				}
 				CGomi::GomiCount = 0;
 				break;
 			}
 
 			//リトライ(初期位置に戻る)
-			if (frame2 >= RETRY){
+			if (frameRetry >= RETRY){
 				//初期位置
 				mPosition = CVector(70.0f, 10.0f, 55.0f);
 				mRotation = CVector(0.0f, 225.0f, 0.0f);
 				CSceneGame::mBatteryNow = CSceneGame::mBatteryMax;
 				Down = false;
-				frame2 = 0;
+				frameRetry = 0;
 			}
 		}
 	}

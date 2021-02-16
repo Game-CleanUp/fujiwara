@@ -2,7 +2,6 @@
 
 
 int CGomi::GomiCount = 0;
-int CGomi::StageGomi = 0;
 CModel CGomi::mModel;
 
 CSound CGomi::SoundGomi;
@@ -75,7 +74,7 @@ void CGomi::Collision(CCollider*m, CCollider*y){
 	}
 
 	//ゴミ保有数上限で無効
-	if (GomiCount < 5){
+	if (GomiCount < GomiLimit){
 		//相手がプレイヤー
 		if (y->mTag == CCollider::EBODY){
 			if (CCollider::Collision(m, y)){
@@ -83,7 +82,6 @@ void CGomi::Collision(CCollider*m, CCollider*y){
 				mEnabled = false;
 				SoundGomi.Play();
 				GomiCount += 1;
-				StageGomi -= 1;
 			}
 		}
 		//引き寄せ(プレイヤーのサーチに当たった時)
