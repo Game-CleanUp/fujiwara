@@ -19,7 +19,7 @@ CPlayer::CPlayer()
 :mColBody(this, CVector(0.0f, 0.5f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 1.5f)
 //サーチ
 , mSearch(this, CVector(0.0f, -3.0f, 5.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), R)
-, mVelocityJump(0.0f), frameMax(300), frameRetry(0), onlyOnce(true)
+, mVelocityJump(0.0f), frameRetry(0), onlyOnce(true)
 {
 
 	mColBody.mTag = CCollider::EBODY;
@@ -63,7 +63,7 @@ void CPlayer::Update(){
 				//ダッシュ
 				if (CKey::Push(VK_SHIFT)){
 					mPosition = CVector(0.0f, 0.0f, DASH)*mMatrix;
-					CSceneGame::mBatteryNow -= 10;
+					CSceneGame::mBatteryNow -= 10;	//バッテリー消費
 				}
 			}
 
@@ -80,7 +80,7 @@ void CPlayer::Update(){
 					bullet->mRotation = mRotation;
 					bullet->mTag = CCharacter::EBULLET;
 					SoundAttack.Play();
-					CSceneGame::mBatteryNow -= 100;	//バッテリー消費
+					CSceneGame::mBatteryNow -= 300;	//バッテリー消費
 				}
 			}
 
@@ -102,9 +102,13 @@ void CPlayer::Update(){
 			//ゴミを捨てる,スコア加算(ホームにいるとき、ゴミを持っているとき)
 			if (CHome::home == true && CGomi::GomiCount > 0){
 				if (CKey::Once('E')){
-					Score += 1;
+					if (CGomi::GomiCount == GomiLimit){	//ゴミ最大所持の時タイムを加算
+						CSceneGame::mTimeNow += TIMEADD;
+					}
+
+					Score = Score + CGomi::GomiCount;
 					SoundThrow.Play();
-					CGomi::GomiCount -= 1;
+					CGomi::GomiCount = 0;
 				}
 			}
 		}
@@ -215,7 +219,7 @@ void CPlayer::Collision(CCollider*m, CCollider*y){
 			//リトライ(初期位置に戻る)
 			if (frameRetry >= RETRY){
 				//初期位置
-				mPosition = CVector(70.0f, 10.0f, 55.0f);
+				mPosition = CVector(71.0f, 10.0f, 51.0f);
 				mRotation = CVector(0.0f, 225.0f, 0.0f);
 				CSceneGame::mBatteryNow = CSceneGame::mBatteryMax;
 				Down = false;

@@ -18,11 +18,11 @@
 #define RETRY	80		//復帰時間
 #define DROP	13	//ゴミのドロップ位置
 #define DROP_DIR	rand() % 360	//ゴミのドロップ方向
-#define FORWARD	0.5f	//前進
-#define DIR		5.0f	//方向転換
-#define BACK	-0.5f	//後退
-#define DASH	0.7f	//ダッシュスピード
-
+#define FORWARD	0.6f	//前進
+#define DIR		7.0f	//方向転換
+#define BACK	-0.6f	//後退
+#define DASH	0.8f	//ダッシュスピード
+#define TIMEADD	5*60	//タイム加算
 
 class CPlayer : public CCharacter{
 public:
@@ -46,7 +46,6 @@ public:
 	static CSound SoundThrow;	//ゴミ回収
 
 	int frameRetry;	//復帰時間
-	int frameMax;
 
 	float mVelocityJump;
 

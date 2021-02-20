@@ -2,6 +2,7 @@
 #define CUI_H
 
 #include"CRectangle.h"
+#include"CScene.h"
 
 class CGaugeBack : public CRectangle{
 public:

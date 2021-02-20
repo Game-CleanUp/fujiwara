@@ -1,14 +1,10 @@
 #include"CBoss.h"
 #include"CSceneGame.h"
 
-
-//CSound CBoss::SoundTrack;
-//CSound CBoss::SoundDamage;
-
 CBoss::CBoss(CModel*model, CVector position, CVector rotation, CVector scale)
 :mColBody(this, CVector(1.0f, 1.5f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 4.0f)
 , mSearch(this, CVector(0.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f), 20.0f)
-, ActFrame(0), state(0), mVelocityJump(0.0f), EnemyDown(0), DownFrame(0), onlyOnce(true)
+, ActFrame(0), state(0), mVelocityJump(0.0f), onlyOnce(true)
 {
 	//モデル、位置、回転、拡縮を設定する
 	mpModel = model; //モデルの設定
@@ -95,13 +91,11 @@ void CBoss::Update(){
 				mRotation.mY -= Rote;
 			}
 
-			//正規化（長さを1にする）Normalize()
 			mPosition = mPosition + dir_trap.Normalize() * TRACKSPEED;
 			state = rand() % STATERAND;
 			break;
 
-		case Move_PlayerTracking:
-			//プレイヤー追尾
+		case Move_PlayerTracking:	//プレイヤー追尾
 			if (left.Dot(dir_player) > 0.0f){
 				mRotation.mY += Rote;
 			}
@@ -114,16 +108,16 @@ void CBoss::Update(){
 				onlyOnce = false;
 			}
 
-			//正規化（長さを1にする）Normalize()
 			mPosition = mPosition + dir_player.Normalize() * TRACKSPEED;
 			state = rand() % STATERAND;
 			break;
 
-		case Move_Damage:	//気絶
+		case Move_Damage:	//ダメージ
 			ActFrame += 1;
-			if (ActFrame > 120){
+			if (ActFrame > DAMAGETIME){
 				mRotation = CVector(0.0f, 0.0f, 0.0f);	//復帰
 				ActFrame = 0;
+			
 				state = rand() % STATERAND;
 			}
 			break;
@@ -140,16 +134,23 @@ void CBoss::Update(){
 	mPosition.mY = mPosition.mY - mVelocityJump;
 	
 	CCharacter::Update();
-	
+}
+
+void CBoss::Render(){
+	CCharacter::Render();
+
+	//CScene::Start2D(0, 800, 0, 600);
+	//CText::DrawString("BOW", 400, 300, 25, 25);
+	//CScene::End2D();
 }
 
 void CBoss::Collision(CCollider*m, CCollider*y){
 
-	//追尾(プレイヤーがサーチに入ると)
+	//プレイヤー発見
 	if (m->mTag == CCollider::ESEARCH2 && y->mTag == CCollider::EBODY){
 		if (CCollider::Collision(m, y)){
-			if (state != Move_TrapTracking && state != Move_Damage){	//トラップ、気絶以外
-				state = Move_PlayerTracking;	//プレイヤー追尾へ
+			if (state != Move_TrapTracking && state != Move_Damage){	//トラップ、ダメージ以外
+				state = Move_PlayerTracking;
 			}
 		}
 		else{
@@ -162,8 +163,8 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 	if (m->mTag == CCollider::ESEARCH2){
 		if (y->mTag == CCollider::ETRAP){
 			if (CCollider::Collision(m, y)){
-				if (state != Move_Damage){	//気絶以外
-					state = Move_TrapTracking;	//トラップ誘導へ
+				if (state != Move_Damage){	//ダメージ以外
+					state = Move_TrapTracking;
 				}
 			}
 		}
@@ -175,9 +176,10 @@ void CBoss::Collision(CCollider*m, CCollider*y){
 		if (CCollider::Collision(m, y)){
 			mPosition = CVector(2.0f, 0.0f, 0.0f)*mMatrix;	//跳ねる
 			mRotation = CVector(0.0f, 0.0f, 90.0f);	//横になる
-			SoundDamage.Play();	//ダメージSE
+			SoundDamage.Play();
 			SoundTrack.Stop();
-			state = Move_Damage;	//気絶へ
+			onlyOnce = true;
+			state = Move_Damage;
 		}
 	}
 

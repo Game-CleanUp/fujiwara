@@ -22,12 +22,12 @@ void CHome::TaskCollision()
 }
 
 void CHome::Collision(CCollider*m, CCollider*y){
-	//[“d
+
+	//[“dƒGƒŠƒA‚É‚¢‚é‚©”»’è
 	if (y->mTag == CCollider::EBODY){
 		if (CCollider::Collision(m, y)){
 			home = true;
-			}
-
+		}
 		else{
 			home = false;
 		}

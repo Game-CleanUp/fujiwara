@@ -20,9 +20,9 @@
 #include"CTrap.h"
 #include"CTexture.h"
 
-#define RAND rand() % 100 - 50	//ランダム配置(-150~149)
-#define W	5.0f	//幅
-#define H	25.0f //高さ
+#define RAND rand() % 100 - 50	//ランダム配置(-50~49)
+#define W	2.0f	//幅
+#define H	20.0f //高さ
 #define TIME	60 * 60	//制限時間
 #define BATTERY	50 * 60	//バッテリー上限
 #define CHAGE	50	//バッテリー増加
@@ -35,8 +35,7 @@ public:
 	void Init();
 	//更新処理のオーバーライド
 	void Update();
-	//ミニマップの表示
-	void RenderMiniMap();
+
 	void ValueReset();
 
 	CPlayer mPlayer;

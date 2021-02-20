@@ -43,8 +43,8 @@ void CSceneGame::Init() {
 	//BGM再生
 	SoundBGM.Repeat();
 
-	bool BatterySE = true;
-	bool GameSE = true;
+	BatterySE = true;
+	GameSE = true;
 
 	//テクスチャの読み込み
 	TextureTrap.Load("DogFood.tga");
@@ -91,13 +91,13 @@ void CSceneGame::Init() {
 
 	new CObj(&mTVCabinet, CVector(-59.0f, -1.0f, 25.0f), CVector(0.0f, -90.0f, 0.0f), CVector(50.0f, 35.0f, 65.0f));
 
-	new CObj(&mSofa, CVector(-15.0f, -1.0f, -15.0f), CVector(0.0f, 90.0f, 0.0f), CVector(40.0f, 35.0f, 35.0f));
+	new CObj(&mSofa, CVector(-10.0f, -1.0f, -15.0f), CVector(0.0f, 90.0f, 0.0f), CVector(40.0f, 35.0f, 35.0f));
 
 	new CObj(&mTable, CVector(-35.0f, -5.0f, 5.0f), CVector(0.0f, -90.0f, 0.0f), CVector(50.0f, 40.0f, 40.0f));
 
-	new CObj(&mWall, CVector(5.0f, -1.0f, -55.0f), CVector(0.0f, 90.0f, 0.0f), CVector(80.0f, 30.0f, 40.0f));
+	new CObj(&mWall, CVector(5.0f, -1.0f, -55.0f), CVector(0.0f, 90.0f, 0.0f), CVector(90.0f, 30.0f, 40.0f));
 
-	new CObj(&mDoor, CVector(5.0f, -1.0f, 20.0f), CVector(0.0f, 90.0f, 0.0f), CVector(35.0f, 25.0f, 40.0f));
+	new CObj(&mDoor, CVector(5.0f, -1.0f, 25.0f), CVector(0.0f, 90.0f, 0.0f), CVector(35.0f, 25.0f, 40.0f));
 
 	new CObj(&mKichen, CVector(64.0f, -1.0f, -40.0f), CVector(), CVector(90.0f, 30.0f, 50.0f));
 
@@ -117,21 +117,17 @@ void CSceneGame::Init() {
 	//左
 	new CObj(&mCube, CVector(0.0f, -1.0f, -60.0f), CVector(), CVector(80.0f, H, W));
 
-	new CObj(&mCube, CVector(40.0f, -1.0f, -55.0f), CVector(), CVector(31.0f, H, 15.0f));
-	new CObj(&mCube, CVector(69.0f, -1.0f, -40.0f), CVector(), CVector(W, H, 10.0f));
-	new CObj(&mCube, CVector(16.0f, -1.0f, -41.0f), CVector(), CVector(9.0f, H, 9.0f));
-
 	//敵(追尾)
 	new CBoss(&mDog, CVector(-20.0f, 0.0f, 50.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	new CBoss(&mDog, CVector(30.0f, 0.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
-
-	new CTrap(&mSphere, CVector(0.0f, -10.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
 	
+	new CTrap(&mSphere, CVector(0.0f, -10.0f, 0.0f), CVector(), CVector(1.0f, 1.0f, 1.0f));
+
 	//ホーム
 	new CHome(&mTrashbox, CVector(73.0f, -1.0f, 53.0f), CVector(0.0f, 45.0f, 0.0f), CVector(15.0f, 15.0f, 15.0f));
 
 	//プレイヤー初期位置
-	mPlayer.mPosition = CVector(70.0f, 10.0f, 55.0f);
+	mPlayer.mPosition = CVector(71.0f, 10.0f, 51.0f);
 	mPlayer.mRotation = CVector(0.0f, 225.0f, 0.0f);
 	
 	//テクスチャ(床）
@@ -141,21 +137,6 @@ void CSceneGame::Init() {
 	new CObj(&mPlane, CVector(0.0f, -1.5f, 0.0f), CVector(), CVector(80.0f, 1.0f, 60.0f));
 	new CImage(floor, CVector(0.0f, -1.49f, 0.0f), CVector(-90.0f, 0.0f, 0.0f), CVector(80.0f, 60.0f, 1.0f));
 
-}
-
-//ミニマップ
-void CSceneGame::RenderMiniMap(){
-	glPushMatrix();
-	glViewport(600, 450, 200, 150); //画面の描画エリアの指定
-	glLoadIdentity();
-	//視点調整必要
-	gluLookAt(0, 90, 0, 0, 0, 0, 0, 0, 1);
-	glDisable(GL_DEPTH_TEST);
-	//描画
-	CTaskManager::Get()->Render();
-	glPopMatrix();
-	glViewport(0, 0, 800, 600); //画面の描画エリアの指定
-	glEnable(GL_DEPTH_TEST);
 }
 
 //数値リセット
@@ -177,7 +158,7 @@ void CSceneGame::Update() {
 	}
 
 	//充電(最大値を超えない、バッテリー増加)
-	if (mBatteryMax >= mBatteryNow && CHome::home == 1){
+	if (mBatteryMax >= mBatteryNow && CHome::home == true){
 
 		mBatteryNow += CHAGE;
 
@@ -208,7 +189,7 @@ void CSceneGame::Update() {
 	}
 
 	frameGame++;
-	if (frameGame < 1000 && frameGame % 200 == 0){
+	if (frameGame < 5000 && frameGame % 250 == 0){
 		//ゴミの生成
 		new CGomi(NULL, CVector(RAND, 20.0f, RAND), CVector(), CVector(0.5f, 0.5, 0.5f));
 	}
@@ -218,7 +199,7 @@ void CSceneGame::Update() {
 	CVector e, c, u;//視点、注視点、上方向
 	if (CPlayer::Down == FALSE){
 		//視点を求める
-		e = CVector(0.0f, 1.5f, -3.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 1.5f, -3.5f)*mPlayer.mMatrix;
 		//注視点を求める
 		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 		//上方向を求める
@@ -227,7 +208,7 @@ void CSceneGame::Update() {
 	//ダメージリアクション
 	else{
 		//視点を求める
-		e = CVector(0.0f, 20.0f, -15.0f)*mPlayer.mMatrix;
+		e = CVector(0.0f, 30.0f, -5.0f)*mPlayer.mMatrix;
 		//注視点を求める
 		c = CVector(0.0f, 0.0f, 10.0f)*mPlayer.mMatrix;
 		//上方向を求める
@@ -236,15 +217,7 @@ void CSceneGame::Update() {
 
 	//後方視点
 	if (CKey::Push('O')){
-		c = CVector(0.0f, 1.0f, -10.0f)*mPlayer.mMatrix;
-	}
-
-	//見下ろし視点
-	if (CKey::Push('I')){
 		e = CVector(0.0f, 30.0f, 0.0f)*mPlayer.mMatrix;
-	}
-	if (CKey::Push('P')){
-		e = CVector(0.0f, 1.0f, -1.0f)*mPlayer.mMatrix;
 	}
 
 	//カメラの設定
@@ -259,9 +232,6 @@ void CSceneGame::Update() {
 
 	//コリジョンリストから削除
 	CTaskManager::Get()->Delete();
-
-	//ミニマップ表示
-	//RenderMiniMap();
 
 	//2D描画開始(UI表示)
 	Start2D(0, 800, 0, 600);

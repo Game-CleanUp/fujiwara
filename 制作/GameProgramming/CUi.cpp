@@ -29,6 +29,7 @@ void CGaugeBack::Render(){
 	h = 7;
 	CRectangle::Render();
 
+
 	//プロジェクション行列を戻す
 	glPopMatrix();
 	//モデルビューモードへ切り替え
@@ -99,6 +100,7 @@ void CTitleUI::Render(){
 	w = 800;
 	h = 600;
 	CRectangle::Render();
+
 
 	//プロジェクション行列を戻す
 	glPopMatrix();
